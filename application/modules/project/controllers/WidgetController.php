@@ -89,7 +89,7 @@ class Project_WidgetController extends  Boilerplate_Controller_Action_Abstract
     		$this->isPoll = false;
     	}
     	
-    	
+    	if($this->isPoll){
     	// check if application has been sent
     	// try to check if the user has already voted
     		$answers = $facadePoll->findAllAnswersForUser($this->project_id, $this->_member_id, $poll->id);
@@ -104,6 +104,7 @@ class Project_WidgetController extends  Boilerplate_Controller_Action_Abstract
 	    		$this->view->form = $form;
 	    		$this->view->hasVoted = false;	
     		}
+    	}
 
     	// handle new voting
     	if($this->_request->isPost()){
