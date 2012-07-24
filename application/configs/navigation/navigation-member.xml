@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <nav>
+     	
+        <member>
+            <label>Member</label>
+            <uri>/member/</uri>
+            <pages>
+                  <dashboard>
+                    <label>Member Dashboard </label>
+    				<module>member</module>
+            		<controller>dashboard</controller>
+            		<action>index</action>                   
+                   	<pages>
+						<flobox>
+							<label>Flo Box Admin</label>
+							<uri>/member/flobox/index</uri>
+							<pages>
+								<flobox-create>
+								<label>Create New</label>
+								<uri>/member/flobox/message-create</uri>
+								</flobox-create>
+							</pages>
+						</flobox>
+						<my-project>
+							<label>My Projects</label>
+									<module>member</module>
+									<controller>my-project</controller>
+            						<action>index</action>  
+            						<pages>
+            							<my-project-team>
+										<label>Team</label>
+										<module>member</module>
+										<controller>my-project-team</controller>
+            							<action>index</action>                   
+       	            	</my-project-team>
+            						</pages>                 
+       	            	</my-project>
+       	            
+       	            	
+						<my-collaboration>
+							<label>My Collaborations</label>
+								<module>member</module>
+            					<controller>my-collaboration</controller>
+            				<action>index</action>   
+						</my-collaboration>
+						
+						<create-project-one>
+						      <label>Create Project</label>
+    							<module>member</module>
+            					<controller>project</controller>
+            					<action>create-project-step-one</action>                   			                 
+               			<pages>
+	               			<create-project-two>
+							      <label>Create Project / Picture</label>
+	    							<module>member</module>
+	            					<controller>project</controller>
+	            					<action>create-project-step-two</action>                   			                 
+	               			</create-project-two>
+	               			<create-project-three>
+							      <label>Create Project / Staff</label>
+	    							<module>member</module>
+	            					<controller>project</controller>
+	            					<action>create-project-step-three</action>                   			                 
+	               			</create-project-three>
+	               			<create-project-four>
+							      <label>Create Project / Survey</label>
+	    							<module>member</module>
+	            					<controller>project</controller>
+	            					<action>create-project-step-four</action>                   			                 
+	               			</create-project-four>
+	               			<create-project-five>
+							      <label>Create Project / Publishing</label>
+	    							<module>member</module>
+	            					<controller>project</controller>
+	            					<action>create-project-step-five</action>                   			                 
+	               			</create-project-five>
+               			</pages>
+               			</create-project-one>
+               			
+               			
+						</pages>
+ 	
+                 </dashboard>
+                     <profile>
+               		<label>My Profile</label>
+                    <module>member</module>
+            		<controller>profile</controller>
+           			 <action>index</action>
+                   	<resource>member</resource>   
+                   	<params_id>ID_USER</params_id>
+                   			<pages>
+						<flobox>
+							<label>Flo Box</label>
+							    <module>member</module>
+            					<controller>profile</controller>
+           			 			<action>flobox</action> 
+							<params_id>ID_USER</params_id>
+						</flobox>
+						</pages>
+                   	 </profile>
+                   	<profile-setting> 
+                   	
+                   	<label>Profile Settings</label>
+                    <uri>/member/profile-setting/index</uri>
+                   	<resource>member</resource>   
+ 					<pages>
+						<personal-info>
+							<label>Personal Info</label>
+							<uri>/member/profile-setting/member-info</uri>
+						</personal-info>
+						<member-skills>
+							<label>My skills</label>
+							<uri>/member/profile-setting/member-skills</uri>
+						</member-skills>	
+						<member-picture>
+							<label>Profile picture</label>
+							<uri>/member/profile-setting/member-picture</uri>
+						</member-picture>
+        			</pages>  
+        			</profile-setting>
+            </pages>
+        </member>
+ 
+    </nav>
+</config>
+

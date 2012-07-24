@@ -1,0 +1,323 @@
+/* FLOW LAUNCHPAGE CSS Document */
+@font-face{
+  font-family: Futura;
+  src: url('../other/ftrabk.ttf');
+}
+
+body{
+  /*background: #e7e8ea;*/
+  background: #e7e8ea url('../img/bcg.jpg') left -300px no-repeat;
+  width: 100%;
+  font-family: Futura, Helvetica, "Trebuchet MS";
+  font-size: 13px;
+}
+
+input[type="submit"], button[type="reset"]{
+  font-family: Futura, Helvetica, "Trebuchet MS";
+}
+
+p{
+  font-family: Futura, Helvetica, "Trebuchet MS";
+  text-align: justify;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+#lp-container{
+  width: 970px;
+  margin: 0px auto 20px auto;
+}
+
+#lp-content{
+  
+  width: 100%;
+  float: left;
+  padding: 15px 0 15px 0;
+}
+
+.container{
+  margin: 0 15px 0 15px;
+}
+
+.left{
+  float: left;
+}
+
+.right{
+  float: right;
+}
+
+.lp-flash-messenger{
+  width: 100%;
+  float: left;
+  margin: 5px 0 10px 0;
+}
+
+.lp-margin{
+	width: 80%;
+	float: left;
+  margin: 15px 0 0 0;
+}
+
+.lp-menu{
+	margin: 40px 0 0 0;
+}
+
+.lp-menu-margin{
+  margin: 0 30px 0 0;
+}
+
+.lp-footer{
+	color: #0e8ece;
+	text-align: right;
+	font-size:11px;
+}
+
+.lp-footer p{
+	margin: 0px;
+  text-align: right;
+  font-size: 12px;
+}
+
+p.lp-copy{
+  text-align: left;
+  font-size: 12px;
+}
+
+.lp-mails a{
+	margin: 0 0 0 30px;	
+	color: #010101;
+}
+
+.lp-text-align-right{
+	text-align: right;
+}
+
+p.lp-donate{
+  padding: 10px 0 10px 0;
+}
+
+p.lp-editorial{
+  font-size: 15px;
+  line-height: 22px;
+  margin: 10px 0 0 0;
+}
+
+.lp-paypal-img{
+  width: 100px;
+  float: right;
+}
+
+.lp-thin-divider{
+  width: 100%;
+  height: 1px;
+  margin: 10px 0 20px 0;
+  background: url('../img/thin_divider.png') top left repeat-x;
+}
+
+.lp-logo-margin{
+  margin: 0 0 0 40px;
+}
+
+p.lp-footer-p{
+  font-size: 12px;
+}
+
+.lp-featured-size{
+  height: 600px;
+}
+
+
+h1{
+  position: relative;
+  overflow: hidden;
+  width: 410px;
+  height: 54px;
+  float: left;
+  margin: 20px 0 20px 0;
+  font-weight: normal;
+}
+
+h1 span#lp-logo-flow{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 200px;
+  height: 54px;
+  z-index: 1;
+  display: block;
+  background: #e7e8ea url('../img/logo_flow_black.png') top left  no-repeat;
+}
+
+h1 span#lp-logo-platform, h1 span#lp-logo-slogan{
+	font-family: Futura, Helvetica, "Trebuchet MS";
+	display: block;
+	float: right;
+	width: 200px;
+    height: 30px;
+    color: #58585a;
+    margin: 0px;
+    font-size: 35px;
+    line-height:27px;
+    padding: 0px;
+}
+
+h1 span#lp-logo-slogan{
+	height: 24px;
+	font-size: 15.1px;
+  line-height:14px;
+}
+
+h1 a{
+  border: 0px;
+  text-decoration: none;
+  margin: 0px;
+}
+
+h2{
+  margin-bottom: 27px;
+  font-size: 23px;
+  line-height: 36px;
+  color: #333333;
+  font-weight: normal;
+}
+
+h3{
+  color: #0b4e70;
+}
+
+h3.lp-faq-question{
+  font-weight: normal;
+  margin: 5px 0 5px 0;
+}
+
+
+.lp-faq{
+  margin: 0 0 25px 0;
+  border-left: 2px solid #7190bd;
+  padding: 0 0 0 15px;
+}
+
+#descriptions{
+  height: 150px;
+}
+
+.screen-description{
+  color: #0a4461;
+  border-left: 5px solid #7190bd;
+  padding: 5px 0 5px 10px;
+  margin: 40px 0 0 0;
+}
+
+.screen-description h3{
+  margin: 0 0 0 0;
+}
+
+.screen-description p{
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.h2span{
+  display: block;
+  width: 100%;
+  text-align: left;
+  text-indent: 50px;
+  font-style: italic;
+  font-size: 18px;
+  margin: 5px 0 30px 0;
+}
+
+p.definition{
+  width: 90%;
+  margin: 10px auto 10px auto;
+  color: #555555;  
+}
+
+h4{
+	margin-bottom: 10px;
+	color: #0088cc;
+}
+
+.lp-screens-navigation{
+  width: 100%;
+  margin: 0;
+  padding: 0px;
+  list-style: none;
+  float: left;
+}
+
+.lp-screens-navigation-thumbnails{
+	width: 17%;
+	margin: 0px 1% 0px 1%;
+  float: left;
+  border: 2px solid #c8c8c8;
+}
+
+.lp-screens-navigation-thumbnails img{
+  width: 100%;
+}
+
+.lp-btn-access{
+  -webkit-border-radius: 0 0 4px 4px;
+  -moz-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
+  margin: 0 auto 30px 6px;
+  padding: 6px 15px 6px 15px;
+}
+
+.lp-btn-survey{
+  position: absolute;
+  top: 40%;
+  left: 0px;
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
+  margin: 0px;
+  padding: 15px;
+}
+
+
+/*bootstrap overwrite */
+
+.thumbnail {
+  display: block;
+  padding: 0px;
+  line-height: 1;
+  border: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0.075);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.075);
+}
+
+a.thumbnail:hover {
+  border: 0px;
+  -webkit-box-shadow: 0 0 0 rgba(0, 105, 214, 0.25);
+  -moz-box-shadow: 0 0 0 rgba(0, 105, 214, 0.25);
+  box-shadow: 0 0 0 rgba(0, 105, 214, 0.25);
+}
+
+.thumbnails {
+  margin-left: -20px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  list-style: none;
+  *zoom: 1;
+}
+
+.thumbnails > li {
+  float: left;
+  margin-bottom: 5px;
+  margin-left: 20px;
+}
+
+.modal-body{
+  text-align: center;
+}
+
+.form-actions{
+  background: none;
+}

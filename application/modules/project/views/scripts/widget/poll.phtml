@@ -1,0 +1,39 @@
+<?php if($this->isPobll === false) { echo "There are no polls"; return; } // check if there are any polls ?>
+
+
+<?php
+// zone for member who has voted
+if ($this->hasVoted) { ?>
+<h3 class="fl-sidebar">Thank you for your feedback.</h3>
+<div class="fl-feedback">
+
+	<ul class="fl-feedback-poll">
+	 <?php
+	foreach ( $this->answers as $a ) {
+		?>
+		<li>
+			<div class="fl-feedback-question">
+				<p><?php echo $a->question->question;?></p>
+			</div>
+			<div class="fl-feedback-answer">
+						<?php echo $a->answer . "  AVG ". $a->question->avgOfAnswers();?>           
+            </div>
+		</li>                          
+		<?php }?>      
+	 </ul>
+
+	<p class="fl-feedback-info"><?php echo $this->countOfVotedMembers; ?> has voted</p>
+	<input type="submit" name="submit" value="Change your answers"
+		class="btn btn-primary right" />
+
+</div>
+
+<?php
+}
+?>
+<h3 class="fl-sidebar">Leave feedback - help out!</h3>
+<div class="fl_thick_divider"></div>
+<div class="fl-feedback">
+ 				 
+	<?php echo $this->form;?> 	
+</div>

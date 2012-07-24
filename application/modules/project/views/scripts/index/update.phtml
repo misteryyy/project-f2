@@ -1,0 +1,38 @@
+<h2><?php echo $this->project->title?> <?php echo $this->project->level;?></h2>
+              <p class="fl_project_head_info"><i class="icon-user"></i> <a href="" title=""><?php echo $this->project->user->name?></a>, <i class="icon-folder-close"></i> caterogy, <i class="icon-time"></i> <?php echo $this->project->created->format('Y/m/d');?>, <i class="icon-thumbs-up"></i> <a href="" title="">like</a></p>
+
+<?php
+// basic project navigation
+$this->step = 2;
+echo $this->partial('/index/project-navigation.phtml',array("step" => $this->step,"project" => $this->project));
+?>
+
+           </div>
+       </div>
+
+       <div class="row">
+            <div class="span7">	
+
+<h2>Updates</h2>
+<p>Total number of updates <?php echo $this->paginator->getTotalItemCount();?> </p>
+<hr/>
+
+<?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
+    <?php if (count($this->paginator) > 0) {?>
+    	<?php foreach ($this->paginator as $update){ ?>
+
+    		<div class="well">
+		 	<h3><?php echo $update->title;?>
+		 	</h3>
+		 	<?php echo $update->content;?>
+		 	<?php echo $update->created->format('d-m-y') ;?>
+			</div>
+		
+    	
+    	<?php } 
+ 	}
+ 	else {
+	echo "No Updates for this project";
+} ?>
+
+</div>

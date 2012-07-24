@@ -1,0 +1,34 @@
+  <?php
+  $this->step = 2;
+  echo $this->partial('profile-setting/profile-setting-navigation.phtml',array("step" => $this->step));
+  ?>
+
+<div class="row">
+  <div class="span6">
+   <div class="alert alert-info">
+   <span class="label label-info">Info</span>
+ 	Image will be automatically cropped. Try to upload image which has resolution 200x200 to have the best image quality and proportion.
+	</div>
+   <?php  echo $this->form;   ?>
+   <?php
+  	
+// 	$dir = new DirectoryIterator(APPLICATION_PATH . '/../public/storage/users/');
+// 	foreach ($dir as $fileinfo) {
+// 	    if (!$fileinfo->isDot()) {
+// 	        var_dump($fileinfo->getFilename());
+// 	    }
+// 	}
+?>
+
+  </div>
+  <div class="span5">
+    <h4>Current Picture</h4>
+	 <img src="<?php echo $this->member["profile_picture_200"].'?foo='.time()?>" alt="<?= $this->member['name'];?>">
+     <img src="<?php echo $this->member["profile_picture_100"].'?foo='.time()?>" alt="<?= $this->member['name'];?>">
+     <img src="<?php echo $this->member["profile_picture_50"].'?foo='.time()?>" alt="<?= $this->member['name'];?>">	  
+  </div>
+</div>
+
+
+    
+    

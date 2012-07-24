@@ -1,0 +1,69 @@
+<?php 
+if(count ($this->project) > 0){ ?>
+
+<h2><?php echo $this->project->title?> <?php echo $this->project->level;?></h2>
+              <p class="fl_project_head_info"><i class="icon-user"></i> <a href="" title=""><?php echo $this->project->user->name?></a>, <i class="icon-folder-close"></i> caterogy, <i class="icon-time"></i> <?php echo $this->project->created->format('Y/m/d');?>, <i class="icon-thumbs-up"></i> <a href="" title="">like</a></p>
+
+<?php
+$this->step = 1;
+echo $this->partial('/index/project-navigation.phtml',array("step" => $this->step,"project" => $this->project));
+?>
+        
+     </div>
+       </div>
+
+       <div class="row">
+            <div class="span7">	
+
+            <div class="fl-cnt-img">
+                <img alt="<?php echo $this->project->title; ?> - main picture" src="/storage/projects/<?php echo $this->project->dir."/".$this->project->getPicture('large'); ?> " />
+            </div>
+
+              <div class="fl-cnt-pitch">
+                <p><?php echo $this->project->pitchSentence;?></p>
+              </div>
+
+              <div class="fl-cnt-description">
+                <p><?php echo $this->project->content;?></p>
+              </div>
+
+              <div class="fl-cnt-plans-issues-lessons">
+                
+                <p>
+                  <span class="fl-cnt-plans-title-first">Plans</span>
+                  <?php echo $this->project->plan;?></p>
+
+                
+                <p>
+                  <span class="fl-cnt-plans-title">Issues</span>
+                  <?php echo $this->project->issue;?></p>
+
+                
+                <p>
+                  <span class="fl-cnt-plans-title">Lessons Learned</span>
+                  <?php echo $this->project->lesson;?></p>
+              </div>
+
+			  <div class="fl-cnt-100 fl-bottom20">
+                <p><?php 
+				// displaying of tags for this project
+				$tags = $this->project->getTagsArray();
+				foreach($tags as $tag){
+					echo $tag;
+				}
+			?></p>
+     </div>
+     
+				<!-- Author Widget -->
+				<?php echo $this->action('author', 'widget', 'project',array("id" => $this->project->id));?>
+             
+     
+     
+<?php } else {
+	
+	echo "This project doesn't exists.";
+	
+}?>
+
+</div>
+

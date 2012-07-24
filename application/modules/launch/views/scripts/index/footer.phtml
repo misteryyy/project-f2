@@ -1,0 +1,137 @@
+<div class="container">
+   <div class="lp-margin"></div>
+   <div class="row">
+     <div class="span6">
+       
+      
+
+      <form class="form" id="form-newsletter" method="post" action="index/newsletter">
+        <fieldset>
+          <div class="control-group">
+            <label class="control-label hide" for="prependedInput">Input your email:</label>
+            <div class="controls">
+              <div class="input-prepend input-append">
+                <span class="add-on"><i class="icon-envelope"></i></span><input class="span2" id="appendedPrependedInput" size="16" type="text" name="email"><input type="submit" class="btn" type="button" value="Keep Me Posted!">
+              </div>
+            </div>
+            <p class="lp-footer-p">
+Our beta launch is right around the corner! Stay on top of updates and feature additions by subscribing to our unobtrusive and timely newsletters.
+      </p>
+          </div>
+        </fieldset>
+      </form>
+
+     </div>
+
+     <div class="span2 lp-text-align-right">
+        
+       <a href="http://www.facebook.com/floplatform" title="FLO~ on Facebook" onclick="window.open(this.href); return false;"><img src="/media/slepice-launch/1.0.0/img/icon_fb.png" alt="facebook" /></a>
+       <a href="https://twitter.com/#!/flo_platform" title="FLO~ on Twitter" onclick="window.open(this.href); return false;"><img src="/media/slepice-launch/1.0.0/img/icon_twitter.png" alt="twitter" /></a>
+       <a href="http://floplatform.tumblr.com/" title="FLO~ on Tumblr" onclick="window.open(this.href); return false;"><img src="/media/slepice-launch/1.0.0/img/icon_tumblr.png" alt="tumblr" /></a>
+       <a href="http://vimeo.com/floplatform" title="FLO~ on Vimeo" onclick="window.open(this.href); return false;"><img src="/media/slepice-launch/1.0.0/img/icon_vimeo.png" alt="vimeo" /></a>
+    
+     </div>
+
+      <div class="span2">
+        
+      <g:plusone size='small' count='true' href='http://www.floplatform.com'></g:plusone>
+      <div class="fb-like" data-href="http://www.facebook.com/floplatform" data-send="false" data-width="200" data-show-faces="false"></div>
+      </div>
+
+   </div>
+
+   <div class="lp-margin"></div>
+   <div class="row lp-footer">
+     <div class="span5">
+        <p class="lp-copy">Copyright FLO, Inc. 2011. All rights reserved <strong>/</strong> <a href="/index/privacy" title="Privacy &amp; Terms">Privacy &amp; Terms</a></p>
+     </div>
+     <div class="span5">
+        <p>Any questions or comments? We’re always checking these:</p> 
+        <p class="lp-mails">
+          <a href="mailto:jake&#64;floplatform.com" title="">jake&#64;floplatform.com</a>
+          <a href="mailto:jerry&#64;floplatform.com" title="">jerry&#64;floplatform.com</a>
+        </p>
+     </div>
+   </div>
+</div>
+
+ <!-- External libraries -->
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
+<script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script>
+<script src="<?=$this->baseUrl('/media/tools/jquery.validate.bootstrap.js')?>"></script>
+
+
+ <!-- Google plus widget -->
+    <script>
+    (function(d, t) {
+    var g = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+    g.async = true;
+    g.src = 'https://apis.google.com/js/plusone.js';
+    s.parentNode.insertBefore(g, s);
+    })(document, 'script');
+    </script> 
+     
+<!-- Analytics -->    
+    <script type="text/javascript" src="http://include.reinvigorate.net/re_.js"></script>
+    <script type="text/javascript">
+    try {
+    reinvigorate.track("8903u-893969249n");
+    } catch(err) {}
+    </script>
+
+    <!-- Carousel Slideshow Module -->
+    <script type="text/javascript">
+    //handle thumbnail click 
+    $(document).ready(function() { 
+      $('#carousel-nav a').click(function(q){
+        q.preventDefault();
+
+
+        targetSlide = $(this).attr('data-to')-1;
+        $('#myCarousel').carousel(targetSlide);
+        $('#myCarousel').carousel('pause');
+        
+        $('#descriptions div').each(function(o){
+            $(this).css('display','none');
+        });
+        $('#carousel-nav li').each(function(o){
+            $(this).css('border-color','#c8c8c8');
+        });
+
+        $('#description_'+targetSlide).css('display','block');
+        $('#carousel-nav-'+targetSlide).css('border','2px solid #585999');
+        
+       });
+    }); 
+    </script> 
+
+    <script type="text/javascript">
+//wait for the DOM to be loaded 
+$(document).ready(function() { 
+  var form = $('#form-newsletter');
+
+  form.validate({
+          rules: {
+            email :{
+              required: true,
+              email: true
+              }
+          },
+           submitHandler: function(form) {
+               form.submit();                 
+        }
+        }
+     ); 
+}); 
+</script>
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>

@@ -1,0 +1,66 @@
+  <h2 class="fl-bottom20">My collaborations</h2>
+
+<?php 
+// The main project navigation
+$this->step = 2;
+echo $this->partial('my-collaboration/my-collaboration-navigation.phtml',array("step" => $this->step));
+?>
+
+
+
+<?php 
+if(count ($this->applications) > 0){ ?>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>date</th>
+			<th>project</th>
+			<th>role</th>
+			<th>level</th>
+			<th>detail</th>
+			<th>category</th>
+			<th>actions</th>
+		</tr>
+	</thead>
+	<tbody>
+<?php 	
+	foreach($this->applications as $a){
+				$project = $a->project; // role is for collaborator
+?>
+		<tr>
+			<td><?php echo $a->created->format('Y/m/d h:m:s')?></td>
+			<td><?php echo $project->title?></td>
+			<td><?php echo $a->roleName?></td>
+			<td><?php echo $a->level;?></td>
+			<td><?php echo $a->description;?></td>	
+			<td><?php echo $project->category->name?>		
+			</td>
+			<td>
+				<a class="btn btn-info" data-toggle="modal" href="#surveyModal-id-<?php echo $a->id;?>">Survey</a>
+				<a class="btn btn-alert" data-toggle="modal" href="#resultModal-id-<?php echo $a->id;?>">Result</a>
+				<a class="btn btn-info" href="/project/index/index/id/<?php echo $project->id?>">Project Public Page</a>
+			</td>
+		</tr>
+			<!-- modal  -->
+		    	<div class="modal hide" id="surveyModal-id-<?php echo $a->id;?>">
+				<div class="modal-body">
+    			<p><?php echo $a->content;?></p>
+    			</div>
+    				<div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Close</a></div>
+    			</div>
+    				<div class="modal hide" id="resultModal-id-<?php echo $a->id;?>">
+				<div class="modal-body">
+    			<p><?php echo $a->result;?></p>
+    			</div>
+    				<div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Close</a></div>
+    			</div>
+		<?php	
+	} // end foreach
+	?>
+	</tbody>
+	</table>
+	<?php
+}else{	echo "No applications"; } ?>
+
+</div>		

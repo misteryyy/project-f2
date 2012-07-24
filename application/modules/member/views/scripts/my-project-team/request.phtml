@@ -1,0 +1,393 @@
+<?php 
+// The main project navigation
+$this->step = 6;
+echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $this->step,"project" => $this->project));
+?>
+
+<?php 
+// The main project navigation
+$this->sub_step = 2;
+echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" => $this->sub_step,"project" => $this->project));
+?>
+
+<h3>Applications for LEVEL 1</h3>
+<hr>
+  	<div id="alert-area"></div>
+    <!-- Add data-toggle="buttons-checkbox" for checkbox style toggling on btn-group -->
+    	 <div id="model_list">
+    		<script id="model_list_template" type="text/x-handlebars-template">
+			
+			<table class="table table-striped">
+        	<thead>
+    		<tr>
+    			<th>ID</th>
+				<th>Level</th>
+    			<th>Date of application</th>
+				<th>Member</th>
+    			<th>Role</th>	
+    			<th>Actions</th>
+    		</tr>
+    				</thead>
+   				 <tbody>
+				{{#each this}}				
+				<tr>
+						<td>{{id}}</td>
+						<td>{{level}}</td>  
+						<td>{{created}}</td>
+						<td><a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a></td>
+
+						<td>{{role_name}}</td>  
+						<td class="actions" id="{{id}}">
+							<a class="btn btn-info" data-toggle="modal" href="#surveyModal-id-{{id}}" >Survey</a>
+							<input  class="btn btn-success accept" type="submit"  data-loading-text="processing..." value="Accept" name="submit" />
+							<input  class="btn btn-success deny" type="submit"  data-loading-text="processing..." value="Deny" name="submit" />
+						</td>
+				</tr>
+				<!-- modal  -->
+		    	<div class="modal hide" id="surveyModal-id-{{id}}">
+				<div class="modal-body">
+    			<p>{{{content}}}</p>
+    			</div>
+    				<div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Close</a></div>
+    			</div>
+				
+				{{/each}}
+		    		 		
+   			 </tbody>
+    		</table>	
+		</script>
+		
+</div>
+
+<!-- modal deny form  -->
+<div class="modal hide" id="modal-form-deny">
+	<form id="form-deny" class=" form-horizontal" action="/member/my-project-team/ajax-request/id/<?php echo $this->project->id;?>/_method/deny" method="post">
+		<div class="modal-header"><button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>Please Explain the reason why you have denied the member.</h3></div>
+				<div class="modal-body">
+					<fieldset id="fieldset-application_group">
+						<input type="hidden" name="application_id" value="" class="" id="application_id">              
+						<div class="control-group">
+						
+						<label for="message" class="control-label required">Reason</label>	
+							<div class="controls">
+								 <textarea name="message" id="message" rows="4" class="" cols="80"></textarea>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+<div class="modal-footer">	
+	<input type="submit" name="submit" id="submit" value="Confirm deny" class="btn btn-primary deny">
+	<button name="reset" id="reset" type="reset" value="Reset" class="btn btn-primary">Reset</button>
+	<a href="#" class="btn" data-dismiss="modal">Close</a>
+</div>
+   
+    </form>	
+    </div>
+
+<hr>
+
+
+<!-- Level 2 Requests -->
+<h3>Applications for LEVEL 2</h3><hr>
+<h4>Now you know what you want. Create new position for members.</h4>
+<?php 
+ // reading roles
+ $roles = \App\Entity\ProjectRole::getRolesArray();
+?>
+ 
+<!-- Form for creating new task -->
+<form id="form-create-role" class="well form-inline" action="#" method="post" autocomplete="off">
+			<div class="control-group">
+				<div class="controls">
+						<input type="hidden" name="level" value="2" />
+						<select id="role_name" class="" name="role_name">
+						   <?php 
+						   		foreach($roles as $r){
+						   			echo "<option label='$r' value='$r'>$r</option>";
+						   		}
+						   ?>
+						</select>
+						<input type="text" name="description" placeholder="write detailed specification for position" class="input-xlarge" id="input-role-create"/>
+				</div>
+			</div>
+		<!-- cant change or add div, because its looking in the script for this-->
+		<input type="submit" class="btn btn-primary create"  name='submit' data-toggle="button" data-loading-text="processing..." value="create new position" />						
+    </form>
+
+    <!-- Add data-toggle="buttons-checkbox" for checkbox style toggling on btn-group -->
+    	 <div id="model_list_level2">
+    	 
+    		<script id="model_list_template_level2" type="text/x-handlebars-template">
+			<?php // LEVEL 2 handling?>   
+		
+			<table class="table table-striped">
+        	<thead>
+    		<tr>
+    			<th>ID</th>
+				<th>Level</th>
+				<th>Member</th>
+    			<th>Role</th>
+				<th>Description</th>	
+    			<th>Actions</th>
+    		</tr>
+    				</thead>
+   				 <tbody>
+				{{#each this}}	
+				<tr>
+						<td>{{id}}</td>
+						<td>{{level}}</td>  
+						{{#if user_id}}
+  						<td><a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a></td>
+  						{{else}}
+    						<td>Empty</td>
+						{{/if}}
+						<td>{{role_name}} (waiting {{applications_count}})</td>  
+						<td>{{description}}</td>  
+				
+						<td class="actions" id="{{id}}">	
+							<input  class="btn btn-success delete" type="submit"  data-loading-text="processing..." value="Delete this position" name="submit" />
+						</td>
+				</tr>			
+				{{#each this.applications}}			
+					<tr class="sub-applications" >
+							<td>-- application {{id}}</td>
+							<td>{{level}}</td>  
+							<td>{{created}}</td>
+							<td><a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a></td>
+
+							<td>{{role_name}} ~ {{description}}</td>  
+							<td class="actions" id="{{id}}">
+								<a class="btn btn-info" data-toggle="modal" href="#surveyModal-id-{{id}}" >Survey</a>
+								<input  class="btn btn-success accept" type="submit"  data-loading-text="processing..." value="Accept" name="submit" />
+								<input  class="btn btn-success deny" type="submit"  data-loading-text="processing..." value="Deny" name="submit" />
+							</td>
+					</tr>
+						<!-- modal  -->
+		    			<div class="modal hide" id="surveyModal-id-{{id}}">
+							<div class="modal-body">
+    						<p>{{{content}}}</p>
+    						</div>
+    					<div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Close</a></div>
+    				</div>
+				{{/each}}			
+
+				{{/each}}
+		    		 		
+   			 </tbody>
+    		</table>	
+		</script>		
+</div>
+
+	
+<script src="/media/tools/handlebars-1.0.0.beta.6.js"></script>   
+        <script type="text/javascript">  
+
+    
+
+			var Models = {
+					
+			init: function(config){
+				// ajax setup
+				$.ajaxSetup({
+					url: "/member/my-project-team/ajax-request/id/<?php echo $this->project->id;?>", 
+					type: 'POST',
+					dataType: 'json',
+
+				});
+		
+				this.config = config;
+				this.bindEvents();
+				this.setutTemplates();
+				this.findData(); // fill the question_list for level 1
+				this.findDataL2(); // fill the question_list for level 2
+				
+				
+				},
+			// setting template system
+			setutTemplates: function(){
+				this.config.modelListTemplate = Handlebars.compile(this.config.modelListTemplate);
+				this.config.modelListTemplateL2 = Handlebars.compile(this.config.modelListTemplateL2);
+									
+				},
+				
+			bindEvents: function(){
+				// events for level 1
+				this.config.modelList.on('click','td.actions input.accept',this.acceptMember); // edit question 	
+				this.config.modelList.on('click','td.actions input.deny',this.showModaldenyMember); // edit question 			
+				this.config.formCreate.on('click','input.create',this.createData); // create new question
+				this.config.formDeny.on('click','input.deny',this.denyMember); // create new question
+				
+				// events for level 2
+				this.config.modelListL2.on('click','td.actions input.delete',this.deleteRole); // delete role 
+				this.config.modelListL2.on('click','td.actions input.accept',this.acceptMember); // edit question 	
+				this.config.modelListL2.on('click','td.actions input.deny',this.showModaldenyMember); // edit question 			
+					
+				},
+				
+			findData: function(){
+				 var self = Models;
+					
+				 $.ajax({
+				 	data: "_method=findAllNewApplications",// take data from the form and send it to the method delete
+					 }).done(
+						function (results){
+				 			self.config.modelList.empty();
+							if(results.data[0]){
+								self.config.modelList.append(self.config.modelListTemplate(results.data));
+								//newAlert (results.respond, results.message)
+							}else{
+								self.config.modelList.append("No requests for level 1.");
+							}
+				 		}
+				 );	
+	
+				},
+
+			findDataL2: function(){
+				 var self = Models;
+					
+				 $.ajax({
+				 	data: "_method=findAllFreeProjectRoles",// take data from the form and send it to the method delete
+					 }).done(
+						function (results){
+				 			self.config.modelListL2.empty();
+							if(results.data[0]){
+								self.config.modelListL2.append(self.config.modelListTemplateL2(results.data));
+								//newAlert (results.respond, results.message)
+							}else{
+								self.config.modelListL2.append("No members in your team.");
+							}
+				 		}
+				 );
+		
+				},
+
+
+				denyMember:function(e){
+					var self = Models;		
+					var form =  $('#form-deny'); // directly this form
+					form.validate({
+		    	    		rules: {
+		    	    			message :{
+		    		    			required: true,
+		    	    				minlength: 2
+		    			    		}
+		    	    		},
+		    	    		   submitHandler: function(form) {
+		    	    			  form.submit();			 		    
+		    			 		   }
+		    	    	}
+		    	   );
+
+				},
+			
+		    	   
+				// create new position for level 2
+				// create data
+				createData:function(e){
+					var self = Models;
+					var but  = $(this).button('toggle');
+					var form = $(this).parent(); // directly this form
+
+					// validation
+					form.validate({
+					    		rules: {
+					    			description :{
+						    			required: true,
+					    				minlength: 2
+							    		}
+					    		},
+					   			submitHandler: function(f) {
+								// send data
+					   				but.button('loading');
+					   				//create method
+									 $.ajax({
+									 	data: form.serialize() + "&_method=create", // take data from the form and send it to the method delete
+									 }).done(
+											function (results){
+									 			newAlert (results.respond, results.message); // display alert
+									 			self.findData(); // refresh questions
+												self.findDataL2();
+									 			but.button('reset');
+									 			form.each (function(){
+					  										this.reset();
+												});
+									 		}
+									 );			
+									 e.preventDefault(); 			    
+						   		}		 
+					    	}
+					   );
+					
+				
+				},
+				// delete Role
+				deleteRole:function(e){
+					var self = Models;
+					var par = $(this).parent();
+					var role_id = par.attr("id");
+					$(this).button('loading');
+					$.ajax({
+						data: "&_method=delete&&role_id="+role_id, // take data from the form and send it to the method update
+					}).done(
+							function (results){
+								newAlert (results.respond, results.message); // display alert
+								self.findData(); // refresh model
+								self.findDataL2(); // refresh model
+							}
+					);
+					e.preventDefault();
+				},
+			
+			// acceptMember
+			acceptMember:function(e){
+				var self = Models;
+				var par = $(this).parent();
+				var application_id = par.attr("id");
+				$(this).button('loading');
+				console.log($(this));
+				$.ajax({
+					data:   "&_method=accept&&application_id="+application_id, // take data from the form and send it to the method update
+				}).done(
+						function (results){
+							newAlert (results.respond, results.message); // display alert
+							self.findData(); // refresh questions
+							self.findDataL2(); // refresh questions
+							
+						}
+				);
+				e.preventDefault();
+			},
+			
+			// prepare modal form for deny user
+			showModaldenyMember:function(e){
+				
+				$('#modal-form-deny').modal('show');
+				$('#form-deny #application_id').val($(this).parent().attr("id")); // add id
+
+			
+				
+			},
+
+			};
+
+			Models.init({
+				modelListTemplate: $('#model_list_template').html(),
+				modelList: $("#model_list"),
+				formCreate: $('#form-create-role'),
+				formDeny: $('#form-deny'),
+				// level 2 setting
+				modelListTemplateL2: $('#model_list_template_level2').html(),
+				modelListL2: $("#model_list_level2"),
+			});
+
+
+		
+ </script>  
+
+
+    
+    
+    
+    

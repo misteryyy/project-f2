@@ -1,0 +1,52 @@
+<?php 
+$this->step = 9;
+echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $this->step,"project" => $this->project));
+?>
+
+<div class="well">
+	<a class="btn btn-info" href="/member/my-project/poll-create/id/<?php echo $this->project->id?>">Create New Update</a>
+</div>
+<hr/>
+
+<!-- Updates Table -->
+<?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
+    <?php if (count($this->paginator)) {?>
+      <h3>Updates</h3>
+        <table class="table table-striped">
+        <thead>
+    		<tr>
+    			<th>Name</th>
+    			<th>Created</th>
+    			<th>Statistics</th>
+    			<th>Votes</th>
+    			<th>Actions</th>
+    		</tr>
+    	</thead>
+    <tbody>
+    <?php foreach ($this->paginator as $poll){ ?>
+    	<tr>
+    	<td><?php echo $poll->name; ?></td>
+		<td>Number of Questions : <?php echo count($poll->questions);?> <br>
+			
+			<?php foreach($poll->questions as $q){
+				echo $q->question  . ": with AVG ".$q->avgOfAnswers()."<br>".PHP_EOL;
+			}?>
+			
+			<?php echo count($poll->questions[0]->answers)." has been voted.";?>
+		</td>	
+		<td><?php echo $poll->created->format('Y/m/d h:m:s'); ?></td>		
+		<td> 
+    		<a class="btn btn-info" href="/member/my-project/poll-detail/id/<?php echo $this->project->id?>/poll_id/<?php echo $poll->id ?>">Detail</a> 
+    	</td>			
+    	</tr>	 		
+    <?php } ?>
+    </tbody>
+    </table>
+    	
+    		
+    <?php }?>
+
+
+
+
+

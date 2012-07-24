@@ -1,0 +1,45 @@
+
+<?php 
+if(count ($this->user) > 0){ ?>
+
+<h2><?php echo $this->user->name; ?> <span>~ ID: <?php echo $this->user->id; ?></span> <a class="btn btn-success" href="/member/profile/index/id/<?php echo $this->user->id?>"> Public Profile</a></h2>
+
+
+<?php 
+if(count($this->logs) > 0){ ?>
+
+<div class="fl-cnt-100 fl-top10">
+<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
+	<thead>
+		<tr>
+			<th>created</th>
+			<th>message</th>
+			<th>type</th>
+		</tr>
+	</thead>
+	<tbody>
+
+<?php
+	foreach($this->logs as $log){ ?>
+	<tr>
+		<td><?php echo $log->created->format('Y-m-d')?></td>
+			<td><?php echo $log->message?>	</td>
+			<td><?php echo $log->type?></td>
+	</tr>	
+	<?php 	
+	} // end of foreach ?>
+	</tbody>
+	</table>	
+	</div>
+	
+<?php 
+} else{
+	echo "No logs messages for this member.";
+}
+ 
+} else {
+	
+	echo "This user wasn't found.";
+	
+}?>
+

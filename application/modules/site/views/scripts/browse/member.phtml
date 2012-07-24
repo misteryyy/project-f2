@@ -1,0 +1,23 @@
+<h3>Browse Members</h3>
+
+<?php 
+	echo $this->form;
+?>
+
+
+<hr>
+<!-- Project Displaying -->
+<?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
+    <?php if (count($this->paginator)) {?>
+   <ul class="thumbnails">
+    <?php foreach ($this->paginator as $user){ ?>
+
+    <div class="user">	
+		<?php echo $user->getName(); ?> 
+		<img src="/storage/users/<?php echo $user->getProfilePicture()?>" alt="<?php echo $user->getName(); ?>">
+		    <?= $user->email; ?>
+	</div>	
+    <?php } ?>
+<?php } else echo "No Projects Available"?>
+
+    

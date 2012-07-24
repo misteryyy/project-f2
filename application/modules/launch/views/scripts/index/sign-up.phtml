@@ -1,0 +1,79 @@
+<div class="span6">
+<?php echo $this->form; ?>
+</div>
+<div class="span4">
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+  	<fieldset>
+  		<legend>Pre-order Offer</legend>
+  		<p class="lp-donate">As a special pre-order option for early-access users, we are offering four months of our user-tested, post-beta  finished application for <strong>$4.99</strong>. No matter what we end up charging, you'll get FLO~ for four months at this price. This is a limited-time offer while we continue testing things out in beta.</p>
+
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="hosted_button_id" value="JKWSQSSKGV8TY">
+    <input type="submit" name="submit" id="submit" value="Support" class="btn btn-primary right" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </fieldset>
+  </form>
+</div>
+
+
+<!-- External libraries -->
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
+<script src="<?=$this->baseUrl('/media/tools/jquery.validate.bootstrap.js')?>"></script>
+<script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script>
+<script type="text/javascript">
+
+//wait for the DOM to be loaded 
+$(document).ready(function() { 
+	var form = $('#form-sign-up-beta');
+
+	form.validate({
+	    		rules: {
+	    			name :{
+		    			required: true,
+	    				minlength: 2
+			    		},
+			    	password :{
+		    			required: true,
+	    				minlength: 5,
+			    		},
+
+			    	password_verification: {
+						required: true,
+						minlength: 5,
+						equalTo: "#password"
+					},
+
+					email: {
+						required: true,
+						email: true
+					},
+
+					email_verification: {
+						required: true,
+						equalTo: "#email"
+					},
+
+			    	location :{
+			    			required: true,
+				    		},
+				    accept :{
+				    			required: true,
+					    		}
+					
+	    		},
+	   			submitHandler: function(form) {
+			   		form.submit();	 		    
+
+		   		}	
+	    		 
+	    	}
+	   );	
+
+
+    }); ; 
+
+
+
+</script>
+
+

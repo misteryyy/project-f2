@@ -1,0 +1,13 @@
+
+<ul class="nav nav-tabs">
+    <li class="nav-header">
+   	RSS
+    </li>
+    <?php 
+	foreach($this->categories as $c){
+	echo "<li><a href='/rss?category=$c->id'>$c->name</a> </li>".PHP_EOL;
+	}
+?>	
+</ul>
+
+</p>
