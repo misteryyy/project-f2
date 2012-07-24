@@ -21,7 +21,7 @@
    <div class="container">
      <?= $this->action('header', 'index', 'site');  ?>
    </div>
-     <h2>SPECIALNI LAYOUT for PROJECT 2</h2>
+   
    <?php 
 		// if the user has identity
     	if(Zend_Auth::getInstance()->hasIdentity()){
@@ -34,23 +34,11 @@
      <div class="container"> 
   <?= $this->action('breadcrumbs', 'index', 'site');  ?>
    
-
-        <div class="row">
-          <div class="span8">
           
   <!-- Bootstrap messaging generator -->
   <?php echo $this->flashMessenger() ; ?>
   <?php echo $this->layout()->content; ?>
 
-          <div class="span3 fl-sidebar">
-            <div class="inner">
-              <?= $this->action('left-menu', 'index', 'site');  ?>
-            </div>
-          </div>
-
-        </div>
-
-     </div>
 
      <div id="bottom">
         <?= $this->action('footer', 'index', 'site');  ?>

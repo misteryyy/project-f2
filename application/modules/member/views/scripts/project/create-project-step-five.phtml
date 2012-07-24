@@ -1,14 +1,19 @@
+<h2>Start new project</h2>
+
 <?php 
 echo $this->partial('project/create-project-navigation.phtml',array("step" => $this->step));
 ?>
 
- <div class="alert alert-info">
- <span class="label label-info">Info</span>
-  Description text,Description text,Description text,Description text,Description text,Description text,
-  Description text,Description text,Description text,Description text,Description text,Description text,
-  Description text,Description text,Description text,Description text,Description text,Description text.
+<div class="fl-cnt-100">
+   <div class="alert alert-info">
+   <span class="label label-info">Info</span>
+	  Description text,Description text,Description text,Description text,Description text,Description text,
+	  Description text,Description text,Description text,Description text,Description text,Description text,
+	  Description text,Description text,Description text,Description text,Description text,Description text.
+  </div>
 </div>
 
+<div class="fl-cnt-100">
 <?php 
 
 //pr($this->firstStep);
@@ -35,3 +40,4 @@ pr($this->fourthStep);
  
  
  <?php echo $this->form;?>
+</div>

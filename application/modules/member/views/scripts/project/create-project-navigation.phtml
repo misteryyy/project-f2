@@ -1,4 +1,4 @@
-<div class="well">
+<div class="fl-cnt-100">
    <?php  
 	$percentage = 20;
 	$allow[1] = false;
@@ -16,16 +16,12 @@
 				 break;	 
 	}
   ?>
-  
-  <a class="btn btn-large btn-primary <?php echo($allow[1] == true ? "active" : "disable" );?>" href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-one'),null,true)?>">Step 1 / General Info</a>
-  <a class="btn btn-large btn-primary <?php echo($allow[2] == true ? "active" : "disable" );?>" href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-two'),null,true)?>">Step 2 / Project Picture</a>
-  <a class="btn btn-large btn-primary <?php echo($allow[3] == true ? "active" : "disable" );?>" href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-three'),null,true)?>">Step 3 / Staff </a>
-  <a class="btn btn-large btn-primary <?php echo($allow[4] == true ? "active" : "disable" );?>" href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-four'),null,true)?>">Step 4 / Survey </a>
-  <a class="btn btn-large btn-primary <?php echo($allow[5] == true ? "active" : "disable" );?>" href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-five'),null,true)?>">Step 5  / Publishing </a>
-  
-  <hr />
-    <div class="progress ">
-    <div class="bar" style="width: <?php echo $percentage;?>%;"></div>
-    </div>
-    
- </div>
+
+    <div class="btn-group fl-creating-steps">
+	  <a class="btn btn-large <?php echo($allow[1] == true ? "active" : "disable" );?>" href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-one'),null,true)?>">#1 / General Info</a>
+	  <a class="btn btn-large <?php echo($allow[2] == true ? "active" : "disable" );?>" href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-two'),null,true)?>">#2 / Project Picture</a>
+	  <a class="btn btn-large <?php echo($allow[3] == true ? "active" : "disable" );?>" href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-three'),null,true)?>">#3 / Team </a>
+	  <a class="btn btn-large <?php echo($allow[4] == true ? "active" : "disable" );?>" href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-four'),null,true)?>">#4 / Survey </a>
+	  <a class="btn btn-large <?php echo($allow[5] == true ? "active" : "disable" );?>" href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-five'),null,true)?>">#5  / Publishing </a>
+	</div>
+</div>
