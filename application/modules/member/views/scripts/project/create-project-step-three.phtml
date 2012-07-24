@@ -1,10 +1,155 @@
+<h2>Start new project</h2>
+
 <?php 
 echo $this->partial('project/create-project-navigation.phtml',array("step" => $this->step));
 ?>
 
-<div id="alert-area"></div>
+<div class="fl-cnt-100">
+  <div id="alert-area"></div>
+</div>
 
-<?php  echo $this->form;   ?>
+<div class="fl-cnt-100">
+			<form>
+              <fieldset>
+                <legend class="hide">Your role(s) in this project:</legend>
+                <h3 class="fl-bottom10">Your role(s) in this project:</h3>
+                <div class="fl-cnt-100 fl-bottom40">
+                  
+
+                        <div class="fl-choosing-roles-top">
+                          <div class="fl-choosing-roles-top-left">
+                            
+                          </div>
+                          <div class="fl-choosing-roles-top-right">
+                            
+                          </div>
+                        </div>
+                        <div class="fl-choosing-roles-middle">
+                          <div class="fl-choosing-roles-list">
+                            <ul class="fl-choosing-roles">
+                              <li>
+                                <input type="checkbox" name="" id="" />
+                                <label for="">
+                                  <div class="fl-skill">
+                                    <div class="fl-skill-img30">
+                                      <img src="slepice/img/role40x40_1.png" alt="" title="" />
+                                    </div>
+                                    <div class="fl-skill-text">
+                                      <div class="fl-skill-text-roledescription30">
+                                        Starter
+                                      </div>
+                                    </div>
+                                  </div>
+                                </label>
+                              </li>
+                              <li>
+                                <input type="checkbox" name="" id="" />
+                                <label for="">
+                                  <div class="fl-skill">
+                                    <div class="fl-skill-img30">
+                                      <img src="slepice/img/role40x40_2.png" alt="" title="" />
+                                    </div>
+                                    <div class="fl-skill-text">
+                                      <div class="fl-skill-text-roledescription30">
+                                        Leader
+                                      </div>
+                                    </div>
+                                  </div>
+                                </label>
+                              </li>
+                              <li>
+                                <input type="checkbox" name="" id="" />
+                                <label for="">
+                                  <div class="fl-skill">
+                                    <div class="fl-skill-img30">
+                                      <img src="slepice/img/role40x40_3.png" alt="" title="" />
+                                    </div>
+                                    <div class="fl-skill-text">
+                                      <div class="fl-skill-text-roledescription30">
+                                        Grower
+                                      </div>
+                                    </div>
+                                  </div>
+                                </label>
+                              </li>
+                              <li>
+                                <input type="checkbox" name="" id="" />
+                                <label for="">
+                                  <div class="fl-skill">
+                                    <div class="fl-skill-img30">
+                                      <img src="slepice/img/role40x40_4.png" alt="" title="" />
+                                    </div>
+                                    <div class="fl-skill-text">
+                                      <div class="fl-skill-text-roledescription30">
+                                        Builder
+                                      </div>
+                                    </div>
+                                  </div>
+                                </label>
+                              </li>
+                              <li>
+                                <input type="checkbox" name="" id="" />
+                                <label for="">
+                                  <div class="fl-skill">
+                                    <div class="fl-skill-img30">
+                                      <img src="slepice/img/role40x40_5.png" alt="" title="" />
+                                    </div>
+                                    <div class="fl-skill-text">
+                                      <div class="fl-skill-text-roledescription30">
+                                        Adviser
+                                      </div>
+                                    </div>
+                                  </div>
+                                </label>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="fl-choosing-roles-description">
+                            <h4>Name of the role</h4>
+                            <div class="fl_thin_divider"></div>
+                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                          </div>
+                        </div>
+                        <div class="fl-choosing-roles-bottom">
+                          <div class="fl-choosing-roles-bottom-left">
+                            
+                          </div>
+                          <div class="fl-choosing-roles-bottom-right">
+                            
+                          </div>
+                        </div>
+                </div>
+
+
+                <div class="fl-cnt-100 fl-bottom40">
+                  <div class="well alert">
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                    <div class="fl-role-widget">
+                      <input type="checkbox" name="" id="" /><label for="">Disable role widget</label>
+                    </div>
+                  </div>
+                </div>
+
+                <h3 class="fl-bottom10">Survey for members:</h3>
+                <div class="fl-cnt-100 fl-bottom40">
+                  <label for="">Question <strong>#1</strong>: <a href="" title=""><i class="icon-question-sign"></i></a> <a href="" title=""><i class="icon-font"></i></a></label>
+                  <textarea id="" name="" class="fl-new-question-textarea"></textarea>
+
+                  <button class="btn" name="" id="">Add new question</button>
+
+                  <div class="fl-button-navigation">
+                    <button class="btn btn-info" name="" id="">Previous step</button>
+                    <button class="btn btn-info" name="" id="">Next step</button>
+                  </div>
+
+                </div>
+              </fieldset>
+      </form>
+</div>
+
+<div class="fl-cnt-100">
+  <?php  echo $this->form;   ?>
+</div>
 
 
 

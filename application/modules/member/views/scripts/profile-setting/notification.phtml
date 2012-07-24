@@ -1,11 +1,14 @@
+<h2>Personal info</h2>
 <?php
   $this->step = 4;
   echo $this->partial('profile-setting/profile-setting-navigation.phtml',array("step" => $this->step));
 ?>
-	
+
+<div class="fl-cnt-100">	
 <?php 
   	echo $this->form;
 ?>
+</div>
     
     
     

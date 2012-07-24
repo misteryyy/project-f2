@@ -26,23 +26,30 @@
      </div>
      <div class="span6">
      
+         <ul class="nav nav-pills fl-menu">
+           <li><a href="/" title="">Home</a></li>
+           <li><a href="/browse-projects" title="">Browse projects</a></li>
+           <li><a href="/help" title="">Help</a></li>
+           <li><a href="/about-us" title="">About us</a></li>
+         </ul>
      
      <?php 
-            $subtree = $this->navigation()->findOneByLabel('Home');
-             
-           $options = array("ulClass"=>"nav nav-pills fl-menu",       
-                    "intent"=>"333",
-                    "minDepth" => 0,
-                    "maxDepth" => 0,
-                  "onlyActiveBranch" => false,
-                  "renderParents" => true);
+          // $subtree = $this->navigation()->findOneByLabel('Home');
+          //$options = array("ulClass"=>"nav nav-pills fl-menu",       
+          //          "intent"=>"333",
+            //        "minDepth" => 0,
+              //      "maxDepth" => 0,
+                //    "onlyActiveBranch" => false,
+                  //  "renderParents" => true);
            
-            echo $this->navigation()->menu()->renderMenu(null,$options);
+           // echo $this->navigation()->menu()->renderMenu(null,$options);
       ?>
      
      
      </div>
      <div class="span3">
+
+       <!-- User -->
        <?php if(Zend_Auth::getInstance()->hasIdentity() ) {?>
        <ul class="nav nav-pills fl-user-menu">
             <li class="dropdown">
@@ -56,6 +63,14 @@
               </ul>
             </li>
           </ul>
+       <?php }else{?>
+
+         <!-- Visitor -->
+         <div class="fl-user-menu">
+           <a href="/member/index/sign-up" class="btn btn-primary">Sign up</a>
+           <a href="/member/index/login" class="btn btn-primary">Log in</a>
+         </div>
+
        <?php }?>
      </div>
      

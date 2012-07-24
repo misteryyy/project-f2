@@ -18,36 +18,44 @@
 
         <li class="span3 fl-thumbnail-frame">
                   <div class="thumbnail">
-                    <a href="/project/index/index/id/<?php echo $project->id?>"> 
-                      <img alt="<?php echo $project->title; ?> - main picture" src="/storage/projects/<?php echo $project->dir."/".$project->getPicture('large'); ?> " />
-                    </a>
-                  <div class="progress">
-                    <div class="fl_level<?php echo $project->level?>"></div>
-                  </div>
-                  <h3><?php echo $project->title; ?></h3>
-                     <span class="author"><i class="icon-user"></i> <?php echo $project->user->name?></span>
-                     <p><?php echo $project->pitchSentence; ?></p>
-                     <p class="info">
-                       <span class="category"><i class="icon-folder-close"></i> <?php echo $project->category->name?></span>
-                       <span class="followers"><i class="icon-eye-open"></i> <strong>56</strong> followers</span>
-                       <span class="like"><i class="icon-thumbs-up"></i> <a href="" title="">Like</a></span>
-                     </p>
+
+                     <a href="/project/index/index/id/<?php echo $project->id?>"> 
+                        <img alt="<?php echo $project->title; ?> - main picture" src="/storage/projects/<?php echo $project->dir."/".$project->getPicture('large'); ?> " />
+                     </a>
+
+                     <div class="progress">
+                       <div class="fl_level<?php echo $project->level?>"></div>
+                     </div>
                      
-                     <div class="fl_project_thumb_roles">
-                       <div class="fl_project_thumb_role">
-                         <img src="/media/slepice-site/1.0.0/img/role40x40_1.png" alt="" />
-                       </div>
-                       <div class="fl_project_thumb_role">
-                         <img src="/media/slepice-site/1.0.0/img/role40x40_2.png" alt="" />
-                       </div>
-                       <div class="fl_project_thumb_role">
-                         <img src="/media/slepice-site/1.0.0/img/role40x40_3.png" alt="" />
-                       </div>
-                       <div class="fl_project_thumb_role">
-                         <img src="/media/slepice-site/1.0.0/img/role40x40_4.png" alt="" />
-                       </div>
-                       <div class="fl_project_thumb_role">
-                         <img src="/media/slepice-site/1.0.0/img/role40x40_5.png" alt="" />
+                     <h3><?php echo $project->title; ?></h3>
+                     
+                     <div class="fl-cnt-100">
+                       <span class="author"><i class="icon-user"></i> <?php echo $project->user->name?></span>
+                       <p><?php echo $project->pitchSentence; ?></p>
+                       <p class="info">
+                         <span class="category"><i class="icon-folder-close"></i> <?php echo $project->category->name?></span>
+                         <span class="followers"><i class="icon-eye-open"></i> <strong>56</strong> followers</span>
+                         <span class="like"><i class="icon-thumbs-up"></i> <a href="" title="">Like</a></span>
+                       </p>
+                     </div>
+                     
+                     <div class="fl-cnt-100">
+                       <div class="fl_project_thumb_roles">
+                         <div class="fl_project_thumb_role">
+                           <img src="/media/slepice-site/1.0.0/img/role40x40_1.png" alt="" />
+                         </div>
+                         <div class="fl_project_thumb_role">
+                           <img src="/media/slepice-site/1.0.0/img/role40x40_2.png" alt="" />
+                         </div>
+                         <div class="fl_project_thumb_role">
+                           <img src="/media/slepice-site/1.0.0/img/role40x40_3.png" alt="" />
+                         </div>
+                         <div class="fl_project_thumb_role">
+                           <img src="/media/slepice-site/1.0.0/img/role40x40_4.png" alt="" />
+                         </div>
+                         <div class="fl_project_thumb_role">
+                           <img src="/media/slepice-site/1.0.0/img/role40x40_5.png" alt="" />
+                         </div>
                        </div>
                      </div>
                     

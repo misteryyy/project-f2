@@ -1,34 +1,52 @@
+<h2>Personal info</h2>
+
   <?php
   $this->step = 2;
   echo $this->partial('profile-setting/profile-setting-navigation.phtml',array("step" => $this->step));
   ?>
 
-<div class="row">
-  <div class="span6">
-   <div class="alert alert-info">
+
+             <div class="fl-cnt-100">
+                <div class="fl-cnt-50">
+                  <h3>Current picture:</h3>
+                  <div class="fl_thin_divider"></div>
+                  <div class="fl-cnt-100 text-center">
+                    <img src="<?php echo $this->member["profile_picture_200"].'?foo='.time()?>" alt="<?= $this->member['name'];?>" class="fl-img" />
+                  </div>
+                </div>
+                <div class="fl-cnt-50">
+                  <h3>New picture:</h3>
+                  <div class="fl_thin_divider"></div>
+                  <form>
+                    <fieldset>
+                      <legend class="hide">Change profile picture:</legend>
+
+                      <label for="" class="hide">Choose file</label>
+                      <input type="file" name="" id="" />
+
+                      <div class="fl-cnt-100">
+                        <div class="fl_thin_divider"></div>
+                        <input type="submit" class="btn right" value="save" />
+                      </div>
+
+                    </fieldset>
+                  </form>
+
+                  <div class="alert alert-info">
    <span class="label label-info">Info</span>
- 	Image will be automatically cropped. Try to upload image which has resolution 200x200 to have the best image quality and proportion.
-	</div>
-   <?php  echo $this->form;   ?>
-   <?php
-  	
-// 	$dir = new DirectoryIterator(APPLICATION_PATH . '/../public/storage/users/');
-// 	foreach ($dir as $fileinfo) {
-// 	    if (!$fileinfo->isDot()) {
-// 	        var_dump($fileinfo->getFilename());
-// 	    }
-// 	}
+  Image will be automatically cropped. Try to upload image which has resolution 200x200 to have the best image quality and proportion.
+  </div>
+   <?php  echo $this->form;  
+    
+//  $dir = new DirectoryIterator(APPLICATION_PATH . '/../public/storage/users/');
+//  foreach ($dir as $fileinfo) {
+//      if (!$fileinfo->isDot()) {
+//          var_dump($fileinfo->getFilename());
+//      }
+//  }
 ?>
 
-  </div>
-  <div class="span5">
-    <h4>Current Picture</h4>
-	 <img src="<?php echo $this->member["profile_picture_200"].'?foo='.time()?>" alt="<?= $this->member['name'];?>">
-     <img src="<?php echo $this->member["profile_picture_100"].'?foo='.time()?>" alt="<?= $this->member['name'];?>">
-     <img src="<?php echo $this->member["profile_picture_50"].'?foo='.time()?>" alt="<?= $this->member['name'];?>">	  
-  </div>
-</div>
-
-
-    
+                </div>
+              </div>
+  
     

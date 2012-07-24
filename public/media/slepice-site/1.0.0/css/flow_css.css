@@ -991,6 +991,16 @@ p.fl-list-project-queue{
   margin: 10px 0 0 0;
 }
 
+.fl-creating-steps{
+  margin: 10px 0 10px 0;
+  width: 100%;
+  float: left;
+}
+
+.fl-step{
+  width: 20%;
+}
+
 .fl-form-navigation{
   text-align: left;
 }
