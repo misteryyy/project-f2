@@ -64,12 +64,21 @@ class Project_WidgetController extends  Boilerplate_Controller_Action_Abstract
      */
     public function authorAction(){
     	$this->checkProject();
-    	
-    	
+
     	// find users collaboration
     	$facadeCollaboration = new \App\Facade\Project\CollaborationFacade($this->_em);
-    	$applications = $facadeCollaboration->findApplications($this->project->user->id, array('state'=>\App\Entity\ProjectApplication::APPLICATION_ACCEPTED ));
-    	$this->collaborations = $applications;
+	    	$paginatorApplications = $facadeCollaboration->findApplicationsPaginator($this->project->user->id, array('state'=>\App\Entity\ProjectApplication::APPLICATION_ACCEPTED ));
+	    	$paginatorApplications->setItemCountPerPage(5); // items per page
+	    	$paginatorApplications->setCurrentPageNumber($this->_request->getParam('page', 1));
+	    $this->view->collaborations = $paginatorApplications;
+	    	
+    	// members projects
+    	$facadeProject = new \App\Facade\ProjectFacade($this->_em);
+    		$paginatorProject = $facadeProject->findAllProjectsForUserPaginator($this->project->user->id);
+    		$paginatorProject->setItemCountPerPage(5); // items per page
+    		$page = $this->_request->getParam('page', 1);
+    		$paginatorProject->setCurrentPageNumber($page);
+    	$this->view->membersProject = $paginatorProject;
     }
     
     /**
@@ -130,9 +139,15 @@ class Project_WidgetController extends  Boilerplate_Controller_Action_Abstract
      */
     public function similarAction(){
     	$this->checkProject();
-    	// check if application has been sent
+    	$facadeProject = new \App\Facade\Site\ProjectFacade($this->_em); 	
+    	$paginator = $facadeProject->findSimilarProjectsPaginator($this->project->category->id);
+    	// if  nothing is  set show all projects
+    	$paginator->setItemCountPerPage(6); // items per page
+    	$page = $this->_request->getParam('page', 1);
+    	$paginator->setCurrentPageNumber($page);
+    	$this->view->paginator = $paginator;
+    
     }
-
     
     /**
      * Ajax Respond for polls

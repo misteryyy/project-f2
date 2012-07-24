@@ -525,7 +525,6 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
     	// get categories for form
     	$facadeProject = new \App\Facade\ProjectFacade($this->_em);
     	$projects = $facadeProject->findAllProjectsForUser($this->_member_id);
-    	
     	$this->view->projects = $projects;
 
     }

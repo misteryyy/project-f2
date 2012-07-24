@@ -26,9 +26,6 @@
     	if(!Zend_Auth::getInstance()->hasIdentity()){
     		echo $this->action('admin-menu', 'index', 'admin');  
     	}	
-    	
-   
-    	
   	  ?>
 	 
 	 <?= $this->action('menu-debug', 'menu', 'project');  ?>  
@@ -67,21 +64,24 @@
                 </div>
 
                 <?php
-	//                echo $this->action('task', 'widget', 'project',array("id" => $this->project->id));  ?>
+	                echo $this->action('task', 'widget', 'project',array("id" => $this->project->id));  ?>
 	    	      
                 <h3 class="fl-sidebar">Team</h3>
                 <div class="fl_thick_divider"></div>
                 <div class="fl-team">
                   <div class="fl-team-author">
                     <div class="fl-team-author-roles">
-                      <img src="slepice/img/role40x40_3.png" alt="" title="" />
-                      <img src="slepice/img/role40x40_4.png" alt="" title="" />
+                      <?php 
+                 	  foreach($this->project->getCreatorRolesArray() as $r){
+                 	  	echo  '<img src="/media/slepice-site/1.0.0/img/role_'.$r.'.png" alt="'.$r.'" title="'.$r.'" />';
+                 	  }?>
                     </div>
                     <div class="fl-team-author-created">
                       <span>Project created by</span>
-                      <span class="fl-team-author-name">Name of the author</span>
+                      <span class="fl-team-author-name"><?php echo $this->project->user->name;?></span>
                     </div>
                   </div>
+                 
 
                   <div class="fl_thin_divider"></div>
                   
@@ -103,7 +103,7 @@
                 <div class="fl_thick_divider"></div>
                 <div class="fl-passion-slider">
                 <div class="progress fl-passion-bar">
-                  <div class="bar fl-bar" style="width: 60%;"></div>
+                  <div class="bar fl-bar" style="width: <?php echo $this->project->priority*10;?>%;"></div>
                 </div>
                 </div>
 				

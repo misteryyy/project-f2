@@ -108,7 +108,30 @@ class ProjectFacade {
 		
 	}
 	
-
+	
+	/**
+	 * Find similar projects
+	 * @param unknown_type $category_id
+	 * @param unknown_type $options
+	 * @throws \Exception
+	 */
+	public function findSimilarProjectsPaginator($category_id,$options= array()){
+	
+		$category = $this->findCategoryById($category_id);
+	
+		$stmt = 'SELECT p FROM App\Entity\Project p WHERE p.category = ?1';
+		$stmt .= 'ORDER BY p.created DESC';
+			
+		// if category
+		$query = $this->em->createQuery($stmt);
+		$query->setParameter(1, $category_id);
+	
+		$paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
+		$iterator = $paginator->getIterator();
+		$adapter = new \Zend_Paginator_Adapter_Iterator($iterator);
+		return new \Zend_Paginator($adapter);
+	
+	}
 	
 	public function findProjectForUser($user_id,$project_id){
 		// check if user exists

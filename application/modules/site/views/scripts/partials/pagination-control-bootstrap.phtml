@@ -30,7 +30,6 @@
             }
     }
     ?>
-           
             <?php if (isset($this->next) && $this->next!=$this->last): ?>
                     <li class="next"><a href="<?php echo $this->url(array('page' => $this->next)); ?>"><?php echo $this->next; ?></a></li>
                     <li class="disabled"><a href="#">...</a></li>

@@ -282,6 +282,12 @@ class User extends \App\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         return parent::getUserInfo();
     }
 
+    public function getProfileUrl()
+    {
+        $this->__load();
+        return parent::getProfileUrl();
+    }
+
     public function setUserInfo(\App\Entity\UserInfo $info)
     {
         $this->__load();

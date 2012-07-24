@@ -42,6 +42,18 @@ class ProjectPollQuestion extends \App\Entity\ProjectPollQuestion implements \Do
     }
 
     
+    public function sumOfAnswers()
+    {
+        $this->__load();
+        return parent::sumOfAnswers();
+    }
+
+    public function avgOfAnswers()
+    {
+        $this->__load();
+        return parent::avgOfAnswers();
+    }
+
     public function getId()
     {
         if ($this->__isInitialized__ === false) {

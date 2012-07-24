@@ -396,17 +396,46 @@ class ProjectFacade {
 		}	
 	}
 	
-	public function findAllProjectsForUser($user_id){
-		// check if user exists
-		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
-	
-		if(!$user){	throw new \Exception("User doesn't exists");}
+	public function findAllProjectsForUser($user_id,$options = array()){
 		
-		$projects = $this->em->getRepository('\App\Entity\Project')->findBy(array("user" => $user));	
-		return $projects;	
+		// checking errors
+		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
+		if(!$user){
+			throw new \Exception("Member doesn't exists");
+		}
+		 
+		$stmt = 'SELECT p FROM App\Entity\Project p WHERE p.user = ?1';
+		$stmt .= 'ORDER BY p.created DESC';
+
+		$query = $this->em->createQuery($stmt);
+		$query->setParameter(1, $user_id);
+		
+		return $query->getResult();	
 	}
 	
+	public function findAllProjectsForUserPaginator($user_id,$options = array()){
 	
+		// checking errors
+		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
+		if(!$user){
+			throw new \Exception("Member doesn't exists");
+		}
+			
+		$stmt = 'SELECT p FROM App\Entity\Project p WHERE p.user = ?1';
+		$stmt .= 'ORDER BY p.created DESC';
+	
+		$query = $this->em->createQuery($stmt);
+		$query->setParameter(1, $user_id);
+		
+		$paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
+		
+		$iterator = $paginator->getIterator();
+		
+		$adapter = new \Zend_Paginator_Adapter_Iterator($iterator);
+		return new \Zend_Paginator($adapter);
+	
+		
+	}	
 
 	
 	

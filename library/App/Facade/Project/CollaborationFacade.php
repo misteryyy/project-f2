@@ -61,6 +61,42 @@ class CollaborationFacade {
 		return $query->getResult();
 	}
 	
+	/*
+	 * Return applications for the member
+	*/
+	public function findApplicationsPaginator($user_id,$options = array()){
+	
+		$stmt = 'SELECT a FROM App\Entity\ProjectApplication a WHERE a.user = ?1';
+	
+		if(isset($options['state'])){
+			// select just new application
+			if( $options['state'] == \App\Entity\ProjectApplication::APPLICATION_NEW){
+				$stmt .= ' AND a.state = 0'; //. \App\Entity\ProjectApplication::APPLICATION_NEW;
+			}
+				
+			if( $options['state'] == \App\Entity\ProjectApplication::APPLICATION_DENIED){
+				$stmt .= ' AND a.state = 1'; //. \App\Entity\ProjectApplication::APPLICATION_NEW;
+			}
+	
+			if( $options['state'] == \App\Entity\ProjectApplication::APPLICATION_ACCEPTED){
+				$stmt .= ' AND a.state = 2'; //. \App\Entity\ProjectApplication::APPLICATION_NEW;
+			}
+		}
+		$stmt .= 'ORDER BY a.created';
+	
+	
+		$query = $this->em->createQuery($stmt);
+		$query->setParameter(1, $user_id);
+		
+		$paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
+		
+		$iterator = $paginator->getIterator();
+		
+		$adapter = new \Zend_Paginator_Adapter_Iterator($iterator);
+		return new \Zend_Paginator($adapter);
+		
+	}
+	
 	
 
 }
