@@ -70,6 +70,10 @@ abstract class Boilerplate_Controller_Action_Abstract extends Zend_Controller_Ac
     	
    $this->view->member = $this->_member;
    
+   // save user object, used for checking if this object is in projects or in users
+   $facadeUser = new \App\Facade\UserFacade($this->_em); 
+   $this->view->loggedMember = $facadeUser->findOneUser($this->_member_id);
+   
    // for permission checking
    $this->facadeAcl = new \App\Facade\ACLFacade($this->_em);
    

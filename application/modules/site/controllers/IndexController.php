@@ -27,6 +27,44 @@ class Site_IndexController extends Boilerplate_Controller_Action_Abstract
     
     }
       
+    
+    /**
+     * Request for project
+     */
+    public function ajaxIndexAction()
+    {
+    	$this->ajaxify();
+    
+    
+    	if($this->_request->isPost() || $this->_request->isGet()){
+    		switch ($this->_request->getParam("_method")){
+    
+    			//  create new question
+    			case 'like-member':
+    				try{
+    					$facadeUser = new \App\Facade\UserFacade($this->_em);
+    					// return count of current members
+    					$data = $facadeUser->likeMember($this->_member_id, $this->_request->getParam('friend_id'));
+    					
+    					$respond = array("respond" => "success",
+    							"message" => "Action successfull.",
+    							"data" => $data);
+    					
+    					$this->_response->setBody(json_encode($respond));
+    					break;
+    				}catch(Exception $e){
+    					$respond = array("respond" => "error","message" => $e->getMessage());
+    					$this->_response->setBody(json_encode($respond));
+    				}
+    				break;		
+    		}
+    	} else {
+    		$this->_response->setHttpResponseCode(503); // echo error
+    
+    	}
+    		
+    }
+    
 
     /**
      * RSS feed

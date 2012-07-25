@@ -78,6 +78,18 @@ class UserSpecificRoleTag extends \App\Entity\UserSpecificRoleTag implements \Do
         return parent::getCountOfSpecRolesUsingThisTag();
     }
 
+    public function __get($property)
+    {
+        $this->__load();
+        return parent::__get($property);
+    }
+
+    public function __set($property, $value)
+    {
+        $this->__load();
+        return parent::__set($property, $value);
+    }
+
 
     public function __sleep()
     {

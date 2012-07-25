@@ -6,7 +6,9 @@
 <?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
 <?php if (count($this->paginator)) {?>
    <ul class="thumbnails">
-    <?php foreach ($this->paginator as $user){ ?>     
+    <?php foreach ($this->paginator as $user){ ?> 
+    
+    
         <li class="span3 fl-thumbnail-frame">
                   <div class="thumbnail">
                    <a href="<?php echo $user->getProfileUrl();?>"> 
@@ -16,8 +18,16 @@
                      <div class="fl-cnt-100">
                        <span class="author"><i class="icon-user"></i> <?php echo $user->name?></span>
                        <p class="info">
-                          <span class="followers"><i class="icon-eye-open"></i> <strong>56</strong> followers</span>
-                         <span class="like"><i class="icon-thumbs-up"></i> <a href="" title="" class="like-member">Like</a></span>
+                         <span class="followers"><i class="icon-eye-open"></i><strong class="follower-count"><?php echo $user->getCountFriendsWithMe();?></strong> followers</span>
+                         <span class="like"><i class="icon-thumbs-up"></i> 
+                         <?php
+                         // like dislike solution 
+                         if(!$user->isMyFriend($this->loggedMember)) {
+						 ?> <a href="" title="" class="like-member" id="<?php echo $user->id;?>" >Like</a>
+						 <?php } else { ?>
+                            <a href="" title="" class="like-member" id="<?php echo $user->id;?>" >Dislike</a>
+                         <?php } ?>
+                         </span>
                        </p>
                         <div class="fl_project_thumb_roles">
                          	<?php $specRoles = $user->getSpecificRoles();
@@ -36,53 +46,57 @@
 
  <script type="text/javascript">  
 			var Models = {
-					
 			init: function(config){
 				// ajax setup
 				$.ajaxSetup({
-					url: "/member-like/", 
+					url: "/site/index/ajax-index", 
 					type: 'GET',
 					dataType: 'json',
-
 				});
-		
+				
 				this.config = config;
 				this.bindEvents();
-				this.setutTemplates();
-				this.findData(); // fill the question_list
-				},
-			// setting template system
-			setutTemplates: function(){
-				this.config.modelListTemplate = Handlebars.compile(this.config.modelListTemplate);
-					
-				},
+			},
 				
 			bindEvents: function(){
-				this.config.likeMember.on('click','',this.findSurvey); // edit question 				
+				//this.config.likeMemberBtn.css("color","red");
+					
+				this.config.likeMemberBtn.on("click", this.likeMember);		
 			
-				},
-				
-			// acceptMember
-			likeMember:function(e){
-				var self = Models;
-
-				$.ajax({
-					data:   "&_method=like-member&&member_id=", // take data from the form and send it to the method update
-				}).done(
-						function (results){
-							newAlert (results.respond, results.message); // display alert
-							self.findData(); // refresh questions
-						}
-				);
-				e.preventDefault();
 			},
-			
-			
+				
+			// likeMember
+			likeMember: function(e) {
+
+				var follower_count = $(this).closest('.info').find(".follower-count");
+				console.log(follower_count);
+				
+				var val = $(this).text();
+				var user_id = $(this).attr("id");
+				if(val == 'Like') {
+					$(this).html("Dislike");
+				}else {
+					$(this).html("Like");
+				} 	
+					// send data to server
+					$.ajax({
+						data:   "&_method=like-member&&friend_id="+user_id, // take data from the form and send it to the method update
+					}).done(
+							function (results){
+								// set new value for followers		
+								follower_count.html(results.data.count_friends); // number of current friends
+							}
+					);			
+				e.preventDefault();
+			}
 
 			};
 
+			
+			
+			// like models
 			Models.init({
-				likeMember: $("like-member"),
+				likeMemberBtn: $(".like-member"), //select a with class 
 			});
  </script>  
   

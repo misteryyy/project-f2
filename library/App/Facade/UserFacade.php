@@ -24,6 +24,44 @@ class UserFacade {
 	}
 	
 	/**
+	 * Start to like member which I like
+	 * @param unknown_type $user_id
+	 * @param unknown_type $friend_id
+	 */
+	public function likeMember($user_id,$friend_id){
+		
+		// thats me and I want add new friend_id
+		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
+		if(!$user){
+			throw new \Exception("Member doesn't exists");
+		} 
+		
+		$friend = $this->em->getRepository ('\App\Entity\User')->findOneById ( $friend_id);
+		if(!$friend){
+			throw new \Exception("This member you want add doesn't exists");
+		}
+		
+		$count_of_friends = $friend->getCountFriendsWithMe();
+		if($user->isMyFriend($friend)){
+			$user->deleteMyFriend($friend); // delete from friends
+			$friend->deleteFriendWithMe($user);
+			$count_of_friends--;
+			$this->em->flush();
+			
+		} else {
+			$user->addNewFriend($friend); // add this friend
+			$friend->addFriendWithMe($user);
+			$count_of_friends++;
+			$this->em->flush();
+		}
+		
+		return array('count_friends' => $count_of_friends);
+		
+	}
+	
+	
+	
+	/**
 	 * Return all users
 	 */
 public function findAllUsersNative($options = array()){

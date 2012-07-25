@@ -122,12 +122,26 @@ class User {
 	 */
 	private $userFieldOfInterestTags;
 	
+	/**
+	 * @ManyToMany(targetEntity="User", mappedBy="myFriends")
+	 */
+	private $friendsWithMe;
+	
+	
+	/**
+	 * @ManyToMany(targetEntity="User", inversedBy="friendsWithMe")
+	 * @JoinTable(name="user_has_friend",
+	 *      joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
+	 *      inverseJoinColumns={@JoinColumn(name="friend_user_id", referencedColumnName="id")}
+	 *      )
+	 */
+	private $myFriends;
+	
 
-	
-	
-	
 
 	public function __construct() {
+		$this->friendsWithMe = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->myFriends = new \Doctrine\Common\Collections\ArrayCollection();
 		$this->userFieldOfInterestTags = new \Doctrine\Common\Collections\ArrayCollection ();
 		$this->roles = new \Doctrine\Common\Collections\ArrayCollection ();
 		$this->specRoles = new \Doctrine\Common\Collections\ArrayCollection ();
@@ -158,6 +172,9 @@ class User {
 		return $this->emailNewsletter;
 	}
 
+	
+	
+	
 	/**
 	 * @return the $emailNotification
 	 */
@@ -179,6 +196,9 @@ class User {
 		$this->emailNotification = $emailNotification;
 	}
 
+	
+	
+	
 	public function getProfilePicture($resolution = 200){
 	
 		if($this->profilePicture == null){
@@ -466,6 +486,52 @@ class User {
 	}
 	
 	
+	/**
+	 * Get count member who likes
+	 */
+	public function getCountMyFriends(){
+		return $this->myFriends->count();
+	}
+	
+	/**
+	 * Add new friend
+	 * @param unknown_type $friend
+	 */
+	public function addNewFriend($friend){
+		$this->myFriends->add($friend);
+	}
+	
+	public function addFriendWithMe($friend){
+		$this->friendsWithMe->add($friend);
+	}
+	
+	public function deleteMyFriend($friend){
+		$this->myFriends->removeElement($friend);
+	}
+	
+	public function deleteFriendWithMe($friend){
+		$this->friendsWithMe->removeElement($friend);
+	}
+	
+	
+	
+	/**
+	 * Return if this friend is my friend
+	 * @param unknown_type $friend
+	 */
+	public function isMyFriend($friend){
+		return $this->myFriends->contains($friend);
+	}
+	
+	/**
+	 * Get count member who likes
+	 */
+	public function getCountFriendsWithMe(){
+		return $this->friendsWithMe->count();
+	}
+	
+	
+	
 	public function setUserInfo(\App\Entity\UserInfo $info){
 		$this->userInfo = $info;
 	}
@@ -490,6 +556,16 @@ class User {
 		} else {
 			$this->$property = $value;
 		}
+	}
+	
+	/**
+	 * Return just basic information about the entity
+	 */
+	public function toArray(){
+		$params = array ("id" => $this->id,
+				"count_friends" => $this->getCountMyFriends()
+				);
+		return $params;
 	}
 }
     
