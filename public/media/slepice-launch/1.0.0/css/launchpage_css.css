@@ -47,7 +47,6 @@ p{
   float: right;
 }
 
-<<<<<<< HEAD
 .lp-click-01{
   position: absolute;
   left: 50%;
@@ -58,13 +57,19 @@ p{
   position: absolute;
   left: 5px;
   top: 60%;
-=======
+}
+
 .text-center{
   text-align: center;
 }
 
 .lp-cnt-100{
   width: 100%;
+  float: left;
+}
+
+.lp-cnt-90{
+  width: 90%;
   float: left;
 }
 
@@ -78,7 +83,6 @@ p{
 
 .lp-top50{
   margin-top:50px;
->>>>>>> 0f4f2196775db2c22aad816d15168709042d009a
 }
 
 .lp-flash-messenger{
