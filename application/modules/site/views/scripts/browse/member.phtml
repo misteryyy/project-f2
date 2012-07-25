@@ -58,21 +58,16 @@
 				},
 				
 			bindEvents: function(){
-				this.config.modelList.on('click','td.actions input.survey',this.findSurvey); // edit question 				
-				this.config.modelList.on('click','td.actions input.accept',this.acceptMember); // edit question 	
-				this.config.modelList.on('click','td.actions input.deny',this.showModaldenyMember); // edit question 			
-				
+				this.config.likeMember.on('click','',this.findSurvey); // edit question 				
+			
 				},
 				
 			// acceptMember
-			acceptMember:function(e){
+			likeMember:function(e){
 				var self = Models;
-				var par = $(this).parent();
-				var application_id = par.attr("id");
-				$(this).button('loading');
-				console.log($(this));
+
 				$.ajax({
-					data:   "&_method=accept&&application_id="+application_id, // take data from the form and send it to the method update
+					data:   "&_method=like-member&&member_id=", // take data from the form and send it to the method update
 				}).done(
 						function (results){
 							newAlert (results.respond, results.message); // display alert
