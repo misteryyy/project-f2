@@ -7,6 +7,15 @@ class SignupForm extends \Twitter_Bootstrap_Form_Horizontal
 	{	
 	
 		$this->addAttribs(array("id" => "form-sign-up-beta"));
+
+		$this->addElement('hidden', 'form_description', array(
+		 		'description' => '<div class="lp-cnt-90"><p class="lp-donate">Interested in being a part of our beta-testing phase? Take a look at our <a href="/index/faq" title="Frequently asked questions">FAQ</a>s section, and then sign up below. This will be a critical time for us, and your input is going to make or break how successful the application will be in the early stages. Upon signing up, you’ll receive an e-mail explaining the upcoming process in further detail, along with information on when you can start using your account. Sign up, and join the team!</p></div>',
+		 		'ignore' => true,
+		 		'decorators' => array(
+		 			array('Description', array('escape'=>false, 'tag'=>'')),
+		 		),
+		));
+
 		$this->addElement('text', 'name', array(
 				'label' => 'Name',
 				'required' => true,
@@ -87,7 +96,8 @@ class SignupForm extends \Twitter_Bootstrap_Form_Horizontal
 		
 
 		$this->addDisplayGroup(
-				array('name','email','email_verification','password','password_verification','location','accept'), 'Sign Up', array('legend' => 'Early Access')
+
+				array('form_description','name','email','email_verification','password','password_verification','location','accept'), 'Sign Up', array('legend' => 'Early Access')
 		);
 
 		
