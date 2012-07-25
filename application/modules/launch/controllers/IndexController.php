@@ -46,7 +46,7 @@ class Launch_IndexController extends Boilerplate_Controller_Action_Abstract
     				$facadeLaunch = new \App\Facade\Launch\LaunchFacade($this->_em);
     				$facadeLaunch->createNewsleter($_POST);
     				// SUCCESS
-    				$this->_helper->FlashMessenger ( array ('success' => "I think this one can remain the same. Whatever we have for the current one. It’s written somewhere..." ) );
+    				$this->_helper->FlashMessenger ( array ('success' => "Thanks for signing up! Keep an eye out for our next newsletter in your inbox." ) );
     				$this->_helper->redirector('index', $this->getRequest()->getControllerName(), $this->getRequest()->getModuleName());
     					
     			} catch ( Exception $e ) {
@@ -104,7 +104,19 @@ class Launch_IndexController extends Boilerplate_Controller_Action_Abstract
     	
     	
     }
-     
+    
+    public function getAction()
+    {
+    	$this->ajaxify();
+    	$facadeLaunch = new \App\Facade\Launch\LaunchFacade($this->_em);
+    	$news = $facadeLaunch->findNewsletters();
+    	echo count($facadeLaunch->findNewsletters());
+		foreach($news as $n){
+			echo $n->id . "," . $n->email . " <br>";
+			
+		}
+    	
+    }
 
     public function headerAction()
     {    

@@ -123,6 +123,10 @@ class User {
 	private $userFieldOfInterestTags;
 	
 
+	
+	
+	
+
 	public function __construct() {
 		$this->userFieldOfInterestTags = new \Doctrine\Common\Collections\ArrayCollection ();
 		$this->roles = new \Doctrine\Common\Collections\ArrayCollection ();

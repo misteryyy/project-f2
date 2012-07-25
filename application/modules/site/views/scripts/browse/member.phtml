@@ -1,23 +1,95 @@
 <h3>Browse Members</h3>
-
-<?php 
-	echo $this->form;
-?>
-
-
+<?php echo $this->form; ?>
 <hr>
+
 <!-- Project Displaying -->
 <?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
-    <?php if (count($this->paginator)) {?>
+<?php if (count($this->paginator)) {?>
    <ul class="thumbnails">
-    <?php foreach ($this->paginator as $user){ ?>
-
-    <div class="user">	
-		<?php echo $user->getName(); ?> 
-		<img src="/storage/users/<?php echo $user->getProfilePicture()?>" alt="<?php echo $user->getName(); ?>">
-		    <?= $user->email; ?>
-	</div>	
+    <?php foreach ($this->paginator as $user){ ?>     
+        <li class="span3 fl-thumbnail-frame">
+                  <div class="thumbnail">
+                   <a href="<?php echo $user->getProfileUrl();?>"> 
+                     <img src="/storage/users/<?php echo $user->getProfilePicture()?>" alt="<?php echo $user->getName(); ?>">
+            		 </a>      
+                     <h3><?php echo $user->name?></h3>
+                     <div class="fl-cnt-100">
+                       <span class="author"><i class="icon-user"></i> <?php echo $user->name?></span>
+                       <p class="info">
+                          <span class="followers"><i class="icon-eye-open"></i> <strong>56</strong> followers</span>
+                         <span class="like"><i class="icon-thumbs-up"></i> <a href="" title="" class="like-member">Like</a></span>
+                       </p>
+                        <div class="fl_project_thumb_roles">
+                         	<?php $specRoles = $user->getSpecificRoles();
+								foreach ($specRoles as $r){?>     
+                       		 	 <div class="fl_project_thumb_role">
+		                           	<img src="/media/slepice-site/1.0.0/img/role_<?php echo $r->name;?>.png" alt="<?php echo $r->name;?>" title="<?php echo $r->name;?>" />
+		                         </div>                	
+                      	<?php } ?>     
+                       </div>         
+                     </div>
+                  </div>   
+                </li>
     <?php } ?>
-<?php } else echo "No Projects Available"?>
+  </ul>			
+  <?php } else echo "There are no users."?>
 
-    
+ <script type="text/javascript">  
+			var Models = {
+					
+			init: function(config){
+				// ajax setup
+				$.ajaxSetup({
+					url: "/member-like/", 
+					type: 'GET',
+					dataType: 'json',
+
+				});
+		
+				this.config = config;
+				this.bindEvents();
+				this.setutTemplates();
+				this.findData(); // fill the question_list
+				},
+			// setting template system
+			setutTemplates: function(){
+				this.config.modelListTemplate = Handlebars.compile(this.config.modelListTemplate);
+					
+				},
+				
+			bindEvents: function(){
+				this.config.modelList.on('click','td.actions input.survey',this.findSurvey); // edit question 				
+				this.config.modelList.on('click','td.actions input.accept',this.acceptMember); // edit question 	
+				this.config.modelList.on('click','td.actions input.deny',this.showModaldenyMember); // edit question 			
+				
+				},
+				
+			// acceptMember
+			acceptMember:function(e){
+				var self = Models;
+				var par = $(this).parent();
+				var application_id = par.attr("id");
+				$(this).button('loading');
+				console.log($(this));
+				$.ajax({
+					data:   "&_method=accept&&application_id="+application_id, // take data from the form and send it to the method update
+				}).done(
+						function (results){
+							newAlert (results.respond, results.message); // display alert
+							self.findData(); // refresh questions
+						}
+				);
+				e.preventDefault();
+			},
+			
+			
+
+			};
+
+			Models.init({
+				likeMember: $("like-member"),
+			});
+ </script>  
+  
+      
+    	

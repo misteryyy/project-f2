@@ -15,15 +15,15 @@ class Site_BrowseController extends Boilerplate_Controller_Action_Abstract
     	// find users
     	$facadeUser = new \App\Facade\UserFacade($this->_em);
     	
-    	$us = $facadeUser->findAllUsersNative();
-    	$this->dPr($us);
     	
     	$paginator = $facadeUser->findAllUsersPaginator($this->_member_id,$this->_request->getParams());
     	
-    	$paginator->setItemCountPerPage(8); // items per page
+    	$config = Zend_Registry::get('config');
+    	$paginator->setItemCountPerPage($config['app']['project']['count_per_page']); // items per page
     	$page = $this->_request->getParam('page', 1);
     	$paginator->setCurrentPageNumber($page);
     	$this->view->paginator = $paginator;
+    	
 	}
       
 
