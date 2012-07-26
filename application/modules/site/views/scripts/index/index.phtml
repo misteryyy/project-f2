@@ -23,9 +23,49 @@
                         <img alt="<?php echo $project->title; ?> - main picture" src="/storage/projects/<?php echo $project->dir."/".$project->getPicture('large'); ?> " />
                      </a>
 
-                     <div class="progress">
-                       <div class="fl_level<?php echo $project->level?>"></div>
-                     </div>
+<?php switch($project->level){
+  case '1': ?>
+                     <div class="fl-level">
+                        <div class="progress">
+                          <div class="fl_level1"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="bar"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="bar"></div>
+                        </div>
+                      </div>
+<?php ; break;
+  case '2': ?>
+
+                      <div class="fl-level">
+                        <div class="progress">
+                          <div class="fl_level2"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="fl_level2"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="bar"></div>
+                        </div>
+                      </div>
+<?php ; break;
+  case '3': ?>
+
+                      <div class="fl-level">
+                        <div class="progress">
+                          <div class="fl_level3"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="fl_level3"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="fl_level3"></div>
+                        </div>
+                      </div>
+<?php ;
+}?>
                      
                      <h3><?php echo $project->title; ?></h3>
                      

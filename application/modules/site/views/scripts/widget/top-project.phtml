@@ -12,15 +12,58 @@
          <div class="fl_slider_text">
            <h2><?php echo $project->title; ?></h2>
             <span class="author"><i class="icon-user"></i> Mahulena Omgato</span>
-            <div class="progress">
-               <div class="fl_level1"></div>
-            </div>
+
+<?php switch($project->level){
+  case '1': ?>
+                     <div class="fl-level">
+                        <div class="progress">
+                          <div class="fl_level1"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="bar"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="bar"></div>
+                        </div>
+                      </div>
+<?php ; break;
+  case '2': ?>
+
+                      <div class="fl-level">
+                        <div class="progress">
+                          <div class="fl_level2"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="fl_level2"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="bar"></div>
+                        </div>
+                      </div>
+<?php ; break;
+  case '3': ?>
+
+                      <div class="fl-level">
+                        <div class="progress">
+                          <div class="fl_level3"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="fl_level3"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="fl_level3"></div>
+                        </div>
+                      </div>
+<?php ;
+}?>
+          <div class="fl-cnt-100 fl-top10">
             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using.</p>
             <p class="info">
               <span class="category"><i class="icon-folder-close"></i> Design</span>
               <span class="followers"><i class="icon-eye-open"></i> <strong>56</strong> followers</span>
               <span class="like"><i class="icon-thumbs-up"></i> <a href="" title="">Like</a></span>
             </p>
+          </div>
             
             <div class="fl_slider_roles">
               <div class="fl_slider_role">
