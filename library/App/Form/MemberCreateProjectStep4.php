@@ -30,7 +30,7 @@ class MemberCreateProjectStep4 extends \Twitter_Bootstrap_Form_Horizontal
 			$this->addElement('textarea', 'question_'.$index, array(
 					'label' => 'Your answer:',
 					'required' => false,
-					'class' => 'span10',
+					'class' => 'span6',
 					'rows' => 3,
 					'filters' => array('StringTrim'),
 					'description' => "max 250 letters",

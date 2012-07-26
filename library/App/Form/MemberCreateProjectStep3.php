@@ -61,7 +61,7 @@ class MemberCreateProjectStep3 extends \Twitter_Bootstrap_Form_Horizontal
 					
 		}
 		
-		debug($addList);
+	
 		/**
 		 * FIRST FIELD SET
 		 */

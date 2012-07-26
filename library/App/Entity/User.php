@@ -235,6 +235,19 @@ class User {
 		$role->setUser(null);
 		$this->specRoles->removeElement($role);
 	}
+	
+	/**
+	 * Return array of specific roles who has this member
+	 */
+	public function getSpecificRolesArray(){
+		$arr = array();
+		
+		foreach($this->specRoles as $r){
+			$arr[] = $r->name;
+		}
+		
+		return $arr;
+	}
 
 	/**
 	 * @return the $role

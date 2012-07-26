@@ -1,11 +1,22 @@
 <h3>Browse Members</h3>
-<?php echo $this->form; ?>
 <hr>
 
+<div class="well"><?php echo $this->debug;?></div>
+
+<div class="fl-cnt-100"> 
+<?php echo $this->form; ?>
+</div>
+
+
+
+
+
+
+<hr>
 <!-- Project Displaying -->
-<?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
 <?php if (count($this->paginator)) {?>
-   <ul class="thumbnails">
+	<?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
+	<ul class="thumbnails">
     <?php foreach ($this->paginator as $user){ ?> 
     
     

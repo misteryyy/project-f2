@@ -64,14 +64,14 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 				'errorMessages' => array("You should have descripton of your project."),
 				'description' => "description",
 				'filters' => array('StringTrim'),
-				'class' => 'span10',
+				'class' => 'span6',
 				'validators' =>	array( array("NotEmpty"), array('StringLength', false, array(1,250) )),
 				'disableLoadDefaultDecorators' => true,
 		));
 		
 		$this->addElement('textarea', 'plan', array(
 				'label' => 'plans',
-				'class' => 'span10',
+				'class' => 'span6',
 				'rows' => '3',
 				'required' => false,
 				'filters' => array('StringTrim'),
@@ -80,7 +80,7 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 		
 		$this->addElement('textarea', 'issue', array(
 				'label' => 'issues',
-				'class' => 'span10',
+				'class' => 'span6',
 				'rows' => '3',
 				'required' => false,
 				'filters' => array('StringTrim'),
@@ -89,7 +89,7 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 		
 		$this->addElement('textarea', 'lesson', array(
 				'label' => 'lessons',
-				'class' => 'span10',
+				'class' => 'span6',
 				'rows' => '3',
 				'required' => false,
 				'filters' => array('StringTrim'),

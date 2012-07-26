@@ -62,14 +62,14 @@ class MemberCreateProjectStep1 extends \Twitter_Bootstrap_Form_Horizontal
 				'required' => true,
 				'errorMessages' => array("You should have descripton of your project."),
 				'description' => "description",
-				'class' => 'span10',
+				'class' => 'span6',
 				'validators' => array("NotEmpty"),
 				'disableLoadDefaultDecorators' => true,
 		));
 		
 		$this->addElement('textarea', 'plan', array(
 				'label' => 'plans',
-				'class' => 'span10',
+				'class' => 'span6',
 				'rows' => '3',
 				'required' => false,
 				'description' => "description",
@@ -77,7 +77,7 @@ class MemberCreateProjectStep1 extends \Twitter_Bootstrap_Form_Horizontal
 		
 		$this->addElement('textarea', 'issue', array(
 				'label' => 'issues',
-				'class' => 'span10',
+				'class' => 'span6',
 				'rows' => '3',
 				'required' => false,
 				'description' => "description",
@@ -85,7 +85,7 @@ class MemberCreateProjectStep1 extends \Twitter_Bootstrap_Form_Horizontal
 		
 		$this->addElement('textarea', 'lesson', array(
 				'label' => 'lessons',
-				'class' => 'span10',
+				'class' => 'span6',
 				'rows' => '3',
 				'required' => false,
 				'description' => "description",

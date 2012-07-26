@@ -16,9 +16,6 @@ class PollForm extends \Twitter_Bootstrap_Form_Horizontal
 	
 	}
 	
-	
-	
-	
 	public function init()
 	{	
 		// ajax call

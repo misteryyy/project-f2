@@ -16,18 +16,35 @@ class MemberCreateProjectStep5 extends \Twitter_Bootstrap_Form_Horizontal
 
 	public function init()
 	{
-		// Widget Setting
-		$this->addElement('checkbox','publish_project_accepted',
-				array(  'missingMessage' => "Field '%field%' is required by rule '%rule%', dawg!",
-						'required' => true,
-						'label' => "Accept terms",
-						'description' => 'Please read what will happen if you will disable role widget.',
-						'validators' => array(array('GreaterThan', false, array(0)))
-				)
-		);
+		
+		
+		
+		$this->addElement('checkbox', 'accept', array(
+				'label'=>'Do you agree with <a href="/index/privacy">Terms & Conditions</a>?',
+				'uncheckedValue'=> '',
+				'checkedValue' => 'I Agree',
+				'validators' => array(
+						array('notEmpty', true, array(
+								'messages' => array(
+										'isEmpty'=>'You must agree with Terms & Conditions.'
+								)
+						))
+				),
+				'decorators' => array(
+						array('FieldSize'),
+						array('ViewHelper'),
+						array('Addon'),
+						array('ElementErrors'),
+						array('Description', array('tag' => 'p', 'class' => 'help-block')),
+						array('HtmlTag', array('tag' => 'div', 'class' => 'controls')),
+						array('Label', array('class' => 'control-label','escape' => false)),
+						array('Wrapper')
+				),
+				'required'=>true,
+		));
 		
 		$this->addDisplayGroup(
-				array('publish_project_accepted'),'accepted',null);
+				array('accept'),'accepted',null);
 		
 		
 		// submit button

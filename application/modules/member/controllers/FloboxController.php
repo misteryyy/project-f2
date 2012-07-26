@@ -24,9 +24,9 @@ class Member_FloboxController extends  Boilerplate_Controller_Action_Abstract
     }
     
     	/**
-    	 *
+    	 * Create new FLO~ Box message
     	 */
-    	public function messageCreateAction()
+    	public function newAction()
     	{
     		$this->view->pageTitle = "Create Flo Message" ;
     		

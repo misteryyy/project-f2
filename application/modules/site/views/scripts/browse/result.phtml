@@ -1,0 +1,16 @@
+<h2>Výsledky hledání pro zadaný výraz : <em> <?php echo $this->escape($this->keywords) ;?> </em></h2>
+
+<?php if (is_array($this->results) && count($this->results) > 0) { ?>
+    <p>Celkem nalezeno záznamů : <?php echo count($this->results); ?> </p>
+
+<?php
+if ( count($this->paginator)) {
+    ?>
+
+        <?php echo $this->partialLoop('search/_video-row.phtml', $this->paginator); ?>
+
+<?php } else { ?>
+     <p>Nebyly nalezena žádná videa. Zkuste prosím jiné klíčové slovo nebo použijte tagy.</p>
+<?php }
+
+}?>
