@@ -60,17 +60,13 @@
 				
 			bindEvents: function(){
 				//this.config.likeMemberBtn.css("color","red");
-					
 				this.config.likeMemberBtn.on("click", this.likeMember);		
-			
 			},
 				
 			// likeMember
 			likeMember: function(e) {
-
 				var follower_count = $(this).closest('.info').find(".follower-count");
 				console.log(follower_count);
-				
 				var val = $(this).text();
 				var user_id = $(this).attr("id");
 				if(val == 'Like') {
