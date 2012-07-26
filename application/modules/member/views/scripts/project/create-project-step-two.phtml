@@ -5,10 +5,10 @@ echo $this->partial('project/create-project-navigation.phtml',array("step" => $t
 
 ?>
 <div class="fl-cnt-100">
- <div class="alert alert-info">
- <span class="label label-info">Info</span>
- 	Image will be automatically cropped. Try to upload image which has resolution 480x320 to have the best image quality and proportion.
-</div>
+  <div class="alert alert-info">
+    <span class="label label-info">Info</span>
+    Image will be automatically cropped. Try to upload image which has resolution 480x320 to have the best image quality and proportion.
+  </div>
 </div>
 
 <div class="fl-cnt-100">
@@ -16,16 +16,16 @@ echo $this->partial('project/create-project-navigation.phtml',array("step" => $t
 </div>
 
 <div class="fl-cnt-100">
-<form id="imageform" enctype="multipart/form-data" class="form-horizontal well" action="/member/ajax/create-thumbnail" method="post">
-<fieldset id="fieldset-CreateProjectChooseProfilePhoto">
-  <legend>Step 2 / Choose Picture</legend>
+<form id="imageform" enctype="multipart/form-data" class="form-horizontal" action="/member/ajax/create-thumbnail" method="post">
+  <fieldset id="fieldset-CreateProjectChooseProfilePhoto">
+    <legend class="hide">Step 2 / Choose Picture</legend>
   <div id="preview">
   <?php 
 	// display picture from the previous
 	if(Zend_Session::namespaceIsset('projectStep2')){
 		$session = Zend_Session::namespaceGet('projectStep2');
 		if(isset($session['secondFormData'])){
-			echo '<div class="well"> <img src="'.$session['secondFormData']['webUrl'].'?foo='.time().'" alt="Profile Picture"/> </div> <hr />';
+			echo '<div class="fl-cnt-100 text-center fl-bottom20"> <img src="'.$session['secondFormData']['webUrl'].'?foo='.time().'" alt="Project picture" class="fl-img"/> </div>';
 		}	
 	}
   ?>

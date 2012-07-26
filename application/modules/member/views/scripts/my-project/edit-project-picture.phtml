@@ -6,34 +6,41 @@ $this->step = 2;
 echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $this->step,"project" => $this->project));
 ?>
   
-<h3>Project edit picture</h3>
-<hr />
- <div class="alert alert-info">
- <span class="label label-info">Info</span>
- 	Image will be automatically cropped. Try to upload image which has resolution 480x320 to have the best image quality and proportion.
+<div class="fl-cnt-100">
+  <div class="alert alert-info">
+    <span class="label label-info">Info</span>
+    Image will be automatically cropped. Try to upload image which has resolution 480x320 to have the best image quality and proportion.
+  </div>
 </div>
-		
-		<div id="alert-area"></div>
-		
-		<form id="imageform" enctype="multipart/form-data" class="form-horizontal well" action="/member/ajax/update-project-thumbnail" method="post">
-					<fieldset id="fieldset-CreateProjectChooseProfilePhoto">
-					  <legend>Change Project Picture</legend>
-					  <div id="preview">
+
+<div class="fl-cnt-100">
+  <div id="alert-area"></div>
+</div>
+
+<div class="fl-cnt-100">		
+	<form id="imageform" enctype="multipart/form-data" class="form-horizontal" action="/member/ajax/update-project-thumbnail" method="post">
+		<fieldset id="fieldset-CreateProjectChooseProfilePhoto">
+	    <legend class="hide">Change Project Picture</legend>
+		    <div id="preview">
 					  <?php 
-					   echo '<div class="well">'; 
+					   echo '<div class="fl-cnt-100 text-center fl-bottom20">'; 
 					   ?>	
-					   <img src="/storage/projects/<?php echo $this->project->dir?>/<?php echo $this->project->getPicture("large")."?foo=".time();?>" />	
+					   <img src="/storage/projects/<?php echo $this->project->dir?>/<?php echo $this->project->getPicture("large")."?foo=".time();?>" class="fl-img" />	
 							<?php echo '</div>'; ?> 
-					  </div> 
-					 <div class="control-group">
-					  <label for="project_picture" class="control-label optional">Choose Picture</label>
-					 <div class="controls">
-					<input type="file" name="photoimg" id="photoimg" class="input-file">
-					<p class="help-block">Max size 4MB (jpg,jpeg,png)</p></div>
-					</div>
+			</div> 
+
+			<div class="control-group">
+				<label for="project_picture" class="control-label optional">Choose Picture</label>
+				<div class="controls">
+					<input type="file" name="photoimg" id="photoimg" class="input-file" />
+					<p class="help-block">Max size 4MB (jpg,jpeg,png)</p>
+			    </div>
+			</div>
+			
 					<input type="hidden" name="id" value="<?php echo $this->project->id;?>"/>
-					</fieldset>
-		</form>
+		</fieldset>
+	</form>
+</div>
 
 		
 	

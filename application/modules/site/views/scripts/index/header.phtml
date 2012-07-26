@@ -54,12 +54,12 @@
        <ul class="nav nav-pills fl-user-menu">
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#"><img src="/media/slepice-site/1.0.0/img/member_img_menupic.jpg" alt="" class="fl-menu-img"/>  <?= $this->member['email']?> <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="/member/profile/index/id/<?= $this->member['id']?>" title="">My profile</a></li>
-                <li><a href="" title="">Edit my profile</a></li>
-                <li><a href="" title="">Account settings</a></li>
+              <ul class="dropdown-menu fl-width100">
+                <li><a href="/member/dashboard" title="My dashboard">My dashboard</a></li>
+                <li><a href="/member/profile/index/id/<?= $this->member['id']?>" title="My profile">My profile</a></li>
+                <li><a href="/member/profile-setting/member-info" title="Edit my profile">Edit my profile</a></li>
                 <li class="divider"></li>
-                <li><a href="/member/index/logout" title="">Log out</a></li>
+                <li><a href="/member/index/logout" title="Log out">Log out</a></li>
               </ul>
             </li>
           </ul>

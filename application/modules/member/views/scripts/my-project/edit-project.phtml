@@ -5,9 +5,12 @@ $this->step = 1;
 echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $this->step,"project" => $this->project));
 ?>
 	
- 	<h3>Edit General Information</h3>
-  	<hr/>
+<div class="fl-cnt-100">
 	<?php echo $this->form;?>
+</div>
+
+
+
 	<!-- Load jQuery build -->
 	<script type="text/javascript" src="<?=$this->baseUrl('/media/tiny_mce/tiny_mce.js')?>"></script>
 	<script type="text/javascript">
@@ -27,15 +30,5 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 	
 }?>
     
-    
-    
-    
-    
-    
-    </div>
-
- 
-  </div>
-</div>
 
 
