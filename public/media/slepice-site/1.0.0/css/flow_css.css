@@ -1438,6 +1438,10 @@ li.fl-li-info{
   font-weight: bold;
 }
 
+.answered .fl-survey-list-question{
+  color: #afeaa8;
+}
+
 .fl-project-survey-list li.unanswered, .fl-project-survey-list li.answered{
   border-left: 8px solid #afeaa8;
 }
