@@ -165,6 +165,9 @@ body{
   height: 60px;
 }
 
+.fl-height-100{
+  height: 100px;
+}
 
 .fl-cnt-100 p{
   text-align: left;
@@ -174,6 +177,10 @@ body{
 .fl-menu-img{
   border: 1px solid #ffffff;
   margin: 0 5px 0 0;
+}
+
+.fl-form legend{
+  display: none;
 }
 
 h1{
@@ -1228,6 +1235,7 @@ p.fl-publishing-title{
 .fl-cnt-project-by-content-left, .fl-cnt-project-by-content-right{
   float: left;
   width: 20%;
+  margin-bottom: 10px;
 }
 
 .fl-cnt-project-by-content-right{
@@ -1275,7 +1283,7 @@ p.fl-publishing-title{
 
 .fl-cnt-project-by-author-photo{
   width: 100%;
-  border: 1px solid #ffffff;
+  border: 1px solid #dadada;
 }
 
 .fl-cnt-project-by-content-author-projects{
@@ -1614,6 +1622,10 @@ tr.fl-user-banned:hover{
   margin: 0 0 20px 0;
 }
 
+.fl-project-update p{
+  text-align: justify;
+}
+
 .fl-project-update h3{
   font-size: 23px;
   color: #000000;
@@ -1919,6 +1931,9 @@ tr.fl-user-banned:hover{
   width: 100%;
 }
 
+.fl-top-project-img img{
+  width: 98%;
+}
 
 
 

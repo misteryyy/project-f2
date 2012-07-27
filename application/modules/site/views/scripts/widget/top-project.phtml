@@ -9,10 +9,10 @@
       $project = $this->slideshow->getProject($i);
       if($project){ ?>
     <div class="item <?php if($active == true) {echo "active";$active = false;} // first project is set to be active?>">
-       <div class="span6"> 
+       <div class="span5"> 
          <div class="fl_slider_text">
            <h2><?php echo $project->title; ?></h2>
-            <span class="author"><i class="icon-user"></i> Mahulena Omgato</span>
+            <span class="author"><i class="icon-user"></i> <a href="/member/profile/index/id/<?php echo $project->user->id;?>" title=""><?php echo $project->user->name;?></a></span>
 
 <?php switch($project->level){
   case '1': ?>
@@ -58,7 +58,9 @@
 <?php ;
 }?>
           <div class="fl-cnt-100 fl-top10">
-            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using.</p>
+            <div class="fl-cnt-100 fl-height-100">
+              <p><?php echo $project->pitchSentence; ?></p>
+            </div>
             <p class="info">
               <span class="category"><i class="icon-folder-close"></i> Design</span>
               <span class="followers"><i class="icon-eye-open"></i> <strong>56</strong> followers</span>
@@ -85,9 +87,10 @@
             </div> 
           </div>
         </div>
-        <div class="span5 text-right"> 
-         
+        <div class="span6 text-right fl-top-project-img"> 
+          <a href="/project/index/index/id/<?php echo $project->id?>" title="<?php echo $project->title; ?>">
            <img alt="<?php echo $project->title; ?> - main picture" src="/storage/projects/<?php echo $project->dir."/".$project->getPicture('large'); ?> " class="fl-img"/>
+          </a>
          
        </div> 
     </div>  

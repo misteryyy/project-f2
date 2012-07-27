@@ -1,6 +1,6 @@
 <?php //if($this->aclPermissionDenied) { echo "<div class='well'>You have alredy applied or you are in collaboration team. </div>"; return;}?>
-<?php if($this->project->disableRoleWidget) { echo "<div class='well'>Widget for collaboration disabled</div>"; return;}?>
-<?php if($this->project->level > 2) { echo "<div class='well'>Is not possible to apply for collaboration in this level.</div>"; return;}?>
+<?php if($this->project->disableRoleWidget) { echo '<div class="well">Widget for collaboration disabled</div></div>'; return;}?>
+<?php if($this->project->level > 2) { echo '<div class="fl-cnt-100"><div class="well">Is not possible to apply for collaboration in this level.</div></div>'; return;}?>
 
 <a data-toggle="modal" href="#modal-form-application" class="btn btn-primary fl-join-team-btn">
    <span class="fl-join-team-btn-join">join</span><br />

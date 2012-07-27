@@ -110,7 +110,7 @@ class Project_WidgetController extends  Boilerplate_Controller_Action_Abstract
 	    		$this->view->hasVoted = true;
 	    	} else {
 	    		$form = new \App\Form\Project\PollForm($this->project,$poll);
-	    		$this->view->form = $form;
+	    		$this->view->formPoll = $form;
 	    		$this->view->hasVoted = false;	
     		}
     	}
