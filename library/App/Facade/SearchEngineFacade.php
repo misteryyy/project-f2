@@ -8,22 +8,43 @@ class SearchEngineFacade {
 	
 	/** @var Doctrine\Orm\EntityManager */
 	private $em;
+	private $facadeUser; 
 	
 	public function __construct(\Doctrine\ORM\EntityManager $em){
-		
 		$this->em = $em;
+		$this->facadeUser = new \App\Facade\UserFacade($this->em);
+		
 	}
 
+	
+	/**
+	 * Search in indexes
+	 * @param unknown_type $query
+	 */
+	public function findUsersPaginator($query){
+		\Zend_Search_Lucene_Analysis_Analyzer::setDefault(
+				new \Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8_CaseInsensitive ());
+		\Zend_Search_Lucene_Search_QueryParser::setDefaultEncoding('utf-8');
+		 
+		$index = \Zend_Search_Lucene::open(APPLICATION_PATH . '/indexes/members');
+		$hits = $index->find($query);
+		
+		$users = array();
+		foreach ($hits as $h){
+			echo $h->user_id;
+			$users[] = $this->findOneUser($h->user_id);
+		}
+		
+		return \Zend_Paginator::factory($users); 
+	}
+	
 	
 	/**
 	 * Build start index form member  
 	 * @return number of non deleted index in this search engine
 	 */
 	public function buildMemberIndexes(){
-	
-		$facadeUser = new \App\Facade\UserFacade($this->em);
-
-		$paginator = $facadeUser->findAllUsers();	
+		$paginator = $this->facadeUser->findAllUsers();	
 		\Zend_Search_Lucene_Analysis_Analyzer::setDefault(new \Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8Num_CaseInsensitive ());
 		$index = \Zend_Search_Lucene::create(APPLICATION_PATH . '/indexes/members');
 				
@@ -57,16 +78,23 @@ class SearchEngineFacade {
 		$doc->addField(\Zend_Search_Lucene_Field::text('specific_roles', $specificRoles,'utf-8'));
 		$index->addDocument($doc);
 		
-		
 	}
 	
 
 	/**
-	 * 
+	 * Delete index of user 
 	 * @param unknown_type $id
 	 */
 	public function deleteUserIndex($id){
+		$index = \Zend_Search_Lucene::open(APPLICATION_PATH . '/indexes/members');
+		$query = 'user_id:"'.$id.'"';
+
+		$hits = $index->find($query);
 		
+		foreach($hits as $h){
+			$index->delete($h->id);	
+			echo $h->id . ' has been deleted with name '.$h->name;
+		}
 		
 		
 	}

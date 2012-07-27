@@ -526,8 +526,7 @@ class User {
 		$this->friendsWithMe->removeElement($friend);
 	}
 	
-	
-	
+
 	/**
 	 * Return if this friend is my friend
 	 * @param unknown_type $friend
