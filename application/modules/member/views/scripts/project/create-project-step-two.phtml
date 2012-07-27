@@ -86,7 +86,7 @@ $(document).ready(function()
 				$("#preview").html('');
 			}else{
 				$("#preview").html('');
-				$("#preview").html('<div class="well"> <img src="'+responseText.web_url+'?foo=' + new Date().getTime()+'" alt="Profile Picture"/> </div> <hr />');
+				$("#preview").html('<div class="fl-cnt-100 text-center fl-bottom20"> <img src="'+responseText.web_url+'?foo=' + new Date().getTime()+'" alt="Profile Picture" class="fl-img"/> </div>');
 				$("#button-continue").show();
 				newAlert('success', responseText.success);
 			} 

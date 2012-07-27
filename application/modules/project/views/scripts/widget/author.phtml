@@ -5,7 +5,7 @@
                 <div class="fl-cnt-project-by-content">
                   <div class="inner">
                     <div class="fl-cnt-project-by-content-left">
-                      <img src="<?php echo $this->userWebStorage;?><?php echo $this->project->user->getProfilePicture();?>" alt="" title="" class="fl-cnt-project-by-author-photo"/>
+                      <img src="/storage/users/<?php echo $this->userWebStorage;?><?php echo $this->project->user->getProfilePicture();?>" alt="" title="" class="fl-cnt-project-by-author-photo"/>
                       <div class="fl-cnt-project-by-content-skills">
                       	<?php $specRoles = $this->project->user->getSpecificRoles();
 								foreach ($specRoles as $r){?>
@@ -30,30 +30,35 @@
                         
                         <div class="fl_thin_divider"></div>
 
+<?php 
+                if(count ($this->membersProject) > 0){  ?>
+
                         <div class="fl-cnt-project-by-content-author-projects">
                           <span><a href="" title="">more of 'My Projects'</a></span>
                         	<ul>                          
 							<?php 
-								if(count ($this->membersProject) > 0){	
+								
 									foreach($this->membersProject as $project){ ?>
 										  		
-									<li><a href="/project/index/index/id/<?php echo $project->id ?>" title=""><img src="<?php echo $this->projectWebStorage;?><?php echo $project->dir?>/<?php echo $project->getPicture("small");?>" alt="<?php echo $project->title?>" title="<?php echo $project->title?>" /></a></li>
-								<?php } }// end foreach ?>
+									<li><a href="/project/index/index/id/<?php echo $project->id ?>" title=""><img src="/storage/projects/<?php echo $this->projectWebStorage;?><?php echo $project->dir?>/<?php echo $project->getPicture("small");?>" alt="<?php echo $project->title?>" title="<?php echo $project->title?>" /></a></li>
+								<?php } // end foreach ?>
 							</ul> 
                         </div>
+<?php }  
+if(count ($this->collaborations) > 0){ ?>
 
                         <div class="fl-cnt-project-by-content-author-projects">
                           <span><a href="" title="">more of 'My Collaborations'</a></span>
 							<ul>                          
-							<?php 
-								if(count ($this->collaborations) > 0){	
+							<?php 	
 									foreach($this->collaborations as $a){
 										  		$project = $a->project; // role is for collaborator ?>
 									<li><a href="/project/index/index/id/<?php echo $project->id?>" title=""><img src="<?php echo $this->projectWebStorage;?><?php echo $project->dir?>/<?php echo $project->getPicture("small");?>" alt="<?php echo $project->title?>" title="<?php echo $project->title?>" /></a></li>
-								<?php } }// end foreach ?>
+								<?php } // end foreach ?>
 							</ul>                        
                          
                         </div>
+<?php } // end foreach ?>
                       </div>
                     </div>
                   </div>
