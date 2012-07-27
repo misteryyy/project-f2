@@ -105,12 +105,12 @@ class Project_WidgetController extends  Boilerplate_Controller_Action_Abstract
     		if($answers){
 	    		$this->view->answers = $answers;
 	    		$form = new \App\Form\Project\PollForm($this->project,$poll,$answers);
-	    		$this->view->form = $form;
+	    		$this->view->formPoll = $form;
 	    		$this->view->countOfVotedMembers = count($poll->questions[0]->answers); // there must be always at least one question
 	    		$this->view->hasVoted = true;
 	    	} else {
 	    		$form = new \App\Form\Project\PollForm($this->project,$poll);
-	    		$this->view->form = $form;
+	    		$this->view->formPoll = $form;
 	    		$this->view->hasVoted = false;	
     		}
     	}

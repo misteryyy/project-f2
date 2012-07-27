@@ -72,10 +72,15 @@ class SearchEngineFacade {
 		};
 		echo $specificRoles ." for ".$user->name ." <br>" ;
 		
+		$projectRoles = implode(' ',$this->findProjectRolesForUser($user->id));
+		echo $projectRoles. ' PROJECT ROLES <br> ';
+		
 		$doc = new \Zend_Search_Lucene_Document();
 		$doc->addField(\Zend_Search_Lucene_Field::text('user_id', $user->id));
 		$doc->addField(\Zend_Search_Lucene_Field::text('name', $user->name,'utf-8'));
 		$doc->addField(\Zend_Search_Lucene_Field::text('specific_roles', $specificRoles,'utf-8'));
+		$doc->addField(\Zend_Search_Lucene_Field::text('project_roles', $projectRoles,'utf-8'));
+		
 		$index->addDocument($doc);
 		
 	}
@@ -113,6 +118,33 @@ class SearchEngineFacade {
 		}
 	
 	}
+	
+	/**
+	 * Find Project Roles for member
+	 * @param unknown_type $id
+	 */
+	public function findProjectRolesForUser($user_id){
+		
+		$user = $this->findOneUser($user_id);
+		
+		$stmt = 'SELECT p FROM App\Entity\ProjectRole p WHERE p.type = ?1 AND p.user = ?2 GROUP BY p.name';
+		$stmt .= '';
+		
+		$query = $this->em->createQuery($stmt);
+		$query->setParameter(2, $user_id);
+		$query->setParameter(1, \App\Entity\ProjectRole::PROJECT_ROLE_TYPE_CREATOR);
+		
+		$roles = $query->getResult();
+		
+		$arr = array();
+		foreach($roles as $r){
+			$arr[] = $r->name;
+		}
+		// sort array
+		sort($arr);
+		return $arr;
+	}
+	
 	
 	
 	

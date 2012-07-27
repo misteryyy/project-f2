@@ -23,14 +23,10 @@
    <div class="container">
      <?= $this->action('header', 'index', 'site');  ?>
    </div>
-   
      <?= $this->action('menu-debug', 'menu', 'project');  ?>
-
    <div id="fl-content">
    <div class="container"> 	
-    
 	   <?= $this->action('breadcrumbs', 'index', 'site');  ?>
-	 
 	 <!-- Bootstrap messaging generator -->
 	 
    <div class="fl-cnt-100">
@@ -44,17 +40,13 @@
         <?= $this->action('footer', 'index', 'site');  ?>
     </div>
      
-  </div>
-  
-  </div>
-  
+  		</div>
+  	</div>
   </div>
 
     <div class="fl-bottom-line">
 <p>&copy; 2012 SLEPICE / ZF <br />
 <small><?php echo $this->translate("Today is"); ?> <b><?php echo new Zend_Date($this->timestamp); ?></b> <?php if ($this->cachedTimestamp) { ?>(<?php echo $this->translate("Timestamp served from Memcached");?>)<?php } ?></small></p>
-
 </div>
-
     </body>
 </html>

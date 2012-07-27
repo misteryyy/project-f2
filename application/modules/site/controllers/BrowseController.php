@@ -24,26 +24,33 @@ class Site_BrowseController extends Boilerplate_Controller_Action_Abstract
     				
     		// add keyword query
     		// project roles
-    		if(isset($_GET['q'])){
-    			$this->view->debug .= "Keyword".$_GET['q'];
+    		if(trim( $_GET['q'] ) !== "" ){
     			$query = "name:'".$_GET['q']."'";
+    		
     		}
     		
     		// specific roles
 			if(isset($_GET['specific_role'])){
 			    sort($_GET['specific_role']);
-			    $this->view->debug .= "VE SPECIFIC HLEDAME <strong>'".  implode(' ',$_GET['specific_role'])."'</strong>";
+			    if(trim( $_GET['q'] ) !== ""){$query .=  " AND "; }
+			    $query .=  "specific_roles:".implode(' AND specific_roles:',$_GET['specific_role']);
 			}
 			    	
-			    	// project roles
+			// project roles
 			if(isset($_GET['project_role'])){
 			    sort($_GET['project_role']);
-			    $this->view->debug .= "VE SPECIFIC HLEDAME <strong>'".  implode(' ',$_GET['project_role'] )."'</strong>";
+			    		    
+			    if(trim( $_GET['q'] ) !== "" OR isset( $_GET['specific_role'] )){
+			    	$query .=  " AND ";
+			    }
+			    $query .=  "project_roles:".implode(' AND project_roles:',$_GET['project_role']);
 			}
 			   
+			
 		     	$paginator = $facadeSearchEngine->findUsersPaginator($query);
 		     	$paginator->setCurrentPageNumber(1);
 		     	$paginator->setItemCountPerPage(10);
+		     	$this->view->query = $query;
 		     	$this->view->paginator = $paginator;
     	
     	} else {

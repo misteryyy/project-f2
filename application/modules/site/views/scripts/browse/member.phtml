@@ -1,13 +1,9 @@
-<h3>Browse Members</h3>
+<h3>Browse Members <?php echo $this->query;?></h3>
 <hr>
-
 <div class="well"><?php echo $this->debug;?></div>
-
 <div class="fl-cnt-100"> 
 <?php echo $this->form; ?>
 </div>
-
-
 
 <hr>
 <!-- Project Displaying -->
@@ -16,8 +12,7 @@
 
 	<ul class="thumbnails">
     <?php foreach ($this->paginator as $user){ ?> 
-    
-    
+       
         <li class="span3 fl-thumbnail-frame">
                   <div class="thumbnail">
                    <a href="<?php echo $user->getProfileUrl();?>"> 
