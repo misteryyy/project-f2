@@ -29,7 +29,7 @@ class UpdateForm extends \Twitter_Bootstrap_Form_Horizontal
 				'label' => 'message',
 				'required' => true,
 				'rows' => 4,
-				'class' => "span7",
+				'class' => "span5",
 				'errorMessages' => array("You missing content of your comment."),
 				'description' => "description",
 				'validators' => array("NotEmpty"),

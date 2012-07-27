@@ -18,7 +18,8 @@ class AddUpdateForm extends \Twitter_Bootstrap_Form_Horizontal
     			'label' => 'Text',
     			'required' => true,
     			'filters'    => array('StringTrim'),
-    			'rows' => 5, 'cols' => 60,
+    			'rows' => 5,
+                'class' => 'span5',
     			'dimension' => 6,
     			'description' => "Describe your update in max 1000 letters.",
     			'validators' => array( array('StringLength', false, array(0,1000) ))

@@ -1,4 +1,4 @@
-<h2><?php echo $this->project->title?> <?php echo $this->project->level;?></h2>
+<h2><?php echo $this->project->title?></h2>
               <p class="fl_project_head_info"><i class="icon-user"></i> <a href="" title=""><?php echo $this->project->user->name?></a>, <i class="icon-folder-close"></i> caterogy, <i class="icon-time"></i> <?php echo $this->project->created->format('Y/m/d');?>, <i class="icon-thumbs-up"></i> <a href="" title="">like</a></p>
 
 <?php
@@ -12,9 +12,11 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
 
        <div class="row">
             <div class="span7">	
-<h2>Project</h2>
-<p>Total number of messages <?php echo $this->paginator->getTotalItemCount();?> </p>
+<h2>Project board</h2>
+
+<div class="fl-cnt-100">
 <?php echo $this->form;?>
+</div>
 
 <script>
 $(function(){
@@ -36,41 +38,52 @@ $(function(){
 </script>
 
 
-<hr/>
+<div class="fl-cnt-100">
+
 <?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
     <?php if (count($this->paginator) > 0) {?>
+    <div class="fl-project-project-board-messages">
     	<?php foreach ($this->paginator as $comment){ ?>
 
-    		<div class="well">
-		 		<img src="/storage/users/<?php echo $comment->user->getProfilePicture(100) ; ?>" />
-				<?php echo $comment->user->name ; ?>
-				<?php echo $comment->user->id ; ?>
-				<?php echo $comment->created->format('d-m-y') ; ?>
-				<?php echo $comment->content ; ?>
-				
-				<?php if(count($comment->files) > 0){?>
-						<div class="well">	
+
+    			 <div class="fl-project-project-board-message">
+                   <div class="fl-project-project-board-message-left">
+                     <div class="inner">
+                       <img src="/storage/users/<?php echo $comment->user->getProfilePicture(100) ; ?>" alt="<?php echo $comment->user->name; ?>' profile picture" />
+                     </div>
+                   </div>
+                   <div class="fl-project-project-board-message-right">
+                     <div class="inner">
+                       <h3 class="fl-project-project-board-h3">Headline of the message</h3>
+                       <p class="fl-project-project-board-message-header"><i class="icon-user"></i> <?php echo $comment->user->name; ?>, <i class="icon-time"></i> <?php echo $comment->created->format('d-m-y'); ?></p>
+                       <p><?php echo $comment->content; ?></p>
+
+                       <?php if(count($comment->files) > 0){?>
+						<div class="fl-cnt-100">
+						  <div class="alert alert-info">	
 							<?php 
 						// display children
-						foreach($comment->files as $file){
-							?>		
-						   <div class="alert alert-info">
+						foreach($comment->files as $file){ ?>		
+						   
 							<a href="/storage/projects/<?php echo $comment->project->dir;?>/<?php echo $file->name ;?>">
 							<?php echo $file->name ;?> </a>
-							<em>
-								{<?php echo $file->getSizeFormat(); ?>,	<?php echo $file->type ; ?>}
-							</em>
-							</div>
+							<em>{<?php echo $file->getSizeFormat(); ?>,	<?php echo $file->type ; ?>}</em>
+							
 						<?php }?>
+						  </div>
 						</div>
-				<?php }?>
-			</div>
-		
+						<?php }?>
+
+                     </div>
+                   </div>
+                 </div>
     	
-    	<?php } 
- 	}
- 	else {
+    	<?php } ?>
+    </div>
+<?php } else {
 	echo "No Comments for this project";
 } ?>
+
+  </div>
 
 </div>

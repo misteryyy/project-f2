@@ -1,4 +1,4 @@
-<h2><?php echo $this->project->title?> <?php echo $this->project->level;?></h2>
+<h2><?php echo $this->project->title?></h2>
               <p class="fl_project_head_info"><i class="icon-user"></i> <a href="" title=""><?php echo $this->project->user->name?></a>, <i class="icon-folder-close"></i> caterogy, <i class="icon-time"></i> <?php echo $this->project->created->format('Y/m/d');?>, <i class="icon-thumbs-up"></i> <a href="" title="">like</a></p>
 
 <?php
@@ -11,36 +11,111 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
        </div>
 
        <div class="row">
-            <div class="span7">	
+            <div class="span7"> 
+
 <h2>Team</h2>
-<div class="well">
-<?php 	$creator = $this->project->user;
-	 	$creatorRoles = $this->project->getCreatorRolesArray();
- 		pr($creatorRoles);
-?>
+<div class="fl-cnt-100">
+  <div class="well">
+  <?php 	$creator = $this->project->user;
+  	 	$creatorRoles = $this->project->getCreatorRolesArray();
+   		pr($creatorRoles);
+  ?>
+  </div>
+</div>
+
+              <!-- POKUD PRIHLASENEJ UZIVATEL KOUKA DO TETO ZALOZKY A JE V TEAMU, TAK SE ZOBRAZI TADY -->
+                <div class="fl-team-logged-user">
+                  <div class="inner">
+                    <div class="fl-team-logged-user-left">
+                      <img src="slepice/img/project_team_logged_user_img.jpg" alt="" title="" /> 
+                      <span class="fl-team-logged-user-name">Avis Galusha</span><br />
+                      <span class="fl-team-logged-user-since">~ team member since 23rd May 2012</span>
+                    </div>
+                    <div class="fl-team-logged-user-right">
+                      <div class="fl-skill">
+                        <div class="fl-skill-img40">
+                          <img src="/media/slepice-site/1.0.0/img/role_builder.png" alt="builder role icon"/>
+                        </div>
+                        <div class="fl-skill-text">
+                          <div class="fl-skill-text-roledescription40">
+                            <strong>Role ~</strong> specification
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="fl_thin_divider"></div>
 
 
+                <!-- TEAM -->
+                <div class="fl-project-team">
+                  
+                  <!-- ROLE -->
+                  <div class="fl-project-team-role">
+                    
+                    <!-- USER -->
+                    <div class="fl-project-team-role-user">
+                      <div class="fl-project-team-role-user-left">
+                        <img src="slepice/img/project_team_user_img.jpg" alt="" title="" />
+                        <h4>Name of the user</h4>
+                        <p><i class="icon-file"></i> <a href="" title="">Profile</a></p>
+                      </div>
+                      <div class="fl-project-team-role-user-right">
+                        <div class="fl-skill">
+                          <div class="fl-skill-img30">
+                            <img src="/media/slepice-site/1.0.0/img/role_grower.png" alt="grower role icon" />
+                          </div>
+                          <div class="fl-skill-text">
+                            <div class="fl-skill-text-roledescription30">
+                              <strong>Role ~</strong> specification
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- / USER -->
+
+                    <!-- CREATOR // liší se to jenom tou jednou tridou navic hned v tom prvnim divu-->
+                    <div class="fl-project-team-role-user  fl-project-team-role-user-author">
+                      <div class="fl-project-team-role-user-left">
+                        <img src="slepice/img/project_team_user_img.jpg" alt="" title="" />
+                        <h4><?php echo $this->project->user->name;?></h4>
+                        <p><i class="icon-file"></i> <a href="" title="">Profile</a></p>
+                      </div>
+                      <div class="fl-project-team-role-user-right">
+                        <div class="fl-skill">
+                          <div class="fl-skill-img30">
+                            <img src="/media/slepice-site/1.0.0/img/role_grower.png" alt="grower role icon" />
+                          </div>
+                          <div class="fl-skill-text">
+                            <div class="fl-skill-text-roledescription30">
+                              <strong>Role ~</strong> specification
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- / CREATOR -->
+
+                  </div>
+                  <!-- / ROLE -->
+
+                  <div class="fl_thin_divider"></div>
+
+                </div>
+                <!-- / TEAM -->
+
+<div class="fl-cnt-100">
 Creator: 
 <?php echo $this->project->user->name;?>
 </div>
 
-<hr>
+<div class="fl-cnt-100">
 <?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
-    <?php if (count($this->paginator) > 0) {?>
-    	<?php foreach ($this->paginator as $answer){ ?>
+</div>
 
-    		<div class="well">
-		 		<?php echo $answer->question->id;?>. <?php echo $answer->question->question;?>
-		 		<hr>
-		 		<?php echo $answer->answer;?>
-		 		
-			</div>
-		
-    	
-    	<?php } 
- 	}
- 	else {
-	echo "There is no team for this project";
-} ?>
 
 </div>

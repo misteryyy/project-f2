@@ -6,16 +6,17 @@
                   <div class="inner">
                     <div class="fl-cnt-project-by-content-left">
                       <img src="/storage/users/<?php echo $this->userWebStorage;?><?php echo $this->project->user->getProfilePicture();?>" alt="" title="" class="fl-cnt-project-by-author-photo"/>
+                      
                       <div class="fl-cnt-project-by-content-skills">
-                      	<?php $specRoles = $this->project->user->getSpecificRoles();
-								foreach ($specRoles as $r){?>
+
+<?php $specRoles = $this->project->user->getSpecificRoles();
+foreach ($specRoles as $r){?>
 								<div class="fl-cnt-project-by-content-skill">
-                          			<img src="/media/slepice-site/1.0.0/img/role_<?php echo $r->name;?>.png" alt="<?php echo $r->name;?>" title="<?php echo $r->name;?>" />
-                         			<span class="fl-cnt-project-by-content-skill-role"><?php echo $r->name;?></span><br />
-                          			<span class="fl-cnt-project-by-content-skill-tag"><?php echo $r->getTagsString();?></span>
-                       		 	</div>                      	
-                      	<?php }                      			
-                      	?>
+                  <img src="/media/slepice-site/1.0.0/img/role_<?php echo $r->name;?>.png" alt="<?php echo $r->name;?>" title="<?php echo $r->name;?>" />
+                  <span class="fl-cnt-project-by-content-skill-role"><?php echo $r->name;?></span><br />
+                  <span class="fl-cnt-project-by-content-skill-tag"><?php echo $r->getTagsString();?></span>
+                </div>                      	
+<?php }	?>
                       </div>        
                       <div class="fl_thick_divider"></div>
                       <div class="fl-cnt-project-by-content-earned-role">

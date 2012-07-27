@@ -14,10 +14,12 @@ class AddCommentForm extends \Twitter_Bootstrap_Form_Horizontal
 	
 	public function init()
 	{	
+
+		$this->_addClassNames('fl-form');
 		
 		// Description of roles
 		 $this->addElement('hidden', 'logged_member', array(
-		 					'description' => '<div class="alert alert-info">Logged as: <strong>'.$this->member['name'].'</strong></div>',
+		 					'description' => '<div class="fl-cnt-100 fl-top10"><div class="alert alert-info">Logged as: <strong>'.$this->member['name'].'</strong></div></div>',
 		 					'ignore' => true,
 		 					'decorators' => array(
 		 							array('Description', array('escape'=>false, 'tag'=>'')),
@@ -29,7 +31,7 @@ class AddCommentForm extends \Twitter_Bootstrap_Form_Horizontal
 				'label' => 'message',
 				'required' => true,
 				'rows' => 4,
-				'class' => "span7",
+				'class' => "span5",
 				'errorMessages' => array("You missing content of your comment."),
 				'description' => "description",
 				'validators' => array("NotEmpty"),

@@ -71,7 +71,7 @@ class Project_IndexController extends  Boilerplate_Controller_Action_Abstract
     	
     	$facadeUpdate = new \App\Facade\Project\UpdateFacade($this->_em);
     	$paginator = $facadeUpdate->findUpdatesForProjectPaginator($this->project_id);
-    	$paginator->setItemCountPerPage(10);
+    	$paginator->setItemCountPerPage(5);
     	$paginator->setCurrentPageNumber($this->_request->getParam('page', 1));
     	$this->view->paginator = $paginator;
     	
