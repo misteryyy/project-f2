@@ -9,13 +9,11 @@
 
 
 
-
-
-
 <hr>
 <!-- Project Displaying -->
 <?php if (count($this->paginator)) {?>
-	<?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
+<?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
+
 	<ul class="thumbnails">
     <?php foreach ($this->paginator as $user){ ?> 
     
