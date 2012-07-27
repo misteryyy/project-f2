@@ -22,8 +22,8 @@ class SearchEngineFacade {
 	public function buildMemberIndexes(){
 	
 		$facadeUser = new \App\Facade\UserFacade($this->em);
-		$paginator = $facadeUser->findAllUsersPaginator($this->_member_id,$this->_request->getParams());
-			
+
+		$paginator = $facadeUser->findAllUsers();	
 		\Zend_Search_Lucene_Analysis_Analyzer::setDefault(new \Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8Num_CaseInsensitive ());
 		$index = \Zend_Search_Lucene::create(APPLICATION_PATH . '/indexes/members');
 				
@@ -52,10 +52,11 @@ class SearchEngineFacade {
 		echo $specificRoles ." for ".$user->name ." <br>" ;
 		
 		$doc = new \Zend_Search_Lucene_Document();
-		$doc->addField(\Zend_Search_Lucene_Field::text('id', $user->id));
+		$doc->addField(\Zend_Search_Lucene_Field::text('user_id', $user->id));
 		$doc->addField(\Zend_Search_Lucene_Field::text('name', $user->name,'utf-8'));
 		$doc->addField(\Zend_Search_Lucene_Field::text('specific_roles', $specificRoles,'utf-8'));
 		$index->addDocument($doc);
+		
 		
 	}
 	

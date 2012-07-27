@@ -31,7 +31,7 @@
                          <span class="like"><i class="icon-thumbs-up"></i> 
                          <?php
                          // like dislike solution 
-                         if(!$user->isMyFriend($this->loggedMember)) {
+                         if(!$user->isFriendWithMe($this->loggedMember)) {
 						 ?> <a href="" title="" class="like-member" id="<?php echo $user->id;?>" >Like</a>
 						 <?php } else { ?>
                             <a href="" title="" class="like-member" id="<?php echo $user->id;?>" >Dislike</a>

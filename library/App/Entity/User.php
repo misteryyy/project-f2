@@ -537,6 +537,15 @@ class User {
 	}
 	
 	/**
+	 * Return if this friend is my friend
+	 * @param unknown_type $friend
+	 */
+	public function isFriendWithMe($friend){
+		return $this->friendsWithMe->contains($friend);
+	}
+	
+	
+	/**
 	 * Get count member who likes
 	 */
 	public function getCountFriendsWithMe(){

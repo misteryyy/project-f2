@@ -8,8 +8,10 @@ class Site_BrowseController extends Boilerplate_Controller_Action_Abstract
  	 */
     public function memberAction()
     {    
-    	
+    	// build search engine
     	$facadeSearchEngine = new \App\Facade\SearchEngineFacade($this->_em);
+    	$facadeSearchEngine->buildMemberIndexes();
+    	
     	
     	// find users
     	$facadeUser = new \App\Facade\UserFacade($this->_em);
@@ -26,7 +28,7 @@ class Site_BrowseController extends Boilerplate_Controller_Action_Abstract
     	// set default in form
     	if ($this->_request->isGet()) {
     		
-    		$keyword_query = 'name:jos*';
+    		$keyword_query = 'user_id:"1"';
     		
     				$form->setDefaults($_GET);
 			    	// specific roles
@@ -66,8 +68,10 @@ class Site_BrowseController extends Boilerplate_Controller_Action_Abstract
      	// display hits
 	    	foreach ($this->view->hits as $h){
 	    		echo $h->user_id;
-	    		echo $h->user_name;
+	    		echo $h->name;
 	    		echo $h->id;
+	    		echo $h->specific_roles;
+	    		 
 	    		echo $h->score;
 	    	}
     	}
