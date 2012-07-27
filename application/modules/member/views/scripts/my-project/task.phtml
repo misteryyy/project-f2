@@ -4,6 +4,12 @@ $this->step = 7;
 echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $this->step,"project" => $this->project));
 ?>
 
+Level
+<hr>
+<?php echo $this->form;?>
+
+
+
 <hr />
 <h3>Tasks <span class="badge badge-success">for level <?php echo $this->project->level;?></span></h3>
 <div id="alert-area"></div>	
