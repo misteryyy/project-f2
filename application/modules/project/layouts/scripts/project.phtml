@@ -48,7 +48,9 @@
         <div class="row">
           <div class="span11">
  	<!-- Bootstrap messaging generator -->
- 	<?php echo $this->flashMessenger() ; ?>
+   <div class="fl-cnt-100">
+     <?php echo $this->flashMessenger() ; ?>
+   </div>
   <?php echo $this->layout()->content; ?>
   	    
 	        <div class="span4 fl-sidebar">
@@ -57,9 +59,51 @@
                 <h3 class="fl-sidebar-h3-first">Project Level</h3>
                 <div class="fl_thick_divider"></div>
                 <div class="fl-project-level">
-                  <div class="progress">
-                    <div class="fl_level<?php echo $this->project->level;?>"></div>
-                  </div>
+
+<?php switch($this->project->level){
+  case '1': ?>
+                     <div class="fl-level">
+                        <div class="progress">
+                          <div class="fl_level1"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="bar"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="bar"></div>
+                        </div>
+                      </div>
+<?php ; break;
+  case '2': ?>
+
+                      <div class="fl-level">
+                        <div class="progress">
+                          <div class="fl_level2"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="fl_level2"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="bar"></div>
+                        </div>
+                      </div>
+<?php ; break;
+  case '3': ?>
+
+                      <div class="fl-level">
+                        <div class="progress">
+                          <div class="fl_level3"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="fl_level3"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="fl_level3"></div>
+                        </div>
+                      </div>
+<?php ;
+}?>
+
                   <p class="fl-project-level-info"><a href="" title="Learn more about Levels">Learn more about Levels</a></p>
                 </div>
 

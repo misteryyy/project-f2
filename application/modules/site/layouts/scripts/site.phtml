@@ -23,7 +23,9 @@
    <div class="container">
      <?= $this->action('header', 'index', 'site');  ?>
    </div>
-   <?= $this->action('menu-debug', 'menu', 'project');  ?>
+   
+     <?= $this->action('menu-debug', 'menu', 'project');  ?>
+
    <div id="fl-content">
    <div class="container"> 	
     
@@ -31,7 +33,9 @@
 	 
 	 <!-- Bootstrap messaging generator -->
 	 
-   <?php echo $this->flashMessenger() ; ?>
+   <div class="fl-cnt-100">
+     <?php echo $this->flashMessenger() ; ?>
+   </div>
 
 	 <?php echo $this->layout()->content; ?>
 

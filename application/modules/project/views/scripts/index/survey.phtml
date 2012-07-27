@@ -12,23 +12,38 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
 
        <div class="row">
             <div class="span7">	
-<h2>Survey</h2>
+<h2 class="fl-bottom20">Project survey</h2>
+                <div class="fl-cnt-100 left text-center">
+                  <span class="fl-survey-legend-answered">answered question</span>
+                  <span class="fl-survey-legend-unanswered">unanswered question</span>
+                  <span class="fl-survey-legend-note">* clicking on a question you will see an answer</span>
+                </div>
+
+                <div class="fl_thin_divider"></div>
+
 <p>Total number of answered question <?php echo $this->paginator->getTotalItemCount();?> </p>
 
 <?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
     <?php if (count($this->paginator) > 0) {?>
+<div class="fl-cnt-100">
+  <ul class="fl-project-survey-list">
     	<?php foreach ($this->paginator as $answer){ ?>
 
-    		<div class="well">
-		 		<?php echo $answer->question->id;?>. <?php echo $answer->question->question;?>
-		 		<hr>
-		 		<?php echo $answer->answer;?>
-		 		
-			</div>
-		
-    	
-    	<?php } 
- 	}
+<?php if($answer->answer == ""){?>
+          <li class="unanswered">
+<?php } else {?>
+          <li class="answered" onclick="$('#show-<?php echo $answer->question->id;?>').toggle('fast');" id="<?php echo $answer->question->id;?>">
+<?php }?>
+            <p class="fl-survey-list-question"><?php echo $answer->question->id;?>. <?php echo $answer->question->question;?></p>
+            <div class="hide"<?php echo ($answer->answer == "") ? '' : ' id="show-'.$answer->question->id.'"'?>>
+              <p class="well"><?php echo $answer->answer;?></p>
+            </div>
+          </li>
+    	<?php } ?>
+  </ul>
+</div>
+
+<?php 	}
  	else {
 	echo "No survey for this project";
 } ?>

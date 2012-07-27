@@ -10,12 +10,54 @@
     <?php foreach ($this->paginator as $project){ ?>
         			  <li>
                       <div class="fl-similar">
-                        <div class="inner-similar">
+                        <div class="inner-5">
                           <a href="/project/index/index/id/<?php echo $project->id?>" title=""><img src="/storage/projects/<?php echo $project->dir."/".$project->getPicture('small'); ?>" alt="" title="" /></a>
                           <h4><?php echo $project->title; ?></h4>
-                          <div class="progress fl-similar-project-bar">
-                            <div class="fl_level<?php echo $project->level; ?> fl-similar-bar"></div>
-                          </div>
+
+<?php switch($project->level){
+  case '1': ?>
+                     <div class="fl-level">
+                        <div class="progress fl-small-bar">
+                          <div class="fl_level1"></div>
+                        </div>
+                        <div class="progress fl-small-bar">
+                          <div class="bar"></div>
+                        </div>
+                        <div class="progress fl-small-bar">
+                          <div class="bar"></div>
+                        </div>
+                      </div>
+<?php ; break;
+  case '2': ?>
+
+                      <div class="fl-level">
+                        <div class="progress fl-small-bar">
+                          <div class="fl_level2"></div>
+                        </div>
+                        <div class="progress fl-small-bar">
+                          <div class="fl_level2"></div>
+                        </div>
+                        <div class="progress fl-small-bar">
+                          <div class="bar"></div>
+                        </div>
+                      </div>
+<?php ; break;
+  case '3': ?>
+
+                      <div class="fl-level">
+                        <div class="progress fl-small-bar">
+                          <div class="fl_level3"></div>
+                        </div>
+                        <div class="progress fl-small-bar">
+                          <div class="fl_level3"></div>
+                        </div>
+                        <div class="progress fl-small-bar">
+                          <div class="fl_level3"></div>
+                        </div>
+                      </div>
+<?php ;
+}?>
+
                         </div>
                       </div>
                     </li>	

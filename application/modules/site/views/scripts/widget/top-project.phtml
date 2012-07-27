@@ -1,5 +1,6 @@
 <!-- Carousel Slideshow Module -->
 <div class="row">
+  <div class="fl-cnt-100">
      <div id="myCarousel" class="carousel slide">
        <div class="carousel-inner">
           <?php 
@@ -8,7 +9,7 @@
       $project = $this->slideshow->getProject($i);
       if($project){ ?>
     <div class="item <?php if($active == true) {echo "active";$active = false;} // first project is set to be active?>">
-       <div class="span5"> 
+       <div class="span6"> 
          <div class="fl_slider_text">
            <h2><?php echo $project->title; ?></h2>
             <span class="author"><i class="icon-user"></i> Mahulena Omgato</span>
@@ -84,10 +85,10 @@
             </div> 
           </div>
         </div>
-        <div class="span6"> 
-         <div class="thumbnail fl-img-frame">
-           <img alt="<?php echo $project->title; ?> - main picture" src="/storage/projects/<?php echo $project->dir."/".$project->getPicture('large'); ?> " />
-         </div>
+        <div class="span5 text-right"> 
+         
+           <img alt="<?php echo $project->title; ?> - main picture" src="/storage/projects/<?php echo $project->dir."/".$project->getPicture('large'); ?> " class="fl-img"/>
+         
        </div> 
     </div>  
     <?php
@@ -100,3 +101,4 @@
             <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
       </div>
       </div>
+</div>
