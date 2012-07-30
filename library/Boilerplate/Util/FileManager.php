@@ -44,7 +44,7 @@ class Boilerplate_Util_FileManager
  						}
  						$i++; // increment file
 					}
-					
+					$files = array();
 					// copying and renaming files
 					$i= 1;
 					foreach ($adapter->getFileInfo() as $file => $info) {

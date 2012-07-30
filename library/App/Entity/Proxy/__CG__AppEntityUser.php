@@ -306,6 +306,12 @@ class User extends \App\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         return parent::addNewFriend($friend);
     }
 
+    public function addNewFavouriteProject($project)
+    {
+        $this->__load();
+        return parent::addNewFavouriteProject($project);
+    }
+
     public function addFriendWithMe($friend)
     {
         $this->__load();
@@ -316,6 +322,12 @@ class User extends \App\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     {
         $this->__load();
         return parent::deleteMyFriend($friend);
+    }
+
+    public function deleteMyFavouriteProject($project)
+    {
+        $this->__load();
+        return parent::deleteMyFavouriteProject($project);
     }
 
     public function deleteFriendWithMe($friend)
@@ -330,6 +342,12 @@ class User extends \App\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         return parent::isMyFriend($friend);
     }
 
+    public function isMyFavouriteProject($project)
+    {
+        $this->__load();
+        return parent::isMyFavouriteProject($project);
+    }
+
     public function isFriendWithMe($friend)
     {
         $this->__load();
@@ -340,6 +358,12 @@ class User extends \App\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     {
         $this->__load();
         return parent::getCountFriendsWithMe();
+    }
+
+    public function getCountFavouriteProjects()
+    {
+        $this->__load();
+        return parent::getCountFavouriteProjects();
     }
 
     public function setUserInfo(\App\Entity\UserInfo $info)

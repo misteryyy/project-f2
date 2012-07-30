@@ -72,6 +72,18 @@ class ProjectBoardComment extends \App\Entity\ProjectBoardComment implements \Do
         return parent::setCreated($created);
     }
 
+    public function getTitle()
+    {
+        $this->__load();
+        return parent::getTitle();
+    }
+
+    public function setTitle($title)
+    {
+        $this->__load();
+        return parent::setTitle($title);
+    }
+
     public function setContent($content)
     {
         $this->__load();
@@ -99,7 +111,7 @@ class ProjectBoardComment extends \App\Entity\ProjectBoardComment implements \Do
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'created', 'content', 'user', 'project', 'files');
+        return array('__isInitialized__', 'id', 'created', 'content', 'title', 'user', 'project', 'files');
     }
 
     public function __clone()

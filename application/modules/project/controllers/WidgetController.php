@@ -116,7 +116,7 @@ class Project_WidgetController extends  Boilerplate_Controller_Action_Abstract
     	}
 
     	// handle new voting
-    	if($this->_request->isPost()){
+    	if($this->_request->getParam("_method") == 'poll_widget'){
 	    	// validation data
 	    	if($form->isValid($this->_request->getParams())){	
 	    	 $facadePoll->answerPoll($this->project_id, $this->_member_id, $form->getValue("poll_id"),$form->getValues());

@@ -31,6 +31,10 @@ class PollForm extends \Twitter_Bootstrap_Form_Horizontal
 			));
 		$addGroup[] = 'created';
 			
+		$this->addElement('hidden', '_method', array(
+				'value' => "poll_widget"));
+		
+		$addGroup[] = 'poll_id';
 		
 		 $this->addElement('hidden', 'poll_id', array(
 		 		'value' => $this->poll->id));

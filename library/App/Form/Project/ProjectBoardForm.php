@@ -25,6 +25,14 @@ class ProjectBoardForm extends \Twitter_Bootstrap_Form_Horizontal
 		 							array('Description', array('escape'=>false, 'tag'=>'')),
 		 					),
 		 			));
+		 
+		 $this->addElement('text', 'title', array(
+		 		'label' => 'Title',
+		 		'required' => true,
+		 		'filters'    => array('StringTrim'),
+		 		'description' => "Title. Max 50 letters.",
+		 		'validators' => array( array('StringLength', false, array(0,100) ))));
+		 	
  
 		// TinyMCE configuration in the phtml file
 		$this->addElement('textarea', 'content', array(
@@ -64,7 +72,7 @@ class ProjectBoardForm extends \Twitter_Bootstrap_Form_Horizontal
 		
 		// Form section
 		$this->addDisplayGroup(
-				array('logged_member','content','file_0','file_1','file_2','file_3','file_4','file_5'),
+				array('logged_member','title','content','file_0','file_1','file_2','file_3','file_4','file_5'),
 				'main',
 				array( 'legend' => 'add new project message')
 		);

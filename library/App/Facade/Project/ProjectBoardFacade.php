@@ -35,7 +35,7 @@ class ProjectBoardFacade {
 			throw new \Exception("Can't find this project.");
 		}
 		
-		$newComment = new \App\Entity\ProjectBoardComment($user, $project, $data['content']);
+		$newComment = new \App\Entity\ProjectBoardComment($user, $project,$data['title'] ,$data['content']);
 		// add files
 		if(count($files) > 0 ){
 			foreach ($files as $file){

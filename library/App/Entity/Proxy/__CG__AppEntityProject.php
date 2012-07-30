@@ -87,6 +87,12 @@ class Project extends \App\Entity\Project implements \Doctrine\ORM\Proxy\Proxy
         return parent::getTitle();
     }
 
+    public function isFollower($user)
+    {
+        $this->__load();
+        return parent::isFollower($user);
+    }
+
     public function setLevel($level)
     {
         $this->__load();
@@ -145,6 +151,12 @@ class Project extends \App\Entity\Project implements \Doctrine\ORM\Proxy\Proxy
     {
         $this->__load();
         return parent::getTags();
+    }
+
+    public function getCountFollowers()
+    {
+        $this->__load();
+        return parent::getCountFollowers();
     }
 
     public function getDisableRoleWidget()

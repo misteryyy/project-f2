@@ -39,16 +39,20 @@ class ProjectBoardComment
 
     /** @Column(type="string", name="content") */
     private $content;
+
+    /** @Column(type="string", name="title") */
+    private $title;
     
     /** 
     * @OneToMany(targetEntity="ProjectBoardFile", mappedBy="projectBoard",cascade={"persist","delete"}) 
 	*/
     private $files;
 
-    public function __construct($user,$project,$content){
+    public function __construct($user,$project,$title,$content){
     	$this->created = new \DateTime("now");
     	$this->files = new \Doctrine\Common\Collections\ArrayCollection();
     	$this->user = $user;
+    	$this->title = $title;
     	$this->content = $content;
     	$this->project = $project;
     }
@@ -78,6 +82,21 @@ class ProjectBoardComment
 	 */
 	public function setCreated($created) {
 		$this->created = $created;
+	}
+
+	
+	/**
+	 * @return the $title
+	 */
+	public function getTitle() {
+		return $this->title;
+	}
+
+	/**
+	 * @param field_type $title
+	 */
+	public function setTitle($title) {
+		$this->title = $title;
 	}
 
 	/**
