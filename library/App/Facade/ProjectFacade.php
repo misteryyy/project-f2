@@ -17,6 +17,7 @@ class ProjectFacade {
 		
 	}
 	
+
 	public function disableProjectWidget($user_id,$project_id,$data){
 		// checking errors
 		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
@@ -437,6 +438,43 @@ class ProjectFacade {
 		
 	}	
 
+	
+	/**
+	 * Start to like project 
+	 * @param unknown_type $user_id
+	 * @param unknown_type $project_id
+	 */
+	public function likeProject($user_id,$project_id){
+	
+		// thats me and I want add new friend_id
+		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
+		if(!$user){
+			throw new \Exception("Member doesn't exists");
+		}
+	
+		$project = $this->em->getRepository ('\App\Entity\Project')->findOneById ( $project_id);
+		if(!$project){
+			throw new \Exception("This project you want add doesn't exists");
+		}
+	
+		$countOfFollowers = $project->getCountFollowers();
+		
+		if($user->isMyFavouriteProject($project)){
+			$user->deleteMyFavouriteProject($project); // delete from my projects
+			$countOfFollowers--;
+			$this->em->flush();
+				
+		} else {
+			$user->addNewFavouriteProject($project); // add this project
+		
+			$countOfFollowers++;
+			$this->em->flush();
+		}
+	
+		return array('count_followers' => $countOfFollowers);
+	
+	}
+	
 	
 	
 	

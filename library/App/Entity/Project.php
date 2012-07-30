@@ -69,6 +69,11 @@ class Project {
 	private $plan;
 	
 	/**
+	 * @ManyToMany(targetEntity="User", mappedBy="favouriteProjects")
+	 */
+	private $followers;
+		
+	/**
 	 * @Column(type="datetime",name="created")
 	 */
 	private $created;
@@ -165,6 +170,13 @@ class Project {
 	}
 	
 	
+	/**
+	 * Return true if the user is following this project
+	 * @param unknown_type $user
+	 */
+	public function isFollower($user){
+		return $this->followers->contains($user);
+	}
 	
 	public function setLevel($level){
 		$this->level = $level;
@@ -263,6 +275,7 @@ class Project {
 		// date
 		$this->created = new \DateTime ( "now" );
 		$this->tags = new \Doctrine\Common\Collections\ArrayCollection ();
+		$this->followers = new \Doctrine\Common\Collections\ArrayCollection ();
 		$this->modified = new \DateTime ( "now" ); // the date is at the beginning                                      // the same
 		$this->level = 1;
 		$this->viewCount = 0;
@@ -278,6 +291,12 @@ class Project {
 	}
 	
 	
+	/**
+	 * Get count of followers of this project
+	 */
+	public function getCountFollowers(){
+		return $this->followers->count();
+	}
 	
 	/**
 	 * 

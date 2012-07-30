@@ -56,7 +56,26 @@ class Site_IndexController extends Boilerplate_Controller_Action_Abstract
     					$respond = array("respond" => "error","message" => $e->getMessage());
     					$this->_response->setBody(json_encode($respond));
     				}
-    				break;		
+    				break;	
+
+    			//  create new question
+    			case 'like-project':
+    					try{
+    						$facadeProject = new \App\Facade\ProjectFacade($this->_em);
+    						// return count of current followers
+    						$data = $facadeProject->likeProject($this->_member_id, $this->_request->getParam('project_id'));
+    							
+    						$respond = array("respond" => "success",
+    								"message" => "Action successfull.",
+    								"data" => $data);
+    							
+    						$this->_response->setBody(json_encode($respond));
+    						break;
+    					}catch(Exception $e){
+    						$respond = array("respond" => "error","message" => $e->getMessage());
+    						$this->_response->setBody(json_encode($respond));
+    					}
+    					break;
     		}
     	} else {
     		$this->_response->setHttpResponseCode(503); // echo error

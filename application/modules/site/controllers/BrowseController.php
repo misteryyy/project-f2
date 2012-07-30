@@ -46,7 +46,6 @@ class Site_BrowseController extends Boilerplate_Controller_Action_Abstract
 			    $query .=  "project_roles:".implode(' AND project_roles:',$_GET['project_role']);
 			}
 			   
-			
 		     	$paginator = $facadeSearchEngine->findUsersPaginator($query);
 		     	$paginator->setCurrentPageNumber(1);
 		     	$paginator->setItemCountPerPage(10);

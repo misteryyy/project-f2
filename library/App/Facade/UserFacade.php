@@ -167,12 +167,10 @@ public function findAllUsersNative($options = array()){
 	 * @param unknown_type $message
 	 */
 	public function addLogMessage($user,$message){
-		
 			$lm = new \App\Entity\UserLog($message);
 			$lm->setUser($user);
 			$this->em->persist($lm);
 			$this->em->flush();
-
 	}
 	
 	/**

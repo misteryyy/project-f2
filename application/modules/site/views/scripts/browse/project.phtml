@@ -9,20 +9,97 @@
    <ul class="thumbnails">
     <?php foreach ($this->paginator as $project){ ?>
 
-    	  <li class="span3">
-          <div class="thumbnail">
-          <a href="/project/index/index/id/<?php echo $project->id?>"> 
-          <img alt="<?php echo $project->title; ?> - main picture" src="/storage/projects/<?php echo $project->dir."/".$project->getPicture('large'); ?> " />
-           </a>
-            <div class="caption">
-              <h4><?php echo $project->title; ?></h4>
-              <p> By <strong><?php echo $project->user->name?></strong> in <em><?php echo $project->category->name?></em></p>
-              <p><?php echo $project->pitchSentence; ?></p>
-              <p>ROLES SLIDE</p>
-              <p><a class="btn btn-info" href="/project/index/index/id/<?php echo $project->id?>">Detail</a> </p>
-            </div>
-          </div>
-        </li>		
+    	
+        <li class="span3 fl-thumbnail-frame">
+                  <div class="inner-5">
+
+                     <a href="/project/index/index/id/<?php echo $project->id?>" title="<?php echo $project->title; ?>"> 
+                        <img alt="<?php echo $project->title; ?> - main picture" src="/storage/projects/<?php echo $project->dir."/".$project->getPicture('large'); ?> " />
+                     </a>
+
+<?php switch($project->level){
+  case '1': ?>
+                     <div class="fl-level">
+                        <div class="progress">
+                          <div class="fl_level1"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="bar"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="bar"></div>
+                        </div>
+                      </div>
+<?php ; break;
+  case '2': ?>
+
+                      <div class="fl-level">
+                        <div class="progress">
+                          <div class="fl_level2"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="fl_level2"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="bar"></div>
+                        </div>
+                      </div>
+<?php ; break;
+  case '3': ?>
+                      <div class="fl-level">
+                        <div class="progress">
+                          <div class="fl_level3"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="fl_level3"></div>
+                        </div>
+                        <div class="progress">
+                          <div class="fl_level3"></div>
+                        </div>
+                      </div>
+<?php ;
+}?>
+                     
+                     <h3><?php echo $project->title; ?></h3>
+                     
+                     <div class="fl-cnt-100">
+                       <span class="author"><i class="icon-user"></i> <a href="" title=""><?php echo $project->user->name?></a></span>
+                       <div class="fl-cnt-100 fl-height-60">
+                         <p><?php echo shorter($project->pitchSentence, 100); ?></p>
+                       </div>
+                       <p class="info">
+                         <span class="category"><i class="icon-folder-close"></i> <?php echo $project->category->name?></span>
+                         <span class="followers"><i class="icon-eye-open"></i> <strong class="follower-count"><?php echo $project->getCountFollowers();?></strong>  followers</span>
+                          <span class="like"><i class="icon-thumbs-up"></i> 
+                         <?php
+                         // like dislike solution 
+                         if(!$project->isFollower($this->loggedMember)) {
+						 ?> <a href="" title="" class="like-project" id="<?php echo $project->id;?>" >Like</a>
+						 <?php } else { ?>
+                            <a href="" title="" class="like-project" id="<?php echo $project->id;?>" >Dislike</a>
+                         <?php } ?>
+                         </span>
+                       </p>
+                     </div>
+                  </div>
+                      
+                     <div class="fl-cnt-100 fl-thumb-roles">
+                       <div class="fl_project_thumb_roles">
+                         <div class="fl_project_thumb_role">
+                           <img src="/media/slepice-site/1.0.0/img/role_starter.png" alt="" />
+                         </div>
+                         <div class="fl_project_thumb_role">
+                           <img src="/media/slepice-site/1.0.0/img/role40x40_2.png" alt="" />
+                         </div>
+                         <div class="fl_project_thumb_role">
+                           <img src="/media/slepice-site/1.0.0/img/role40x40_3.png" alt="" />
+                         </div>
+                         <div class="fl_project_thumb_role">
+                           <img src="/media/slepice-site/1.0.0/img/role40x40_4.png" alt="" />
+                         </div>
+                       </div>
+                     </div>
+                </li>
     <?php } ?>
   </ul>
 
@@ -35,3 +112,84 @@
 	     </div>
   
     </div>
+    
+    
+    
+    
+ <script type="text/javascript">  
+			var Models = {
+			init: function(config){
+				// ajax setup
+				$.ajaxSetup({
+					url: "/site/index/ajax-index", 
+					type: 'GET',
+					dataType: 'json',
+				});
+				
+				this.config = config;
+				this.bindEvents();
+			},
+				
+			bindEvents: function(){
+				//this.config.likeMemberBtn.css("color","red");
+				this.config.likeMemberBtn.on("click", this.likeMember);		
+				this.config.likeProjectBtn.on("click", this.likeProject);		
+				
+			},
+				
+			// likeMember
+			likeMember: function(e) {
+				var follower_count = $(this).closest('.info').find(".follower-count");
+				console.log(follower_count);
+				var val = $(this).text();
+				var user_id = $(this).attr("id");
+				if(val == 'Like') {
+					$(this).html("Dislike");
+				}else {
+					$(this).html("Like");
+				} 	
+					// send data to server
+					$.ajax({
+						data:   "&_method=like-member&&friend_id="+user_id, // take data from the form and send it to the method update
+					}).done(
+							function (results){
+								// set new value for followers		
+								follower_count.html(results.data.count_friends); // number of current friends
+							}
+					);			
+				e.preventDefault();
+			},
+			// likeProject
+			likeProject: function(e) {
+				var follower_count = $(this).closest('.info').find(".follower-count");
+				console.log(follower_count);
+				var val = $(this).text();
+				var project_id = $(this).attr("id");
+				if(val == 'Like') {
+					$(this).html("Dislike");
+				}else {
+					$(this).html("Like");
+				} 	
+					// send data to server
+					$.ajax({
+						data:   "&_method=like-project&&project_id="+project_id, // take data from the form and send it to the method update
+					}).done(
+							function (results){
+								// set new value for followers		
+								follower_count.html(results.data.count_followers); // number of current friends
+							}
+					);			
+				e.preventDefault();
+			}
+			};
+			
+			// like models
+			Models.init({
+				likeMemberBtn: $(".like-member"), //select a with class 
+				likeProjectBtn: $(".like-project"), //select a with class 
+				 
+			});
+ </script>  
+  
+
+    

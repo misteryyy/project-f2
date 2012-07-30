@@ -312,6 +312,35 @@ class TeamFacade {
 	
 	
 	/**
+	 * Find all free positions for project without repetition for displaying
+	 * @param unknown_type $project_id
+	 * @param unknown_type $options
+	 * @throws \Exception
+	 */
+	public function findFreeUniqueProjectRolesForProjectArray($project_id,$options = array()){
+		$project = $this->em->getRepository ('\App\Entity\Project')->findOneBy(array("id" => $project_id));
+		if(!$project){
+			throw new \Exception("Can't find this project for this user.");
+		}
+	
+		$stmt = 'SELECT r FROM App\Entity\ProjectRole r WHERE r.project = ?1 AND r.type = ?2 AND r.user is NULL ';
+		$stmt .= ' GROUP BY r.name';
+	
+		$query = $this->em->createQuery($stmt);
+		$query->setParameter(1, $project_id);
+		$query->setParameter(2, \App\Entity\ProjectRole::PROJECT_ROLE_TYPE_MEMBER);
+	
+		
+		$arr = array();
+		foreach( $query->getResult() as $r){
+			$arr[] = $r->name;
+		}
+		
+		return $arr;
+	}
+	
+	
+	/**
 	 * Find creator roles for project
 	 * @param unknown_type $project_id
 	 * @param unknown_type $options

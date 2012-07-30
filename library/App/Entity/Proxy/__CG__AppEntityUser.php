@@ -90,6 +90,12 @@ class User extends \App\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         return parent::deleteSpecificRole($role);
     }
 
+    public function getSpecificRolesArray()
+    {
+        $this->__load();
+        return parent::getSpecificRolesArray();
+    }
+
     public function getRoles()
     {
         $this->__load();
@@ -288,10 +294,52 @@ class User extends \App\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         return parent::getProfileUrl();
     }
 
-    public function getCountFollower()
+    public function getCountMyFriends()
     {
         $this->__load();
-        return parent::getCountFollower();
+        return parent::getCountMyFriends();
+    }
+
+    public function addNewFriend($friend)
+    {
+        $this->__load();
+        return parent::addNewFriend($friend);
+    }
+
+    public function addFriendWithMe($friend)
+    {
+        $this->__load();
+        return parent::addFriendWithMe($friend);
+    }
+
+    public function deleteMyFriend($friend)
+    {
+        $this->__load();
+        return parent::deleteMyFriend($friend);
+    }
+
+    public function deleteFriendWithMe($friend)
+    {
+        $this->__load();
+        return parent::deleteFriendWithMe($friend);
+    }
+
+    public function isMyFriend($friend)
+    {
+        $this->__load();
+        return parent::isMyFriend($friend);
+    }
+
+    public function isFriendWithMe($friend)
+    {
+        $this->__load();
+        return parent::isFriendWithMe($friend);
+    }
+
+    public function getCountFriendsWithMe()
+    {
+        $this->__load();
+        return parent::getCountFriendsWithMe();
     }
 
     public function setUserInfo(\App\Entity\UserInfo $info)
@@ -312,10 +360,16 @@ class User extends \App\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         return parent::__set($property, $value);
     }
 
+    public function toArray()
+    {
+        $this->__load();
+        return parent::toArray();
+    }
+
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'name', 'email', 'profilePicture', 'emailVisibility', 'emailNewsletter', 'emailNotification', 'password', 'country', 'confirmed', 'description', 'dateOfBirth', 'created', 'dateOfBirthVisibility', 'ban', 'roles', 'specRoles', 'projectRoles', 'userInfo', 'projects', 'userFieldOfInterestTags', 'friendsWithMe', 'myFriends');
+        return array('__isInitialized__', 'id', 'name', 'email', 'profilePicture', 'emailVisibility', 'emailNewsletter', 'emailNotification', 'password', 'country', 'confirmed', 'description', 'dateOfBirth', 'created', 'dateOfBirthVisibility', 'ban', 'roles', 'specRoles', 'projectRoles', 'userInfo', 'projects', 'userFieldOfInterestTags', 'friendsWithMe', 'favouriteProjects', 'myFriends');
     }
 
     public function __clone()

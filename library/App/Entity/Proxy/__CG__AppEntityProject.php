@@ -282,7 +282,7 @@ class Project extends \App\Entity\Project implements \Doctrine\ORM\Proxy\Proxy
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'title', 'content', 'pitchSentence', 'disableRoleWidget', 'dir', 'issue', 'lesson', 'plan', 'created', 'viewCount', 'picture', 'ban', 'priority', 'level', 'modified', 'roles', 'roleWidgetQuestions', 'category', 'user', 'tags');
+        return array('__isInitialized__', 'id', 'title', 'content', 'pitchSentence', 'disableRoleWidget', 'dir', 'issue', 'lesson', 'plan', 'created', 'viewCount', 'picture', 'ban', 'priority', 'level', 'modified', 'roles', 'roleWidgetQuestions', 'followers', 'category', 'user', 'tags');
     }
 
     public function __clone()

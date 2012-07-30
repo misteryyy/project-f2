@@ -122,10 +122,22 @@ class User {
 	 */
 	private $userFieldOfInterestTags;
 	
+	
 	/**
 	 * @ManyToMany(targetEntity="User", mappedBy="myFriends")
 	 */
 	private $friendsWithMe;
+	
+	
+	/**
+	 * @ManyToMany(targetEntity="Project", inversedBy="favouriteProjects")
+	 * @JoinTable(name="user_has_favourite_project",
+	 *      joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
+	 *      inverseJoinColumns={@JoinColumn(name="project_id", referencedColumnName="id")}
+	 *      )
+	 */
+	private $favouriteProjects;
+	
 	
 	
 	/**
@@ -141,6 +153,7 @@ class User {
 
 	public function __construct() {
 		$this->friendsWithMe = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->favouriteProjects = new \Doctrine\Common\Collections\ArrayCollection();
 		$this->myFriends = new \Doctrine\Common\Collections\ArrayCollection();
 		$this->userFieldOfInterestTags = new \Doctrine\Common\Collections\ArrayCollection ();
 		$this->roles = new \Doctrine\Common\Collections\ArrayCollection ();
@@ -514,6 +527,14 @@ class User {
 		$this->myFriends->add($friend);
 	}
 	
+	/**
+	 * Add new favourite project
+	 * @param unknown_type $project
+	 */
+	public function addNewFavouriteProject($project){
+		$this->favouriteProjects->add($project);
+	}
+	
 	public function addFriendWithMe($friend){
 		$this->friendsWithMe->add($friend);
 	}
@@ -521,6 +542,13 @@ class User {
 	public function deleteMyFriend($friend){
 		$this->myFriends->removeElement($friend);
 	}
+	
+	public function deleteMyFavouriteProject($project){
+		$this->favouriteProjects->removeElement($project);
+	}
+	
+	
+	
 	
 	public function deleteFriendWithMe($friend){
 		$this->friendsWithMe->removeElement($friend);
@@ -534,6 +562,15 @@ class User {
 	public function isMyFriend($friend){
 		return $this->myFriends->contains($friend);
 	}
+	
+	/**
+	 * Return if this project is my favourite
+	 * @param unknown_type $friend
+	 */
+	public function isMyFavouriteProject($project){
+		return $this->favouriteProjects->contains($project);
+	}
+	
 	
 	/**
 	 * Return if this friend is my friend
@@ -551,6 +588,13 @@ class User {
 		return $this->friendsWithMe->count();
 	}
 	
+	
+	/**
+	 * Get count of favourite projects
+	 */
+	public function getCountFavouriteProjects(){
+		return $this->favouriteProjects->count();
+	}
 	
 	
 	public function setUserInfo(\App\Entity\UserInfo $info){

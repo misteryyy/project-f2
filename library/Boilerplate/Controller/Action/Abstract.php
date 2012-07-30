@@ -41,7 +41,7 @@ abstract class Boilerplate_Controller_Action_Abstract extends Zend_Controller_Ac
 
   // Setting up the instance for user who is logged or not
  	$this->_em = Zend_Registry::get('em');
-
+	$this->view->em = $this->_em;
  	$config = Zend_Registry::get('config');
  	$profilePhotoPathWeb = $config['app']['storage']['profile_web'];
      	

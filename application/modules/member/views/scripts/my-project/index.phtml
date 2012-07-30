@@ -65,7 +65,7 @@ if(count ($this->projects) > 0){
                     <div class="inner-list-project">
                       <div class="fl-cnt-100">
                         <h3 class="fl-list-project-h3"><?php echo $project->title?></h3>
-                        <p class="fl-list-project-info"><i class="icon-folder-close"></i> <?php echo $project->category->name?>, <i class="icon-eye-open"></i> 87 Followers</p>
+                        <p class="fl-list-project-info"><i class="icon-folder-close"></i> <?php echo $project->category->name?>, <i class="icon-eye-open"></i> <?php echo $project->getCountFollowers();?> Followers</p>
                       </div>
                       
                       <div class="fl-cnt-100 fl-list-project-roles fl-top10">
@@ -77,8 +77,11 @@ if(count ($this->projects) > 0){
                           <p class="fl-list-project-queue"><strong>6 members</strong> are waiting</p>
                         </div>
                         <div class="fl-list-project-roles-my">
-                          <img src="/media/slepice-site/1.0.0/img/role_starter.png" alt="starter role icon" title="Your role in this project" />
-                        </div>
+                          <?php 
+	                 	  foreach($project->getCreatorRolesArray() as $r){
+	                 	  	echo  '<img src="/media/slepice-site/1.0.0/img/role_'.$r.'.png" alt="'.$r.'" title="'.$r.'" /> ';
+	                 	  }?>
+                          </div>
                       </div>
                     </div>
                   </div>
@@ -102,11 +105,6 @@ if(count ($this->projects) > 0){
                 <div class="fl_thin_divider"></div>
 
 <div class="fl-cnt-100">
-			<?php echo $project->id?><br />
-			<?php echo $project->created->format('Y/m/d');?><br />
-			<?php echo $project->modified->format('Y/m/d');?><br />
-			<?php echo $project->getTagsString()?> , <?php pr($project->getCreatorRolesArray());?><br />
-		
 			<a class="btn btn-info" href="/project/index/index/id/<?php echo $project->id?>">Project Public Page</a>
 			<a class="btn btn-info" href="/member/my-project/edit-project/id/<?php echo $project->id?>">Edit Description</a>
 			<a class="btn btn-info" href="/member/my-project/edit-project-picture/id/<?php echo $project->id?>">Edit Project Picture</a>
