@@ -1,6 +1,11 @@
 <div class="row" style="margin-left: 10px"> 
-<h3>Browse Projects</h3>
-<hr>
+<h3>Browse projects <?php echo $this->query;?></h3>
+
+
+<div class="fl-cnt-100"> 
+<?php echo $this->form; ?>
+</div>
+
 
 	<div class="span6">
 <!-- Project Displaying -->
@@ -103,7 +108,7 @@
     <?php } ?>
   </ul>
 
-    <?php } else echo "There are no projects in this category."?>
+    <?php } else echo "There are no projects for this search."?>
       </div>
 	   
 	  <div class="span6">	    

@@ -9,11 +9,16 @@ class SearchEngineFacade {
 	/** @var Doctrine\Orm\EntityManager */
 	private $em;
 	private $facadeUser; 
+	private $facadeProject;
+	private $facadeTeam;
+	
 	
 	public function __construct(\Doctrine\ORM\EntityManager $em){
 		$this->em = $em;
 		$this->facadeUser = new \App\Facade\UserFacade($this->em);
-		
+		$this->facadeProject = new \App\Facade\ProjectFacade($this->em);
+		$this->facadeTeam = new \App\Facade\Project\TeamFacade($this->em);
+		 
 	}
 
 	
@@ -38,6 +43,28 @@ class SearchEngineFacade {
 		return \Zend_Paginator::factory($users); 
 	}
 	
+	/**
+	 * Search in indexes
+	 * @param unknown_type $query
+	 */
+	public function findProjectPaginator($query){
+		\Zend_Search_Lucene_Analysis_Analyzer::setDefault(
+				new \Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8_CaseInsensitive ());
+		\Zend_Search_Lucene_Search_QueryParser::setDefaultEncoding('utf-8');
+			
+		$index = \Zend_Search_Lucene::open(APPLICATION_PATH . '/indexes/projects');
+		$hits = $index->find($query);
+	
+		$projects = array();
+		foreach ($hits as $h){
+			echo $h->project_id;
+			$projects[] = $this->facadeProject->findOneProject($h->project_id);
+		}
+	
+		return \Zend_Paginator::factory($projects);
+	}
+	
+	
 	
 	/**
 	 * Build start index form member  
@@ -57,6 +84,63 @@ class SearchEngineFacade {
 		$index->optimize();
 		return $index->numDocs(); 
 	}
+	
+	/**
+	 * Build start index for project
+	 * @return number of non deleted index in this search engine
+	 */
+	public function buildProjectIndexes($options = array()){
+		
+		
+		if(trim($options['category']) != '') $paginator = $this->facadeProject->findAllProjectsByCategoryPaginator($options['category']);
+		else $paginator = $this->facadeProject->findAllProjects();
+	
+		\Zend_Search_Lucene_Analysis_Analyzer::setDefault(new \Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8Num_CaseInsensitive ());
+		$index = \Zend_Search_Lucene::create(APPLICATION_PATH . '/indexes/projects');
+	
+		// go through all members in the index file
+		foreach ($paginator as $project){
+			$this->addProjectIndex($project); // add new index to the index
+		}
+	
+		// optimize the index
+		$index->optimize();
+	
+		return $index->numDocs();
+	}
+	
+	public function addProjectIndex($project){
+		// open index
+		$index = \Zend_Search_Lucene::open(APPLICATION_PATH . '/indexes/projects');
+
+		
+		// if level 1 display all logos
+		if($project->level == 1)
+			$freePositions = \App\Entity\ProjectRole::getRolesArray();
+		
+		if($project->level == 2){
+			// if level 2 display free positions
+			$facadeProject = new \App\Facade\Project\TeamFacade($this->em);
+			$freePositions = $facadeProject->findFreeUniqueProjectRolesForProjectArray($project->id);
+		}
+		
+ 		$projectRoles = implode(' ',$freePositions);
+ 		echo $projectRoles. ' PROJECT FREE ROLES <br> ';
+	
+ 		
+ 		
+ 		$doc = new \Zend_Search_Lucene_Document();
+ 		$doc->addField(\Zend_Search_Lucene_Field::text('project_id', $project->id));
+ 		$doc->addField(\Zend_Search_Lucene_Field::text('title', $project->title,'utf-8'));
+ 		$doc->addField(\Zend_Search_Lucene_Field::unStored('content', $project->content,'utf-8'));
+ 		$doc->addField(\Zend_Search_Lucene_Field::text('project_roles', $projectRoles,'utf-8'));
+ 		$doc->addField(\Zend_Search_Lucene_Field::text('priority', $project->priority,'utf-8'));
+ 		$doc->addField(\Zend_Search_Lucene_Field::text('level', $project->level,'utf-8'));
+ 			
+ 		$index->addDocument($doc);
+	
+	}
+	
 	
 	
 	public function addUserIndex($user){

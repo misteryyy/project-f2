@@ -46,26 +46,9 @@
 
           </div>
           <div class="span3 fl-sidebar">
-            
-
-                <!-- PREDELAT NA GENEROVANY MENU -->
-                <div class="tabs-right">
-                  <ul class="nav nav-tabs fl-right-nav">
-                    <li><a href="/member/project/create-project-step-one" title="">Start new project</a></li>
-                    <li><a href="/member/my-project" title="">My projects <span class="label">3</span></a></li>
-                    <li><a href="/member/my-collaboration" title="">My collaborations <span class="label">3</span></a></li>
-                    <li><a href="/member/flobox/index" title="">FLO~ box</a></li>
-                    <li><a href="" title="">Projects I like <span class="label">3</span></a></li>
-                    <li><a href="" title="">People I like <span class="label">3</span></a></li>
-                    <li><a href="/member/profile-setting/member-info">Personal info</a></li>
-                  </ul>
-                </div>
-
-
+    		<?php   echo $this->action('member-right-menu', 'widget', 'member'); ?>
           </div>
-
         </div>
-
      </div>
 
      <div id="bottom">
@@ -75,7 +58,6 @@
     </div>
 </div>
 
-  
  <div class="fl-bottom-line">
   <p>&copy; 2012 SLEPICE / ZF <br />
 <small><?php echo $this->translate("Today is"); ?> <b><?php echo new Zend_Date($this->timestamp); ?></b> <?php if ($this->cachedTimestamp) { ?>(<?php echo $this->translate("Timestamp served from Memcached");?>)<?php } ?></small></p>

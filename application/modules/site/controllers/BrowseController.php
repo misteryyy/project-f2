@@ -45,7 +45,6 @@ class Site_BrowseController extends Boilerplate_Controller_Action_Abstract
 			    }
 			    $query .=  "project_roles:".implode(' AND project_roles:',$_GET['project_role']);
 			}
-			   
 		     	$paginator = $facadeSearchEngine->findUsersPaginator($query);
 		     	$paginator->setCurrentPageNumber(1);
 		     	$paginator->setItemCountPerPage(10);
@@ -62,55 +61,12 @@ class Site_BrowseController extends Boilerplate_Controller_Action_Abstract
 	    		$this->view->paginator = $paginator; // $paginator;
     	}
 
-    	echo "Delete index one.";
-    	$facadeSearchEngine->deleteUserIndex(1);
-     	echo "Current Number of indexes.";
+    	
      	
     	
 	}
       
-	
 
-	public function resultAction(){
-		$this->ajaxify();
-		
- 	
- 			
-// 			if(count($hits)>0){
-// 				$video_repository = Frontend_Model_Repositories_VideoFactory::factory();
-// 				$videos_array = array();
-// 				foreach ($hits as $hit) {
-// 					$videos_array[] =  $video_repository->findById($hit->video_id);
-// 				}
-				 
-		
-// 				$paginator = Zend_Paginator::factory($videos_array);
-// 				debug($paginator);
-// 				//nastaveni poctu stranek list
-// 				$paginator->setItemCountPerPage(12);
-		
-// 				$page = $this->_request->getParam('page', 1);
-// 				$paginator->setCurrentPageNumber($page);
-// 				// pass the paginator to the view to render
-// 				$this->view->paginator = $paginator;
-		
-// 			}
-// 			$this->view->results = $hits;
-		
-		
-// 		} else {
-		
-// 			$this->view->results = null;
-// 		}
-		 
-// 		$this->view->keywords = $keywords;
-		
-	}
-	
-	
-
-	
-	
     /**
      * Browse Projects
      */
@@ -118,22 +74,68 @@ class Site_BrowseController extends Boilerplate_Controller_Action_Abstract
     	// read params from url
     	$params = $this->_request->getParams();
     	$facadeProject = new \App\Facade\Site\ProjectFacade($this->_em);
-    	// searching in categories
-    	if(isset($params["category"])){
-    		// Feeding projects
-    		try{
-    		$paginator = $facadeProject->findAllProjectsByCategory($params['category']);
-    		
-    		//additional params 
-    		} catch (\Exception $e){
-    			$this->_helper->FlashMessenger(array('error' => 'This categoory is not found. Are you trying to hack us?'));
-    			$this->_redirect('/member/error/');
-    		}
-    			
+    	$categories = $facadeProject->findAllProjectCategoriesArray();
+    	$form = new \App\Form\Site\BrowseProjectForm($categories);
+    	$this->view->form = $form;
+    	
+    	// build search engine, if category choosed build index just on the particular category
+    	$facadeSearchEngine = new \App\Facade\SearchEngineFacade($this->_em);
+    	$facadeSearchEngine->buildProjectIndexes(array('category'=>$this->_request->getParam('category')));
+    	
+    	
+    	$query = "";
+	
+    	// nothing set
+    	if ( empty($_GET['category']) && empty($_GET['q']) && empty($_GET['priority']) &&  empty($_GET['level']) &&  empty($_GET['project_role'])) {
+    		debug( "Vsechno je prazdne. Zobraz vsechno.");
+    	
     	} else {
-    		// get all projects
-    		$paginator = $facadeProject->findAllProjectsPaginator();
+    
+    		// just category is set, donˇt use
+    		if ( !empty($_GET['category']) && empty($_GET['q']) && empty($_GET['priority']) &&  empty($_GET['level']) &&  empty($_GET['project_role'])) {
+    			debug("Vsechno je prazdne jenom kategorie je nastavena. Nepouzivej vyhledavani.");
+    		}
+    		 	 
+    		// set default in form
+    		if (isset($_GET['q'])) {
+    			$form->setDefaults($_GET);
+    			 
+    			// add keyword query
+    			// project roles
+    			if(trim( $_GET['q'] ) !== "" ){
+    				$query = "".$_GET['q']."";
+    				 
+    			}	 
+    		}
     	}
+
+    	// ORDER BY
+    	if(!empty($_GET['type'])){
+    		debug("A razeni podle ". $_GET['type']);
+    	}
+    	
+    	$this->view->query = $query;
+
+    	$paginator = $facadeSearchEngine->findProjectPaginator($query);
+     	
+    	// just select data from DB
+    	// searching in categories
+//      	if(isset($_GET["category"]) AND trim( $_GET['q'] ) == ""){
+//      		// Feeding projects
+//      		try{
+//      		$paginator = $facadeProject->findAllProjectsByCategory($params['category']);
+    		
+//      		//additional params 
+//      		} catch (\Exception $e){
+//      			$this->_helper->FlashMessenger(array('error' => 'This categoory is not found. Are you trying to hack us?'));
+//      			$this->_redirect('/member/error/');
+//      		}
+//      	}
+    			
+//     	} else {
+//     		// get all projects
+//     		$paginator = $facadeProject->findAllProjectsPaginator();
+//     	}
     	
     	// if  nothing is  set show all projects
     	$config = Zend_Registry::get('config');
@@ -141,6 +143,7 @@ class Site_BrowseController extends Boilerplate_Controller_Action_Abstract
     	$page = $this->_request->getParam('page', 1);
     	$paginator->setCurrentPageNumber($page);
     	$this->view->paginator = $paginator;
+    	$form->setDefaults($_GET);
     	
 
     

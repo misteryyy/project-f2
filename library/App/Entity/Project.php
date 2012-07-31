@@ -93,6 +93,13 @@ class Project {
 	 */
 	private $ban;
 	
+	
+	/**
+	 * @Column(type="integer", name="featured")
+	 */
+	private $featured;
+	
+	
 	/**
 	 * @Column(type="integer", name="priority")
 	 */
@@ -278,6 +285,7 @@ class Project {
 		$this->followers = new \Doctrine\Common\Collections\ArrayCollection ();
 		$this->modified = new \DateTime ( "now" ); // the date is at the beginning                                      // the same
 		$this->level = 1;
+		$this->featured = 0;
 		$this->viewCount = 0;
 		$this->user = $user;
 		$this->setCategory ($category);
