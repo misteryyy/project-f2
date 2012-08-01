@@ -24,6 +24,28 @@ class UserFacade {
 	}
 	
 	/**
+	 * Find all friend for user
+	 * @param unknown_type $user_id
+	 */
+	public function findAllFavouriteUsersForUserPaginator($user_id){
+		
+		
+		// checking errors
+		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
+		if(!$user){
+			throw new \Exception("Member doesn't exists");
+		}
+		
+		$arr= array();
+		foreach($user->myFriends as $f){
+			$arr[] = $f;
+		}
+		
+		//return new \Zend_Paginator($adapter);
+		return \Zend_Paginator::factory($arr);
+		
+	}
+	/**
 	 * Start to like member which I like
 	 * @param unknown_type $user_id
 	 * @param unknown_type $friend_id

@@ -65,10 +65,11 @@ abstract class Boilerplate_Controller_Action_Abstract extends Zend_Controller_Ac
   			}
     		$this->_member = $userArray;	 
     		
-    		$this->view->userWebStorage = '/storage/users/';
-    		$this->view->projectWebStorage = '/storage/projects/';
+    	
    }
     	
+   $this->view->userWebStorage = '/storage/users/';
+   $this->view->projectWebStorage = '/storage/projects/';
    $this->view->member = $this->_member;
    
    // save user object, used for checking if this object is in projects or in users

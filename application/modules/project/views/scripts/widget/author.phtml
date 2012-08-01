@@ -46,9 +46,7 @@ foreach ($specRoles as $r){?>
                           <span><a href="" title="">more of 'My Projects'</a></span>
                         	<ul>                          
 							<?php 
-								
-									foreach($this->membersProject as $project){ ?>
-										  		
+									foreach($this->membersProject as $project){ ?>	  		
 									<li><a href="/project/index/index/id/<?php echo $project->id ?>" title=""><img src="<?php echo $this->projectWebStorage;?><?php echo $project->dir?>/<?php echo $project->getPicture("small");?>" alt="<?php echo $project->title?>" title="<?php echo $project->title?>" /></a></li>
 								<?php } // end foreach ?>
 							</ul> 

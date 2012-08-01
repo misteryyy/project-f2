@@ -89,14 +89,16 @@ class Project_WidgetController extends  Boilerplate_Controller_Action_Abstract
     	$facadePoll = new \App\Facade\Project\PollFacade($this->_em);
     	
     	// check if there is any poll
-    	try{
-    		$poll = $facadePoll->findTheLastPollForProject($this->project_id);
-    		$this->isPoll = true;
-    	} catch (\Exception $e){
-    		// there is no poll awailable
-    		$this->form = null;
-    		$this->isPoll = false;
-    	}
+    	$poll = $facadePoll->findTheLastPollForProject($this->project_id);
+    		
+    		if(!empty($poll)){	
+    			$this->isPoll = true;
+    			$poll = $poll[0];
+    		} else {
+    	     	// there is no poll awailable
+    			$this->form = null;
+    			$this->isPoll = false;
+    		}
     	
     	if($this->isPoll){
     	// check if application has been sent
@@ -140,7 +142,8 @@ class Project_WidgetController extends  Boilerplate_Controller_Action_Abstract
     public function similarAction(){
     	$this->checkProject();
     	$facadeProject = new \App\Facade\Site\ProjectFacade($this->_em); 	
-    	$paginator = $facadeProject->findSimilarProjectsPaginator($this->project->category->id);
+    
+    	$paginator = $facadeProject->findSimilarProjectsPaginator($this->project_id,$this->project->category->id);
     	// if  nothing is  set show all projects
     	$paginator->setItemCountPerPage(6); // items per page
     	$page = $this->_request->getParam('page', 1);

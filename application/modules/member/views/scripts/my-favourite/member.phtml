@@ -1,0 +1,47 @@
+<h3>My favourite members</h3>
+
+
+
+<!-- Project Displaying -->
+<?php if (count($this->paginator)) {?>
+<?php if (count($this->paginator) > 1) echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
+
+<ul>
+    <?php foreach ($this->paginator as $user){ ?> 
+        <div class="fl-list-project">
+                  <div class="fl-cnt-20">
+                    <div class="fl-project-thumb">
+                      <div class="inner-5">
+                      <a href="<?php echo $user->getProfileUrl();?>"> 
+                     <img src="/storage/users/<?php echo $user->getProfilePicture()?>" alt="<?php echo $user->getName(); ?>">
+            		 </a> 
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="fl-cnt-60">
+                    <div class="inner-list-project">
+                      <div class="fl-cnt-100">
+                        <h3 class="fl-list-project-h3"><?php echo $user->name?></h3>
+                        <p class="fl-list-project-info"> <i class="icon-eye-open"></i> <?php echo $user->getCountFriendsWithMe();?> Followers</p>
+                   </div>   
+                    </div>
+                  </div>
+                  <div class="fl-cnt-20">
+                    <a href="<?php echo $user->getProfileUrl();?>" class="btn btn-success fl-width80 fl-top5"><i class="icon-picture icon-white"></i> public profile</a>                   
+                    <a href="?_method=like-user&&friend_id=<?php echo $user->id;?>" title="" class="btn btn-danger fl-width80">Dislike</a>          
+                  </div>
+		</div>
+	
+                <div class="fl_thin_divider"></div>
+    	
+       
+       
+       
+    <?php } ?>
+ 			</ul>
+  <?php } else echo "There are no users."?>
+
+<script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-member-project-1.0.0.js')?>"></script> 
+       
+    	

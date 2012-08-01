@@ -1,4 +1,6 @@
-<?php if($this->isPoll === false) { echo "There are no polls"; return; } // check if there are any polls ?>
+<?php if($this->isPoll == false) { echo "There are no polls"; return; 
+
+} // check if there are any polls ?>
 
 
 <?php
@@ -35,5 +37,5 @@ if ($this->hasVoted) { ?>
 <div class="fl_thick_divider"></div>
 <div class="fl-feedback">
  				 
-	<?php echo $this->formPoll;?> 	
+<?php echo $this->formPoll;?> 	
 </div>

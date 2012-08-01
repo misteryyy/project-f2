@@ -39,13 +39,9 @@ class Member_WidgetController extends  Boilerplate_Controller_Action_Abstract
     	
     	}catch(\Exception $e){
     		$this->_helper->FlashMessenger( array('error' =>  $e->getMessage()));
-    	}
-    		
-    	
+    	}    	
     }
-    
-    
-    
+   
     /**
      * Survey widget
      */
@@ -60,6 +56,13 @@ class Member_WidgetController extends  Boilerplate_Controller_Action_Abstract
      * Recent projects widget
      */
     public function recentProjectAction(){
+    	$facadeProject = new \App\Facade\ProjectFacade($this->_em);
+    	$paginator = $facadeProject->findProjectsFromMyFriendPaginator($this->_member_id);    	
+     	$paginator->setItemCountPerPage(4);
+     	$page = $this->_request->getParam('page', 1);
+     	$paginator->setCurrentPageNumber($page);
+     	$this->view->paginator = $paginator;
+    	 
     	
     }
     

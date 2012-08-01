@@ -14,10 +14,50 @@ class ProjectFacade {
 		$this->em = $em;
 		$this->userFacade = new \App\Facade\UserFacade($em);
 		$this->taskFacade = new \App\Facade\Project\TaskFacade($em);
-		
 	}
 	
 
+	/**
+	 * Return mix of projects of my friend
+	 * @param unknown_type $user_id
+	 * @param unknown_type $options
+	 */
+	public function findProjectsFromMyFriendPaginator($user_id,$options = array()){
+
+		// find user
+		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
+		if(!$user){
+			throw new \Exception("Member doesn't exists");
+		}
+			
+		// if not, just take some projects from all
+				
+		// find all projects from his friends
+		if(count($user->myFriends) > 0){
+				
+			foreach($user->myFriends as $f){
+				$ids[] = $f->id;
+			}
+			
+			$qb = $this->em->createQueryBuilder('u');
+			$stmt = "SELECT p FROM App\Entity\Project p JOIN p.user u WHERE ". $qb->expr()->in('u.id', $ids);	
+			$stmt .= ' ORDER BY p.created,p.title ASC';	
+		}		
+	
+		$query = $this->em->createQuery($stmt);
+			
+		$paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
+		$iterator = $paginator->getIterator();
+		$adapter = new \Zend_Paginator_Adapter_Iterator($iterator);
+		return new \Zend_Paginator($adapter);
+		
+		
+		
+		
+	}
+	
+	
+	
 	public function disableProjectWidget($user_id,$project_id,$data){
 		// checking errors
 		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );

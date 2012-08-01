@@ -30,6 +30,14 @@ class LaunchFacade {
 		return $this->em->getRepository('\App\Entity\Launch\Newsletter')->findAll();
 		
 	}
+	
+	/**
+	 * Get all registered newsletter
+	 */
+	public function findNewsletters(){
+		return $this->em->getRepository('\App\Entity\Launch\Newsletter')->findAll();
+	
+	}
 		
 	/**
 	 * Return the account of all registrated members for beta account

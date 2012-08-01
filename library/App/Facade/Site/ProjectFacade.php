@@ -115,16 +115,18 @@ class ProjectFacade {
 	 * @param unknown_type $options
 	 * @throws \Exception
 	 */
-	public function findSimilarProjectsPaginator($category_id,$options= array()){
+	public function findSimilarProjectsPaginator($project_id,$category_id,$options= array()){
+	
 	
 		$category = $this->findCategoryById($category_id);
 	
-		$stmt = 'SELECT p FROM App\Entity\Project p WHERE p.category = ?1';
+		$stmt = 'SELECT p FROM App\Entity\Project p WHERE p.category = ?1 AND p.id != ?2 ';
 		$stmt .= 'ORDER BY p.created DESC';
 			
 		// if category
 		$query = $this->em->createQuery($stmt);
 		$query->setParameter(1, $category_id);
+		$query->setParameter(2, $project_id);
 	
 		$paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
 		$iterator = $paginator->getIterator();

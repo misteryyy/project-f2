@@ -93,15 +93,9 @@ class PollFacade {
  		$query = $this->em->createQuery($stmt);
  		$query->setParameter(1, $project_id);
 		
- 		$polls = $query->getResult();
+ 		return $query->getResult();
 		
- 		
- 		if(count($polls) > 0){
- 				return $polls[0];
- 		}
- 		else {
- 				throw new \Exception("There is not poll for this project");
- 		}	
+ 			
 	}
 	
 	
