@@ -3,102 +3,69 @@
 
 	<div class="span6">
 <!-- Project Displaying -->
-<?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
-    <?php if (count($this->paginator)) {?>
+<?php if (count($this->paginator) > 1) echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
+<?php if (count($this->paginator)) {?>
    <ul class="thumbnails">
     <?php foreach ($this->paginator as $project){ ?>
 
-    	
-        <li class="span3 fl-thumbnail-frame">
-                  <div class="inner-5">
-
-                     <a href="/project/index/index/id/<?php echo $project->id?>" title="<?php echo $project->title; ?>"> 
-                        <img alt="<?php echo $project->title; ?> - main picture" src="/storage/projects/<?php echo $project->dir."/".$project->getPicture('large'); ?> " />
-                     </a>
-
-<?php switch($project->level){
-  case '1': ?>
-                     <div class="fl-level">
-                        <div class="progress">
-                          <div class="fl_level1"></div>
-                        </div>
-                        <div class="progress">
-                          <div class="bar"></div>
-                        </div>
-                        <div class="progress">
-                          <div class="bar"></div>
-                        </div>
+    	       <div class="fl-list-project">
+                  <div class="fl-cnt-20">
+                    <div class="fl-project-thumb">
+                      <div class="inner-5">
+                        <a href="/project/index/index/id/<?php echo $project->id?>" title="Public profile page"><img src="/storage/projects/<?php echo $project->dir?>/<?php echo $project->getPicture("small");?>" alt="Project picture" /></a>
+						<div class="fl-level">                        
+						<?php 
+						// Display Current Level
+						$array[1] = array('fl_level1','bar','bar');
+						$array[2] = array('fl_level2','fl_level2','bar');
+						$array[3] = array('fl_level3','fl_level3','fl_level3');
+						foreach($array[$project->level] as $c){ ?>
+						                    <div class="progress fl-small-bar">
+						                          <div class="<?php echo $c?>"></div>
+						                    </div>
+						<?php } ?>
+						</div>
                       </div>
-<?php ; break;
-  case '2': ?>
-
-                      <div class="fl-level">
-                        <div class="progress">
-                          <div class="fl_level2"></div>
-                        </div>
-                        <div class="progress">
-                          <div class="fl_level2"></div>
-                        </div>
-                        <div class="progress">
-                          <div class="bar"></div>
-                        </div>
-                      </div>
-<?php ; break;
-  case '3': ?>
-                      <div class="fl-level">
-                        <div class="progress">
-                          <div class="fl_level3"></div>
-                        </div>
-                        <div class="progress">
-                          <div class="fl_level3"></div>
-                        </div>
-                        <div class="progress">
-                          <div class="fl_level3"></div>
-                        </div>
-                      </div>
-<?php ;
-}?>
-                     
-                     <h3><?php echo $project->title; ?></h3>
-                     
-                     <div class="fl-cnt-100">
-                       <span class="author"><i class="icon-user"></i> <a href="" title=""><?php echo $project->user->name?></a></span>
-                       <div class="fl-cnt-100 fl-height-60">
-                         <p><?php echo shorter($project->pitchSentence, 100); ?></p>
-                       </div>
-                       <p class="info">
-                         <span class="category"><i class="icon-folder-close"></i> <?php echo $project->category->name?></span>
-                         <span class="followers"><i class="icon-eye-open"></i> <strong class="follower-count"><?php echo $project->getCountFollowers();?></strong>  followers</span>
-                          <span class="like"><i class="icon-thumbs-up"></i> 
-                         	<a href="?_method=like-project&&project_id=<?php echo $project->id;?>" title="" >Dislike</a>   
-                         </span>
-                       </p>
-                     </div>
+                    </div>
                   </div>
-                      
-                     <div class="fl-cnt-100 fl-thumb-roles">
-                       <div class="fl_project_thumb_roles">
+
+                  <div class="fl-cnt-60">
+                    <div class="inner-list-project">
+                      <div class="fl-cnt-100">
+                        <h3 class="fl-list-project-h3"><?php echo $project->title?></h3>
+                        <p class="fl-list-project-info"><i class="icon-folder-close"></i> <?php echo $project->category->name?>, <i class="icon-eye-open"></i> <?php echo $project->getCountFollowers();?> Followers</p>
+                   </div>   
+                      <div class="fl-cnt-100 fl-list-project-roles fl-top10">
+                        <div class="fl-list-project-roles-available">
                         <?php 
-                        // if level 1 display all logos   
-						if($project->level == 1)
-                        $freePositions = \App\Entity\ProjectRole::getRolesArray();
-                        
-						if($project->level == 2){
-                       // if level 2 display free positions
-                        $facadeProject = new \App\Facade\Project\TeamFacade($this->em);
-                    	$freePositions = $facadeProject->findFreeUniqueProjectRolesForProjectArray($project->id); 
-						}
-                    	// if level 3 = have no idea what to display or not
-                    	foreach ($freePositions as $r){
-                    		
-                    		echo '<div class="fl_project_thumb_role">';
-                    		echo '<img src="/media/slepice-site/1.0.0/img/role_'.$r.'.png" alt="'.$r.'" title="'.$r.'" />';
-                    		echo '</div>';
-                    	} 
+		                        // if level 1 display all logos   
+								if($project->level == 1)
+		                        $freePositions = \App\Entity\ProjectRole::getRolesArray();
+		                        
+								if($project->level == 2){
+		                       // if level 2 display free positions
+		                        $facadeProject = new \App\Facade\Project\TeamFacade($this->em);
+		                    	$freePositions = $facadeProject->findFreeUniqueProjectRolesForProjectArray($project->id); 
+								}
+		                    	// if level 3 = have no idea what to display or not
+		                    	foreach ($freePositions as $r){
+		                    		echo '<img src="/media/slepice-site/1.0.0/img/role_'.$r.'.png" alt="'.$r.'" title="'.$r.'" />';
+		                   		} 
                     	?>
-                       </div>
-                     </div>
-                </li>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="fl-cnt-20">
+                    <a href="/project/index/index/id/<?php echo $project->id?>" class="btn btn-success fl-width80 fl-top5"><i class="icon-picture icon-white"></i> public profile</a>                   
+                    <a href="?_method=like-project&&project_id=<?php echo $project->id;?>" title="" class="btn btn-danger fl-width80">Dislike</a>          
+                  </div>
+			    </div>
+
+                <div class="fl_thin_divider"></div>
+    	
+    	
+       
     <?php } ?>
   </ul>
 

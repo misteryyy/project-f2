@@ -70,7 +70,7 @@ class Member_MyFavouriteController extends  Boilerplate_Controller_Action_Abstra
     	// get categories for form
     	$facadeProject = new \App\Facade\ProjectFacade($this->_em);
     	$paginator = $facadeProject->findAllFavouriteProjectsForUserPaginator($this->_member_id);
-    	$paginator->setItemCountPerPage(10); // items per page
+    	$paginator->setItemCountPerPage(1); // items per page
     	$paginator->setCurrentPageNumber($this->_request->getParam('page', 1));
     	$this->view->paginator = $paginator;
 

@@ -20,20 +20,16 @@
    <div class="container">
      <?= $this->action('header', 'index', 'site');  ?>
    </div>
-
- 			<?php 
-		// if the user has identity
-    	if(!Zend_Auth::getInstance()->hasIdentity()){
-    		echo $this->action('admin-menu', 'index', 'admin');  
-    	}	
-  	  ?>
-	 
+ 
 	 <?= $this->action('menu-debug', 'menu', 'project');  ?>  
 	  	
 	 <?php // creator menu
     	if($this->isCreator){
+    		echo '<div class="well">';
     		echo $this->action('menu-creator', 'menu', 'project',array("id" => $this->project->id));
+    		echo '</div>';
     	}
+    	
     	// collaborator widget
     	if($this->isCollaborator){
     		echo "Yes, you are collaborating in this project.";

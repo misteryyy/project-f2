@@ -11,6 +11,20 @@ function logger($message, $type = Zend_Log::INFO) {
     Boilerplate_Controller_Plugin_Debug::logger($message, $type);
 }
 
+/**
+ * Plurarize words
+ * source: http://darklaunch.com/2010/05/21/php-plural-pluralize-words-in-php-plural-word-plural
+ * @param unknown_type $count
+ * @param unknown_type $singular
+ * @param unknown_type $plural
+ * @return Ambigous <unknown, string>
+ */
+function plural($count, $singular, $plural = 's') {
+	if ($plural == 's') {
+		$plural = $singular . $plural;
+	}
+	return ($count == 1 ? $singular : $plural);
+}
 
 /**
  * Get Real IP address

@@ -77,22 +77,29 @@
           </div>
             
             <div class="fl_slider_roles">
-              <div class="fl_slider_role">
-                <img src="/media/slepice-site/1.0.0/img/role60x60_1.png" alt="" />
-              </div>
-              <div class="fl_slider_role">
-                <img src="/media/slepice-site/1.0.0/img/role60x60_2.png" alt="" />
-              </div>
-              <div class="fl_slider_role">
-                <img src="/media/slepice-site/1.0.0/img/role60x60_3.png" alt="" />
-              </div>
-              <div class="fl_slider_role">
-                <img src="/media/slepice-site/1.0.0/img/role60x60_4.png" alt="" />
-              </div>
-              <div class="fl_slider_role">
-                <img src="/media/slepice-site/1.0.0/img/role60x60_5.png" alt="" />
-              </div>
+                 <?php 
+                        // if level 1 display all logos   
+						if($project->level == 1)
+                        $freePositions = \App\Entity\ProjectRole::getRolesArray();
+                        
+						if($project->level == 2){
+                       // if level 2 display free positions
+                        $facadeProject = new \App\Facade\Project\TeamFacade($this->em);
+                    	$freePositions = $facadeProject->findFreeUniqueProjectRolesForProjectArray($project->id); 
+						}
+                    	// if level 3 = have no idea what to display or not
+                    	foreach ($freePositions as $r){
+                    		
+                    		echo '<div class="fl_slider_role">';
+                    		echo '<img src="/media/slepice-site/1.0.0/img/role_'.$r.'.png" alt="'.$r.'" title="'.$r.'" />';
+                    		echo '</div>';
+                    	} 
+                    	?>
             </div> 
+            
+                
+                   
+                    
           </div>
         </div>
         <div class="span6 text-right fl-top-project-img"> 
