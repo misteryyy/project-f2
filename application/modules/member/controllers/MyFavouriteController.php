@@ -16,18 +16,6 @@ class Member_MyFavouriteController extends  Boilerplate_Controller_Action_Abstra
 		$this->facadeProjectUpdate = new \App\Facade\Project\UpdateFacade($this->_em);
 	}
 	
-	
-	
-
-	
-    
-    
-    
-   
-    
-   
-    
-   
     /**
      * Delete update for Project
      */
@@ -56,14 +44,39 @@ class Member_MyFavouriteController extends  Boilerplate_Controller_Action_Abstra
     public function projectAction()
     {
     	$this->view->pageTitle = "My Favourite Projects" ;
+    		
+    	if($this->_request->isPost() || $this->_request->isGet()){
+    		switch ($this->_request->getParam("_method")){
+    	
+    			//  create new question
+    			case 'like-project':
+    				try{
+    					$facadeProject = new \App\Facade\ProjectFacade($this->_em);
+    					// return count of current followers
+    					$data = $facadeProject->likeProject($this->_member_id, $this->_request->getParam('project_id'));
+    	
+    					$this->_helper->FlashMessenger( array('success' =>  "Project was unliked."));
+    					$params = array('id' => $this->project_id);
+    					$this->_helper->redirector('project', $this->getRequest()->getControllerName(), $this->getRequest()->getModuleName(), $params);
+    					
+    					break;
+    				}catch(Exception $e){
+    					$this->_helper->FlashMessenger( array('error' =>  $e->getMessage()));	 
+    				}
+    				break;
+    		}
+    	}
+    	
     	// get categories for form
     	$facadeProject = new \App\Facade\ProjectFacade($this->_em);
     	$paginator = $facadeProject->findAllFavouriteProjectsForUserPaginator($this->_member_id);
-    	$paginator->setItemCountPerPage(1); // items per page
+    	$paginator->setItemCountPerPage(10); // items per page
     	$paginator->setCurrentPageNumber($this->_request->getParam('page', 1));
     	$this->view->paginator = $paginator;
 
     }
+    
+    
     
     
 }

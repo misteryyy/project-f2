@@ -62,9 +62,17 @@
               <p><?php echo $project->pitchSentence; ?></p>
             </div>
             <p class="info">
-              <span class="category"><i class="icon-folder-close"></i> Design</span>
-              <span class="followers"><i class="icon-eye-open"></i> <strong>56</strong> followers</span>
-              <span class="like"><i class="icon-thumbs-up"></i> <a href="" title="">Like</a></span>
+              <span class="category"><i class="icon-folder-close"></i> <?php echo $project->category->name;?></span>
+              <span class="followers"><i class="icon-eye-open"></i> <strong><?php echo $project->getCountFollowers();?></strong> followers</span>
+                <span class="like"><i class="icon-thumbs-up"></i> 
+                         <?php
+                         // like dislike solution 
+                         if(!$project->isFollower($this->loggedMember)) {
+						 ?> <a href="" title="" class="like-project" id="<?php echo $project->id;?>" >Like</a>
+						 <?php } else { ?>
+                            <a href="" title="" class="like-project" id="<?php echo $project->id;?>" >Dislike</a>
+                         <?php } ?>
+                         </span>
             </p>
           </div>
             

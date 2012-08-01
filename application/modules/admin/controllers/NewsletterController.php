@@ -7,6 +7,8 @@ class Admin_NewsletterController extends Boilerplate_Controller_Action_Abstract 
 	 */
 	public function indexAction() {
 		$this->view->pageTitle = 'Admin Newsletter';
+		$facadeNewsletter = new \App\Facade\Admin\NewsletterFacade($this->_em);
+		$this->view->count = count($facadeNewsletter->getUserForNewsletter($this->_member_id));
 	}
 
 	/**

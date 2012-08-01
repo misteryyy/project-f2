@@ -290,6 +290,8 @@ class ProjectFacade {
 				}
 				$this->em->flush();
 				// save answers
+				
+				
 	
 					// log
 					$this->userFacade->addLogMessage($user, "Create new project ".$newProject->getTitle()." with ID ".$newProject->getId());

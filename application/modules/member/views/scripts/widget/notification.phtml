@@ -1,0 +1,31 @@
+   <h3 class="fl-uppercase">Project feed</h3>
+   <?php if (count($this->paginator)) {?>
+     <div class="fl_thick_divider"></div>
+                
+                <div class="fl-cnt-100">
+                  <ul class="fl-ul-project-feed">
+    
+    <?php foreach ($this->paginator as $n){ ?>
+    		<li class="fl-li-accepted">
+    			<?php echo $n->created->format('Y/m/d'); ?>
+    			<?php echo $n->message; ?>
+    			<?php echo $n->type; ?>	
+    		</li>    	 		
+    <?php } ?>
+    	<!--  
+    		<li class="fl-li-accepted"> You have been accepted for collaboration in <a href="#" title="">Name of the project</a></li>
+            <li class="fl-li-denied"> You have been denied for collaboration in <a href="#" title="">Name of the project</a></li>
+            <li class="fl-li-denied"> You have been denied for collaboration in <a href="#" title="">Name of the project</a></li>
+            <li class="fl-li-info"> <strong>12 members</strong> are waiting for response</li>
+            <li class="fl-li-accepted"> You have been accepted for collaboration in <a href="#" title="">Name of the project</a></li>
+    	 -->
+    	   </ul>
+     </div>
+    		
+    <?php 
+    } else {
+        echo "No notifications.";
+    }?>
+   
+   
+                

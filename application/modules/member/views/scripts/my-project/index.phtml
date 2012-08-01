@@ -3,10 +3,8 @@
 <div class="fl-cnt-100">
 <?php 
 if(count ($this->projects) > 0){ 
-
   foreach($this->projects as $project){
 ?>
-
                 <div class="fl-list-project">
                   <div class="fl-cnt-20">
                     <div class="fl-project-thumb">
@@ -70,11 +68,23 @@ if(count ($this->projects) > 0){
                       
                       <div class="fl-cnt-100 fl-list-project-roles fl-top10">
                         <div class="fl-list-project-roles-available">
-                          <img src="/media/slepice-site/1.0.0/img/role_starter.png" alt="starter role icon" />
-                          <img src="/media/slepice-site/1.0.0/img/role_leader.png" alt="leader role icon" />
-                          <img src="/media/slepice-site/1.0.0/img/role_builder.png" alt="builder role icon" />
-                          <img src="/media/slepice-site/1.0.0/img/role_grower.png" alt="grower role icon" />
-                          <p class="fl-list-project-queue"><strong>6 members</strong> are waiting</p>
+                        <?php 
+		                        // if level 1 display all logos   
+								if($project->level == 1)
+		                        $freePositions = \App\Entity\ProjectRole::getRolesArray();
+		                        
+								if($project->level == 2){
+		                       // if level 2 display free positions
+		                        $facadeProject = new \App\Facade\Project\TeamFacade($this->em);
+		                    	$freePositions = $facadeProject->findFreeUniqueProjectRolesForProjectArray($project->id); 
+								}
+		                    	// if level 3 = have no idea what to display or not
+		                    	foreach ($freePositions as $r){
+		                    		echo '<img src="/media/slepice-site/1.0.0/img/role_'.$r.'.png" alt="'.$r.'" title="'.$r.'" />';
+		                   		} 
+                    	?>
+                      	<p class="fl-list-project-queue"><strong>6 members</strong> are waiting</p>
+                        
                         </div>
                         <div class="fl-list-project-roles-my">
                           <?php 
@@ -103,13 +113,6 @@ if(count ($this->projects) > 0){
                 </div>
 
                 <div class="fl_thin_divider"></div>
-
-<div class="fl-cnt-100">
-			<a class="btn btn-info" href="/project/index/index/id/<?php echo $project->id?>">Project Public Page</a>
-			<a class="btn btn-info" href="/member/my-project/edit-project/id/<?php echo $project->id?>">Edit Description</a>
-			<a class="btn btn-info" href="/member/my-project/edit-project-picture/id/<?php echo $project->id?>">Edit Project Picture</a>
-		
-</div>
 
 <div class="fl_thin_divider"></div>
 <?php	

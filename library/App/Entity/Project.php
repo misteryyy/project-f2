@@ -275,6 +275,17 @@ class Project {
 		return $this->tags;
 	}
 	
+	
+	
+	/**
+	 * Profile Public Url
+	 */
+	public function getProjectUrl(){
+	
+		return '/project/index/index/id/'.$this->id;
+	}
+
+	
 	/**
 	 * Date initialization
 	 */

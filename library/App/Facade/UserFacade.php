@@ -180,15 +180,17 @@ public function findAllUsersNative($options = array()){
 	 */
 	public function findLogForUser($user_id){
 		
-		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ($user_id);
-		if($user){
-			 return $this->em->getRepository ('\App\Entity\UserLog')->findByUser($user);
+		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
+		if(!$user){
+			throw new \Exception("Member doesn't exists");
 		}
-		else{
-			throw new \Exception("Can't find this user.");
-		}
+			
+		return $this->em->getRepository ('\App\Entity\UserLog')->findByUser($user);
 		
 	}
+	
+	
+	
 	
 	/**
 	 * 

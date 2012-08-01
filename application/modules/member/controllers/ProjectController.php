@@ -68,7 +68,9 @@ class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
 //     			Zend_Session::namespaceUnset('projectStep2');
 //     			Zend_Session::namespaceUnset('projectStep3');
 //     			Zend_Session::namespaceUnset('projectStep4');
-//     			Zend_Session::namespaceUnset('projectStep5');   			
+//     			Zend_Session::namespaceUnset('projectStep5');   
+				
+				// add notification
     			$this->_redirect("member/my-project");
     			
     			}catch(\Exception $e ){	

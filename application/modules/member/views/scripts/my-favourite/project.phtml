@@ -70,7 +70,7 @@
                          <span class="category"><i class="icon-folder-close"></i> <?php echo $project->category->name?></span>
                          <span class="followers"><i class="icon-eye-open"></i> <strong class="follower-count"><?php echo $project->getCountFollowers();?></strong>  followers</span>
                           <span class="like"><i class="icon-thumbs-up"></i> 
-                         	<a href="?_method=unlike&&project_id=<?php echo $project->id;?>" title="" >Dislike</a>   
+                         	<a href="?_method=like-project&&project_id=<?php echo $project->id;?>" title="" >Dislike</a>   
                          </span>
                        </p>
                      </div>

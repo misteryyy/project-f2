@@ -9,197 +9,31 @@
                   <li><a href="/member/project/create-project-step-one" title=""><i class="fl-dashboard-icon-new"></i> Start new project</a></li>
                   <li><a href="/member/flobox/index" title=""><i class="fl-dashboard-icon-flobox"></i> FLO~ box</a></li>
                   <li><a href="/member/my-project" title=""><i class="fl-dashboard-icon-myprojects"></i> My projects</a></li>
-                  <li><a href="member/my-collaboration" title=""><i class="fl-dashboard-icon-mycollaborations"></i> My collaborations</a></li>
-                  <li><a href="" title=""><i class="fl-dashboard-icon-projectsilike"></i> Projects I like</a></li>
-                  <li><a href="" title=""><i class="fl-dashboard-icon-peopleilike"></i> People I like</a></li>
+                  <li><a href="/member/my-collaboration" title=""><i class="fl-dashboard-icon-mycollaborations"></i> My collaborations</a></li>
+                  <li><a href="/member/my-favourite/project" title=""><i class="fl-dashboard-icon-projectsilike"></i> Projects I like</a></li>
+                  <li><a href="/member/my-favourite/member" title=""><i class="fl-dashboard-icon-peopleilike"></i> People I like</a></li>
                 </ul>
               </div>
-
-			<div class="fl-cnt-100">
-			  <?php
-				pr($this->member);
-			  ?>
-			</div>
 
               <div class="fl-cnt-100">
-                <h3 class="fl-uppercase fl-top30">Recent projects <span>(people i like)</span></h2>
-                <div class="fl_thick_divider"></div> 
-                <ul class="fl-ul-list-style-none fl-thumb-projects4">
-
-                    <li>
-                      <div class="fl-member-project">
-                        <div class="inner-similar">
-                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
-                          
-<?php switch($project->level){
-  case '1': ?>
-                     <div class="fl-level">
-                        <div class="progress fl-small-bar">
-                          <div class="fl_level1"></div>
-                        </div>
-                        <div class="progress fl-small-bar">
-                          <div class="bar"></div>
-                        </div>
-                        <div class="progress fl-small-bar">
-                          <div class="bar"></div>
-                        </div>
-                      </div>
-<?php ; break;
-  case '2': ?>
-
-                      <div class="fl-level">
-                        <div class="progress fl-small-bar">
-                          <div class="fl_level2"></div>
-                        </div>
-                        <div class="progress fl-small-bar">
-                          <div class="fl_level2"></div>
-                        </div>
-                        <div class="progress fl-small-bar">
-                          <div class="bar"></div>
-                        </div>
-                      </div>
-<?php ; break;
-  case '3': ?>
-
-                      <div class="fl-level">
-                        <div class="progress fl-small-bar">
-                          <div class="fl_level3"></div>
-                        </div>
-                        <div class="progress fl-small-bar">
-                          <div class="fl_level3"></div>
-                        </div>
-                        <div class="progress fl-small-bar">
-                          <div class="fl_level3"></div>
-                        </div>
-                      </div>
-<?php ;
-}?>
-
-                          <h4>Web for Pub in South Africa</h4>
-                          <p class="fl-thumb-p"><i class="icon-user"></i> Name of the author</p>
-                          
-                        </div>
-                      </div>
-                    </li>
-
-                </ul>
-                
-                <div class="btn-group fl-how-many">
-                  <a class="btn" href="#">4</a>
-                  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-                  <ul class="dropdown-menu fl-dropdown-menu-numbers">
-                      <li><a href="#">4</a></li>
-                      <li><a href="#">8</a></li>
-                      <li><a href="#">12</a></li>
-                      <li><a href="#">16</a></li>
-                  </ul>
-                </div>
-              </div>
-
               
+              <!-- Recent projects widget -->
+   				<?php echo $this->action('recent-project', 'widget', 'member');?>
+              
+               <!-- Feature projects widget -->
+   				<?php echo $this->action('feature-project', 'widget', 'member');?>
+         
+             </div> 
 
-              <div class="fl-cnt-100 fl-bottom20">
-                <h3 class="fl-uppercase fl-top30">Featured projects</h2>
-                <div class="fl_thick_divider"></div>  
-                <ul class="fl-ul-list-style-none fl-member-projects">
-                    <li>
-                      <div class="fl-member-project">
-                        <div class="inner-similar">
-                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
-
-<?php switch($project->level){
-  case '1': ?>
-                     <div class="fl-level">
-                        <div class="progress fl-small-bar">
-                          <div class="fl_level1"></div>
-                        </div>
-                        <div class="progress fl-small-bar">
-                          <div class="bar"></div>
-                        </div>
-                        <div class="progress fl-small-bar">
-                          <div class="bar"></div>
-                        </div>
-                      </div>
-<?php ; break;
-  case '2': ?>
-
-                      <div class="fl-level">
-                        <div class="progress fl-small-bar">
-                          <div class="fl_level2"></div>
-                        </div>
-                        <div class="progress fl-small-bar">
-                          <div class="fl_level2"></div>
-                        </div>
-                        <div class="progress fl-small-bar">
-                          <div class="bar"></div>
-                        </div>
-                      </div>
-<?php ; break;
-  case '3': ?>
-
-                      <div class="fl-level">
-                        <div class="progress fl-small-bar">
-                          <div class="fl_level3"></div>
-                        </div>
-                        <div class="progress fl-small-bar">
-                          <div class="fl_level3"></div>
-                        </div>
-                        <div class="progress fl-small-bar">
-                          <div class="fl_level3"></div>
-                        </div>
-                      </div>
-<?php ;
-}?>
-
-                          <h4>Web for Pub in Africa</h4>
-                          <p class="fl-thumb-p"><i class="icon-user"></i> Name of the author</p>
-                        </div>
-                      </div>
-                    </li>
-
-
-                </ul>
-              </div>
 
   </div>
 
   <div class="span4 fl-sidebar">
     <div class="inner">
-                
-                <h3 class="fl-uppercase">Project feed</h3>
-                <div class="fl_thick_divider"></div>
-                
-                <div class="fl-cnt-100">
-                  <ul class="fl-ul-project-feed">
-                    <li class="fl-li-accepted">You have been accepted for collaboration in <a href="#" title="">Name of the project</a></li>
-                    <li class="fl-li-accepted"> You have been accepted for collaboration in <a href="#" title="">Name of the project</a></li>
-                    <li class="fl-li-denied"> You have been denied for collaboration in <a href="#" title="">Name of the project</a></li>
-                    <li class="fl-li-denied"> You have been denied for collaboration in <a href="#" title="">Name of the project</a></li>
-                    <li class="fl-li-info"> <strong>12 members</strong> are waiting for response</li>
-                    <li class="fl-li-accepted"> You have been accepted for collaboration in <a href="#" title="">Name of the project</a></li>
-                  </ul>
-                </div>
-
-
-                <h3 class="fl-uppercase fl-top30">Survey</h3>
-                <div class="fl_thick_divider"></div>
-                
-                <div class="fl-cnt-100">
-                  <div class="fl-cnt-100">
-                    <img src="slepice/img/project_img_survey_list.jpg" alt="" title="" class="fl-img-survey-list"/>
-                    <h4 class="fl-project-name">Name of the project</h4>
-                    <p><i class="icon-tasks"></i> <a href="#" title="">survey</a></p>
-                    <p class="fl-survey-list-answers"><i class="icon-map-marker"></i> <strong>5 answers</strong> are missing</p>
-                  </div>
-                  <div class="fl-cnt-100 fl-top">
-                    <img src="slepice/img/project_img_survey_list.jpg" alt="" title="" class="fl-img-survey-list"/>
-                    <h4 class="fl-project-name">Name of the project</h4>
-                    <p><i class="icon-tasks"></i> <a href="#" title="">survey</a></p>
-                    <p class="fl-survey-list-answers"><i class="icon-map-marker"></i> <strong>5 answers</strong> are missing</p>
-                  </div>
-
-                </div>
-
+				<!-- Notification widget -->
+   				<?php echo $this->action('notification', 'widget', 'member');?>
+          		<!-- Survey widget -->
+   				<?php echo $this->action('survey', 'widget', 'member');?>
     </div>
   </div>
 </div>

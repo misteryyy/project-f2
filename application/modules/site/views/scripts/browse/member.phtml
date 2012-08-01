@@ -4,6 +4,16 @@
 <?php echo $this->form; ?>
 </div>
 
+
+<div class="fl-cnt-100">
+<form id="form-browse-members" action="<?= $this->form->getAction(); ?>" method="<?= $this->form->getMethod(); ?>">
+<?= $this->form->q; ?>
+<?= $this->form->specific_role; ?>
+<?= $this->form->project_role; ?>
+<?= $this->form->submit; ?>
+</form>
+</div>
+
 <hr>
 <!-- Project Displaying -->
 <?php if (count($this->paginator)) {?>

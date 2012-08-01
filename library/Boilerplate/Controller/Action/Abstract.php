@@ -5,6 +5,7 @@ abstract class Boilerplate_Controller_Action_Abstract extends Zend_Controller_Ac
    protected $_member = array(); 
    protected $_member_id = 1;
    protected $facadeAcl;
+   protected $facadeNotification;
    
    /**
     * @var Doctrine\ORM\EntityManager

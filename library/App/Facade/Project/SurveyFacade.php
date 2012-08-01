@@ -129,7 +129,23 @@ class SurveyFacade {
 		$query = $this->em->createQuery($stmt);
 		$query->setParameter(1, $project_id);
 		return $query->getResult();
+	
+	}
+	
+	public function findProjectsWithEmptySurveysForUser($user_id){
+		// checking errors
+		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
+		if(!$user){
+			throw new \Exception("Member doesn't exists");
+		}
+
+		$stmt = "SELECT a, COUNT(a.id) AS countOfMissingAnswers FROM App\Entity\ProjectSurveyAnswer a JOIN a.project p WHERE p.user = ?1 AND a.answer = '' GROUP BY p.id ";
+		//$stmt .= 'ORDER BY a.id ASC';
+		$query = $this->em->createQuery($stmt);
+		$query->setParameter(1, $user_id);
 		
+		
+		return $query->getResult();
 		
 		
 	}

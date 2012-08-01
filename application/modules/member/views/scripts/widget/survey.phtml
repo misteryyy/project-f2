@@ -1,0 +1,24 @@
+      <h3 class="fl-uppercase fl-top30">Survey</h3>
+   <?php 
+   if(empty($this->unfinishedSurveys)) echo "Nothing to display.";
+   ?>
+   
+   <?php 
+   	foreach($this->unfinishedSurveys as $s){
+   
+   		$surveyAnswer = $s[0];
+   		$project = $surveyAnswer->project;
+   ?>
+                <div class="fl_thick_divider"></div>
+                
+                <div class="fl-cnt-100">
+                  <div class="fl-cnt-100">
+                     <img alt="<?php echo $project->title; ?> - main picture" src="/storage/projects/<?php echo $project->dir."/".$project->getPicture('small'); ?> " class="fl-img-survey-list"/>
+          			<h4 class="fl-project-name"><?php echo $project->title;?></h4>
+                    <p><i class="icon-tasks"></i>    <a href="/member/my-project/survey/id/<?php echo $project->id?>" title="Go to survey">survey</a></p>
+                       
+                    <p class="fl-survey-list-answers"><i class="icon-map-marker"></i> <strong><?php echo $s['countOfMissingAnswers'];?> answers</strong> are missing</p>
+                  </div>
+                </div>
+                               
+  <?php } ?> 
