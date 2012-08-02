@@ -183,6 +183,10 @@ body{
   display: none;
 }
 
+.fl-margin0{
+  margin: 0px;
+}
+
 h1{
   position: relative;
   overflow: hidden;
@@ -877,6 +881,71 @@ p.fl-list-project-queue{
 .fl-textarea-height-big{
   height: 200px;
 }
+
+
+.fl-filtr-form{
+  padding: 10px;
+  background-color: #f5f5f5;
+  border: 1px solid #eee;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.fl-filtr-search, .fl-filtr-search input{
+  margin: 0px;
+  text-align: right;
+}
+
+.fl-filtr-search input[type="submit"]{
+  padding-left: 20px;
+  padding-right: 20px; 
+}
+
+#fl-filtr-form-choose-role{
+  list-style: none;
+  width: 100%;
+  float: left;
+  margin: 0px;
+  padding: 0px;
+}
+
+#fl-filtr-form-choose-role li, #fl-filtr-form-choose-role li:hover{
+  width: 20%;
+  float: left;
+  text-align: center;
+  padding: 5px 0 5px 0;
+}
+
+#fl-filtr-form-choose-role li:hover, #fl-filtr-form-choose-role li.selected{
+  background: #c5d3ec;
+  cursor: pointer;
+}
+
+.fl-filtr-form-project-level, .fl-filtr-form-passion-level{
+  width: 30%;
+  margin: 10px 10px 0 20px;
+  float: left;
+}
+
+.fl-filtr-form-passion-level{
+  margin: 10px 0 0 10px;
+}
+
+.fl-filtr-form-sign{
+  width: 100%;
+  float: left;
+}
+
+.fl-filtr-form-level{
+  width: 100%;
+  float: left;
+}
+
 
 .fl-choosing-roles-top, .fl-choosing-roles-middle, .fl-choosing-roles-bottom{
   width: 100%;
