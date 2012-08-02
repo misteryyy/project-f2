@@ -39,9 +39,6 @@ class Member_MyCollaborationController extends  Boilerplate_Controller_Action_Ab
     		$this->_redirect('/member/error/');	
     	}	
     }
-    
-
-
 
     /**
      * Display Creators project for sign user
@@ -66,8 +63,7 @@ class Member_MyCollaborationController extends  Boilerplate_Controller_Action_Ab
     	// get categories for form
     	$facadeCollaboration = new \App\Facade\Project\CollaborationFacade($this->_em);
     	$applications = $facadeCollaboration->findApplications($this->_member_id, array('state'=>\App\Entity\ProjectApplication::APPLICATION_NEW ));
-    	$this->view->applications = $applications;
-    
+    	$this->view->applications = $applications; 
     }
     
     /**

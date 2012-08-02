@@ -92,15 +92,16 @@ class Project_WidgetController extends  Boilerplate_Controller_Action_Abstract
     	$poll = $facadePoll->findTheLastPollForProject($this->project_id);
     		
     		if(!empty($poll)){	
-    			$this->isPoll = true;
+    			$isPoll = true;
     			$poll = $poll[0];
     		} else {
     	     	// there is no poll awailable
     			$this->form = null;
-    			$this->isPoll = false;
+    			$isPoll = false;
     		}
     	
-    	if($this->isPoll){
+    	$this->view->isPoll = $isPoll;
+    	if($isPoll){
     	// check if application has been sent
     	// try to check if the user has already voted
     		$answers = $facadePoll->findAllAnswersForUser($this->project_id, $this->_member_id, $poll->id);
@@ -119,6 +120,7 @@ class Project_WidgetController extends  Boilerplate_Controller_Action_Abstract
 
     	// handle new voting
     	if($this->_request->getParam("_method") == 'poll_widget'){
+    		
 	    	// validation data
 	    	if($form->isValid($this->_request->getParams())){	
 	    	 $facadePoll->answerPoll($this->project_id, $this->_member_id, $form->getValue("poll_id"),$form->getValues());

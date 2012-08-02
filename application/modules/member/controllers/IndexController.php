@@ -2,6 +2,10 @@
 
 class Member_IndexController extends Boilerplate_Controller_Action_Abstract {
 
+	public function init(){	
+		$this->_helper->_layout->setLayout('member-public');
+		parent::init();
+	}
 	
 	public function indexAction() {
 	

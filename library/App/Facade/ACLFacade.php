@@ -47,6 +47,26 @@ class ACLFacade {
 		//$query = $em->createQuery('SELECT COUNT(u.id) FROM Entities\User u');
 		//$count = $query->getSingleScalarResult();
 	}
+	
+	
+	/**
+	 * Check if user is admin
+	 * @param unknown_type $user_id
+	 */
+	public function isAdmin($user_id){
+		$stmt = 'SELECT COUNT(u.id) FROM App\Entity\User u JOIN u.roles r WHERE u.id = ?1 AND r.type = ?2 AND r.name = ?3 ';
+		$query = $this->em->createQuery($stmt);
+		//$query->setParameter(1, $project_id);
+		$query->setParameter(1, $user_id);
+		$query->setParameter(2, \App\Entity\UserRole::TYPE_SYSTEM);
+		$query->setParameter(3, \App\Entity\UserRole::SYSTEM_ROLE_ADMIN);
+		
+		//\Doctrine\Common\Util\Debug::dump($query->getResult());
+		$result = $query->getOneOrNullResult();
+		return $result[1];
+		
+	}
+
 		
 	/**
 	 * Return true if current user is creator

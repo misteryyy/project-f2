@@ -189,6 +189,21 @@ class Project {
 		$this->level = $level;
 	}
 	
+	
+	/**
+	 * @return the $viewCount
+	 */
+	public function getViewCount() {
+		return $this->viewCount;
+	}
+
+	/**
+	 * @param number $viewCount
+	 */
+	public function setViewCount($viewCount) {
+		$this->viewCount = $viewCount;
+	}
+
 	/*
 	 * Add tag to the SpecificRole
 	 */

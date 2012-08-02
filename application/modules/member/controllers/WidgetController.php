@@ -19,6 +19,11 @@ class Member_WidgetController extends  Boilerplate_Controller_Action_Abstract
 	 * Menu with basic structure
 	 */ 
     public function memberRightMenuAction(){
+    	
+    	// count of collaborations
+    	$facadeCollaboration = new \App\Facade\Project\CollaborationFacade($this->_em);
+    	$countOfCollaborations = $facadeCollaboration->findApplicationsCount($this->_member_id, array('state'=>\App\Entity\ProjectApplication::APPLICATION_ACCEPTED ));
+    	$this->view->collaborationsCount = $countOfCollaborations;
     }
     
     
@@ -71,6 +76,14 @@ class Member_WidgetController extends  Boilerplate_Controller_Action_Abstract
      * Feature projects widget
      */
     public function featureProjectAction(){
+    	
+    	$facadeProject = new \App\Facade\ProjectFacade($this->_em);
+    	$paginator = $facadeProject->findFeaturedProjectsPaginator($this->_member_id);
+    	$paginator->setItemCountPerPage(4);
+    	$page = $this->_request->getParam('page', 1);
+    	$paginator->setCurrentPageNumber($page);
+    	$this->view->paginator = $paginator;
+    	
     	 
     }
     

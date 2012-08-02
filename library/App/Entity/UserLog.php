@@ -22,6 +22,12 @@ class UserLog
     private $type;
     
     
+    /** @Column(type="string", name="icon") */
+    private $icon;
+    
+    
+    
+    
     /** @Column(type="string", name="message") */
     private $message;
     

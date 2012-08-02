@@ -74,6 +74,7 @@ class User {
 	 * @Column(type="string", name="country", columnDefinition="CHAR(2)",nullable=true)
 	 */
 	protected $country;
+	
 	/** @Column(type="smallint",name="confirmed",nullable=true) */
 	private $confirmed;
 	/**
@@ -158,7 +159,7 @@ class User {
 		$this->userFieldOfInterestTags = new \Doctrine\Common\Collections\ArrayCollection ();
 		$this->roles = new \Doctrine\Common\Collections\ArrayCollection ();
 		$this->specRoles = new \Doctrine\Common\Collections\ArrayCollection ();
-		$this->projectRoles = new \Doctrine\Common\Collections\ArrayCollection ();
+		$this->projectRoles = new \Doctrine\Common\Collections\ArrayCollection ();	
 		$this->floMessages = new \Doctrine\Common\Collections\ArrayCollection ();
 		$this->emailVisibility = false;
 		$this->dateOfBirthVisibility = false;

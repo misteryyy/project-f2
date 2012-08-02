@@ -20,7 +20,7 @@ class PollForm extends \Twitter_Bootstrap_Form_Horizontal
 	{	
 		// ajax call
 			$this->addAttribs(array("id" => "form-poll","class" => ""));
-
+			$this->setAction("/project/widget/poll/id/".$this->project->id.'/_method/poll_widget');
 		// header
 		$this->addElement('hidden', 'created', array(
 					'description' => '<p class="fl-feedback-date">This poll was created on '.$this->poll->created->format('Y/m/d').'</p>',
@@ -30,11 +30,7 @@ class PollForm extends \Twitter_Bootstrap_Form_Horizontal
 					),
 			));
 		$addGroup[] = 'created';
-			
-		$this->addElement('hidden', '_method', array(
-				'value' => "poll_widget"));
-		
-		$addGroup[] = 'poll_id';
+	
 		
 		 $this->addElement('hidden', 'poll_id', array(
 		 		'value' => $this->poll->id));

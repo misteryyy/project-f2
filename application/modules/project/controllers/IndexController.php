@@ -62,6 +62,7 @@ class Project_IndexController extends  Boilerplate_Controller_Action_Abstract
 	 */ 
     public function indexAction(){
     	$this->view->pageTitle .=  "~ Main ";  
+    	$this->facadeProject->addView($this->project_id); // add some viewcount
     }
  
     /**

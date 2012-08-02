@@ -8,12 +8,14 @@ class ProjectFacade {
 	private $em;
 	private $userFacade;
 	private $taskFacade;
+	private $aclFacade;
 	
 	public function __construct(\Doctrine\ORM\EntityManager $em){
 		
 		$this->em = $em;
 		$this->userFacade = new \App\Facade\UserFacade($em);
 		$this->taskFacade = new \App\Facade\Project\TaskFacade($em);
+		$this->aclFacade = new \App\Facade\ACLFacade($em);
 	}
 	
 
@@ -50,12 +52,30 @@ class ProjectFacade {
 		$iterator = $paginator->getIterator();
 		$adapter = new \Zend_Paginator_Adapter_Iterator($iterator);
 		return new \Zend_Paginator($adapter);
-		
-		
-		
-		
 	}
+
 	
+	public function findFeaturedProjectsPaginator($user_id,$options = array()){
+	
+		// find user
+		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
+		if(!$user){
+			throw new \Exception("Member doesn't exists");
+		}
+	
+			$qb = $this->em->createQueryBuilder('u');
+			$stmt = "SELECT p FROM App\Entity\Project p  WHERE p.user != ?1 AND p.featured > 0";
+			$stmt .= ' ORDER BY p.featured,p.created DESC';
+		
+	
+		$query = $this->em->createQuery($stmt);
+		$query->setParameter(1, $user_id);
+
+		$paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
+		$iterator = $paginator->getIterator();
+		$adapter = new \Zend_Paginator_Adapter_Iterator($iterator);
+		return new \Zend_Paginator($adapter);
+	}
 	
 	
 	public function disableProjectWidget($user_id,$project_id,$data){
@@ -380,9 +400,9 @@ class ProjectFacade {
 				$tagsToAdd = array_diff($newTags,$oldTags);
 				$tagsToDelete= array_diff($oldTags, $newTags);
 				
-				debug("to add");
-				debug($tagsToAdd);
-				debug($tagsToDelete);
+				//debug("to add");
+				//debug($tagsToAdd);
+				//debug($tagsToDelete);
 							
 				// adding tags
 				foreach($tagsToAdd as $tagAdd){			
@@ -557,6 +577,20 @@ class ProjectFacade {
 		
 	}
 
+	/**
+	 * Increment viewCount for the project
+	 * @param unknown_type $project_id
+	 * @throws \Exception
+	 */
+	public function addView($project_id){
+		
+		$project = $this->em->getRepository ('\App\Entity\Project')->findOneById ( $project_id);
+		if(!$project){
+			throw new \Exception("This project you trying find doesn't exists");
+		}
+		$project->viewCount ++;
+		$this->em->flush(); // save the view count
+	}
 	
 	/**
 	 * Start to like project 
@@ -579,13 +613,24 @@ class ProjectFacade {
 		$countOfFollowers = $project->getCountFollowers();
 		
 		if($user->isMyFavouriteProject($project)){
+			
+			// if is admin give project high priority
+			if($this->aclFacade->isAdmin($user_id)){
+			 	$project->featured--;	
+			}
+			
 			$user->deleteMyFavouriteProject($project); // delete from my projects
 			$countOfFollowers--;
 			$this->em->flush();
 				
 		} else {
 			$user->addNewFavouriteProject($project); // add this project
-		
+			
+			// if is admin give project high priority
+			if($this->aclFacade->isAdmin($user_id)){
+				$project->featured++;
+			}
+			
 			$countOfFollowers++;
 			$this->em->flush();
 		}

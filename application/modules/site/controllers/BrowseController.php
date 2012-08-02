@@ -78,6 +78,10 @@ class Site_BrowseController extends Boilerplate_Controller_Action_Abstract
     	$form = new \App\Form\Site\BrowseProjectForm($categories);
     	$this->view->form = $form;
     	
+    	
+    	if($this->facadeAcl->isAdmin($this->_member_id)) echo "JSI ADMIN";
+    	
+    	
     	// build search engine, if category choosed build index just on the particular category
     	$facadeSearchEngine = new \App\Facade\SearchEngineFacade($this->_em);
     	$facadeSearchEngine->buildProjectIndexes(array('category'=>$this->_request->getParam('category')));

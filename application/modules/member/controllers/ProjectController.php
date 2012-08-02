@@ -107,7 +107,7 @@ class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
     	if ($this->_request->isPost()) {
   
     		$values = $form->getValues();
-    		debug($this->_request->getPost());
+    	
     		
     		if ($form->isValid($this->_request->getPost())) {
     			// store data to session, user can cancel the project in the end
@@ -115,17 +115,11 @@ class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
     			$session_step1->firstFormData = $form->getValues();
     			// fetch values
     			$this->_helper->FlashMessenger( array('info' => "Time to Choose profile Picture"));
-    			debug('Current Session Data');
-    			debug($session_step1->firstFormData);
-    			$this->_redirect('/member/project/create-project-step-two');
-    			
-    			
+    			$this->_redirect('/member/project/create-project-step-two');	
     		}
     		// not validated properly
     		else {
-    			$this->_helper->FlashMessenger( array('info' => var_export($values)));
     			$this->_helper->FlashMessenger( array('error' => "Please check your input."));
-    		
     		}
     	}
 
