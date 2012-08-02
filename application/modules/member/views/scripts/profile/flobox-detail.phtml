@@ -1,4 +1,6 @@
-<h3>FloBox</h3>		
+<h2>FloBox <span>#<?php echo $this->message->title; ?></span></h2>		
+
+<div class="fl-cnt-100">
 <?php 
 // if current user is owner, he will have link to his administration of 
 if ($this->message->user->id == $this->member['id']) { ?>
@@ -7,36 +9,58 @@ if ($this->message->user->id == $this->member['id']) { ?>
 } else {?>
 	<a class="btn btn-success" href="/member/profile/flobox">Back to all FloBox messages</a>
 <?php }?>
+</div>
 
-<hr/>
 
-    <div class="well">	 
+	<div class="fl-cnt-100 fl-flobox-detail">
+		<div class="inner">
     	<?php
     	$typeClass=""; 
-    	if($this->message->type == \App\Entity\UserFloBox::MESSAGE_TYPE_CHOICE) $typeClass = "alert-info";
-    	if($this->message->type == \App\Entity\UserFloBox::MESSAGE_TYPE_INTEREST) $typeClass =  "alert-danger"; 
+    	if($this->message->type == \App\Entity\UserFloBox::MESSAGE_TYPE_CHOICE) $typeClass = "label-info";
+    	if($this->message->type == \App\Entity\UserFloBox::MESSAGE_TYPE_INTEREST) $typeClass =  "label-warning"; 
+        if($this->message->type == \App\Entity\UserFloBox::MESSAGE_TYPE_PROBLEM) $typeClass =  "label-important";
     	?>
-    	<h4><?php echo $this->message->title; ?></h4>
-    	
-		<?php echo $this->message->created->format('Y/m/d'); ?>
-    	<div class="alert <?php echo $typeClass;?>"><strong><?php echo $this->message->type; ?></strong> ~ 
-    	<?php echo $this->message->typeDetail; ?>
-		</div>
-		<?php echo $this->message->message; ?>			
-    	<?php echo count($this->message->comments) ?>
+
+      <h3 class="flobox-title"><span class="label <?php echo $typeClass;?>"><?php echo $this->message->type; ?></span> <?php echo $this->message->title; ?> <span class="flobox-title-info"><i class="icon-time"></i> <?php echo $this->message->created->format('Y/m/d'); ?>, <i class="icon-comment"></i> <?php echo count($this->message->comments) ?></span></h3>
+
+      <div class="fl-cnt-100">
+        <p class="fl-flobox-typedetail-<?php echo $typeClass;?>"><?php echo $this->message->typeDetail; ?></p>
+      </div>
+
+      <div class="fl-cnt-100">
+        <p><?php echo $this->message->message; ?></p>
+      </div>
+     </div>
     </div>
+
+    
     <?php 
-    		if(count($this->message->comments) > 0) echo "<hr/> <h3>Responses</h3>";
-  			// display comments
-			foreach($this->message->comments as $comment){
-					?>		
-				 <div class="alert alert-success">
-				 	<img src="/storage/users/<?php echo $comment->user->getProfilePicture(50) ; ?>" />
-   					<?php echo $comment->user->name ; ?>
-					<?php echo $comment->user->id ; ?>
-					<?php echo $comment->created->format('d-m-y') ; ?>
-					<?php echo $comment->content ; ?>
-					</div>
+    		if(count($this->message->comments) > 0) { ?>
+    		<div class="fl-cnt-100 fl-top20">
+  			  <div class="fl-project-comments-comments">
+  			<?php // display comments
+			foreach($this->message->comments as $comment){ ?>
+
+			
+                 <div class="fl-project-comments-comment">
+                   <div class="fl-project-comments-comment-left">
+                     <div class="inner">
+                       <img src="/storage/users/<?php echo $comment->user->getProfilePicture(50) ; ?>" alt="<?php echo $comment->user->name ; ?>" class="fl-img" />
+                     </div>
+                   </div>
+                   <div class="fl-project-comments-comment-right">
+                     <div class="inner">
+                       <p class="fl-project-comments-comment-header"><?php echo $comment->user->name ; ?> <span>, <i class="icon-time"></i> <?php echo $comment->created->format('d-m-y') ; ?></span></p>
+                       <p><?php echo $comment->content ; ?></p>
+                     </div>
+                   </div>
+                 </div>
+
 	<?php }?>
-	
+</div>
+</div>
+<?php }?>
+
+<div class="fl-cnt-100">	
 	<?php echo $this->form ;?>
+</div>

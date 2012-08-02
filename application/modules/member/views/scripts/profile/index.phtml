@@ -15,12 +15,12 @@
                 <div class="navbar-inner">
                   <div class="container">
                       <ul class="nav">
-                        <li class="active"><a href="#">Summary</a></li>
-                        <li><a href="#">FLO~  Box</a></li>
-                        <li><a href="#">My projects</a></li>
-                        <li><a href="#">My collaborations</a></li>
-                        <li><a href="#">People I like</a></li>
-                        <li><a href="#">Projects I like</a></li>
+                        <li><a href="/member/profile/index/id/<?php echo $this->user->getId(); ?>">Summary</a></li>
+                        <li><a href="/member/profile/flobox/id/<?php echo $this->user->getId(); ?>">FLO~  Box</a></li>
+                        <li><a href="/member/profile/my-projects/id/<?php echo $this->user->getId(); ?>">My projects</a></li>
+                        <li><a href="/member/profile/my-collaborations/id/<?php echo $this->user->getId(); ?>">My collaborations</a></li>
+                        <li><a href="/member/profile/prople-i-like/id/<?php echo $this->user->getId(); ?>">People I like</a></li>
+                        <li><a href="/member/profile/projects-i-like/id/<?php echo $this->user->getId(); ?>">Projects I like</a></li>
                       </ul>
                   </div>
                 </div>
@@ -321,6 +321,10 @@
                 </div>
               </div>
             </div>
+      
+
+
+
        </div>
 
 

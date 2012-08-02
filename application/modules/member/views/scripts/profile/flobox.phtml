@@ -1,38 +1,35 @@
-<h3>FloBox</h3>		
+<h2>FloBox</h2>		
 
+<div class="fl-cnt-100">
 <!-- FloBox Table Ideas -->
 <?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
     <?php if (count($this->paginator)) {?>
-   <ul class="thumbnails">
+
     <?php foreach ($this->paginator as $message){ ?>
-    	
+    <div class="fl-cnt-100">
     	<?php
     	$typeClass=""; 
-    	if($message->type == \App\Entity\UserFloBox::MESSAGE_TYPE_CHOICE) $typeClass = "alert-info";
-    	if($message->type == \App\Entity\UserFloBox::MESSAGE_TYPE_INTEREST) $typeClass =  "alert-warning"; 
+    	if($message->type == \App\Entity\UserFloBox::MESSAGE_TYPE_CHOICE) $typeClass = "label-info";
+    	if($message->type == \App\Entity\UserFloBox::MESSAGE_TYPE_INTEREST) $typeClass =  "label-warning"; 
+      if($message->type == \App\Entity\UserFloBox::MESSAGE_TYPE_PROBLEM) $typeClass =  "label-important";
     	?>
-    	
-        <li class="span3">
-          <div class="thumbnail">
-            <div class="caption">
-       		<div class="alert <?php echo $typeClass;?>"><strong><?php echo $message->type; ?></strong>
-             <h5><?php echo $message->title; ?></h5>
 
-              <?php echo $message->created->format('Y/m/d'); ?>
-              <p> <?php echo $message->message; ?></p>
-              <p>Comments: <?php echo count($message->comments) ?></p>
-              <p><a class="btn btn-info" href="/member/profile/flobox-detail/member_id/<?php echo $this->member['id']?>/message_id/<?php echo $message->id ?>">Detail</a></p>
-            </div>
-          </div>
-        </li>
-    	
-    	 		
+      <h3 class="flobox-title"><span class="label <?php echo $typeClass;?>"><?php echo $message->type; ?></span> <?php echo $message->title; ?> <span class="flobox-title-info"><i class="icon-time"></i> <?php echo $message->created->format('Y/m/d'); ?>, <i class="icon-comment"></i> <?php echo count($message->comments) ?></span></h3>
+
+      <div class="fl-cnt-100 fl-top10">
+        <p><?php echo $message->message; ?></p>
+      </div>
+      <div class="fl-cnt-100 text-right">
+        <a class="btn btn-info" href="/member/profile/flobox-detail/member_id/<?php echo $this->member['id']?>/message_id/<?php echo $message->id ?>">Detail</a>
+      </div>    
+    </div>	
+    <div class="fl_thick_divider"></div> 		
     <?php } ?>
-  </ul>
+  
     	
     		
     <?php } else echo "No FloBox Messages."?>
-   
+</div> 
 
 
     
