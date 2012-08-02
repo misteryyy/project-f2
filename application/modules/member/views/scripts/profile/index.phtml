@@ -1,30 +1,328 @@
 <?php if (count($this->user) != 0) { ?>
 
 <div class="row">
-	<div class="span3">
-		<h1> <?php echo $this->user->getName(); ?> </h1>
-		<img src="/storage/users/<?php echo $this->user->getProfilePicture()?>"
-			alt="<?= $this->member['name'];?>">
-	</div>
+    <div class="span11">
+            
+            <div class="fl-membeprofile-head">
+              <img src="/storage/users/<?php echo $this->user->getProfilePicture()?>" alt="<?= $this->member['name'];?>" class="fl-memberprofile-member-img-thumb" />
+              <h2><?php echo $this->user->getName(); ?></h2>
+              <p class="fl_project_head_info">
+                <i class="icon-time"></i> Member sicne 20th of July, <i class="icon-thumbs-up"></i> <a href="" title="">like</a>
+              </p>
+            </div>
 
+              <div class="navbar fl-project-profile-navbar">
+                <div class="navbar-inner">
+                  <div class="container">
+                      <ul class="nav">
+                        <li class="active"><a href="#">Summary</a></li>
+                        <li><a href="#">FLO~  Box</a></li>
+                        <li><a href="#">My projects</a></li>
+                        <li><a href="#">My collaborations</a></li>
+                        <li><a href="#">People I like</a></li>
+                        <li><a href="#">Projects I like</a></li>
+                      </ul>
+                  </div>
+                </div>
+              </div>
+          </div>
+       </div>
 
-	<div class="span5">
-    <?= $this->user->email; ?>
-    <?= $this->user->emailVisibility; ?>
-    <?= $this->user->dateOfBirth->format('Y/m/d'); ?> 
-    <?= $this->user->dateOfBirthVisibility; ?>
-    <?= $this->user->description; ?>
+       <div class="row">
+            <div class="span7">
+            
+              <div class="row">
+                <div class="span3">
+                  <img src="/storage/users/<?php echo $this->user->getProfilePicture()?>" alt="<?= $this->member['name'];?>" class="fl-memberprofile-member-img-thumb" />
+                </div>
+                <div class="span4">
+                  <h2>About me</h2>
+                  <ul class="fl-ul-list-style-none">
+                    <li><strong>Date of birth: </strong> <?= $this->user->dateOfBirth->format('Y/m/d'); ?> // visibility: <?= $this->user->dateOfBirthVisibility; ?></li>
+                    <li><strong>Email: </strong> <?= $this->user->email; ?> // visibility: <?= $this->user->emailVisibility; ?></li>
+                    <li><strong>Phone: </strong> <?= $this->user->getUserInfo()->getPhone(); ?></li>
+                    <li><strong>Country: </strong> adf</li>
+                    <li><strong>Skype: </strong> <?= $this->user->getUserInfo()->getSkype(); ?></li>
+                    <li><strong>IM: </strong> <?= $this->user->getUserInfo()->getIm(); ?></li>
+                    <li><strong>Website: </strong> <?= $this->user->getUserInfo()->getWebsite(); ?></li>
+                  </ul>
+                </div>
+              </div>
 
-  
-    <?= $this->user->getUserInfo()->getIm(); ?>
-    <?= $this->user->getUserInfo()->getSkype(); ?>
-    <?= $this->user->getUserInfo()->getWebsite(); ?>
-    <?= $this->user->getUserInfo()->getPhone(); ?>
-   
-   
-   </div>
+              <div class="fl_thick_divider"></div>
 
-</div>
+              <div class="fl-cnt-100">
+                <p><?= $this->user->description; ?></p>
+              </div>
+
+              <div class="fl_thin_divider"></div>
+
+              <div class="fl-cnt-100">
+                <h2>Field of interest</h2>
+                <p>fad fa d,f daf ad f,ad f,ad, fa, df,as df,a</p>
+              </div>
+
+              <div class="fl_thin_divider"></div>
+
+              <div class="fl-cnt-100">
+                <h2>My projects</h2>
+                <ul class="fl-ul-list-style-none fl-member-projects">
+                    <li>
+                      <div class="fl-member-project">
+                        <div class="inner-similar">
+                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
+                          <h4>Web for Pub in Africa</h4>
+                          <div class="progress fl-similar-project-bar">
+                            <div class="fl_level1 fl-similar-bar"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    
+                    <li>
+                      <div class="fl-member-project">
+                        <div class="inner-similar">
+                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
+                          <h4>Web for Pub in Africa</h4>
+                          <div class="progress fl-similar-project-bar">
+                            <div class="fl_level1 fl-similar-bar"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="fl-member-project">
+                        <div class="inner-similar">
+                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
+                          <h4>Web for Pub in Africa</h4>
+                          <div class="progress fl-similar-project-bar">
+                            <div class="fl_level1 fl-similar-bar"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="fl-member-project">
+                        <div class="inner-similar">
+                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
+                          <h4>Web for Pub in Africa</h4>
+                          <div class="progress fl-similar-project-bar">
+                            <div class="fl_level1 fl-similar-bar"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="fl-member-project">
+                        <div class="inner-similar">
+                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
+                          <h4>Web for Pub in Africa</h4>
+                          <div class="progress fl-similar-project-bar">
+                            <div class="fl_level1 fl-similar-bar"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <p class="fl-more"><a href="" title="">more details</a></p>
+              </div>
+
+              <div class="fl_thin_divider"></div>
+
+              <div class="fl-cnt-100">
+                <h2>My Collaborations</h2>
+                <ul class="fl-ul-list-style-none fl-member-projects">
+                    <li>
+                      <div class="fl-member-project">
+                        <div class="inner-similar">
+                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
+                          <h4>Web for Pub in Africa</h4>
+                          <div class="progress fl-similar-project-bar">
+                            <div class="fl_level1 fl-similar-bar"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    
+                    <li>
+                      <div class="fl-member-project">
+                        <div class="inner-similar">
+                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
+                          <h4>Web for Pub in Africa</h4>
+                          <div class="progress fl-similar-project-bar">
+                            <div class="fl_level1 fl-similar-bar"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="fl-member-project">
+                        <div class="inner-similar">
+                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
+                          <h4>Web for Pub in Africa</h4>
+                          <div class="progress fl-similar-project-bar">
+                            <div class="fl_level1 fl-similar-bar"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="fl-member-project">
+                        <div class="inner-similar">
+                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
+                          <h4>Web for Pub in Africa</h4>
+                          <div class="progress fl-similar-project-bar">
+                            <div class="fl_level1 fl-similar-bar"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="fl-member-project">
+                        <div class="inner-similar">
+                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
+                          <h4>Web for Pub in Africa</h4>
+                          <div class="progress fl-similar-project-bar">
+                            <div class="fl_level1 fl-similar-bar"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <p class="fl-more"><a href="" title="">more details</a></p>
+              </div>
+
+            </div>
+
+            <div class="span4 fl-sidebar">
+              <div class="inner">
+                <h3 class="fl-sidebar-h3-first">My Skills</h3>
+                <div class="fl_thick_divider"></div>
+                
+                <div class="fl-cnt-100">
+                  <div class="fl-skill">
+                    <div class="fl-skill-img40">
+                      <img src="slepice/img/role40x40_4.png" alt="" title="" />
+                    </div>
+                    <div class="fl-skill-text">
+                      <div class="fl-skill-text-role">
+                        Leader
+                      </div>
+                      <div class="fl-skill-text-tags">
+                        afdaw fd af fa dw 
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="fl-skill">
+                    <div class="fl-skill-img40">
+                      <img src="slepice/img/role40x40_4.png" alt="" title="" />
+                    </div>
+                    <div class="fl-skill-text">
+                      <div class="fl-skill-text-role">
+                        Leader
+                      </div>
+                      <div class="fl-skill-text-tags">
+                        afdaw fd af fa dw 
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="fl-skill">
+                    <div class="fl-skill-img40">
+                      <img src="slepice/img/role40x40_4.png" alt="" title="" />
+                    </div>
+                    <div class="fl-skill-text">
+                      <div class="fl-skill-text-role">
+                        Leader
+                      </div>
+                      <div class="fl-skill-text-tags">
+                        afdaw fd af fa dw 
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="fl_thin_divider"></div>
+
+                  <div class="fl-skill">
+                    <div class="fl-skill-img40">
+                      <img src="slepice/img/role40x40_4.png" alt="" title="" />
+                    </div>
+                    <div class="fl-skill-text">
+                      <div class="fl-skill-text-role">
+                        Leader
+                      </div>
+                      <div class="fl-skill-text-tags">
+                        afdaw fd af fa dw 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                
+                <h3 class="fl-sidebar">Projects I like</h3>
+                <div class="fl_thick_divider"></div>
+                <div class="fl-cnt-100">
+                  <ul class="fl-similar-projects-thumbnails">
+                    <li>
+                      <div class="fl-similar">
+                        <div class="inner-similar">
+                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
+                          <h4>Web for Pub in Africa</h4>
+                          <div class="progress fl-similar-project-bar">
+                            <div class="fl_level1 fl-similar-bar"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    
+                    <li>
+                      <div class="fl-similar">
+                        <div class="inner-similar">
+                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
+                          <h4>Web for Pub in Africa</h4>
+                          <div class="progress fl-similar-project-bar">
+                            <div class="fl_level1 fl-similar-bar"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="fl-similar">
+                        <div class="inner-similar">
+                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
+                          <h4>Web for Pub in Africa</h4>
+                          <div class="progress fl-similar-project-bar">
+                            <div class="fl_level1 fl-similar-bar"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="fl-similar">
+                        <div class="inner-similar">
+                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
+                          <h4>Web for Pub in Africa</h4>
+                          <div class="progress fl-similar-project-bar">
+                            <div class="fl_level1 fl-similar-bar"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+       </div>
+
 
 
 <?php };?>

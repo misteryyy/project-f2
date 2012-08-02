@@ -1,11 +1,11 @@
-<h3>Browse Members <?php echo $this->query;?></h3>
+<h2>Browse Members <?php echo $this->query;?></h2>
 
 <div class="fl-cnt-100"> 
 <?php echo $this->form; ?>
 </div>
 
 
-<div class="fl-cnt-100">
+<div class="fl-cnt-100 hide">
 <form id="form-browse-members" action="<?= $this->form->getAction(); ?>" method="<?= $this->form->getMethod(); ?>">
 <?= $this->form->q; ?>
 <?= $this->form->specific_role; ?>
@@ -14,11 +14,13 @@
 </form>
 </div>
 
-<hr>
+<div class="fl-cnt-100">
 <!-- Project Displaying -->
-<?php if (count($this->paginator)) {?>
 <?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
+</div>
 
+<div class="fl-cnt-100">
+<?php if (count($this->paginator)) {?>
 	<ul class="thumbnails">
     <?php foreach ($this->paginator as $user){ ?> 
        
@@ -56,7 +58,10 @@
     <?php } ?>
   </ul>			
   <?php } else echo "There are no users."?>
-
+    
+</div>
+    
+<script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/choose-role.js')?>"></script>        
 <script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-member-project-1.0.0.js')?>"></script> 
        
     	
