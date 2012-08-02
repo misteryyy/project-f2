@@ -99,6 +99,18 @@ class Project extends \App\Entity\Project implements \Doctrine\ORM\Proxy\Proxy
         return parent::setLevel($level);
     }
 
+    public function getViewCount()
+    {
+        $this->__load();
+        return parent::getViewCount();
+    }
+
+    public function setViewCount($viewCount)
+    {
+        $this->__load();
+        return parent::setViewCount($viewCount);
+    }
+
     public function addTag($tag)
     {
         $this->__load();
@@ -151,6 +163,12 @@ class Project extends \App\Entity\Project implements \Doctrine\ORM\Proxy\Proxy
     {
         $this->__load();
         return parent::getTags();
+    }
+
+    public function getProjectUrl()
+    {
+        $this->__load();
+        return parent::getProjectUrl();
     }
 
     public function getCountFollowers()
