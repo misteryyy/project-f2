@@ -24,12 +24,13 @@
 	 <?= $this->action('menu-debug', 'menu', 'project');  ?>  
 	  	
 	 <?php // creator menu
-    	if($this->isCreator){
-    		echo '<div class="well">';
-    		echo $this->action('menu-creator', 'menu', 'project',array("id" => $this->project->id));
-    		echo '</div>';
-    	}
-    	
+
+      if($this->isCreator){
+        echo '<div class="well">';
+        echo $this->action('menu-creator', 'menu', 'project',array("id" => $this->project->id));
+        echo '</div>';
+      } 
+
     	// collaborator widget
     	if($this->isCollaborator){
     		echo "Yes, you are collaborating in this project.";

@@ -4,17 +4,19 @@ $this->step = 7;
 echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $this->step,"project" => $this->project));
 ?>
 
-Level
-<hr>
+<h3 class="fl-edit-project-subsection">Your project is currently in <span class="fl-level-info">Level <?php echo $this->project->level;?></span></h3>
+<div class="fl-cnt-100">
 <?php echo $this->form;?>
+</div>
 
+<div class="fl_thick_divider"></div>
 
+<h3 class="fl-edit-project-subsection fl-top20">Tasks for <span class="fl-level-info">Level <?php echo $this->project->level;?></span></h3>
+<div class="fl-cnt-100">
+  <div id="alert-area"></div>
+</div>	
 
-<hr />
-<h3>Tasks <span class="badge badge-success">for level <?php echo $this->project->level;?></span></h3>
-<div id="alert-area"></div>	
-
-<h4>Create new task for current level : <?php echo $this->project->level;?></h4>
+<div class="fl-cnt-100">
 <!-- Form for creating new task -->
 <form id="form-create-task" class="well form-search" action="#" method="post" autocomplete="off">
 			<div class="control-group">
@@ -27,9 +29,9 @@ Level
 		<!-- cant change or add div, because its looking in the script for this-->
 		<input type="submit" class="btn btn-primary create"  name='submit' data-toggle="button" data-loading-text="processing..." value="create task" />						
     </form>
+</div>
 
     <!-- Add data-toggle="buttons-checkbox" for checkbox style toggling on btn-group -->
- 	<hr>   
  	
  	<ol id="question_list">
 	<table id ="question_list" class="table">

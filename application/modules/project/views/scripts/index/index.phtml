@@ -2,6 +2,8 @@
 if(count ($this->project) > 0){ ?>
 
 <h2><?php echo $this->project->title?></h2>
+
+     
               <p class="fl_project_head_info"><i class="icon-user"></i> <a href="<?php echo $this->project->user->getProfileUrl();?>" title=""><?php echo $this->project->user->name?></a>, <i class="icon-folder-close"></i> <?php echo $this->project->category->name;?>, <i class="icon-time"></i> <?php echo $this->project->created->format('Y/m/d');?>,  
                  <span class="like"><i class="icon-thumbs-up"></i> 
                          <?php

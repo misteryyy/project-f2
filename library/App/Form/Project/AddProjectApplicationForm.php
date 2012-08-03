@@ -141,7 +141,7 @@ class AddProjectApplicationForm extends \Twitter_Bootstrap_Form_Horizontal
 		// Notification about level
 		$this->addElement('hidden', 'header', array(
 				'description' => '<div class="modal-header"><button type="button" class="close" data-dismiss="modal">×</button>
-				<h3>Application for level '.$this->project->level.'</h3></div>',
+				<h2>Application for level '.$this->project->level.'</h2></div>',
 				'ignore' => true,
 				'decorators' => array(
 						array('Description', array('escape'=>false, 'tag'=>'')),
@@ -150,7 +150,7 @@ class AddProjectApplicationForm extends \Twitter_Bootstrap_Form_Horizontal
 	
 		// Currently Logged Applicant
 		$this->addElement('hidden', 'logged_member', array(
-				'description' => '<div class="alert alert-info">Logged as: <strong>'.$this->member['name'].'</strong></div>',
+				'description' => '<div class="fl-cnt-100 fl-top10"><div class="alert alert-info">Logged as: <strong>'.$this->member['name'].'</strong></div></div>',
 				'ignore' => true,
 				'decorators' => array(
 						array('Description', array('escape'=>false, 'tag'=>'')),

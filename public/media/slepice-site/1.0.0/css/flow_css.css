@@ -268,6 +268,19 @@ h3 span{
   color: #000000;
 }
 
+h3.fl-edit-project-subsection{
+  font-size: 23px;
+  color: #000000;
+  text-shadow: none;
+  margin-bottom: 15px;
+}
+
+h3.fl-edit-project-subsection span{
+  color: #0089ca;
+  text-transform: none;
+  font-size: 23px;
+}
+
 h3.flobox-title{
   width: 100%;
   float: left;
@@ -2299,12 +2312,11 @@ tr.fl-user-banned:hover{
   padding-bottom: 5px;
 }
 
-
-
 .fl-browse-members-img{
   margin: 0 0 10px 0;
   border: 1px solid #ffffff;
 }
+
 
 @media (max-width: 767px) {
   #fl-container{
