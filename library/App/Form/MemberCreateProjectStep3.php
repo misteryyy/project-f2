@@ -133,9 +133,11 @@ $this->addElement('hidden', 'warning_survey', array(
 		for($i = 1;$i <= 5; $i++){
 			$addQuestion [] = "question_".$i;
 			
-			$this->addElement('text', 'question_'.$i, array(
-					'label' => 'Question '.$i,
+			$this->addElement('textarea', 'question_'.$i, array(
+					'label' => 'Question '.$i.': ',
 					'required' => false,
+					'rows' => 3,
+					'class' => 'span6',
 					'filters' => array('StringTrim'),
 					'validators' => array(array('StringLength', false, array(1,100)) )
 			));
@@ -147,26 +149,34 @@ $this->addElement('hidden', 'warning_survey', array(
 				array('legend' => 'Questions for project')
 		);
 
+
+		$this->addElement('button', 'previous', array(
+				'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
+				'label' => 'Previous step',
+				'class' => 'btn btn-info'
+		));
 		
-		
+		$this->addElement('button', 'reset', array(
+				'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
+				'label' => 'Reset',
+				'type' => 'reset',
+				'class' => 'btn'
+		));
 		
 		
 		// submit button
 		$this->addElement('submit','submit',array(
 				'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
-				'label' => "Continue",
+				'label' => "Next step",
 				'escape' => false,
+				'class' => 'btn btn-info'
 		));
 		 	 
-		$this->addElement('button', 'reset', array(
-				'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
-				'label' => 'Reset',
-				'type' => 'reset'
-		));
+		
 		 
 		// Action Section
 		$this->addDisplayGroup(
-				array('submit', 'reset'),
+				array('previous', 'reset', 'submit'),
 				'actions',
 				array(
 						'disableLoadDefaultDecorators' => true,
