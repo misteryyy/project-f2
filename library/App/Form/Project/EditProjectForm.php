@@ -17,7 +17,7 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 	{
 		// $this->setIsArray(true);
 		// $this->setElementsBelongTo('bootstrap'); // will make form array
-		$this->_addClassNames('well');
+		$this->_addClassNames('fl-form');
 		
 		$this->addElement('text', 'title', array(
 				'label' => 'Project Name',

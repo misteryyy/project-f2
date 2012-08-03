@@ -10,9 +10,13 @@ $this->sub_step = 2;
 echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" => $this->sub_step,"project" => $this->project));
 ?>
 
-<h3>Applications for LEVEL 1</h3>
-<hr>
+<h3 class="fl-edit-project-subsection fl-top20">Your project is currently in <span class="fl-level-info">Level 1</span></h3>
+
+<div class="fl-cnt-100">
   	<div id="alert-area"></div>
+</div>
+
+<div class="fl-cnt-100">
     <!-- Add data-toggle="buttons-checkbox" for checkbox style toggling on btn-group -->
     	 <div id="model_list">
     		<script id="model_list_template" type="text/x-handlebars-template">
@@ -57,6 +61,7 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
     		</table>	
 		</script>
 		
+</div>
 </div>
 
 <!-- modal deny form  -->
