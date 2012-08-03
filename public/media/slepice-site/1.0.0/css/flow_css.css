@@ -2317,6 +2317,15 @@ tr.fl-user-banned:hover{
   border: 1px solid #ffffff;
 }
 
+.fl-my-project-navigation{
+  background: #f8f8f8;
+  margin: 0 0 20px 0;
+}
+
+.fl-my-project-navigation ul{
+  margin: 0 0 0 0;
+}
+
 
 @media (max-width: 767px) {
   #fl-container{

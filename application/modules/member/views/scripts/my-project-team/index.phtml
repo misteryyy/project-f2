@@ -38,33 +38,27 @@ My Project People
 			<table class="table table-striped">
         	<thead>
     		<tr>
-    			<th>ID</th>
-				<th>Level</th>
-				<th>Member</th>
+    			<th>Member</th>
     			<th>Role</th>
-				<th>Description</th>	
-				<th>Applications</th>
+				<th>Description</th>
     			<th>Actions</th>
     		</tr>
     				</thead>
    				 <tbody>
 				{{#each this}}				
 				<tr>
-						<td>{{id}}</td>
-						<td>{{level}}</td>  
-						<td><a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a></td>	
+						<td><img src="" title="{{role_name}}" alt="{{role_name}} picture" class="fl-img"/> <a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a></td>	
 						<td>{{role_name}}</td>  
-						<td>
-							<form method="post" action="" class="form-search" data-question_id="{{id}}" id="form-edit-{{id}}">	
-								<input type="text" name="description" value="{{description}}"/>
+						<td class="save-description" id="{{id}}">
+							<form method="post" action="" class="form-search" data-question_id="{{id}}" id="form-edit-{{id}}">
+							  <div class="input-append">	
+								<input type="text" name="description" value="{{description}}"/><input  class="btn btn-info update" type="submit"  data-loading-text="processing..." value="edit" name="submit" />
+								</div>
 						 	</form>	
 						</td>  
-
-						<td>{{applications_count}}</td>  
-							<td class="actions" id="{{id}}">
-								<input  class="btn btn-success update" type="submit"  data-loading-text="processing..." value="edit" name="submit" />	
-  								<input  class="btn btn-danger delete" type="submit"  data-loading-text="processing..." value="delete" name="submit" />
-							</td>
+  						<td class="actions" id="{{id}}">
+							<input  class="btn btn-danger delete" type="submit"  data-loading-text="processing..." value="delete" name="submit" />
+						</td>
 				</tr>
 				<!-- modal  -->
 		    	<div class="modal hide" id="surveyModal-id-{{id}}">
@@ -107,8 +101,8 @@ My Project People
 				},
 				
 			bindEvents: function(){
-					this.config.modelList.on('click','td.actions input.delete',this.deleteModel); // edit question 
-					this.config.modelList.on('click','td.actions input.update',this.updateModel); // edit question 
+					this.config.modelList.on('click','td.actions input.delete',this.deleteModel); // delete  
+					this.config.modelList.on('click','td.save-description input.update',this.updateModel); // edit 
 								
 				},
 				

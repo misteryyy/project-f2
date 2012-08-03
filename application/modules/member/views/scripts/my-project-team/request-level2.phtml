@@ -24,10 +24,10 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 			<table class="table table-striped">
         	<thead>
     		<tr>
-    			<th>ID</th>
-				<th>Level</th>
+    			<th>Level</th>
+    			<th>Member</th>
     			<th>Date of application</th>
-				<th>Member</th>
+				
     			<th>Role</th>	
     			<th>Actions</th>
     		</tr>
@@ -35,16 +35,16 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
    				 <tbody>
 				{{#each this}}				
 				<tr>
-						<td>{{id}}</td>
-						<td>{{level}}</td>  
+						<td><span class="label label">{{level}}</span></td> 
+						<td><img src="" alt="" class="fl-img"/> <a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a></td> 
 						<td>{{created}}</td>
-						<td><a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a></td>
+						
 
 						<td>{{role_name}}</td>  
 						<td class="actions" id="{{id}}">
 							<a class="btn btn-info" data-toggle="modal" href="#surveyModal-id-{{id}}" >Survey</a>
 							<input  class="btn btn-success accept" type="submit"  data-loading-text="processing..." value="Accept" name="submit" />
-							<input  class="btn btn-success deny" type="submit"  data-loading-text="processing..." value="Deny" name="submit" />
+							<input  class="btn btn-danger deny" type="submit"  data-loading-text="processing..." value="Deny" name="submit" />
 						</td>
 				</tr>
 				<!-- modal  -->
@@ -68,9 +68,12 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 	<div class="modal hide" id="modal-form-deny">
 	<form id="form-deny" enctype="application/x-www-form-urlencoded" class=" form-horizontal" action="/member/my-project-team/ajax-request/id/<?php echo $this->project->id;?>/_method/deny" method="post">
 
-		<div class="modal-header"><button type="button" class="close" data-dismiss="modal">×</button>
-				<h3>Please Explain the reason why you have denied the member.</h3></div>
-				<div class="modal-body">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h2>Please Explain the reason why you have denied the member.</h2>
+		</div>
+		
+		<div class="modal-body">
 			<fieldset id="fieldset-application_group">
 				<input type="hidden" name="application_id" value="" class="" id="application_id">              
 				<div class="control-group">
@@ -81,16 +84,13 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 					</div>
 				</div>
 			</fieldset>
-</div>
-<div class="modal-footer">	
-                    
-<input type="submit" name="submit" id="submit" value="Confirm deny" class="btn btn-primary">
-<button name="reset" id="reset" type="reset" value="
-Reset" class="btn btn-primary">
-Reset</button>
- <a href="#" class="btn" data-dismiss="modal">Close</a>
-        		 </div>
-       </form>	
+		</div>
+		<div class="modal-footer">	
+            <input type="submit" name="submit" id="submit" value="Confirm deny" class="btn btn-primary" />
+			<button name="reset" id="reset" type="reset" value="Reset" class="btn btn-primary">Reset</button>
+ 			<a href="#" class="btn" data-dismiss="modal">Close</a>
+        </div>
+      </form>	
     </div>
    
 	
