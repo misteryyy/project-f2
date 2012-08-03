@@ -89,9 +89,34 @@
 
 <div class="fl-cnt-100">
 <?php if (count($this->paginator)) {?>
-	<ul class="thumbnails">
+	<ul class="fl-browse-members">
     <?php foreach ($this->paginator as $user){ ?> 
        
+        <li>
+          <div class="fl-cnt-95">
+            <div class="inner5">
+              <h4><?php echo $user->name?></h4>
+
+              <div class="fl-cnt-100">
+                <a href="<?php echo $user->getProfileUrl();?>"><img src="/storage/users/<?php echo $user->getProfilePicture()?>" alt="<?php echo $user->getName(); ?>">
+                 </a> 
+              </div>
+
+              <div class="fl-cnt-100">
+                <div class="fl-peopleilike-details">
+                  <strong>Self-assigned roles:</strong><br />
+                  <img src="slepice/img/role40x40_4.png" alt="" title="" />
+                  <img src="slepice/img/role40x40_4.png" alt="" title="" />
+                  <img src="slepice/img/role40x40_4.png" alt="" title="" />
+                  <img src="slepice/img/role40x40_4.png" alt="" title="" />
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </li>
+
+
         <li class="span3 fl-thumbnail-frame">
                   <div class="thumbnail">
                    <a href="<?php echo $user->getProfileUrl();?>"> 
