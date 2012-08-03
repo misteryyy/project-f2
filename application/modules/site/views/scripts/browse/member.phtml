@@ -94,21 +94,63 @@
        
         <li>
           <div class="fl-cnt-95">
-            <div class="inner5">
-              <h4><?php echo $user->name?></h4>
-
+            <div class="inner">
+              
               <div class="fl-cnt-100">
-                <a href="<?php echo $user->getProfileUrl();?>"><img src="/storage/users/<?php echo $user->getProfilePicture()?>" alt="<?php echo $user->getName(); ?>">
+                <a href="<?php echo $user->getProfileUrl();?>"><img src="/storage/users/<?php echo $user->getProfilePicture()?>" alt="<?php echo $user->getName(); ?>" class="fl-browse-members-img"/>
                  </a> 
               </div>
 
               <div class="fl-cnt-100">
-                <div class="fl-peopleilike-details">
+                <h4><?php echo $user->name?></h4>
+                <div class="fl-cnt-100 fl-bottom10">
+                  <p class="info">
+                         <span class="followers"><i class="icon-eye-open"></i> <strong class="follower-count"><?php echo $user->getCountFriendsWithMe();?></strong> followers</span>
+                         <span class="like"><i class="icon-thumbs-up"></i> 
+                         <?php
+                         // like dislike solution 
+                         if(!$user->isFriendWithMe($this->loggedMember)) {
+             ?> <a href="" title="" class="like-member" id="<?php echo $user->id;?>" >Like</a>
+             <?php } else { ?>
+                            <a href="" title="" class="like-member" id="<?php echo $user->id;?>" >Dislike</a>
+                         <?php } ?>
+                         </span>
+                       </p>
+                </div>
+              </div>
+
+              <div class="fl-cnt-100">
+                <div class="fl-roles-detail">
                   <strong>Self-assigned roles:</strong><br />
-                  <img src="slepice/img/role40x40_4.png" alt="" title="" />
-                  <img src="slepice/img/role40x40_4.png" alt="" title="" />
-                  <img src="slepice/img/role40x40_4.png" alt="" title="" />
-                  <img src="slepice/img/role40x40_4.png" alt="" title="" />
+                  <img src="/media/slepice-site/1.0.0/img/role_starter.png" alt="role starter icon" />
+                  <img src="/media/slepice-site/1.0.0/img/role_starter.png" alt="role starter icon" />
+                  <img src="/media/slepice-site/1.0.0/img/role_starter.png" alt="role starter icon" />
+                  <img src="/media/slepice-site/1.0.0/img/role_starter.png" alt="role starter icon" />
+                  <img src="/media/slepice-site/1.0.0/img/role_starter.png" alt="role starter icon" />
+                </div>
+              </div>
+
+              <?php 
+              // PROJECT ROLES
+              $specRoles = $user->getSpecificRoles(); 
+              if(count($specRoles) > 0){?>
+              <div class="fl-cnt-100">
+                <div class="fl-roles-detail">
+                  <strong>Project roles:</strong><br />
+                  <?php foreach ($specRoles as $r){?>     
+                  <img src="/media/slepice-site/1.0.0/img/role_<?php echo $r->name;?>.png" alt="<?php echo $r->name;?> icon" title="<?php echo $r->name;?>" />
+                             </div>                 
+                        <?php } ?> 
+                </div>
+              </div>
+              <?php } 
+              // END PROJECT ROLES
+              ?>
+
+              <div class="fl-cnt-100">
+                <div class="fl-roles-detail">
+                  <strong>Earned roles:</strong><br />
+                  <img src="/media/slepice-site/1.0.0/img/role_starter.png" alt="role starter icon" />
                 </div>
               </div>
 
@@ -116,38 +158,6 @@
           </div>
         </li>
 
-
-        <li class="span3 fl-thumbnail-frame">
-                  <div class="thumbnail">
-                   <a href="<?php echo $user->getProfileUrl();?>"> 
-                     <img src="/storage/users/<?php echo $user->getProfilePicture()?>" alt="<?php echo $user->getName(); ?>">
-            		 </a>      
-                     <h3><?php echo $user->name?></h3>
-                     <div class="fl-cnt-100">
-                       <span class="author"><i class="icon-user"></i> <?php echo $user->name?></span>
-                       <p class="info">
-                         <span class="followers"><i class="icon-eye-open"></i><strong class="follower-count"><?php echo $user->getCountFriendsWithMe();?></strong> followers</span>
-                         <span class="like"><i class="icon-thumbs-up"></i> 
-                         <?php
-                         // like dislike solution 
-                         if(!$user->isFriendWithMe($this->loggedMember)) {
-						 ?> <a href="" title="" class="like-member" id="<?php echo $user->id;?>" >Like</a>
-						 <?php } else { ?>
-                            <a href="" title="" class="like-member" id="<?php echo $user->id;?>" >Dislike</a>
-                         <?php } ?>
-                         </span>
-                       </p>
-                        <div class="fl_project_thumb_roles">
-                         	<?php $specRoles = $user->getSpecificRoles();
-								foreach ($specRoles as $r){?>     
-                       		 	 <div class="fl_project_thumb_role">
-		                           	<img src="/media/slepice-site/1.0.0/img/role_<?php echo $r->name;?>.png" alt="<?php echo $r->name;?>" title="<?php echo $r->name;?>" />
-		                         </div>                	
-                      	<?php } ?>     
-                       </div>         
-                     </div>
-                  </div>   
-                </li>
     <?php } ?>
   </ul>			
   <?php } else echo "There are no users."?>
