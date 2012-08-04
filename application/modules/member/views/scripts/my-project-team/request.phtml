@@ -117,10 +117,13 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 						   		}
 						   ?>
 						</select>
-						<input type="text" name="description" placeholder="write detailed specification for position" class="input-xlarge" id="input-role-create"/><input type="submit" class="btn btn-primary create"  name='submit' data-toggle="button" data-loading-text="processing..." value="create new position" />
+						<input type="text" name="description" placeholder="write detailed specification for position" class="input-xlarge" id="input-role-create"/>
+						<input type="submit" class="btn btn-primary create" id="submit-create" name='submit' data-toggle="button" data-loading-text="processing..." value="create new position" />
 					</div>
 				</div>
 			</div>
+					<input type="submit" class="btn btn-primary create" id="submit-create" name='submit' data-toggle="button" data-loading-text="processing..." value="create new position" />
+			
 		<!-- cant change or add div, because its looking in the script for this-->
 								
     </form>
@@ -228,7 +231,8 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 				this.config.modelList.on('click','td.actions input.deny',this.showModaldenyMember); // edit question 			
 				this.config.formCreate.on('click','input.create',this.createData); // create new question
 				this.config.formDeny.on('click','input.deny',this.denyMember); // create new question
-				
+
+				console.log(this.config.formCreate);
 				// events for level 2
 				this.config.modelListL2.on('click','td.actions input.delete',this.deleteRole); // delete role 
 				this.config.modelListL2.on('click','td.actions input.accept',this.acceptMember); // edit question 	
