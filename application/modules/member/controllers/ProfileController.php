@@ -9,6 +9,7 @@ class Member_ProfileController extends  Boilerplate_Controller_Action_Abstract
 		parent::init();
 		// check project existance for user and project
 		$this->facadeFlobox = new \App\Facade\Member\FloBoxFacade($this->_em);
+        $this->_helper->_layout->setLayout('member-profile');
 	}
 
     /**

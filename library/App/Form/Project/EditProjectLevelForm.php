@@ -32,6 +32,8 @@ $warning_message =  <<<EOT
 EOT;
 // dont move with the EOT, it has to be on the first position
 	
+		$this->_addClassNames('fl-form');
+
 		$this->addElement('hidden', 'warning', array(
 				'description' => $warning_message,
 				'ignore' => true,

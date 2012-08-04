@@ -8,6 +8,8 @@ class AddPollForm extends \Twitter_Bootstrap_Form_Horizontal
 	{	
 		// ajax call
 		$this->addAttribs(array("id" => "form-poll-create"));
+		$this->_addClassNames('fl-form');
+		
 
 		 $warning_message =  <<<EOT
 	<div class="alert alert-info">

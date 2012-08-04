@@ -183,6 +183,10 @@ body{
   display: none;
 }
 
+.fl-margin0{
+  margin: 0px;
+}
+
 h1{
   position: relative;
   overflow: hidden;
@@ -264,6 +268,34 @@ h3 span{
   color: #000000;
 }
 
+h3.fl-edit-project-subsection{
+  font-size: 23px;
+  color: #000000;
+  text-shadow: none;
+  margin-bottom: 15px;
+}
+
+h3.fl-edit-project-subsection span{
+  color: #0089ca;
+  text-transform: none;
+  font-size: 23px;
+}
+
+h3.flobox-title{
+  width: 100%;
+  float: left;
+  color: #000000;
+  font-size: 22px;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+h3.flobox-title span.flobox-title-info{
+  color: #b2b2b2;
+  font-size: 13px;
+  margin-left: 20px;
+  text-shadow: none;
+}
+
 .fl-uppercase{
   text-transform: uppercase;
 }
@@ -290,6 +322,13 @@ h4{
   color: #000000;
   font-weight: bold;
   margin: 4px 0 4px 0;
+}
+
+.fl-browse-members li h4{
+  font-size: 16px;
+  font-weight: normal;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  margin: 0px 0 2px 0;
 }
 
 h4.fl-project-name{
@@ -878,6 +917,71 @@ p.fl-list-project-queue{
   height: 200px;
 }
 
+
+.fl-filtr-form{
+  padding: 10px;
+  background-color: #f5f5f5;
+  border: 1px solid #eee;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.fl-filtr-search, .fl-filtr-search input{
+  margin: 0px;
+  text-align: right;
+}
+
+.fl-filtr-search input[type="submit"]{
+  padding-left: 20px;
+  padding-right: 20px; 
+}
+
+#fl-filtr-form-choose-role{
+  list-style: none;
+  width: 100%;
+  float: left;
+  margin: 0px;
+  padding: 0px;
+}
+
+#fl-filtr-form-choose-role li, #fl-filtr-form-choose-role li:hover{
+  width: 20%;
+  float: left;
+  text-align: center;
+  padding: 5px 0 5px 0;
+}
+
+#fl-filtr-form-choose-role li:hover, #fl-filtr-form-choose-role li.selected{
+  background: #c5d3ec;
+  cursor: pointer;
+}
+
+.fl-filtr-form-project-level, .fl-filtr-form-passion-level{
+  width: 30%;
+  margin: 10px 10px 0 20px;
+  float: left;
+}
+
+.fl-filtr-form-passion-level{
+  margin: 10px 0 0 10px;
+}
+
+.fl-filtr-form-sign{
+  width: 100%;
+  float: left;
+}
+
+.fl-filtr-form-level{
+  width: 100%;
+  float: left;
+}
+
+
 .fl-choosing-roles-top, .fl-choosing-roles-middle, .fl-choosing-roles-bottom{
   width: 100%;
   float: left;
@@ -1309,6 +1413,27 @@ p.fl-publishing-title{
   border: 3px solid #ffffff;
 }
 
+.fl-flobox-detail{
+  background: #f7f7f7;
+  padding-bottom: 10px;
+  margin: 20px 0 0 0;
+}
+
+.fl-flobox-typedetail-label-warning, .fl-flobox-typedetail-label-info, .fl-flobox-typedetail-label-important{
+  width: 100%;
+  float: left;
+  margin: 10px 30px 10px 30px;
+  color: #f89406;
+}
+
+.fl-flobox-typedetail-label-info{
+  color: #3a87ad;
+}
+
+.fl-flobox-typedetail-label-important{
+  color: #b94a48;
+}
+
 /* DASHBORAD */
 .fl-dashboard{
   margin: 20px 5% 20px 5%;
@@ -1562,7 +1687,7 @@ tr.fl-user-banned:hover{
   font-weight: bold;
 }
 
-.fl-peopleilike-details{
+.fl-peopleilike-details, .fl-roles-detail{
   border-left: 2px solid #e2e2e2;
   padding: 2px 0 2px 10px;
   margin: 2px 0 2px 0;
@@ -1571,7 +1696,11 @@ tr.fl-user-banned:hover{
   font-size: 11px;
 }
 
-.fl-peopleilike-details img{
+.fl-roles-detail{
+  padding: 2px 0 2px 6px;
+}
+
+.fl-peopleilike-details img, .fl-roles-detail img{
   width: 30px;
 }
 
@@ -2156,6 +2285,10 @@ tr.fl-user-banned:hover{
   width: 90%;
 }
 
+.fl-width91{
+  width: 91%;
+}
+
 .fl-width95{
   width: 95%;
 }
@@ -2164,8 +2297,34 @@ tr.fl-user-banned:hover{
   width: 100%;
 }
 
+.fl-browse-members{
+  list-style: none;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
 
+.fl-browse-members li{
+  width: 18%;
+  float: left;
+  background: #f4f4f4;
+  margin: 0 1% 10px 1%;
+  padding-bottom: 5px;
+}
 
+.fl-browse-members-img{
+  margin: 0 0 10px 0;
+  border: 1px solid #ffffff;
+}
+
+.fl-my-project-navigation{
+  background: #f8f8f8;
+  margin: 0 0 20px 0;
+}
+
+.fl-my-project-navigation ul{
+  margin: 0 0 0 0;
+}
 
 
 @media (max-width: 767px) {

@@ -69,7 +69,7 @@
                      <h3><?php echo $project->title; ?></h3>
                      
                      <div class="fl-cnt-100">
-                       <span class="author"><i class="icon-user"></i> <a href="" title=""><?php echo $project->user->name?></a></span>
+                       <span class="author"><i class="icon-user"></i> <a href="/member/profile/index/id/<?php echo $project->user->id?>" title="<?php echo $project->user->name?>'s profile"><?php echo $project->user->name?></a></span>
                        <div class="fl-cnt-100 fl-height-60">
                          <p><?php echo shorter($project->pitchSentence, 100); ?></p>
                        </div>

@@ -16,6 +16,8 @@
 		break;
 	}
   ?>
+  <div class="fl-cnt-100 fl-my-project-navigation">
+  	<div class="inner-5">
   <ul class="nav nav-pills">
   <li class="<?php echo($allow[1] == true ? "active" : "disable" );?>"> <a href="/member/my-project-team/index/id/<?php echo $this->project->id?>">My team</a></li>
   <li class="<?php echo($allow[2] == true ? "active" : "disable" );?>"><a href="/member/my-project-team/request/id/<?php echo $this->project->id?>">Requests for roles</a></li>
@@ -23,3 +25,5 @@
   <li class="<?php echo($allow[4] == true ? "active" : "disable" );?>"><a href="/member/my-project-team/setting/id/<?php echo $this->project->id?>">Setting {disable widget for collaboration}</a></li>
   
   </ul>
+</div>
+</div>
