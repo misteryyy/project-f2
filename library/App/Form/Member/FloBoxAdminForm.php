@@ -6,6 +6,14 @@ class FloBoxAdminForm extends \Twitter_Bootstrap_Form_Horizontal
 {
    public function init()
     {
+
+    $this->addElement('text', 'title', array(
+                'label' => 'Title:',
+                'required' => true,
+                'class' => 'span8',
+                'filters'    => array('StringTrim'),
+                //'description' => "Title. Max 50 letters.",
+                'validators' => array( array('StringLength', false, array(0,100) ))));
   
     // type of FloMessage
     $options = array( 
@@ -16,32 +24,27 @@ class FloBoxAdminForm extends \Twitter_Bootstrap_Form_Horizontal
 
     // Country Select Box
     $this->addElement('select','type', array(
-    		'label' => 'Type', 
+    		'label' => 'Type:', 
     		'multiOptions' => $options
     	
     		));
     
-    $this->addElement('text', 'typeDetail', array(
-    		'label' => 'Specicify your idea',
+    $this->addElement('textarea', 'typeDetail', array(
+    		'label' => 'Specicify your idea:',
     		'required' => true,
+            'class' => 'span8',
+            'rows' => 3,
     		'filters'    => array('StringTrim'),
     		'validators' => array(array('StringLength', false, array(1,100)) )
     ));
      
     
-    $this->addElement('text', 'title', array(
-    			'label' => 'Title',
+    $this->addElement('textarea', 'message', array(
+    			'label' => 'Text:',
     			'required' => true,
-    			'filters'    => array('StringTrim'),
-    			'description' => "Title. Max 50 letters.",
-    			'validators' => array( array('StringLength', false, array(0,100) ))));
-
- 	$this->addElement('textarea', 'message', array(
-    			'label' => 'Text',
-    			'required' => true,
-    			'filters'    => array('StringTrim'),
-    			'rows' => 5, 'cols' => 60,
-    			'dimension' => 6,
+    			'filters' => array('StringTrim'),
+    			'rows' => 5,
+                'class' => 'span8',
     			'description' => "Describe your idea in max 250 letters.",
     			'validators' => array( array('StringLength', false, array(0,250) ))
     	));
@@ -64,13 +67,7 @@ class FloBoxAdminForm extends \Twitter_Bootstrap_Form_Horizontal
         	 * ORDERING IN FIELDSET
         	 */
          	$this->addDisplayGroup(
-        			array('type',
-        				  'typeDetail',
-        					'title',
-        					'message',
-        					'submit'
-        					), 
-         			'FLO~Box Idea',	array('legend' => 'FLO~Box Admin')
+        			array('title','type','typeDetail','message','submit'), 'FLO~Box Idea',	array('legend' => 'FLO~Box Admin')
         	);
        
     
