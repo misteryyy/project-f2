@@ -1038,7 +1038,7 @@ p.fl-list-project-queue{
   float: left;
   height: 100%;
   background: #ebf2f8;
-  width: 49.8%;
+  width: 49.65%;
   border-right: 1px solid #cfd6dc;
   border-left: 1px solid #cfd6dc;
   -webkit-box-shadow: inset 1px 0 0 #dae1e7;
@@ -1069,7 +1069,7 @@ p.fl-list-project-queue{
 }
 
 .fl-choosing-roles-top-right{
-  width: 49.8%;
+  width: 49.65%;
   background: #ebf2f8;
   border-top: 1px solid #cfd6dc;
   border-right: 1px solid #cfd6dc;
@@ -1092,7 +1092,7 @@ p.fl-list-project-queue{
 }
 
 .fl-choosing-roles-bottom-right{
-  width: 49.8%;
+  width: 49.65%;
   background: #ebf2f8;
   border-bottom: 1px solid #cfd6dc;
   border-right: 1px solid #cfd6dc;
@@ -2365,4 +2365,42 @@ tr.fl-user-banned:hover{
 
 }
 
+.form-horizontal .control-group > label {
+    float: left;
+    width: 100%;
+    padding-top: 0;
+    text-align: left;
+    text-indent: 5px;
+    font-weight: bold;
+    color: #3e499c;
+}
 
+.form-horizontal .controls{
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+.form-horizontal .form-actions {
+  padding: 20px 20px 20px 0;
+  text-align: right;
+}
+
+.form-horizontal .form-actions button[type="reset"]{
+  margin-left: 30px;
+}
+
+
+.help-block{
+  padding: 10px;
+  background-color: #f3e2c1;
+  border: 1px solid #d7bb85;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px #d7bb85;
+  -moz-box-shadow: inset 0 1px 1px #d7bb85;
+  box-shadow: inset 0 1px 1px #d7bb85;
+  color: #916613;
+}

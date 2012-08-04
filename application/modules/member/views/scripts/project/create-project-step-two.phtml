@@ -38,9 +38,9 @@ echo $this->partial('project/create-project-navigation.phtml',array("step" => $t
 </div>
 </fieldset>
 <div class="form-actions">
+    <a class="btn btn-info" href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-one'),null,true)?>">Previous step</a>
+    <a class="btn btn-info" id="button-continue" href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-three'),null,true)?>">Next step</a>
 
-<a class="btn btn-large btn-primary" href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-one'),null,true)?>">Previous</a>
-<a class="btn btn-large btn-primary" id="button-continue" href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-three'),null,true)?>">Next</a>
 </div>
 </form>
 </div>

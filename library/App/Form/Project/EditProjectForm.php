@@ -20,11 +20,12 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 		$this->_addClassNames('fl-form');
 		
 		$this->addElement('text', 'title', array(
-				'label' => 'Project Name',
+				'label' => 'Project name:',
 				'required' => true,
+				'class' => 'span8',
 				'filters' => array('StringTrim'),
 				//'errorMessages' => array("You have to have project title. You can use just letters and numbers"),
-				'description' => "name of your project",
+				//'description' => "name of your project", //nepotřebujem description u tohodle
 				'validators' => array( array('alnum',false, array("allowWhiteSpace" => true)), array('StringLength', false, array(1,100)) )
 		));
 	
@@ -32,7 +33,8 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 		
 		// Priority
 		$this->addElement('select','category', array(
-				'label' => 'Category',
+				'label' => 'Category:',
+				'class' => 'span3',
 				'multiOptions' => $this->categories,	 
 		));
 		
@@ -41,66 +43,68 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 		}
 		// Passion Bar
 		$this->addElement('select','priority', array(
-				'label' => 'Priority',
-				'description' => "how serious you are with this project?",
+				'label' => 'How serious you are with this project?',
+				'description' => "Explanation what the passion is for!",
+				'class' => 'span3',
 				'multiOptions' => $priority
 		));
 			
 		
-		$this->addElement('text', 'pitch', array(
-				'label' => 'Sentence Pitch',
-				'class' => 'span6',
+		$this->addElement('textarea', 'pitch', array(
+				'label' => 'Sentence pitch:',
+				'class' => 'span8',
+				'rows' => '3',
 				'required' => true,
 				'errorMessages' => array("You should have sentence pitch which will simply describe your goal."),
-				'description' => "description",
+				'description' => "What is sentence pitch!",
 				'filters' => array('StringTrim'),
 				'validators' => array("NotEmpty"),
 		));
 
 		// TinyMCE configuration in the phtml file
 		$this->addElement('textarea', 'content', array(
-				'label' => 'Description',
+				'label' => 'Description:',
 				'required' => true,
 				'errorMessages' => array("You should have descripton of your project."),
 				'description' => "description",
 				'filters' => array('StringTrim'),
-				'class' => 'span6',
+				'class' => 'span8',
 				'validators' =>	array( array("NotEmpty"), array('StringLength', false, array(1,250) )),
 				'disableLoadDefaultDecorators' => true,
 		));
 		
 		$this->addElement('textarea', 'plan', array(
-				'label' => 'plans',
-				'class' => 'span6',
-				'rows' => '3',
+				'label' => 'Plans:',
+				'class' => 'span8',
+				'rows' => '4',
 				'required' => false,
 				'filters' => array('StringTrim'),
 				'description' => "description",
 		));
 		
 		$this->addElement('textarea', 'issue', array(
-				'label' => 'issues',
-				'class' => 'span6',
-				'rows' => '3',
+				'label' => 'Issues:',
+				'class' => 'span8',
+				'rows' => '4',
 				'required' => false,
 				'filters' => array('StringTrim'),
 				'description' => "description",
 		));
 		
 		$this->addElement('textarea', 'lesson', array(
-				'label' => 'lessons',
-				'class' => 'span6',
-				'rows' => '3',
+				'label' => 'Lessons learned:',
+				'class' => 'span8',
+				'rows' => '4',
 				'required' => false,
 				'filters' => array('StringTrim'),
 				'description' => "description",
 		));
 		
 		$this->addElement('text', 'project_tags', array(
-				'label' => 'Tags',
+				'label' => 'Tags:',
 				'required' => false,
+				'class' => 'span8',
 				'filters'    => array (array('StringTrim'), array("StringToLower")),
-				//	'errorMessages' => array("The date should be int format"),
 				'description' => "design, performance, ... ",
 				'filters' => array('StringTrim'),
 				'validators' => array( array('StringLength', false, array(0,250) ),

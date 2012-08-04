@@ -1,4 +1,4 @@
-  <h2 class="fl-bottom20">My collaborations</h2>
+<h2 class="fl-bottom20">My collaborations</h2>
 
 <?php 
 // The main project navigation
@@ -7,7 +7,7 @@ echo $this->partial('my-collaboration/my-collaboration-navigation.phtml',array("
 ?>
 
 
-
+<div class="fl-cnt-100">
 <?php 
 if(count ($this->applications) > 0){ ?>
 
@@ -61,6 +61,5 @@ if(count ($this->applications) > 0){ ?>
 	</tbody>
 	</table>
 	<?php
-}else{	echo "No applications"; } ?>
-
-</div>		
+}else{	echo "No denied applications"; } ?>
+</div>
