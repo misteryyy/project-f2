@@ -6,6 +6,7 @@ $this->step = 3;
 echo $this->partial('my-collaboration/my-collaboration-navigation.phtml',array("step" => $this->step));
 ?>
 
+<div class="fl-cnt-100">
 <?php 
 if(count ($this->applications) > 0){ ?>
 
@@ -52,6 +53,6 @@ if(count ($this->applications) > 0){ ?>
 	</tbody>
 	</table>
 <?php
-}else{	echo "No applications";  } ?>
+}else{	echo "You have no sent applications";  } ?>
 
 </div>	

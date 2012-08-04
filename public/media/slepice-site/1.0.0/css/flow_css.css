@@ -2365,4 +2365,19 @@ tr.fl-user-banned:hover{
 
 }
 
+.form-horizontal .control-group > label {
+    float: left;
+    width: 100%;
+    padding-top: 0;
+    text-align: left;
+    text-indent: 5px;
+    font-weight: bold;
+    color: #3e499c;
+}
 
+.form-horizontal .controls{
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+}

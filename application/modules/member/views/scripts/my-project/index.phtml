@@ -11,49 +11,18 @@ if(count ($this->projects) > 0){
                       <div class="inner-5">
                         <a href="/project/index/index/id/<?php echo $project->id?>" title="Public profile page"><img src="/storage/projects/<?php echo $project->dir?>/<?php echo $project->getPicture("small");?>" alt="Project picture" /></a>
 
-<?php switch($project->level){
-  case '1': ?>
-                     <div class="fl-level">
-                        <div class="progress fl-small-bar">
-                          <div class="fl_level1"></div>
+                        <div class="fl-level">
+                        <?php 
+                        // Display Current Level
+                        $array[1] = array('fl_level1','bar','bar');
+                        $array[2] = array('fl_level2','fl_level2','bar');
+                        $array[3] = array('fl_level3','fl_level3','fl_level3');
+                        foreach($array[$project->level] as $c){ ?>
+                                            <div class="progress fl-small-bar">
+                                                  <div class="<?php echo $c?>"></div>
+                                            </div>
+                        <?php } ?>
                         </div>
-                        <div class="progress fl-small-bar">
-                          <div class="bar"></div>
-                        </div>
-                        <div class="progress fl-small-bar">
-                          <div class="bar"></div>
-                        </div>
-                      </div>
-<?php ; break;
-  case '2': ?>
-
-                      <div class="fl-level">
-                        <div class="progress fl-small-bar">
-                          <div class="fl_level2"></div>
-                        </div>
-                        <div class="progress fl-small-bar">
-                          <div class="fl_level2"></div>
-                        </div>
-                        <div class="progress fl-small-bar">
-                          <div class="bar"></div>
-                        </div>
-                      </div>
-<?php ; break;
-  case '3': ?>
-
-                      <div class="fl-level">
-                        <div class="progress fl-small-bar">
-                          <div class="fl_level3"></div>
-                        </div>
-                        <div class="progress fl-small-bar">
-                          <div class="fl_level3"></div>
-                        </div>
-                        <div class="progress fl-small-bar">
-                          <div class="fl_level3"></div>
-                        </div>
-                      </div>
-<?php ;
-}?>
 
                       </div>
                     </div>
@@ -80,7 +49,7 @@ if(count ($this->projects) > 0){
 								}
 		                    	// if level 3 = have no idea what to display or not
 		                    	foreach ($freePositions as $r){
-		                    		echo '<img src="/media/slepice-site/1.0.0/img/role_'.$r.'.png" alt="'.$r.'" title="'.$r.'" />';
+		                    		echo '<img src="/media/slepice-site/1.0.0/img/role_'.$r.'.png" alt="'.$r.'" title="'.$r.'" /> ';
 		                   		} 
                     	?>
                       	<p class="fl-list-project-queue"><strong>

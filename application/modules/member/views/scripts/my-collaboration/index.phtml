@@ -17,10 +17,20 @@ if(count ($this->applications) > 0){
                   <div class="fl-cnt-20">
                     <div class="fl-project-thumb">
                       <div class="inner-5">
-                        <a href="/project/index/index/id/<?php echo $project->id;?>" title=""><img src="/storage/projects/<?php echo $project->dir?>/<?php echo $project->getPicture("small");?>" alt="Project picture" /></a>
-                        <div class="progress fl-similar-project-bar">
-                          <div class="fl_level<?php echo $a->level;?> fl-similar-bar"></div>
+                        <a href="/project/index/index/id/<?php echo $project->id;?>" title="Public profile of project <?php echo $project->title?>"><img src="/storage/projects/<?php echo $project->dir?>/<?php echo $project->getPicture("small");?>" alt="Project picture" /></a>
+                        <div class="fl-level">
+                        <?php 
+                        // Display Current Level
+                        $array[1] = array('fl_level1','bar','bar');
+                        $array[2] = array('fl_level2','fl_level2','bar');
+                        $array[3] = array('fl_level3','fl_level3','fl_level3');
+                        foreach($array[$project->level] as $c){ ?>
+                                            <div class="progress fl-small-bar">
+                                                  <div class="<?php echo $c?>"></div>
+                                            </div>
+                        <?php } ?>
                         </div>
+                      
                       </div>
                     </div>
                   </div>
@@ -57,11 +67,11 @@ if(count ($this->applications) > 0){
                   </div>
                   <div class="fl-cnt-20">
                     <ul class="nav nav-pills nav-stacked fl-collaborations-nav">
-                      <li><a href="/project/index/update/id/<?php echo $project->id?>" title="">Updates</a></li>
-                      <li><a href="/project/index/project-board/id/<?php echo $project->id?>" title="">Project board</a></li>
-                      <li><a href="/project/index/team/id/<?php echo $project->id?>" title="">Team</a></li>
-                      <li><a href="#surveyModal-id-<?php echo $a->id;?>" title="" data-toggle="modal">Project survey</a></li>
-                      <li><a href="" title="">Comments</a></li>
+                      <li><a href="/project/index/update/id/<?php echo $project->id?>" title="Updates of this project">Updates</a></li>
+                      <li><a href="/project/index/project-board/id/<?php echo $project->id?>" title="Project board">Project board</a></li>
+                      <li><a href="/project/index/team/id/<?php echo $project->id?>" title="Team of this project">Team</a></li>
+                      <li><a href="#surveyModal-id-<?php echo $a->id;?>" title="Project survey" data-toggle="modal">Project survey</a></li>
+                      <li><a href="/project/index/comment/id/<?php echo $project->id?>" title="Comments for this project">Comments</a></li>
                     </ul>
                   </div>
                 </div>
