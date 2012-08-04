@@ -1038,7 +1038,7 @@ p.fl-list-project-queue{
   float: left;
   height: 100%;
   background: #ebf2f8;
-  width: 49.8%;
+  width: 49.65%;
   border-right: 1px solid #cfd6dc;
   border-left: 1px solid #cfd6dc;
   -webkit-box-shadow: inset 1px 0 0 #dae1e7;
@@ -1069,7 +1069,7 @@ p.fl-list-project-queue{
 }
 
 .fl-choosing-roles-top-right{
-  width: 49.8%;
+  width: 49.65%;
   background: #ebf2f8;
   border-top: 1px solid #cfd6dc;
   border-right: 1px solid #cfd6dc;
@@ -1092,7 +1092,7 @@ p.fl-list-project-queue{
 }
 
 .fl-choosing-roles-bottom-right{
-  width: 49.8%;
+  width: 49.65%;
   background: #ebf2f8;
   border-bottom: 1px solid #cfd6dc;
   border-right: 1px solid #cfd6dc;
