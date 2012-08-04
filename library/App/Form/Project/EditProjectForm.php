@@ -25,7 +25,7 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 				'class' => 'span8',
 				'filters' => array('StringTrim'),
 				//'errorMessages' => array("You have to have project title. You can use just letters and numbers"),
-				'description' => "name of your project",
+				//'description' => "name of your project", //nepotřebujem description u tohodle
 				'validators' => array( array('alnum',false, array("allowWhiteSpace" => true)), array('StringLength', false, array(1,100)) )
 		));
 	
@@ -34,6 +34,7 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 		// Priority
 		$this->addElement('select','category', array(
 				'label' => 'Category:',
+				'class' => 'span3',
 				'multiOptions' => $this->categories,	 
 		));
 		
@@ -42,8 +43,9 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 		}
 		// Passion Bar
 		$this->addElement('select','priority', array(
-				'label' => 'Passion:',
-				'description' => "How serious you are with this project?",
+				'label' => 'How serious you are with this project?',
+				'description' => "Explanation what the passion is for!",
+				'class' => 'span3',
 				'multiOptions' => $priority
 		));
 			
@@ -54,7 +56,7 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 				'rows' => '3',
 				'required' => true,
 				'errorMessages' => array("You should have sentence pitch which will simply describe your goal."),
-				'description' => "description",
+				'description' => "What is sentence pitch!",
 				'filters' => array('StringTrim'),
 				'validators' => array("NotEmpty"),
 		));
@@ -103,7 +105,6 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 				'required' => false,
 				'class' => 'span8',
 				'filters'    => array (array('StringTrim'), array("StringToLower")),
-				//	'errorMessages' => array("The date should be int format"),
 				'description' => "design, performance, ... ",
 				'filters' => array('StringTrim'),
 				'validators' => array( array('StringLength', false, array(0,250) ),

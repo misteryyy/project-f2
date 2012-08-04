@@ -6,9 +6,16 @@ class MemberCreateProjectStep3 extends \Twitter_Bootstrap_Form_Horizontal
 {
 	public function init()
 	{		
-		
+		$this->_addClassNames('fl-form');
 		$this->setAttrib("id", "form-step-3");
 		
+		$this->addElement('hidden', 'title_roles', array(
+			'description' => '<h3 class="fl-bottom10">Your role(s) in this project:</h3>',
+			'ignore' => true,
+			'decorators' => array(array('Description', array('escape'=>false, 'tag'=>'')),
+		),
+		));
+
 		$arrayRoles = array(
 				array("name" => UserRole::MEMBER_ROLE_STARTER, 
 					 "description" => UserRole::MEMBER_ROLE_STARTER
@@ -76,14 +83,18 @@ class MemberCreateProjectStep3 extends \Twitter_Bootstrap_Form_Horizontal
 								)			
 				)
 		);
+
+
 		 
 $warning_message =  <<<EOT
-	<div class="alert alert-info">
+	<div class="fl-cnt-100">
+	  <div class="alert alert-info">
 		<span class="label label-info">Info</span>
 		Description what is role widget for. Description what is role widget for. Description what is role widget for. 
 		Description what is role widget for. Description what is role widget for. Description what is role widget for. 
 		Description what is role widget for. Description what is role widget for. Description what is role widget for. 
 		Description what is role widget for. Description what is role widget for. Description what is role widget for. 
+	  </div>
 	</div>
 EOT;
 	
@@ -109,13 +120,22 @@ EOT;
 				array('legend' => 'Role Widget Disable')
 		);
 
+		$this->addElement('hidden', 'title_survey', array(
+			'description' => '<h3 class="fl-bottom10">Questions for project applicants:</h3>',
+			'ignore' => true,
+			'decorators' => array(array('Description', array('escape'=>false, 'tag'=>'')),
+		),
+		));
+
 
 
 $warning_message =  <<<EOT
-	<div class="alert alert-info">
+	<div class="fl-cnt-100">
+	  <div class="alert alert-info">
 		<span class="label label-info">Info</span>
 		What is survey for.What is survey for.What is survey for.What is survey for.What is survey for.What is survey for.
 		What is survey for.What is survey for.What is survey for.What is survey for.What is survey for.What is survey for.
+	  </div>
 	</div>
 EOT;
 
@@ -134,10 +154,10 @@ $this->addElement('hidden', 'warning_survey', array(
 			$addQuestion [] = "question_".$i;
 			
 			$this->addElement('textarea', 'question_'.$i, array(
-					'label' => 'Question '.$i.': ',
+					'label' => 'Question #'.$i.': ',
 					'required' => false,
-					'rows' => 3,
-					'class' => 'span6',
+					'rows' => 2,
+					'class' => 'span8',
 					'filters' => array('StringTrim'),
 					'validators' => array(array('StringLength', false, array(1,100)) )
 			));
