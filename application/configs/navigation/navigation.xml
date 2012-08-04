@@ -49,9 +49,7 @@
               
                   <dashboard>
                     <label>Member Dashboard </label>
-    				<module>member</module>
-            		<controller>dashboard</controller>
-            		<action>index</action>                   
+    			<uri>/member/dashboard</uri>                
                    	<resource>member</resource>
                    	<pages>
 						<flobox>

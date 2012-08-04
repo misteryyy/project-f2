@@ -2,10 +2,6 @@
 <config>
     <nav>
      	
-        <member>
-            <label>Member</label>
-            <uri>/member/</uri>
-            <pages>
                   <dashboard>
                     <label>Member Dashboard </label>
     				<module>member</module>
@@ -44,6 +40,21 @@
             					<controller>my-collaboration</controller>
             				<action>index</action>   
 						</my-collaboration>
+						
+						
+						<my-friends>
+							<label>People I Like</label>
+								<module>member</module>
+            					<controller>my-favourite</controller>
+            				<action>member</action>   
+						</my-friends>
+						
+						<my-favourite-projects>
+							<label>My Favourite Projects</label>
+								<module>member</module>
+            					<controller>my-favourite</controller>
+            				<action>project</action>   
+						</my-favourite-projects>
 						
 						<create-project-one>
 						      <label>Create Project</label>
@@ -119,8 +130,7 @@
 						</member-picture>
         			</pages>  
         			</profile-setting>
-            </pages>
-        </member>
+        
  
     </nav>
 </config>

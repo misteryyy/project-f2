@@ -57,9 +57,10 @@ class UserLog
 		$this->type = $type;
 	}
 
-	public function __construct($message,$type = self::TYPE_SYSTEM){
+	public function __construct($message,$type = self::TYPE_SYSTEM,$icon="info"){
     	$this->message = $message;
     	$this->type = $type;
+    	$this->icon = $icon;
 		$this->created = new \DateTime("now");	
     }
     

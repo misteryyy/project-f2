@@ -476,6 +476,49 @@ class TeamFacade {
 	
 
 	/*
+	 *
+	* Return applications for the project
+	*/
+	public function findApplicationsCount($user_id,$project_id,$options = array()){
+			
+		$project = $this->em->getRepository ('\App\Entity\Project')->findOneBy(array("id" => $project_id,"user" => $user_id));
+		if(!$project){
+			throw new \Exception("Can't find this project for this user.");
+		}
+	
+		$stmt = 'SELECT COUNT(a.id) FROM App\Entity\ProjectApplication a WHERE a.project = ?1';
+	
+		if(isset($options['state'])){
+			// select just new application
+			if( $options['state'] == \App\Entity\ProjectApplication::APPLICATION_NEW)
+				$stmt .= ' AND a.state = 0 '; //. \App\Entity\ProjectApplication::APPLICATION_NEW;
+	
+		}
+	
+		// filter level
+		if(isset($options['level'])){
+			// select application for level
+			if( $options['level'] == 1 )
+				$stmt .= ' AND a.level = 1 '; //. \App\Entity\ProjectApplication::APPLICATION_NEW;
+	
+			if( $options['level'] == 2 )
+				$stmt .= ' AND a.level = 2 '; //. \App\Entity\ProjectApplication::APPLICATION_NEW;
+				
+		}
+	
+		$stmt .= 'ORDER BY a.level, a.created, a.roleName DESC';
+	
+		$query = $this->em->createQuery($stmt);
+		$query->setParameter(1, $project_id);
+	
+		$result = $query->getOneOrNullResult();
+		return $result[1];
+	
+	}
+	
+	
+	
+	/*
 	 * 
 	 * Return applications for the project
 	*/

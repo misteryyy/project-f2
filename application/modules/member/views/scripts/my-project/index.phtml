@@ -83,7 +83,12 @@ if(count ($this->projects) > 0){
 		                    		echo '<img src="/media/slepice-site/1.0.0/img/role_'.$r.'.png" alt="'.$r.'" title="'.$r.'" />';
 		                   		} 
                     	?>
-                      	<p class="fl-list-project-queue"><strong>6 members</strong> are waiting</p>
+                      	<p class="fl-list-project-queue"><strong>
+                      	  <?php 
+                      	  $facadeProject = new \App\Facade\Project\TeamFacade($this->em);
+		                 echo $facadeProject->findApplicationsCount($project->user->id, $project->id,array('state'=>\App\Entity\ProjectApplication::APPLICATION_NEW )); 
+		                  ?>
+                      	members</strong> are waiting</p>
                         
                         </div>
                         <div class="fl-list-project-roles-my">

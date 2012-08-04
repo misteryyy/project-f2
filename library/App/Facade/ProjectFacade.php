@@ -43,15 +43,18 @@ class ProjectFacade {
 			
 			$qb = $this->em->createQueryBuilder('u');
 			$stmt = "SELECT p FROM App\Entity\Project p JOIN p.user u WHERE ". $qb->expr()->in('u.id', $ids);	
-			$stmt .= ' ORDER BY p.created,p.title ASC';	
-		}		
-	
+		} else {
+			$stmt = "SELECT p FROM App\Entity\Project p JOIN p.user u WHERE u.id != $user_id ";
+		}
+		
+		$stmt .= ' ORDER BY p.created,p.title ASC';
 		$query = $this->em->createQuery($stmt);
 			
 		$paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
 		$iterator = $paginator->getIterator();
 		$adapter = new \Zend_Paginator_Adapter_Iterator($iterator);
 		return new \Zend_Paginator($adapter);
+		
 	}
 
 	

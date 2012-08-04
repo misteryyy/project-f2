@@ -54,7 +54,8 @@
        <?php if(Zend_Auth::getInstance()->hasIdentity() ) {?>
        <ul class="nav nav-pills fl-user-menu">
             <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><img src="/media/slepice-site/1.0.0/img/member_img_menupic.jpg" alt="" class="fl-menu-img"/>  <?= $this->member['email']?> <b class="caret"></b></a>
+          
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><img src="<?php echo $this->member['profile_picture_50']?>" width="25" height="25" alt="" class="fl-menu-img"/>  <?= $this->member['email']?> <b class="caret"></b></a>
               <ul class="dropdown-menu fl-width100">
                 <li><a href="/member/dashboard" title="My dashboard">My dashboard</a></li>
                 <li><a href="/member/profile/index/id/<?= $this->member['id']?>" title="My profile">My profile</a></li>
