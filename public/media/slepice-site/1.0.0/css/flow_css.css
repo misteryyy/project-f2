@@ -941,6 +941,16 @@ p.fl-list-project-queue{
   padding-right: 20px; 
 }
 
+.fl-filtr-sa-roles, .fl-filtr-pr-roles, .fl-filtr-er-roles{
+  margin: 10px 0 0 0;
+  float: left;
+}
+
+.fl-filtr-pr-roles{
+  margin: 10px 12% 0 12%;
+}
+
+
 #fl-filtr-form-choose-role{
   list-style: none;
   width: 100%;
@@ -1419,18 +1429,19 @@ p.fl-publishing-title{
   margin: 20px 0 0 0;
 }
 
-.fl-flobox-typedetail-label-warning, .fl-flobox-typedetail-label-info, .fl-flobox-typedetail-label-important{
+p.fl-flobox-typedetail-label-warning, p.fl-flobox-typedetail-label-info, p.fl-flobox-typedetail-label-important{
   width: 100%;
   float: left;
   margin: 10px 30px 10px 30px;
   color: #f89406;
+  font-size: 12px;
 }
 
-.fl-flobox-typedetail-label-info{
+p.fl-flobox-typedetail-label-info{
   color: #3a87ad;
 }
 
-.fl-flobox-typedetail-label-important{
+p.fl-flobox-typedetail-label-important{
   color: #b94a48;
 }
 

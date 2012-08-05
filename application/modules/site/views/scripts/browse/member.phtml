@@ -21,56 +21,78 @@
         <legend class="hide">Browse projects: </legend>
 
         <div class="fl-width100">
-            <label for="" class="hide">Keyword:</label>
-            <div class="input-append fl-filtr-search">
+            
+            <div class="input-append fl-filtr-search"><label for="" class="hide">Keyword:</label>
               <input type="text" name="" id="" class="fl-width91"/><input type="submit" class="btn btn-info fl-width30" value="search" />
             </div>
           </div>
 
         <div class="fl-width100">
           <div class="hide">
-            <label for="role_starter">
-              <input type="checkbox" name="role_starter" id="role_starter" /> starter
+            <label for="sa_role_starter">
+              <input type="checkbox" name="role_starter" id="sa_role_starter" /> starter
             </label>
-            <label for="role_leader">
-              <input type="checkbox" name="role_leader" id="role_leader" /> leader
+            <label for="sa_role_leader">
+              <input type="checkbox" name="role_leader" id="sa_role_leader" /> leader
             </label>
-            <label for="role_grower">
-              <input type="checkbox" name="role_grower" id="role_grower" /> grower
+            <label for="sa_role_grower">
+              <input type="checkbox" name="role_grower" id="sa_role_grower" /> grower
             </label>
-            <label for="role_builder">
-              <input type="checkbox" name="role_builder" id="role_builder" /> builder
+            <label for="sa_role_builder">
+              <input type="checkbox" name="role_builder" id="sa_role_builder" /> builder
             </label>
-            <label for="role_adviser">
-              <input type="checkbox" name="role_adviser" id="role_adviser" /> adviser
+            <label for="sa_role_adviser">
+              <input type="checkbox" name="role_adviser" id="sa_role_adviser" /> adviser
             </label>
           </div>
-          <div class="fl-width30 left fl-top10">
-            Self-assigned roles:
+          <div class="fl-width25 fl-filtr-sa-roles">
+            <strong>Self-assigned roles:</strong>
             <ul id="fl-filtr-form-choose-role">
-              <li><img src="/media/slepice-site/1.0.0/img/role_starter.png" id="role_starter" alt="role_starter" /></li>
-              <li><img src="/media/slepice-site/1.0.0/img/role_leader.png" id="role_leader" alt="role_leader" /></li>
-              <li><img src="/media/slepice-site/1.0.0/img/role_grower.png" id="role_grower" alt="role_grower" /></li>
-              <li><img src="/media/slepice-site/1.0.0/img/role_builder.png" id="role_builder" alt="role_builder" /></li>
-              <li><img src="/media/slepice-site/1.0.0/img/role_adviser.png" id="role_adviser" alt="role_adviser" /></li>
+              <li><img src="/media/slepice-site/1.0.0/img/role_starter.png" id="sa_role_starter" alt="role starter" /></li>
+              <li><img src="/media/slepice-site/1.0.0/img/role_leader.png" id="sa_role_leader" alt="role leader" /></li>
+              <li><img src="/media/slepice-site/1.0.0/img/role_grower.png" id="sa_role_grower" alt="role grower" /></li>
+              <li><img src="/media/slepice-site/1.0.0/img/role_builder.png" id="sa_role_builder" alt="role builder" /></li>
+              <li><img src="/media/slepice-site/1.0.0/img/role_adviser.png" id="sa_role_adviser" alt="role adviser" /></li>
             </ul>
           </div>
 
-          <div class="fl-width30 left fl-top10">
-            Project roles:
+          <div class="hide">
+            <label for="pr_role_starter">
+              <input type="checkbox" name="role_starter" id="pr_role_starter" /> starter
+            </label>
+            <label for="pr_role_leader">
+              <input type="checkbox" name="role_leader" id="pr_role_leader" /> leader
+            </label>
+            <label for="pr_role_grower">
+              <input type="checkbox" name="role_grower" id="pr_role_grower" /> grower
+            </label>
+            <label for="pr_role_builder">
+              <input type="checkbox" name="role_builder" id="pr_role_builder" /> builder
+            </label>
+            <label for="pr_role_adviser">
+              <input type="checkbox" name="role_adviser" id="pr_role_adviser" /> adviser
+            </label>
+          </div>
+          <div class="fl-width25 fl-filtr-pr-roles">
+            <strong>Project roles:</strong>
             <ul id="fl-filtr-form-choose-role">
-              <li><img src="/media/slepice-site/1.0.0/img/role_starter.png" id="role_starter" alt="role_starter" /></li>
-              <li><img src="/media/slepice-site/1.0.0/img/role_leader.png" id="role_leader" alt="role_leader" /></li>
-              <li><img src="/media/slepice-site/1.0.0/img/role_grower.png" id="role_grower" alt="role_grower" /></li>
-              <li><img src="/media/slepice-site/1.0.0/img/role_builder.png" id="role_builder" alt="role_builder" /></li>
-              <li><img src="/media/slepice-site/1.0.0/img/role_adviser.png" id="role_adviser" alt="role_adviser" /></li>
+              <li><img src="/media/slepice-site/1.0.0/img/role_starter.png" id="pr_role_starter" alt="role starter" /></li>
+              <li><img src="/media/slepice-site/1.0.0/img/role_leader.png" id="pr_role_leader" alt="role leader" /></li>
+              <li><img src="/media/slepice-site/1.0.0/img/role_grower.png" id="pr_role_grower" alt="role grower" /></li>
+              <li><img src="/media/slepice-site/1.0.0/img/role_builder.png" id="pr_role_builder" alt="role builder" /></li>
+              <li><img src="/media/slepice-site/1.0.0/img/role_adviser.png" id="pr_role_adviser" alt="role adviser" /></li>
             </ul>
           </div>
 
-          <div class="fl-width30 left fl-top10">
-            Earned roles:
+          <div class="hide">
+            <label for="er_role_earned">
+              <input type="checkbox" name="role_earned" id="er_role_earned" /> earned role
+            </label>
+          </div>
+          <div class="fl-width25 fl-filtr-er-roles">
+            <strong>Earned roles:</strong>
             <ul id="fl-filtr-form-choose-role">
-              <li><img src="/media/slepice-site/1.0.0/img/role_starter.png" id="role_starter" alt="role_starter" /></li>
+              <li><img src="/media/slepice-site/1.0.0/img/role_earned.png" id="er_role_earned" alt="role eaned" /></li>
             </ul>
           </div>
 

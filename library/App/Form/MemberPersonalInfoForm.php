@@ -6,12 +6,15 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
 {
    public function init()
     {
-      //  $this->setIsArray(true);
+       
+        $this->_addClassNames('fl-form');
+       //  $this->setIsArray(true);
        // $this->setElementsBelongTo('bootstrap'); // will make form array
        
     	$this->addElement('text', 'name', array(
-    			'label' => 'Name',
+    			'label' => 'Name:',
     			'required' => true,
+                'class' => 'span3',
     			'filters'    => array('StringTrim'),
     			//'errorMessages' => array("Your name can't be empty"),
     			//'placeholder' => "Your name or nickname",
@@ -21,22 +24,21 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
     	
     	//TODO DatePicker
     	$this->addElement('text', 'dateOfBirth', array(
-    			'label' => 'Date of birth',
+    			'label' => 'Date of birth:',
     			'placeholder'   => 'YYYY/MM/DD',
     			'required' => false,
+                'class' => 'span3',
     			'filters'    => array('StringTrim'),
-    		//	'errorMessages' => array("The date should be in format"),
-    			'description' => "example (1988/12/31) / YYYY/MM/DD",
+    		    //'errorMessages' => array("The date should be in format"),
+    			//'description' => "example (1988/12/31) / YYYY/MM/DD",
     			'validators' => array( array('Date',false,array('format' => 'yyyy/MM/dd'))
     					),    			 
     	));
     	
-    $this->addElement('checkbox','dateOfBirthVisibility',
-						array(
-						'label' => 'Hide my birthday data in profile',						
-						'checkedValue' => '1',
-						)
-						);
+        $this->addElement('checkbox','dateOfBirthVisibility', array(
+				'label' => 'Hide my birthday data in profile',						
+				'checkedValue' => '1'
+		));
     
     // Getting countries
     $locale = new \Zend_Locale('en_US');
@@ -45,16 +47,18 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
 
     // Country Select Box
     $this->addElement('select','country', array(
-    		'label' => 'Counry', 
+    		'label' => 'Country:', 
     		'value' => 'US',
+            'class' => 'span3',
     		'multiOptions' => $countries
     	
     		));
     
 
     	$this->addElement('text', 'phone', array(
-    			'label' => 'Phone',
+    			'label' => 'Phone:',
     			'required' => false,
+                'class' => 'span3',
     			'filters'    => array('StringTrim'),
     			//	'errorMessages' => array("The date should be in format"),
     			'description' => "Contact phone number in any format you want. Max 50 letters. ",
@@ -63,28 +67,31 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
     	
     	
     	$this->addElement('text', 'skype', array(
-    			'label' => 'Skype',
+    			'label' => 'Skype:',
     			'required' => false,
+                'class' => 'span3',
     			'filters'    => array('StringTrim'),
     			//	'errorMessages' => array("The date should be in format"),
-    			'description' => "Your skype name. Max 50 letters.",
+    			//'description' => "Your skype name. Max 50 letters.",
     			'validators' => array( array('StringLength', false, array(0,50) ))
     			 
     	));
     	
     	$this->addElement('text', 'im', array(
-    			'label' => 'IM',
+    			'label' => 'IM:',
     			'required' => false,
+                'class' => 'span3',
     			'filters'    => array('StringTrim'),
     			//	'errorMessages' => array("The date should be in format"),
-    			'description' => "Your IM messengers accounts. Max 50 letters.",
+    			'description' => "Your Instant Messengers accounts. Max 50 letters.",
     			'validators' => array( array('StringLength', false, array(0,50) ))
     	
     	));
     	
     	$this->addElement('text', 'website', array(
-    			'label' => 'Website(s)',
+    			'label' => 'Website(s):',
     			'required' => false,
+                'class' => 'span3',
     			'filters'    => array('StringTrim'),
     			//	'errorMessages' => array("The date should be in format"),
     			'description' => "Your websites. Max 100 letters.",
@@ -92,19 +99,21 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
     	));
     	
     	$this->addElement('textarea', 'description', array(
-    			'label' => 'Describe yourself',
+    			'label' => 'Describe yourself:',
     			'required' => false,
     			'filters'    => array('StringTrim'),
-    			'rows' => 5, 'cols' => 60,
-    			'dimension' => 6,
+    			'rows' => 5,
+                'class' => 'span8',
     			//	'errorMessages' => array("The date should be in format"),
     			'description' => "Who are you? Describe yourself in max 1000 letters.",
     			'validators' => array( array('StringLength', false, array(0,1000) ))
     	));
     	 
-    	$this->addElement('text', 'fieldOfInterestTag', array(
-    			'label' => 'Field of interests',
+    	$this->addElement('textarea', 'fieldOfInterestTag', array(
+    			'label' => 'Field of interests:  ',
     			'required' => false,
+                'class' => 'span8',
+                'rows' => 2,
     			'filters'    => array (array('StringTrim'), array("StringToLower")),
     			//	'errorMessages' => array("The date should be int format"),
     			'description' => "outsourcing, start ups, programming, ... ",
@@ -163,12 +172,13 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
          	$this->addElement('button', 'reset', array(
          			'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
          			'label'         => 'Reset',
-         			'type'          => 'reset'
+         			'type'          => 'reset',
+                    'class' => 'btn'
          	));
          	
          	// Action Section
         	$this->addDisplayGroup(
-        			array('submit', 'reset'),
+        			array('reset', 'submit'),
         			'actions',
         			array(
         					'disableLoadDefaultDecorators' => true,

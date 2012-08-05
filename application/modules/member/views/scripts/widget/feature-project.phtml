@@ -1,10 +1,10 @@
 <div class="fl-cnt-100 fl-bottom20">
-<h3 class="fl-uppercase fl-top30">Featured projects</h3>
-<div class="fl_thick_divider"></div>  
+
  
  <!-- Project Displaying -->
 <?php if (count($this->paginator)) {?>
-             <div class="fl_thick_divider"></div> 
+<h3 class="fl-uppercase fl-top30">Featured projects</h3>
+<div class="fl_thick_divider"></div>    
                 <ul class="fl-ul-list-style-none fl-member-projects">
                  <?php foreach ($this->paginator as $project){ ?>
         <li>
@@ -24,7 +24,7 @@
 						<?php } ?>
 						</div>                  
                           <h4><?php echo $project->title;?></h4>
-                          <p class="fl-thumb-p"><i class="icon-user"></i> <?php echo $project->user->name;?></p>
+                          <p class="fl-thumb-p"><i class="icon-user"></i> <a href="/member/profile/index/id/<?php echo $project->user->id;?>" title="<?php echo $project->user->name;?>'s profile"><?php echo $project->user->name;?></a></p>
                           
                         </div>
                       </div>
@@ -33,17 +33,4 @@
      			</ul>
 
   <?php } else echo "No feature projects.";?>     
-  </div>                    
-                
-<!--                 <div class="btn-group fl-how-many"> -->
-<!--                   <a class="btn" href="#">4</a> -->
-<!--                   <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a> -->
-<!--                   <ul class="dropdown-menu fl-dropdown-menu-numbers"> -->
-<!--                       <li><a href="#">4</a></li> -->
-<!--                       <li><a href="#">8</a></li> -->
-<!--                       <li><a href="#">12</a></li> -->
-<!--                       <li><a href="#">16</a></li> -->
-<!--                   </ul> -->
-<!--                 </div> -->
-<!--               </div> -->
-          
+  </div>                              

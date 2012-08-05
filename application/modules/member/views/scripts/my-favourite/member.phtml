@@ -1,7 +1,7 @@
-<h3>My favourite members</h3>
+<h2 class="fl-bottom20">People I like</h2>
 
 
-
+<div class="fl-cnt-100">
 <!-- Project Displaying -->
 <?php if (count($this->paginator)) {?>
 <?php if (count($this->paginator) > 1) echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
@@ -41,7 +41,7 @@
     <?php } ?>
  			</ul>
   <?php } else echo "There are no users."?>
-
+</div>
 <script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-member-project-1.0.0.js')?>"></script> 
        
     	

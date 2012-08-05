@@ -21,7 +21,10 @@ class ProjectSurveyAdminForm extends \Twitter_Bootstrap_Form_Horizontal
 	
 	
 	public function init()
-	{	$this->addAttribs(array("id" => "step")); // for jquery stepy plugin
+	{	
+
+		
+	    $this->addAttribs(array("id" => "step")); // for jquery stepy plugin
 		
 		// GENERATE QUESTIONS
 		foreach($this->questions as $index => $q){	
@@ -30,7 +33,7 @@ class ProjectSurveyAdminForm extends \Twitter_Bootstrap_Form_Horizontal
 					'label' => 'Your answer:',
 					'value' => $answerObj->answer, // displaing answers
 					'required' => false,
-					'class' => 'span6',
+					'class' => 'span8',
 					'rows' => 3,
 					'filters' => array('StringTrim'),
 					'description' => "max 250 letters",
