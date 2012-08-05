@@ -19,7 +19,7 @@ class UserRole
 	const MEMBER_ROLE_BUILDER = "builder";
 	const MEMBER_ROLE_GROWER = "grower";
 	const MEMBER_ROLE_LEADER = "leader";
-	const MEMBER_ROLE_ADVISER = "advisor";
+	const MEMBER_ROLE_ADVISER = "adviser";
 
     /**
      * @Id @Column(type="integer", name="id")
