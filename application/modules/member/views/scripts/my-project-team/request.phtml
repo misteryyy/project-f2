@@ -9,51 +9,40 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 $this->sub_step = 2;
 echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" => $this->sub_step,"project" => $this->project));
 ?>
-
-<h3 class="fl-edit-project-subsection">Applications for Level 1</h3>
-
 <div class="fl-cnt-100">
   	<div id="alert-area"></div>
   </div>
 
+<h3 class="fl-edit-project-subsection">Applications for Level 1</h3>
+
+
+
     <!-- Add data-toggle="buttons-checkbox" for checkbox style toggling on btn-group -->
-    	 <div id="model_list">
+<div id="model_list">
     		<script id="model_list_template" type="text/x-handlebars-template">
 			
-			<table class="table table-striped">
-        	<thead>
-    		<tr>
-    			<th>Member</th>
-    			<th>Date of application</th>
-				
-    			<th>Role</th>	
-    			<th>Actions</th>
-    		</tr>
-    				</thead>
-   				 <tbody>
-				{{#each this}}				
-				<tr>
-						<td><img src="" alt="user img" /> <a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a></td>
-						<td>{{created}}</td>
-						<td><img src="/media/slepice-site/1.0.0/img/role_{{role_name}}.png" alt="rolec {{role_name}} icon" title="{{role_name}}"/></td>  
-						<td class="actions" id="{{id}}">
-							<a class="btn btn-info" data-toggle="modal" href="#surveyModal-id-{{id}}" >Survey</a>
-							<input  class="btn btn-success accept" type="submit"  data-loading-text="processing..." value="Accept" name="submit" />
-							<input class="btn btn-danger deny" type="submit"  data-loading-text="processing..." name="submit" value="Deny" type="submit" />
-						</td>
-				</tr>
+				{{#each this}}	
+				<div class="fl-app-user">
+				  <div class="fl-app-text">
+				    <img src="" alt="user img" /> <a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a>
+				  </div>
+				  <div class="fl-app-role-img">
+				    <img src="/media/slepice-site/1.0.0/img/role_{{role_name}}.png" alt="{{role_name}} icon" />
+				  </div>
+				  <div class="fl-app-buttons text-right actions" id="{{id}}">
+				    <a class="btn btn-info" data-toggle="modal" href="#surveyModal-id-{{id}}" >Survey</a>
+					<input  class="btn btn-success accept" type="submit"  data-loading-text="processing..." value="Accept" name="submit" />
+					<input  class="btn btn-danger deny" type="submit"  data-loading-text="processing..." value="Deny" name="submit" />
+				  </div>
+				</div>
 				<!-- modal  -->
 		    	<div class="modal hide" id="surveyModal-id-{{id}}">
-				<div class="modal-body">
-    			<p>{{{content}}}</p>
-    			</div>
+					<div class="modal-body">
+	    			  <p>{{{content}}}</p>
+	    			</div>
     				<div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Close</a></div>
-    			</div>
-				
+    			</div>	
 				{{/each}}
-		    		 		
-   			 </tbody>
-    		</table>	
 		</script>
 		
 </div>
@@ -77,22 +66,18 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 						</div>
 					</fieldset>
 				</div>
-<div class="modal-footer">	
-	<input type="submit" name="submit" id="submit" value="Confirm deny" class="btn btn-primary deny">
-	<button name="reset" id="reset" type="reset" value="Reset" class="btn btn-primary">Reset</button>
-	<a href="#" class="btn" data-dismiss="modal">Close</a>
-</div>
+		<div class="modal-footer">	
+			<input type="submit" name="submit" id="submit" value="Confirm deny" class="btn btn-primary deny">
+			<button name="reset" id="reset" type="reset" value="Reset" class="btn btn-primary">Reset</button>
+			<a href="#" class="btn" data-dismiss="modal">Close</a>
+		</div>
    
     </form>	
-    </div>
-
-<hr>
-
+</div>
 
 <!-- Level 2 Requests -->
 <h3 class="fl-edit-project-subsection">Applications for Level 2</h3>
-<h3>Applications for LEVEL 2</h3>
-<div class="fl-cnt-100 fl-top10">
+<div class="fl-cnt-100">
   <div class="alert alert-info">
   	<span class="label label-info"><i class="icon-info-sign icon-white"></i></span> Now you know what you want. Create new position for members.
   </div>
@@ -104,92 +89,63 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 ?>
 
 <div class="fl-cnt-100">
-<!-- Form for creating new task -->
-<form id="form-create-role" class="well form-inline" action="#" method="post" autocomplete="off">
-			<div class="control-group">
-				<div class="controls">
-					<div class="input-append input-prepend">
-						<input type="hidden" name="level" value="2" />
-						<select id="role_name" class="" name="role_name">
-						   <?php 
-						   		foreach($roles as $r){
-						   			echo "<option label='$r' value='$r'>$r</option>";
-						   		}
-						   ?>
-						</select>
-						<input type="text" name="description" placeholder="write detailed specification for position" class="input-xlarge" id="input-role-create"/>
-						<input type="submit" class="btn btn-primary create" id="submit-create" name='submit' data-toggle="button" data-loading-text="processing..." value="create new position" />
-					</div>
-				</div>
-			</div>
-					<input type="submit" class="btn btn-primary create" id="submit-create" name='submit' data-toggle="button" data-loading-text="processing..." value="create new position" />
-			
-		<!-- cant change or add div, because its looking in the script for this-->
-								
-    </form>
+	<!-- Form for creating new task -->
+	<form id="form-create-role" class="well form-inline" action="#" method="post" autocomplete="off">
+	  <input type="hidden" name="level" value="2" />
+	  <div class="input-append">
+		<select id="role_name" class="" name="role_name">
+							   <?php 
+							   		foreach($roles as $r){
+							   			echo "<option label='$r' value='$r'>$r</option>";
+							   		}
+							   ?>
+		</select>
+		<input type="text" name="description" placeholder="write detailed specification for position" class="input-xlarge" id="input-role-create"/><input type="submit" class="btn btn-primary create" id="submit-create" name='submit' data-toggle="button" data-loading-text="processing..." value="create new position" />
+	  </div>
+	</form>
 </div>
 
-    <!-- Add data-toggle="buttons-checkbox" for checkbox style toggling on btn-group -->
-    	 <div id="model_list_level2">
-    	 
-    		<script id="model_list_template_level2" type="text/x-handlebars-template">
-			<?php // LEVEL 2 handling?>   
+<!-- LIST of new applications for LVL 2 -->
+<div id="model_list_level2">
+  <script id="model_list_template_level2" type="text/x-handlebars-template">
 		
-			<table class="table table-striped">
-        	<thead>
-    		<tr>
-    			<th>ID</th>
-				<th>Level</th>
-				<th>Member</th>
-    			<th>Role</th>
-				<th>Description</th>	
-    			<th>Actions</th>
-    		</tr>
-    				</thead>
-   				 <tbody>
-				{{#each this}}	
-				<tr>
-						<td>{{id}}</td>
-						<td>{{level}}</td>  
-						{{#if user_id}}
-  						<td><a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a></td>
-  						{{else}}
-    						<td>Empty</td>
-						{{/if}}
-						<td>{{role_name}} (waiting {{applications_count}})</td>  
-						<td>{{description}}</td>  
-				
-						<td class="actions" id="{{id}}">	
-							<input  class="btn btn-success delete" type="submit"  data-loading-text="processing..." value="Delete this position" name="submit" />
-						</td>
-				</tr>			
-				{{#each this.applications}}			
-					<tr class="sub-applications" >
-							<td>-- application {{id}}</td>
-							<td>{{level}}</td>  
-							<td>{{created}}</td>
-							<td><a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a></td>
+			{{#each this}}
+			<div class="fl-cnt-100">
+			<div class="fl-app-role">
+			  <div class="fl-app-text">
+			    <img src="/media/slepice-site/1.0.0/img/role_{{role_name}}.png" alt="{{role_name}} icon" /> <strong>{{role_name}}</strong> ~ {{description}} (waiting {{applications_count}})
+			  </div>
+			  <div class="fl-app-buttons actions" id="{{id}}">
+			    <input  class="btn btn-danger right delete" type="submit"  data-loading-text="processing..." value="Delete this position" name="submit" />
+			  </div>
+			</div>
 
-							<td>{{role_name}} ~ {{description}}</td>  
-							<td class="actions" id="{{id}}">
-								<a class="btn btn-info" data-toggle="modal" href="#surveyModal-id-{{id}}" >Survey</a>
-								<input  class="btn btn-success accept" type="submit"  data-loading-text="processing..." value="Accept" name="submit" />
-								<input  class="btn btn-success deny" type="submit"  data-loading-text="processing..." value="Deny" name="submit" />
-							</td>
-					</tr>
-						<!-- modal  -->
-		    			<div class="modal hide" id="surveyModal-id-{{id}}">
-							<div class="modal-body">
-    						<p>{{{content}}}</p>
-    						</div>
-    					<div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Close</a></div>
-    				</div>
-				{{/each}}			
+			{{#each this.applications}}
+			<div class="fl-app-user" id="model_list_level2">
+			  <div class="fl-app-text">
+			    <img src="" alt="user img" /> <a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a>
+			  </div>
+			  <div class="fl-app-buttons text-right actions" id="{{id}}">
+			    <a class="btn btn-info" data-toggle="modal" href="#surveyModal-id-{{id}}" >Survey</a>
+				<input  class="btn btn-success accept" type="submit"  data-loading-text="processing..." value="Accept" name="submit" />
+				<input  class="btn btn-danger deny" type="submit"  data-loading-text="processing..." value="Deny" name="submit" />
+			  </div>
+			</div>
+			<div class="fl_thin_divider"></div>
+			<!-- modal  -->
+		    	<div class="modal hide" id="surveyModal-id-{{id}}">
+				  <div class="modal-body">
+    			    <p>{{{content}}}</p>
+    			  </div>
+    			  <div class="modal-footer"> 
+    			    <a href="#" class="btn" data-dismiss="modal">Close</a>
+    			  </div>
+    			</div>
 
-				{{/each}}
-		    		 		
-   			 </tbody>
-    		</table>	
+			{{/each}}
+			</div>
+			{{/each}}
+
 		</script>		
 </div>
 
@@ -227,16 +183,18 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 				
 			bindEvents: function(){
 				// events for level 1
-				this.config.modelList.on('click','td.actions input.accept',this.acceptMember); // edit question 	
-				this.config.modelList.on('click','td.actions input.deny',this.showModaldenyMember); // edit question 			
-				this.config.formCreate.on('click','input.create',this.createData); // create new question
+				this.config.modelList.on('click','div.actions input.accept',this.acceptMember); // accept member 	
+				this.config.modelList.on('click','div.actions input.deny',this.showModaldenyMember); // show modal Deny 	
+
+				// events for level 2		
+				this.config.formCreate.on('click','input.create',this.createData); // create new position
 				this.config.formDeny.on('click','input.deny',this.denyMember); // create new question
 
 				console.log(this.config.formCreate);
-				// events for level 2
-				this.config.modelListL2.on('click','td.actions input.delete',this.deleteRole); // delete role 
-				this.config.modelListL2.on('click','td.actions input.accept',this.acceptMember); // edit question 	
-				this.config.modelListL2.on('click','td.actions input.deny',this.showModaldenyMember); // edit question 			
+				
+				this.config.modelListL2.on('click','div.actions input.delete',this.deleteRole); // delete role 
+				this.config.modelListL2.on('click','div.actions input.accept',this.acceptMember); // edit question 	
+				this.config.modelListL2.on('click','div.actions input.deny',this.showModaldenyMember); // edit question 			
 					
 				},
 				
@@ -303,7 +261,7 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 				createData:function(e){
 					var self = Models;
 					var but  = $(this).button('toggle');
-					var form = $(this).parent(); // directly this form
+					var form = $(this).parent().parent(); // directly this form
 
 					// validation
 					form.validate({
@@ -390,7 +348,7 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 			Models.init({
 				modelListTemplate: $('#model_list_template').html(),
 				modelList: $("#model_list"),
-				formCreate: $('#form-create-role'),
+				formCreate: $('#form-create-role .input-append'),
 				formDeny: $('#form-deny'),
 				// level 2 setting
 				modelListTemplateL2: $('#model_list_template_level2').html(),

@@ -55,9 +55,13 @@ if(count ($this->projects) > 0){
                       	<p class="fl-list-project-queue"><strong>
                       	  <?php 
                       	  $facadeProject = new \App\Facade\Project\TeamFacade($this->em);
-		                 echo $facadeProject->findApplicationsCount($project->user->id, $project->id,array('state'=>\App\Entity\ProjectApplication::APPLICATION_NEW )); 
-		                  ?>
-                      	members</strong> are waiting</p>
+
+                          // mnozny cislo
+                          if($facadeProject->findApplicationsCount($project->user->id, $project->id,array('state'=>\App\Entity\ProjectApplication::APPLICATION_NEW )) > 1) { $s = 's'; } else { $s = ''; }
+
+                          //pocet lidí
+		                      echo $facadeProject->findApplicationsCount($project->user->id, $project->id,array('state'=>\App\Entity\ProjectApplication::APPLICATION_NEW )); 
+		                  ?> </strong> application<?php echo $s; ?></p>
                         
                         </div>
                         <div class="fl-list-project-roles-my">
