@@ -18,38 +18,61 @@ $this->step = 5;
 echo $this->partial('/index/project-navigation.phtml',array("step" => $this->step,"project" => $this->project));
 ?>
 
-           </div>
-       </div>
-
-       <div class="row">
-            <div class="span7"> 
+     
 
 <h2>Team</h2>
 <div class="fl-cnt-100">
-  <div class="well">
-  <?php 	$creator = $this->project->user;
-  	 	$creatorRoles = $this->project->getCreatorRolesArray();
-   		pr($creatorRoles);
-  ?>
-  </div>
-</div>
-
-              <!-- POKUD PRIHLASENEJ UZIVATEL KOUKA DO TETO ZALOZKY A JE V TEAMU, TAK SE ZOBRAZI TADY -->
+	 <?php 
+	    // Is creator
+    	if($this->isCreator){ ?>
+    	 <!-- POKUD PRIHLASENEJ UZIVATEL KOUKA DO TETO ZALOZKY A JE COLLABORATOR, TAK SE ZOBRAZI TADY -->
                 <div class="fl-team-logged-user">
                   <div class="inner">
                     <div class="fl-team-logged-user-left">
-                      <img src="slepice/img/project_team_logged_user_img.jpg" alt="" title="" /> 
-                      <span class="fl-team-logged-user-name">Avis Galusha</span><br />
-                      <span class="fl-team-logged-user-since">~ team member since 23rd May 2012</span>
+                
+                         <a href="<?php echo $this->project->user->getProfileUrl();?>"><img src="/storage/users/<?php echo $this->project->user->getProfilePicture(50)?>" alt="<?php echo $this->project->user->getName(); ?>" />
+             
+                      <span class="fl-team-logged-user-name"><?php echo $this->project->user->name;?></span><br />
+                       <span class="fl-team-logged-user-since">~ you started this project <?php echo $this->project->created->format("d/m/Y");?></span>
+                 
+                    </div>
+                    <div class="fl-team-logged-user-right">
+                      <div class="fl-skill">
+                      <?php 
+                      foreach($this->project->getCreatorRolesArray() as $r){
+                      	echo  '<img src="/media/slepice-site/1.0.0/img/role_'.$r.'.png" alt="'.$r.'" title="'.$r.'" /> ';
+                      }
+                      ?> 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+    	<?php 
+	
+    	}
+     ?>
+
+
+          
+   <?php if($this->isCollaborator){ ?>
+    	<!-- POKUD PRIHLASENEJ UZIVATEL KOUKA DO TETO ZALOZKY A JE V TEAMU, TAK SE ZOBRAZI TADY -->
+                <div class="fl-team-logged-user">
+                  <div class="inner">
+                    <div class="fl-team-logged-user-left">
+                 
+                    <a href="<?php echo $this->yourRole->user->getProfileUrl();?>"><img src="/storage/users/<?php echo $this->yourRole->user->getProfilePicture(50)?>" alt="<?php echo $this->yourRole->user->getName(); ?>" />
+             
+                      <span class="fl-team-logged-user-name"><?php echo $this->yourRole->user->name;?></span><br />
+                      <span class="fl-team-logged-user-since">~ team member since <?php echo $this->yourRole->created->format("d/m/Y");?></span>
                     </div>
                     <div class="fl-team-logged-user-right">
                       <div class="fl-skill">
                         <div class="fl-skill-img40">
-                          <img src="/media/slepice-site/1.0.0/img/role_builder.png" alt="builder role icon"/>
+                          <img src="/media/slepice-site/1.0.0/img/role_<?php echo $this->yourRole->name;?>.png" alt="<?php echo $this->yourRole->name;?> role icon"/>
                         </div>
                         <div class="fl-skill-text">
                           <div class="fl-skill-text-roledescription40">
-                            <strong>Role ~</strong> specification
+                            <strong><?php echo $this->yourRole->name;?> ~</strong> <?php echo $this->yourRole->description;?>
                           </div>
                         </div>
                       </div>
@@ -57,6 +80,13 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
                     </div>
                   </div>
                 </div>
+    	<?php 
+	
+    	}
+     ?>
+	 
+
+
 
                 <div class="fl_thin_divider"></div>
 
@@ -67,49 +97,31 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
                   <!-- ROLE -->
                   <div class="fl-project-team-role">
                     
+                    <?php foreach($this->paginator as $role){?>
                     <!-- USER -->
                     <div class="fl-project-team-role-user">
                       <div class="fl-project-team-role-user-left">
-                        <img src="slepice/img/project_team_user_img.jpg" alt="" title="" />
-                        <h4>Name of the user</h4>
-                        <p><i class="icon-file"></i> <a href="" title="">Profile</a></p>
+                        <a href="<?php echo $role->user->getProfileUrl();?>"><img src="/storage/users/<?php echo $role->user->getProfilePicture(50)?>" alt="<?php echo $role->user->getName(); ?>" />
+          
+                        <h4><?php echo $role->user->name; ?></h4>
+                        <p><i class="icon-file"></i> <a href="<?php echo $role->user->getProfileUrl();?>">Profile</a></p>
                       </div>
                       <div class="fl-project-team-role-user-right">
                         <div class="fl-skill">
                           <div class="fl-skill-img30">
-                            <img src="/media/slepice-site/1.0.0/img/role_grower.png" alt="grower role icon" />
+                            <img src="/media/slepice-site/1.0.0/img/role_<?php echo $role->name; ?>.png" alt="<?php echo $role->name; ?> role icon" />
                           </div>
                           <div class="fl-skill-text">
                             <div class="fl-skill-text-roledescription30">
-                              <strong>Role ~</strong> specification
+                              <strong><?php echo $role->name; ?> ~</strong> <?php echo $role->description; ?>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <!-- / USER -->
-
-                    <!-- CREATOR // liší se to jenom tou jednou tridou navic hned v tom prvnim divu-->
-                    <div class="fl-project-team-role-user  fl-project-team-role-user-author">
-                      <div class="fl-project-team-role-user-left">
-                        <img src="slepice/img/project_team_user_img.jpg" alt="" title="" />
-                        <h4><?php echo $this->project->user->name;?></h4>
-                        <p><i class="icon-file"></i> <a href="" title="">Profile</a></p>
-                      </div>
-                      <div class="fl-project-team-role-user-right">
-                        <div class="fl-skill">
-                          <div class="fl-skill-img30">
-                            <img src="/media/slepice-site/1.0.0/img/role_grower.png" alt="grower role icon" />
-                          </div>
-                          <div class="fl-skill-text">
-                            <div class="fl-skill-text-roledescription30">
-                              <strong>Role ~</strong> specification
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- / CREATOR -->
+					<?php }?>
+                
 
                   </div>
                   <!-- / ROLE -->
@@ -119,14 +131,28 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
                 </div>
                 <!-- / TEAM -->
 
-<div class="fl-cnt-100">
-Creator: 
-<?php echo $this->project->user->name;?>
 </div>
+                    <!-- CREATOR // liší se to jenom tou jednou tridou navic hned v tom prvnim divu-->
+<!--                     <div class="fl-project-team-role-user  fl-project-team-role-user-author"> -->
+<!--                       <div class="fl-project-team-role-user-left"> -->
+<!--                         <img src="slepice/img/project_team_user_img.jpg" alt="" title="" /> -->
+<!--                         <h4></h4> -->
+<!--                         <p><i class="icon-file"></i> <a href="" title="">Profile</a></p> -->
+<!--                       </div> -->
+<!--                       <div class="fl-project-team-role-user-right"> -->
+<!--                         <div class="fl-skill"> -->
+<!--                           <div class="fl-skill-img30"> -->
+<!--                             <img src="/media/slepice-site/1.0.0/img/role_grower.png" alt="grower role icon" /> -->
+<!--                           </div> -->
+<!--                           <div class="fl-skill-text"> -->
+<!--                             <div class="fl-skill-text-roledescription30"> -->
+<!--                               <strong>Role ~</strong> specification -->
+<!--                             </div> -->
+<!--                           </div> -->
+<!--                         </div> -->
+<!--                       </div> -->
+<!--                     </div> -->
+                    <!-- / CREATOR -->
 
-<div class="fl-cnt-100">
-<?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
-</div>
 
-
-</div>
+                

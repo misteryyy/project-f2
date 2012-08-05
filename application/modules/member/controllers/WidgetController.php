@@ -24,6 +24,8 @@ class Member_WidgetController extends  Boilerplate_Controller_Action_Abstract
     	$facadeCollaboration = new \App\Facade\Project\CollaborationFacade($this->_em);
     	$countOfCollaborations = $facadeCollaboration->findApplicationsCount($this->_member_id, array('state'=>\App\Entity\ProjectApplication::APPLICATION_ACCEPTED ));
     	$this->view->collaborationsCount = $countOfCollaborations;
+    	
+    	
     }
     
     

@@ -11,6 +11,66 @@ class TeamFacade {
 		$this->em = $em;
 	}	
 	
+	
+	
+	/**
+	 * Return one role for the logged member for the project
+	 * @param unknown_type $user_id
+	 * @param unknown_type $project_id
+	 */
+	public function findMemberRoleForProject($user_id,$project_id){
+		
+		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
+		if(!$user){
+			throw new \Exception("Member doesn't exists");
+		}
+		
+		$project = $this->em->getRepository ('\App\Entity\Project')->findOneById($project_id);
+		if(!$project){
+			throw new \Exception("Can't find this project.");
+		}
+		
+		$stmt = 'SELECT r FROM App\Entity\ProjectRole r WHERE r.project = ?1 AND r.type = ?2 AND r.user = ?3 ';
+		
+		$query = $this->em->createQuery($stmt);
+		$query->setParameter(1, $project_id);
+		$query->setParameter(2, \App\Entity\ProjectRole::PROJECT_ROLE_TYPE_MEMBER);
+		$query->setParameter(3, $user_id);
+		
+		return $query->getResult(); 
+	}
+	
+	
+	
+	/**
+	 * Return true if current user is creator
+	 * @param unknown_type $user_id
+	 * @param unknown_type $project_id
+	 */
+	public function findProjectRolesExceptLoggedUser($user_id,$project_id){
+	
+		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
+		if(!$user){
+			throw new \Exception("Member doesn't exists");
+		}
+	
+		$project = $this->em->getRepository ('\App\Entity\Project')->findOneById($project_id);
+		if(!$project){
+			throw new \Exception("Can't find this project.");
+		}
+	
+		$stmt = 'SELECT r FROM App\Entity\ProjectRole r WHERE r.project = ?1 AND r.type = ?2 AND r.user != ?3 ';
+	
+		$query = $this->em->createQuery($stmt);
+		$query->setParameter(1, $project_id);
+		$query->setParameter(2, \App\Entity\ProjectRole::PROJECT_ROLE_TYPE_MEMBER);
+		$query->setParameter(3, $user_id);
+	
+		return $query->getResult();
+	}
+	
+	
+	
 	/**
 	 * Return question for role widget
 	 * @param unknown_type $project_id
@@ -271,20 +331,20 @@ class TeamFacade {
 	 * @param unknown_type $options
 	 * @throws \Exception
 	 */
-	public function findProjectRolesForProject($project_id,$options = array()){
+	public function findProjectRolesForProject($user_id,$project_id,$options = array()){
 		$project = $this->em->getRepository ('\App\Entity\Project')->findOneBy(array("id" => $project_id));
 		if(!$project){
 			throw new \Exception("Can't find this project for this user.");
 		}
-		
+	
 		$stmt = 'SELECT r FROM App\Entity\ProjectRole r WHERE r.project = ?1 AND r.type = ?2 AND r.user is NOT NULL ';
 		$stmt .= 'ORDER BY r.name, r.level, r.description DESC';
-		
+	
 		$query = $this->em->createQuery($stmt);
 		$query->setParameter(1, $project_id);
 		$query->setParameter(2, \App\Entity\ProjectRole::PROJECT_ROLE_TYPE_MEMBER);
-		
-		return $query->getResult();	
+	
+		return $query->getResult();
 	}
 	
 
@@ -474,6 +534,8 @@ class TeamFacade {
 		
 	}
 	
+	
+
 
 	/*
 	 *

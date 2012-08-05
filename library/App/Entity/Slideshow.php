@@ -57,6 +57,21 @@ class Slideshow {
 	 */
 	private $project5;
 	
+	
+	/**
+	 * Get all projects
+	 */
+	public function getAllProjectsArray(){
+		$array = array();
+		for($i=1;$i<6;$i++){
+			$project = $this->getProject($i);
+			if(!empty($project)) $array[] = $project;	
+		}
+		
+		return $array;
+		
+	}
+	
 		
 	public function __get($property) {
 		// If a method exists to get the property call it.

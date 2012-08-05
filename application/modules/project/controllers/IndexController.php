@@ -97,11 +97,17 @@ class Project_IndexController extends  Boilerplate_Controller_Action_Abstract
     public function teamAction(){
     
     	$this->view->pageTitle .=  "~ Team ";
-    		$facadeSurvey = new \App\Facade\Project\SurveyFacade($this->_em);
-    		$paginator = $facadeSurvey->findProjectSurveyAnswersPaginator($this->project_id);
-    		$paginator->setItemCountPerPage(50);
-    		$paginator->setCurrentPageNumber($this->_request->getParam('page', 1));
-    	$this->view->paginator = $paginator;
+    	
+    	$facadeTeam = new \App\Facade\Project\TeamFacade($this->_em);	 
+    	if($this->isCollaborator){
+ 
+    		$roles = $facadeTeam->findMemberRoleForProject($this->_member_id, $this->project_id);
+    		$this->view->yourRole = $roles[0];
+    	}
+    	
+    	// Roles
+    	$roles = $facadeTeam->findProjectRolesExceptLoggedUser($this->_member_id, $this->project_id);
+    	$this->view->paginator = $roles; // its not actualy paginator
     
     }
     

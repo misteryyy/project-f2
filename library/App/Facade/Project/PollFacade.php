@@ -115,7 +115,7 @@ class PollFacade {
 		
 	}
 	
-	
+
 	/**
 	 * Find all answers for specifil poll and user
 	 * @param unknown_type $user_id

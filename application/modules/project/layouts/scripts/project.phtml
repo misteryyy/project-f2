@@ -23,18 +23,10 @@
  
 	 <?= $this->action('menu-debug', 'menu', 'project');  ?>  
 	  	
-	 <?php // creator menu
-
-      if($this->isCreator){
-        echo '<div class="well">';
-        echo $this->action('menu-creator', 'menu', 'project',array("id" => $this->project->id));
-        echo '</div>';
-      } 
-
-    	// collaborator widget
+	 <?php 
+	    // collaborator widget
     	if($this->isCollaborator){
     		echo "Yes, you are collaborating in this project.";
-    		echo "<hr>";
     	}
      ?>
   <div id="fl-content">
@@ -57,49 +49,18 @@
                 <div class="fl_thick_divider"></div>
                 <div class="fl-project-level">
 
-<?php switch($this->project->level){
-  case '1': ?>
-                     <div class="fl-level">
-                        <div class="progress">
-                          <div class="fl_level1"></div>
+                  <div class="fl-level">
+                        <?php 
+                        // Display Current Level
+                        $array[1] = array('fl_level1','bar','bar');
+                        $array[2] = array('fl_level2','fl_level2','bar');
+                        $array[3] = array('fl_level3','fl_level3','fl_level3');
+                        foreach($array[$this->project->level] as $c){ ?>
+                                            <div class="progress">
+                                                  <div class="<?php echo $c?>"></div>
+                                            </div>
+                        <?php } ?>
                         </div>
-                        <div class="progress">
-                          <div class="bar"></div>
-                        </div>
-                        <div class="progress">
-                          <div class="bar"></div>
-                        </div>
-                      </div>
-<?php ; break;
-  case '2': ?>
-
-                      <div class="fl-level">
-                        <div class="progress">
-                          <div class="fl_level2"></div>
-                        </div>
-                        <div class="progress">
-                          <div class="fl_level2"></div>
-                        </div>
-                        <div class="progress">
-                          <div class="bar"></div>
-                        </div>
-                      </div>
-<?php ; break;
-  case '3': ?>
-
-                      <div class="fl-level">
-                        <div class="progress">
-                          <div class="fl_level3"></div>
-                        </div>
-                        <div class="progress">
-                          <div class="fl_level3"></div>
-                        </div>
-                        <div class="progress">
-                          <div class="fl_level3"></div>
-                        </div>
-                      </div>
-<?php ;
-}?>
 
                   <p class="fl-project-level-info"><a href="" title="Learn more about Levels">Learn more about Levels</a></p>
                 </div>

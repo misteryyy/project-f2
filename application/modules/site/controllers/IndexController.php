@@ -15,7 +15,6 @@ class Site_IndexController extends Boilerplate_Controller_Action_Abstract
     public function indexAction()
     {    
     	$this->view->pageTitle = 'FLO~ Grow.Lead...';
-
     		// Feeding projects
     		$facadeProject = new \App\Facade\Site\ProjectFacade($this->_em);
     		$paginator = $facadeProject->findAllProjectsPaginator();
@@ -23,10 +22,18 @@ class Site_IndexController extends Boilerplate_Controller_Action_Abstract
     		$page = $this->_request->getParam('page', 1);
     		$paginator->setCurrentPageNumber($page);
     		$this->view->paginator = $paginator;
-	
-    
     }
       
+    
+    public function aboutAction()
+    {
+    	$this->view->pageTitle = 'FLO~ Grow.Lead... - About us';
+    }
+    
+    public function helpAction()
+    {
+    	$this->view->pageTitle = 'FLO~ Grow.Lead... - Help';
+    }
     
     /**
      * Request for project
