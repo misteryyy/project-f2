@@ -14,7 +14,7 @@
                 
             
                   <div class="fl-cnt-100">
-                     <img alt="<?php echo $project->title; ?> - main picture" src="/storage/projects/<?php echo $project->dir."/".$project->getPicture('small'); ?> " class="fl-img-survey-list"/>
+                     <a href="/member/my-project/edit-project/id/<?php echo $project->id; ?>" title="Administration of this project"><img alt="<?php echo $project->title; ?> - main picture" src="/storage/projects/<?php echo $project->dir."/".$project->getPicture('small'); ?> " class="fl-img-survey-list"/></a>
           			<h4 class="fl-project-name"><?php echo $project->title;?></h4>
                     <p><i class="icon-tasks"></i>    <a href="/member/my-project/survey/id/<?php echo $project->id?>" title="Go to survey">survey</a></p>
                        

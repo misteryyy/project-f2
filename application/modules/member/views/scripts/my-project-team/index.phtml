@@ -13,16 +13,23 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 
 <div class="fl-cnt-100">
 
-My Position <br />
-<?php 	foreach($this->creatorRoles as $r) {
-		echo $r->name;
-		echo "]["; }
-?>
-
+				<div class="fl-team-logged-user">
+                  <div class="inner">
+                    <div class="fl-team-logged-user-left">
+                      <img src="slepice/img/project_team_logged_user_img.jpg" alt="" title="" /> 
+                      <span class="fl-team-logged-user-name">Jméno creatora</span><br />
+                    </div>
+                    <div class="fl-team-logged-user-right">
+						<?php 	foreach($this->creatorRoles as $r) { ?>
+                          <img src="/media/slepice-site/1.0.0/img/role_<?php echo $r->name; ?>.png" alt="<?php echo $r->name; ?> role icon"/>
+                          <?php } ?>
+                    </div>
+                  </div>
+                </div>
 </div>
 
 <div class="fl-cnt-100">
-My Project People 
+<h3>My team</h3>
 </div>
 
 
@@ -48,7 +55,7 @@ My Project People
 				{{#each this}}				
 				<tr>
 						<td><img src="" title="{{role_name}}" alt="{{role_name}} picture" class="fl-img"/> <a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a></td>	
-						<td>{{role_name}}</td>  
+						<td><img src="/media/slepice-site/1.0.0/img/role_{{role_name}}.png" alt="{{role_name}} icon" style="width: 30px" /></td>  
 						<td class="save-description" id="{{id}}">
 							<form method="post" action="" class="form-search" data-question_id="{{id}}" id="form-edit-{{id}}">
 							  <div class="input-append">	

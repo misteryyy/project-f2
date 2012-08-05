@@ -396,7 +396,7 @@ h4.fl-project-name span{
   float: right;
 }
 
-.fl-sidebar{
+.fl-sidebar, .fl-sidebar-bg{
   background: #f7f7f7;
 }
 
@@ -2336,6 +2336,56 @@ tr.fl-user-banned:hover{
 .fl-my-project-navigation ul{
   margin: 0 0 0 0;
 }
+
+
+.fl-app-role, .fl-app-user{
+  width: 100%;
+  float: left;
+}
+
+.fl-app-role{
+  min-height: 40px;
+  background: #e5f1ff;
+  margin: 20px 0 0 0;
+}
+
+.fl-app-text{
+  width: 45%;
+  padding: 5px;
+  float: left;
+}
+
+.fl-app-role-img{
+  width: 40px;
+  margin: 5px;
+  float: left;
+}
+
+.fl-app-role .fl-app-text{
+  border-left: solid 5px #0d519a;
+}
+
+.fl-app-user .fl-app-text{
+  border-left: 5px solid #f8ede9;
+}
+
+.fl-app-buttons{
+  width: 40%;
+  float: right;
+  margin: 10px 10px 10px 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @media (max-width: 767px) {

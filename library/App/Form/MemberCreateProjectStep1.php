@@ -53,7 +53,7 @@ class MemberCreateProjectStep1 extends \Twitter_Bootstrap_Form_Horizontal
 		$this->addElement('textarea', 'pitch', array(
 				'label' => 'Sentence pitch:',
 				'class' => 'span8',
-				'row' => '3',
+				'rows' => '4',
 				'required' => true,
 				'errorMessages' => array("You should have sentence pitch which will simply describe your goal."),
 				'description' => "What is sentence pitch!",
