@@ -16,16 +16,22 @@
     		</tr>
     	</thead>
     <tbody>
-    <?php foreach ($this->paginator as $message){ ?>
+    <?php foreach ($this->paginator as $message){ 
+        switch($message->type){
+            case 'problem': $label = 'label-important'; break;
+            case 'interest': $label = 'label-warning'; break;
+            case 'choice': $label = 'label-info'; break;
+        }
+    ?>
     	<tr>
     	<td><?php echo $message->title; ?></td>
-    	<td><?php echo $message->type; ?></td>
-		<td><?php echo $message->typeDetail; ?></td>
+    	<td><span class="label <?php echo $label; ?>"><?php echo $message->type; ?></span></td>
+		<td style="width: 180px"><?php echo $message->typeDetail; ?></td>
 		<td><?php echo $message->created->format('Y/m/d'); ?></td>		
     	<td><?php echo count($message->comments) ?></td>		
     	<td>
-    		<a class="btn btn-info" href="/member/profile/flobox-detail/member_id/<?php echo $this->member['id']?>/message_id/<?php echo $message->id ?>">Detail</a>
-    		<a class="btn btn-danger" href="/member/flobox/message-delete/message_id/<?php echo $message->id ?>">Delete</a>
+    		<a class="btn btn-info" href="/member/profile/flobox-detail/member_id/<?php echo $this->member['id']?>/message_id/<?php echo $message->id ?>"><i class="icon-file icon-white"></i> Detail</a>
+    		<a class="btn btn-danger" href="/member/profile/flobox/message-delete/message_id/<?php echo $message->id ?>"> <i class="icon-remove icon-white"></i> Delete</a>
     	</td>			
     	</tr>	 		
     <?php } ?>

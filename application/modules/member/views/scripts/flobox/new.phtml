@@ -1,18 +1,12 @@
-<h2 class="fl-bottom20">FLO~ Box <span>#New message</span></h2>
-
-<div class="fl-cnt-100">
-<div class="well">
-	<a class="btn btn-success" href="/member/flobox">Back to list of flobox messages</a>
-</div>
-</div>
+<h2 class="fl-bottom20">FLO~ Box <span>#New message</span> <a class="btn btn-success right" href="/member/flobox">Back to list of flobox messages</a></h2>
 
 <div class="fl-cnt-100">
 <!-- Other way how to display forms -->
 <form id="flo-box" class="form-horizontal fl-form" action="<?= $this->form->getAction(); ?>" method="<?= $this->form->getMethod(); ?>">
 	<fieldset id="fieldset-FLOBoxIdea"><legend>Create New FloBox Message</legend>
+		<?= $this->form->title ?>
 		<?= $this->form->type; ?>
 		<?= $this->form->typeDetail; ?>
-		<?= $this->form->title ?>
 		<?= $this->form->message ?>
 		<?= $this->form->submit ?>
 	</fieldset>

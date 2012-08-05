@@ -1,15 +1,14 @@
-<h2>FloBox <span>#<?php echo $this->message->title; ?></span></h2>		
+<h2>FloBox <span>#<?php echo $this->message->title; ?></span> 
 
-<div class="fl-cnt-100">
 <?php 
 // if current user is owner, he will have link to his administration of 
 if ($this->message->user->id == $this->member['id']) { ?>
-	<a class="btn btn-success" href="/member/flobox">Back to all FloBox messages</a>
+	<a class="btn btn-success right" href="/member/flobox">Back to all FloBox messages</a></h2>  
 <?php 
 } else {?>
-	<a class="btn btn-success" href="/member/profile/flobox">Back to all FloBox messages</a>
+	<a class="btn btn-success right" href="/member/profile/flobox">Back to all FloBox messages</a></h2>  
 <?php }?>
-</div>
+
 
 
 	<div class="fl-cnt-100 fl-flobox-detail">
