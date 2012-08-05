@@ -230,6 +230,74 @@ class PollFacade {
 	}
 	
 	
+	/*
+	 * Return the paginator
+	*/
+	public function findAllUsersWithAnswersForPollPaginator($project_id,$poll_id){
+		$project = $this->em->getRepository ('\App\Entity\Project')->findOneById($project_id);
+		if(!$project){
+			throw new \Exception("Can't find this project.");
+		}
+		
+		$poll = $this->em->getRepository ('\App\Entity\ProjectPoll')->findOneById($poll_id);
+		if(!$poll){
+			throw new \Exception("Can't find this poll.");
+		}
+	
+		$stmt = 'SELECT u,p FROM App\Entity\ProjectPollAnswer p JOIN p.user u WHERE p.poll = ?1';
+		$stmt .= 'GROUP BY u';
+	
+		$query = $this->em->createQuery($stmt);
+		$query->setParameter(1, $poll_id);
+		
+	//	$arr = $query->getResult();
+	//	\Doctrine\Common\Util\Debug::dump($arr);
+	//	echo "<br>";
+		
+			
+		$paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
+	
+		$iterator = $paginator->getIterator();
+	
+		$adapter = new \Zend_Paginator_Adapter_Iterator($iterator);
+		return new \Zend_Paginator($adapter);
+	}
+	
+	
+	/*
+	 * Return the paginator
+	*/
+	public function findAnswersForUserForPoll($project_id,$poll_id,$user_id){
+		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
+		if(!$user){
+			throw new \Exception("Member doesn't exists");
+		}
+		
+		$project = $this->em->getRepository ('\App\Entity\Project')->findOneById($project_id);
+		if(!$project){
+			throw new \Exception("Can't find this project.");
+		}
+	
+		$poll = $this->em->getRepository ('\App\Entity\ProjectPoll')->findOneById($poll_id);
+		if(!$poll){
+			throw new \Exception("Can't find this poll.");
+		}
+	
+		$stmt = 'SELECT p,q FROM App\Entity\ProjectPollAnswer p JOIN p.user u WHERE p.poll = ?1 AND u.id = ?2';
+		$query = $this->em->createQuery($stmt);
+		$query->setParameter(1, $poll_id);
+		$query->setParameter(1, $user_id);
+		
+			$arr = $query->getResult();
+			\Doctrine\Common\Util\Debug::dump($arr);
+			echo "<br>";
+		
+		return $query->getResult();
+		
+		}
+	
+	
+	
 	
 	
 	

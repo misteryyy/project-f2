@@ -238,10 +238,30 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
     	$paginator->setItemCountPerPage(25);
     	$page = $this->_request->getParam('page', 1);
     	$paginator->setCurrentPageNumber($page);
-    	
-
     	$this->view->paginator = $paginator;
     	$this->view->project = $this->project;
+    }
+
+    /**
+     * Display details about voting
+     */
+    public function pollDetailAction(){
+    	$this->checkProjectAndUser();
+
+    	$this->view->pageTitle = "My Project Polls" ;
+    	$facadeProjectPoll = new \App\Facade\Project\PollFacade($this->_em);
+    	
+    	// get paginator
+    	$paginator = $facadeProjectPoll->findAllUsersWithAnswersForPollPaginator($this->project_id,$this->_request->getParam('poll_id'));
+   
+    	$paginator->setItemCountPerPage(25);
+    	$page = $this->_request->getParam('page', 1);
+    	$paginator->setCurrentPageNumber($page);
+    	$this->view->paginator = $paginator;
+    	$this->view->project = $this->project;
+    	
+    	
+    	
     }
     
     
