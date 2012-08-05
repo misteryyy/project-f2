@@ -288,9 +288,7 @@ class PollFacade {
 		$query->setParameter(1, $poll_id);
 		$query->setParameter(1, $user_id);
 		
-			$arr = $query->getResult();
-			\Doctrine\Common\Util\Debug::dump($arr);
-			echo "<br>";
+			
 		
 		return $query->getResult();
 		
