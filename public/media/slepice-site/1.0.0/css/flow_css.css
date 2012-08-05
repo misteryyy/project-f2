@@ -941,6 +941,16 @@ p.fl-list-project-queue{
   padding-right: 20px; 
 }
 
+.fl-filtr-sa-roles, .fl-filtr-pr-roles, .fl-filtr-er-roles{
+  margin: 10px 0 0 0;
+  float: left;
+}
+
+.fl-filtr-pr-roles{
+  margin: 10px 12% 0 12%;
+}
+
+
 #fl-filtr-form-choose-role{
   list-style: none;
   width: 100%;
