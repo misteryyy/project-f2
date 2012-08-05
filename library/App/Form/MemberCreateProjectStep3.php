@@ -6,16 +6,7 @@ class MemberCreateProjectStep3 extends \Twitter_Bootstrap_Form_Horizontal
 {
 	public function init()
 	{		
-		$this->_addClassNames('fl-form');
-		$this->setAttrib("id", "form-step-3");
 		
-		$this->addElement('hidden', 'title_roles', array(
-			'description' => '<h3 class="fl-bottom10">Your role(s) in this project:</h3>',
-			'ignore' => true,
-			'decorators' => array(array('Description', array('escape'=>false, 'tag'=>'')),
-		),
-		));
-
 		$arrayRoles = array(
 				array("name" => UserRole::MEMBER_ROLE_STARTER, 
 					 "description" => UserRole::MEMBER_ROLE_STARTER
@@ -42,26 +33,13 @@ class MemberCreateProjectStep3 extends \Twitter_Bootstrap_Form_Horizontal
 			//$addList[] = "role_description_".$role['name'];
 			$addList[] = "role_".$role['name'];
 			
-			// Description of roles
-// 			$this->addElement('hidden', 'role_description_'.$role['name'], array(
-// 					'description' => '<div class="alert alert-info">'.$role['description'].'</div>',
-// 					'ignore' => true,
-// 					'decorators' => array(
-// 							array('Description', array('escape'=>false, 'tag'=>'')),
-// 					),
-// 			));
-			
 			$this->addElement('checkbox','role_'.$role['name'],
 					array(
 							'label' => $role['name'],
 							'id' => "role_".$role['name'],
 							'decorators' => array(
 							array('ViewHelper'),
-							array('ElementErrors'),
-							array('Description', array('tag' => 'p', 'class' => 'help-block')),
-							array('HtmlTag', array('tag' => 'div', 'class' => 'controls')),
-							array('Label', array('class' => 'control-label')),
-							array('Wrapper'),			
+							
 							)
 					)
 			);
@@ -98,54 +76,51 @@ $warning_message =  <<<EOT
 	</div>
 EOT;
 	
-		$this->addElement('hidden', 'warning', array(
-				'description' => $warning_message,
-				'ignore' => true,
+	
+
+	
+
+		
+		
+// Disable buttong
+$this->addElement('checkbox','role_widget_disable',
+		array(
+				'label' => "Disable Role Widget",
+				'disableLoadDefaultDecorators' => true,
 				'decorators' => array(
-						array('Description', array('escape'=>false, 'tag'=>'')),
-				),
-		));
-
-		// Widget Setting
-		$this->addElement('checkbox','role_widget_disable',
-				array(
-						'label' => "Disable Role Widget",
-						'description' => 'Please read what will happen if you will disable role widget.',
+						array('ViewHelper'),
+						array('Label')
+						
 				)
-		);
+		)
+);
 
-		$this->addDisplayGroup(
-				array('warning','role_widget_disable'),
-				'role_widget',
-				array('legend' => 'Role Widget Disable')
-		);
+// Question Section
 
-		$this->addElement('hidden', 'title_survey', array(
-			'description' => '<h3 class="fl-bottom10">Questions for project applicants:</h3>',
-			'ignore' => true,
-			'decorators' => array(array('Description', array('escape'=>false, 'tag'=>'')),
+$this->addElement('hidden', 'title_survey', array(
+		'description' => '<h3 class="fl-bottom10">Questions for project applicants:</h3>',
+		'ignore' => true,
+		'decorators' => array(array('Description', array('escape'=>false, 'tag'=>'')),
 		),
-		));
-
-
+));
+$addQuestion [] = "title_survey";
 
 $warning_message =  <<<EOT
 	<div class="fl-cnt-100">
 	  <div class="alert alert-info">
 		<span class="label label-info">Info</span>
-		What is survey for.What is survey for.What is survey for.What is survey for.What is survey for.What is survey for.
-		What is survey for.What is survey for.What is survey for.What is survey for.What is survey for.What is survey for.
+		Question description.
 	  </div>
 	</div>
 EOT;
 
-$this->addElement('hidden', 'warning_survey', array(
+	$this->addElement('hidden', 'warning_survey', array(
 		'description' => $warning_message,
 		'ignore' => true,
 		'decorators' => array(
 				array('Description', array('escape'=>false, 'tag'=>'')),
 		),
-));
+	));
 				
 		// Adding Survey
 		$addQuestion [] = 'warning_survey';		

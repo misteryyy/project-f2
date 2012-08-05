@@ -10,7 +10,7 @@ class ProjectRole {
 	const PROJECT_ROLE_BUILDER = "builder";
 	const PROJECT_ROLE_GROWER = "grower";
 	const PROJECT_ROLE_LEADER = "leader";
-	const PROJECT_ROLE_ADVISER = "advisor";
+	const PROJECT_ROLE_ADVISER = "adviser";
 	const PROJECT_ROLE_TYPE_CREATOR = "creator";
 	const PROJECT_ROLE_TYPE_MEMBER = "member";
 	

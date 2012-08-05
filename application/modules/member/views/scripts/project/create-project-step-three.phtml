@@ -5,13 +5,11 @@ echo $this->partial('project/create-project-navigation.phtml',array("step" => $t
 ?>
 
 <div class="fl-cnt-100">
-  <div id="alert-area"></div>
-</div>
-
-<div class="fl-cnt-100">
-			<form>
-              <fieldset>
-                <legend class="hide">Your role(s) in this project:</legend>
+<form id="form-step-3" class="form-horizontal" action="<?php echo $this->form->getAction(); ?>"  method="<?php echo $this->form->getMethod(); ?>" >
+	
+	
+	<fieldset>
+	 <legend class="hide">Your role(s) in this project:</legend>
                 <h3 class="fl-bottom10">Your role(s) in this project:</h3>
                 <div class="fl-cnt-100 fl-bottom40">
                   
@@ -27,12 +25,21 @@ echo $this->partial('project/create-project-navigation.phtml',array("step" => $t
                         <div class="fl-choosing-roles-middle">
                           <div class="fl-choosing-roles-list">
                             <ul class="fl-choosing-roles">
-                              <li>
-                                <input type="checkbox" name="" id="" />
+                              <?php 
+                              // generate all role options
+                              $arrayRoles = \App\Entity\ProjectRole::getRolesArray();
+                              
+                              foreach($arrayRoles as $role){	?>
+                              	
+                              	 <li>
+                                <?php   
+                                	$r = "role_".$role;
+                                	echo $this->form->$r;
+                                ?>
                                 <label for="">
                                   <div class="fl-skill">
                                     <div class="fl-skill-img30">
-                                      <img src="/media/slepice-site/1.0.0/img/role_starter.png" alt="starter role icon" />
+                                      <img src="/media/slepice-site/1.0.0/img/role_<?php echo $role;?>.png" alt="<?php echo $role;?> role icon" />
                                     </div>
                                     <div class="fl-skill-text">
                                       <div class="fl-skill-text-roledescription30">
@@ -42,66 +49,8 @@ echo $this->partial('project/create-project-navigation.phtml',array("step" => $t
                                   </div>
                                 </label>
                               </li>
-                              <li>
-                                <input type="checkbox" name="" id="" />
-                                <label for="">
-                                  <div class="fl-skill">
-                                    <div class="fl-skill-img30">
-                                      <img src="/media/slepice-site/1.0.0/img/role_leader.png" alt="leader role icon" />
-                                    </div>
-                                    <div class="fl-skill-text">
-                                      <div class="fl-skill-text-roledescription30">
-                                        Leader
-                                      </div>
-                                    </div>
-                                  </div>
-                                </label>
-                              </li>
-                              <li>
-                                <input type="checkbox" name="" id="" />
-                                <label for="">
-                                  <div class="fl-skill">
-                                    <div class="fl-skill-img30">
-                                      <img src="/media/slepice-site/1.0.0/img/role_grower.png" alt="grower role icon" />
-                                    </div>
-                                    <div class="fl-skill-text">
-                                      <div class="fl-skill-text-roledescription30">
-                                        Grower
-                                      </div>
-                                    </div>
-                                  </div>
-                                </label>
-                              </li>
-                              <li>
-                                <input type="checkbox" name="" id="" />
-                                <label for="">
-                                  <div class="fl-skill">
-                                    <div class="fl-skill-img30">
-                                      <img src="/media/slepice-site/1.0.0/img/role_builder.png" alt="builder role icon" />
-                                    </div>
-                                    <div class="fl-skill-text">
-                                      <div class="fl-skill-text-roledescription30">
-                                        Builder
-                                      </div>
-                                    </div>
-                                  </div>
-                                </label>
-                              </li>
-                              <li>
-                                <input type="checkbox" name="" id="" />
-                                <label for="">
-                                  <div class="fl-skill">
-                                    <div class="fl-skill-img30">
-                                      <img src="/media/slepice-site/1.0.0/img/role_adviser.png" alt="adviser role icon" title="" />
-                                    </div>
-                                    <div class="fl-skill-text">
-                                      <div class="fl-skill-text-roledescription30">
-                                        Adviser
-                                      </div>
-                                    </div>
-                                  </div>
-                                </label>
-                              </li>
+
+                            	<?php  } ?>
                             </ul>
                           </div>
                           <div class="fl-choosing-roles-description">
@@ -114,29 +63,36 @@ echo $this->partial('project/create-project-navigation.phtml',array("step" => $t
                           <div class="fl-choosing-roles-bottom-left">
                             
                           </div>
-                          <div class="fl-choosing-roles-bottom-right">
-                            
+                          <div class="fl-choosing-roles-bottom-right"> 
                           </div>
                         </div>
                 </div>
-
-                <div class="fl-cnt-100 fl-bottom40">
+	
+	
+	</fieldset>
+	
+	
+	
+	  <fieldset>
+	  <div class="fl-cnt-100 fl-bottom40">
                   <div class="alert alert-info">
                     <p><span class="label label-info">Info</span> Description what is role widget for. Description what is role widget for. Description what is role widget for. Description what is role widget for. Description what is role widget for. Description what is role widget for. Description what is role widget for. Description what is role widget for. Description what is role widget for. Description what is role widget for. Description what is role widget for. Description what is role widget for.</p>
                     <div class="fl-role-widget">
-                      <input type="checkbox" name="" id="" /><label for="">Disable role widget</label>
+						<?php echo $this->form->role_widget_disable;?>
                     </div>
                   </div>
-                </div>
-              </fieldset>
-      </form>
+       </div>
+		</fieldset>
+	<?php 
+	
+		echo $this->form->role_widget_survey;
+		echo $this->form->actions;
+	
+	?>
+	
+</form>
+
 </div>
-
-<div class="fl-cnt-100">
-  <?php  echo $this->form;   ?>
-</div>
-
-
 
 <script type="text/javascript">
 $(document).ready(function()

@@ -20,9 +20,7 @@ class MemberCreateProjectStep4 extends \Twitter_Bootstrap_Form_Horizontal
 	
 	public function init()
 	{
-	//	 $this->setIsArray(true);
-		// $this->setElementsBelongTo('survey'); // will make form array
-
+		
 		$this->addAttribs(array("id" => "step")); // for jquery stepy plugin
 		
 		// GENERATE QUESTIONS
