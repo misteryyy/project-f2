@@ -78,6 +78,15 @@ class SurveyFacade {
 		return $arr;
 	}
 	
+	
+	/**
+	 * Get Count of All Survey Questions
+	 */
+	public function findAllProjectSurveyQuestionsCount(){
+		$qs = $this->em->getRepository ('\App\Entity\ProjectSurveyQuestion')->findAll();
+		return count($qs);
+	}
+	
 	/**
 	 * Update project survey
 	 * @param unknown_type $user_id

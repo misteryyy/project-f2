@@ -1,4 +1,6 @@
 <?php
+
+           
 /**
  * @author   Kanstantsin A Kamkou (2ka.by)
  */
@@ -13,7 +15,7 @@ foreach($pages as &$page){
 	));
 }
 
-$html = array('<ul class="nav nav-list">');
+$html = array('<div class="tabs-right"><ul class="nav nav-tabs fl-right-nav">');
 foreach ($this->container as $page) {
 	
 	
@@ -64,7 +66,7 @@ foreach ($this->container as $page) {
     }
 }
 
-$html[] = '</ul>';
+$html[] = '</ul></div>';
 
 echo join(PHP_EOL, $html);
 ?>

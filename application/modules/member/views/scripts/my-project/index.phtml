@@ -55,13 +55,9 @@ if(count ($this->projects) > 0){
                       	<p class="fl-list-project-queue"><strong>
                       	  <?php 
                       	  $facadeProject = new \App\Facade\Project\TeamFacade($this->em);
-
-                          // mnozny cislo
-                          if($facadeProject->findApplicationsCount($project->user->id, $project->id,array('state'=>\App\Entity\ProjectApplication::APPLICATION_NEW )) > 1) { $s = 's'; } else { $s = ''; }
-
                           //pocet lidí
 		                      echo $facadeProject->findApplicationsCount($project->user->id, $project->id,array('state'=>\App\Entity\ProjectApplication::APPLICATION_NEW )); 
-		                  ?> </strong> application<?php echo $s; ?></p>
+		                  ?> </strong> applications</p>
                         
                         </div>
                         <div class="fl-list-project-roles-my">
@@ -83,9 +79,30 @@ if(count ($this->projects) > 0){
                       <li><a href="/member/my-project/update/id/<?php echo $project->id?>" title="Updates of the project">Updates</a></li>
                       <li><a href="/member/my-project/project-board/id/<?php echo $project->id?>" title="Project board of the project">Project board</a></li>
                       <li><a href="/member/my-project/poll/id/<?php echo $project->id?>" title="Polls of the project">Polls</a></li>
-                      <li><a href="/member/my-project-team/index/id/<?php echo $project->id?>" title="Team of the project">Team <span class="label label-info">5/13</span></a></li>
-                      <li><a href="/member/my-project/survey/id/<?php echo $project->id?>" title="Project sruvey">Project survey <span class="label label-info">10/50</span></a></li>
-                      <li><a href="/member/my-project/comment-creator/id/<?php echo $project->id?>" title="Comments for creator of the project">Comments for you <span class="label label-info">10</span></a></li>
+                      <li><a href="/member/my-project-team/index/id/<?php echo $project->id?>" title="Team of the project">Team <span class="label label-info">   
+	                      <?php
+	                      // Count of all accepted people in Team
+	                      $teamFacade = new \App\Facade\Project\TeamFacade($this->em);
+	                      echo $teamFacade->findApplicationsCount($this->loggedMember->id, $project->id,array('state' => \App\Entity\ProjectApplication::APPLICATION_ACCEPTED)); 
+	                      ?>
+                      </span></a></li>
+                      <li><a href="/member/my-project/survey/id/<?php echo $project->id?>" title="Project sruvey">Project survey <span class="label label-info">
+	                      <?php 
+	                      // Display informatino about the survey
+	                      $surveyFacade = new \App\Facade\Project\SurveyFacade($this->em);
+	                      echo count( $surveyFacade->findEmptyAnswers($this->loggedMember->id, $project->id));
+	                      echo "/";
+	                      echo $surveyFacade->findAllProjectSurveyQuestionsCount();
+	                      ?>
+                      </span></a></li>
+                      <li><a href="/member/my-project/comment-creator/id/<?php echo $project->id?>" title="Comments for creator of the project">Comments for you <span class="label label-info">
+                      
+                      <?php 
+	                      // Display informatino about the survey
+	                      $surveyFacade = new \App\Facade\Project\CommentFacade($this->em);
+	                      echo count( $surveyFacade-> findUnasweredCommentsForProject( $project->id));
+	                      ?>
+                      </span></a></li>
                     </ul>
                   </div>
                 </div>
