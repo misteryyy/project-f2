@@ -10,27 +10,29 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 </div>
 
 <!-- KONTROLNI VYPIS PRO PEPU -->
+
 <div class="fl-cnt-100">
 <div class="well">
 <?php 
 	foreach ($this->emptyAnswers as $answer){
 		$unansweredQuestion[] = $answer->question->id;
 		//	pr(array($answer->id,$answer->question->question,$answer->question->id));
+		//print ' $("li#step-title-'.$answer->question->id.'").addClass("fl-unanswered-question");
+		//';
 	}
  	pr($unansweredQuestion);
 ?>
 </div>
 </div>
 
-<div class="fl-cnt-100">
-  <div class="well">
+<div class="fl-survey-questions">
 	<div id="title-target"></div>
-  </div>   
 </div>
 
 <div class="fl-cnt-100">
   <?php  echo $this->form;   ?>
 </div>
+
 
 <!-- Load jQuery build -->
 <script type="text/javascript" src="<?=$this->baseUrl('/media/jquery.stepy-1.1.0/js/jquery.validate.min.js')?>"></script>

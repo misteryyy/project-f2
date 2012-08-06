@@ -29,14 +29,15 @@ echo $this->partial('project/create-project-navigation.phtml',array("step" => $t
                               // generate all role options
                               $arrayRoles = \App\Entity\ProjectRole::getRolesArray();
                               
-                              foreach($arrayRoles as $role){	?>
-                              	
-                              	 <li>
-                                <?php   
-                                	$r = "role_".$role;
+                              foreach($arrayRoles as $role){	
+
+                                $r = "role_".$role; ?>	
+                              <li id="<?php echo $r; ?>">	
+                                <?php
                                 	echo $this->form->$r;
                                 ?>
-                                <label for="">
+                              
+                                <label>
                                   <div class="fl-skill">
                                     <div class="fl-skill-img30">
                                       <img src="/media/slepice-site/1.0.0/img/role_<?php echo $role;?>.png" alt="<?php echo $role;?> role icon" />
@@ -54,9 +55,9 @@ echo $this->partial('project/create-project-navigation.phtml',array("step" => $t
                             </ul>
                           </div>
                           <div class="fl-choosing-roles-description">
-                            <h4>Name of the role</h4>
+                            <h4>Starter</h4>
                             <div class="fl_thin_divider"></div>
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                            <p>Description for starter ... </p>
                           </div>
                         </div>
                         <div class="fl-choosing-roles-bottom">
@@ -70,6 +71,33 @@ echo $this->partial('project/create-project-navigation.phtml',array("step" => $t
 	
 	
 	</fieldset>
+
+  <div class="hide">
+    <div id="hide_role_starter">
+      <h4>Starter</h4>
+      <div>description for starter It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</div>
+    </div>
+
+    <div id="hide_role_leader">
+      <h4>Leader</h4>
+      <div>description for It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</div>
+    </div>
+
+    <div id="hide_role_grower">
+      <h4>Grower</h4>
+      <div>description for grower</div>
+    </div>
+
+    <div id="hide_role_builder">
+      <h4>Builder</h4>
+      <div>description for builder</div>
+    </div>
+
+    <div id="hide_role_adviser">
+      <h4>Adviser</h4>
+      <div>description for adviser</div>
+    </div>
+  </div>
 	
 	
 	
@@ -93,6 +121,8 @@ echo $this->partial('project/create-project-navigation.phtml',array("step" => $t
 </form>
 
 </div>
+
+<script type="text/javascript" src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/description.js')?>"></script>
 
 <script type="text/javascript">
 $(document).ready(function()

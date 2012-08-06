@@ -1046,7 +1046,7 @@ p.fl-list-project-queue{
 
 .fl-choosing-roles-description{
   float: left;
-  height: 100%;
+  min-height: 220px;
   background: #ebf2f8;
   width: 49.65%;
   border-right: 1px solid #cfd6dc;
@@ -2376,8 +2376,21 @@ tr.fl-user-banned:hover{
 }
 
 
+.fl-survey-questions{
+  width: 100%;
+  float: left;
+  background: #f8f8f8;
+  margin: 0 0 10px 0;
+  padding: 0 0 5px 0;
+}
 
+.fl-survey-questions #title-target{
+  margin: 5px;
+}
 
+.fl-unanswered-question{
+  color: red !important;
+}
 
 
 
@@ -2417,8 +2430,6 @@ tr.fl-user-banned:hover{
 .carousel-control.right {
   right: 1%;
 }
-
-
 
 }
 

@@ -20,13 +20,21 @@ class MemberCreateProjectStep4 extends \Twitter_Bootstrap_Form_Horizontal
 	
 	public function init()
 	{
-		
+		$this->_addClassNames('fl-form');
 		$this->addAttribs(array("id" => "step")); // for jquery stepy plugin
 		
 		// GENERATE QUESTIONS
-		foreach($this->questions as $index => $q){	
+		foreach($this->questions as $index => $q){
+
+			$this->addElement('hidden','q_'.$index, array(
+				'description' => '<h3 class="fl-bottom10">'.$q.'</h3>',
+				'ignore' => true,
+				'decorators' => array(array('Description', array('escape'=>false, 'tag'=>'')))
+			));
+
+
 			$this->addElement('textarea', 'question_'.$index, array(
-					'label' => 'Your answer:',
+					'label' => '',
 					'required' => false,
 					'class' => 'span8',
 					'rows' => 3,
@@ -36,7 +44,7 @@ class MemberCreateProjectStep4 extends \Twitter_Bootstrap_Form_Horizontal
 			));
 			
 			$this->addDisplayGroup(
-					array('question_'.$index), 'Q'.$index, array('legend' => $q,'title'=>"Q".$index)
+					array('q_'.$index,'question_'.$index), 'Q'.$index, array('legend' => $q,'title'=>"Q".$index)
 			);
 		}
 		
