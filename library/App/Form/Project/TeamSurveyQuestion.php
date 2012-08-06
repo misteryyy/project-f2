@@ -17,7 +17,7 @@ class TeamSurveyQuestion extends \Twitter_Bootstrap_Form_Horizontal
 	
 	public function init()
 	{		
-		
+		$this->_addClassNames('fl-form');
 		$warning_message =  <<<EOT
 	<div class="alert alert-info">
 		<span class="label label-info">Info</span>
