@@ -27,19 +27,10 @@ class BrowseMemberForm extends \Twitter_Bootstrap_Form_Horizontal
 			// decorator for radios
 			$decors = array(
 					'ViewHelper',
-					array('HtmlTag',array('tag'=>'div','class'=>"fl-feedback-answer")),
-					//array('HtmlTag', array('tag' => 'dd')),
-					array( array('labelDivClose' => 'HtmlTag'), array('tag' => 'div', 'closeOnly' => true, 'placement' => 'prepend')),
-					'Label',
-					array(array('labelDivOpen' => 'HtmlTag'), array('tag' => 'div', 'openOnly' => true, 'placement' => 'prepend', 'class' => 'fl-feedback-question')),
-					array(array('labelLiOpen' => 'HtmlTag'), array('tag' => 'li', 'openOnly' => true, 'placement' => 'prepend')),
-						
-			
 			);
 			
 			// Self-assigned roles
  			$this->addElement('MultiCheckbox','specific_role',array(
- 					'label' => "Choose specific role",
  					'multiOptions' => $arrSpecRoles,	
  					'disableLoadDefaultDecorators' => true,
  					'decorators' => $decors,
@@ -60,17 +51,25 @@ class BrowseMemberForm extends \Twitter_Bootstrap_Form_Horizontal
 			
 			$this->addElement('text', 'q', array(
 					'label' => 'Keyword',
+					'class' => 'fl-width91',
 					'required' => true,
 					'filters'    => array('StringTrim'),
 					'description' => "Search",
-					'validators' => array( array('StringLength', false, array(0,100) ))));
+					'validators' => array( array('StringLength', false, array(0,100) )),
+					'disableLoadDefaultDecorators' => true,
+					'decorators' => array("ViewHelper")
+					
+					)
+					
+					);
 			
 			//	submit button
 			$this->addElement('submit','submit',array(
 					//'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
 					'label' => 'Search',
 					'escape' => false,
-					'class' => "btn btn-primary right",
+					
+					'class' => "btn btn-info  fl-width30",
 					'disableLoadDefaultDecorators' => true,
 					'decorators' => array("ViewHelper")
 			));

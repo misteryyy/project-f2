@@ -1,111 +1,93 @@
 <h2>Browse Members <?php echo $this->query;?></h2>
 
-<div class="fl-cnt-100 hide"> 
-<?php echo $this->form; ?>
-</div>
 
+<div class="fl-cnt-100">
+	<div class="fl-filtr-form">
+		<form id="form-browse-members"
+			action="<?= $this->form->getAction(); ?>"
+			method="<?= $this->form->getMethod(); ?>">
+			<fieldset>
+				<legend class="hide">Browse projects: </legend>
 
-<div class="fl-cnt-100 hide">
-<form id="form-browse-members" action="<?= $this->form->getAction(); ?>" method="<?= $this->form->getMethod(); ?>">
-<?= $this->form->q; ?>
-<?= $this->form->specific_role; ?>
-<?= $this->form->project_role; ?>
-<?= $this->form->submit; ?>
-</form>
-</div>
+				<div class="fl-width100">
 
-<div class="fl-cnt-100"> 
-  <div class="fl-filtr-form">
-    <form>
-      <fieldset>
-        <legend class="hide">Browse projects: </legend>
-
-        <div class="fl-width100">
-            
-            <div class="input-append fl-filtr-search"><label for="" class="hide">Keyword:</label>
-              <input type="text" name="" id="" class="fl-width91"/><input type="submit" class="btn btn-info fl-width30" value="search" />
+					<div class="input-append fl-filtr-search">
+						<label for="" class="hide">Keyword:</label>
+             	<?= $this->form->q; ?>
+           	  <?= $this->form->submit; ?>
             </div>
-          </div>
+				</div>
 
-        <div class="fl-width100">
-          <div class="hide">
-            <label for="sa_role_starter">
-              <input type="checkbox" name="role_starter" id="sa_role_starter" /> starter
-            </label>
-            <label for="sa_role_leader">
-              <input type="checkbox" name="role_leader" id="sa_role_leader" /> leader
-            </label>
-            <label for="sa_role_grower">
-              <input type="checkbox" name="role_grower" id="sa_role_grower" /> grower
-            </label>
-            <label for="sa_role_builder">
-              <input type="checkbox" name="role_builder" id="sa_role_builder" /> builder
-            </label>
-            <label for="sa_role_adviser">
-              <input type="checkbox" name="role_adviser" id="sa_role_adviser" /> adviser
-            </label>
-          </div>
-          <div class="fl-width25 fl-filtr-sa-roles">
-            <strong>Self-assigned roles:</strong>
-            <ul id="fl-filtr-form-choose-role">
-              <li><img src="/media/slepice-site/1.0.0/img/role_starter.png" id="sa_role_starter" alt="role starter" /></li>
-              <li><img src="/media/slepice-site/1.0.0/img/role_leader.png" id="sa_role_leader" alt="role leader" /></li>
-              <li><img src="/media/slepice-site/1.0.0/img/role_grower.png" id="sa_role_grower" alt="role grower" /></li>
-              <li><img src="/media/slepice-site/1.0.0/img/role_builder.png" id="sa_role_builder" alt="role builder" /></li>
-              <li><img src="/media/slepice-site/1.0.0/img/role_adviser.png" id="sa_role_adviser" alt="role adviser" /></li>
-            </ul>
-          </div>
+				<div class="fl-width100">
+				
+			
+					<div class="hide">
+					<?php echo $this->form->specific_role;?>
+					<!-- // Generated group of checkboxes -->
+					</div>
 
-          <div class="hide">
-            <label for="pr_role_starter">
-              <input type="checkbox" name="role_starter" id="pr_role_starter" /> starter
-            </label>
-            <label for="pr_role_leader">
-              <input type="checkbox" name="role_leader" id="pr_role_leader" /> leader
-            </label>
-            <label for="pr_role_grower">
-              <input type="checkbox" name="role_grower" id="pr_role_grower" /> grower
-            </label>
-            <label for="pr_role_builder">
-              <input type="checkbox" name="role_builder" id="pr_role_builder" /> builder
-            </label>
-            <label for="pr_role_adviser">
-              <input type="checkbox" name="role_adviser" id="pr_role_adviser" /> adviser
-            </label>
-          </div>
-          <div class="fl-width25 fl-filtr-pr-roles">
-            <strong>Project roles:</strong>
-            <ul id="fl-filtr-form-choose-role">
-              <li><img src="/media/slepice-site/1.0.0/img/role_starter.png" id="pr_role_starter" alt="role starter" /></li>
-              <li><img src="/media/slepice-site/1.0.0/img/role_leader.png" id="pr_role_leader" alt="role leader" /></li>
-              <li><img src="/media/slepice-site/1.0.0/img/role_grower.png" id="pr_role_grower" alt="role grower" /></li>
-              <li><img src="/media/slepice-site/1.0.0/img/role_builder.png" id="pr_role_builder" alt="role builder" /></li>
-              <li><img src="/media/slepice-site/1.0.0/img/role_adviser.png" id="pr_role_adviser" alt="role adviser" /></li>
-            </ul>
-          </div>
+					<div class="fl-width25 fl-filtr-sa-roles">
+						<strong>Self-assigned roles:</strong>
+						<ul id="fl-filtr-form-choose-role">
+							<li><img src="/media/slepice-site/1.0.0/img/role_starter.png"
+								id="specific_role-starter" alt="role starter" /></li>
+							<li><img src="/media/slepice-site/1.0.0/img/role_leader.png"
+								id="specific_role-leader" alt="role leader" /></li>
+							<li><img src="/media/slepice-site/1.0.0/img/role_grower.png"
+								id="specific_role-grower" alt="role grower" /></li>
+							<li><img src="/media/slepice-site/1.0.0/img/role_builder.png"
+								id="specific_role-builder" alt="role builder" /></li>
+							<li><img src="/media/slepice-site/1.0.0/img/role_adviser.png"
+								id="specific_role-adviser" alt="role adviser" /></li>
+						</ul>
+					</div>
 
-          <div class="hide">
-            <label for="er_role_earned">
-              <input type="checkbox" name="role_earned" id="er_role_earned" /> earned role
-            </label>
-          </div>
-          <div class="fl-width25 fl-filtr-er-roles">
-            <strong>Earned roles:</strong>
-            <ul id="fl-filtr-form-choose-role">
-              <li><img src="/media/slepice-site/1.0.0/img/role_earned.png" id="er_role_earned" alt="role eaned" /></li>
-            </ul>
-          </div>
+
+					<div class="hide">
+					
+					<?php echo $this->form->project_role;?>
+					<!-- // Generated group of checkboxes -->
+					
+					</div>
+					<div class="fl-width25 fl-filtr-pr-roles">
+						<strong>Project roles:</strong>
+						<ul id="fl-filtr-form-choose-role">
+							<li><img src="/media/slepice-site/1.0.0/img/role_starter.png"
+								id="project_role-starter" alt="role starter" /></li>
+							<li><img src="/media/slepice-site/1.0.0/img/role_leader.png"
+								id="project_role-leader" alt="role leader" /></li>
+							<li><img src="/media/slepice-site/1.0.0/img/role_grower.png"
+								id="project_role-grower" alt="role grower" /></li>
+							<li><img src="/media/slepice-site/1.0.0/img/role_builder.png"
+								id="project_role-builder" alt="role builder" /></li>
+							<li><img src="/media/slepice-site/1.0.0/img/role_adviser.png"
+								id="project_role-adviser" alt="role adviser" /></li>
+						</ul>
+					</div>
+
+					<div class="hide">
+						<label for="er_role_earned"> <input type="checkbox"
+							name="role_earned" id="er_role_earned" /> earned role
+						</label>
+					</div>
+					<div class="fl-width25 fl-filtr-er-roles">
+						<strong>Earned roles:</strong>
+						<ul id="fl-filtr-form-choose-role">
+							<li><img src="/media/slepice-site/1.0.0/img/role_earned.png"
+								id="er_role_earned" alt="role eaned" /></li>
+						</ul>
+					</div>
 
 
 
-        </div>
-      </fieldset>
-    </form>
-  </div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
 </div>
 
 <div class="fl-cnt-100 fl-top20">
-<!-- Project Displaying -->
+	<!-- Project Displaying -->
 <?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
 </div>
 
@@ -115,78 +97,82 @@
     <?php foreach ($this->paginator as $user){ ?> 
        
         <li>
-          <div class="fl-cnt-95">
-            <div class="inner">
-              
-              <div class="fl-cnt-100">
-                <a href="<?php echo $user->getProfileUrl();?>"><img src="/storage/users/<?php echo $user->getProfilePicture()?>" alt="<?php echo $user->getName(); ?>" class="fl-browse-members-img"/>
-                 </a> 
-              </div>
+			<div class="fl-cnt-95">
+				<div class="inner">
 
-              <div class="fl-cnt-100">
-                <h4><?php echo $user->name?></h4>
-                <div class="fl-cnt-100 fl-bottom10">
-                  <p class="info">
-                         <span class="followers"><i class="icon-eye-open"></i> <strong class="follower-count"><?php echo $user->getCountFriendsWithMe();?></strong> followers</span>
-                         <span class="like"><i class="icon-thumbs-up"></i> 
+					<div class="fl-cnt-100">
+						<a href="<?php echo $user->getProfileUrl();?>"><img
+							src="/storage/users/<?php echo $user->getProfilePicture()?>"
+							alt="<?php echo $user->getName(); ?>"
+							class="fl-browse-members-img" /> </a>
+					</div>
+
+					<div class="fl-cnt-100">
+						<h4><?php echo $user->name?></h4>
+						<div class="fl-cnt-100 fl-bottom10">
+							<p class="info">
+								<span class="followers"><i class="icon-eye-open"></i> <strong
+									class="follower-count"><?php echo $user->getCountFriendsWithMe();?></strong>
+									followers</span> <span class="like"><i class="icon-thumbs-up"></i> 
                          <?php
-                         // like dislike solution 
-                         if(!$user->isFriendWithMe($this->loggedMember)) {
-             ?> <a href="" title="" class="like-member" id="<?php echo $user->id;?>" >Like</a>
+		// like dislike solution
+		if (! $user->isFriendWithMe ( $this->loggedMember )) {
+			?> <a href="" title="" class="like-member"
+									id="<?php echo $user->id;?>">Like</a>
              <?php } else { ?>
-                            <a href="" title="" class="like-member" id="<?php echo $user->id;?>" >Dislike</a>
+                            <a href="" title="" class="like-member"
+									id="<?php echo $user->id;?>">Dislike</a>
                          <?php } ?>
                          </span>
-                       </p>
-                </div>
-              </div>
+							</p>
+						</div>
+					</div>
 
-              <div class="fl-cnt-100">
-                <div class="fl-roles-detail">
-                  <strong>Self-assigned roles:</strong><br />
-                  <img src="/media/slepice-site/1.0.0/img/role_starter.png" alt="role starter icon" />
-                  <img src="/media/slepice-site/1.0.0/img/role_starter.png" alt="role starter icon" />
-                  <img src="/media/slepice-site/1.0.0/img/role_starter.png" alt="role starter icon" />
-                  <img src="/media/slepice-site/1.0.0/img/role_starter.png" alt="role starter icon" />
-                  <img src="/media/slepice-site/1.0.0/img/role_starter.png" alt="role starter icon" />
-                </div>
-              </div>
+            
 
-              <?php 
-              // PROJECT ROLES
-              $specRoles = $user->getSpecificRoles(); 
-              if(count($specRoles) > 0){?>
+              <?php
+		// PROJECT ROLES
+		$specRoles = $user->getSpecificRoles ();
+		if (count ( $specRoles ) > 0) {
+			?>
               <div class="fl-cnt-100">
-                <div class="fl-roles-detail">
-                  <strong>Project roles:</strong><br />
+						<div class="fl-roles-detail">
+							<strong>Self assigned:</strong><br />
                   <?php foreach ($specRoles as $r){?>     
-                  <img src="/media/slepice-site/1.0.0/img/role_<?php echo $r->name;?>.png" alt="<?php echo $r->name;?> icon" title="<?php echo $r->name;?>" />
-                             </div>                 
+                  <img
+								src="/media/slepice-site/1.0.0/img/role_<?php echo $r->name;?>.png"
+								alt="<?php echo $r->name;?> icon" title="<?php echo $r->name;?>" />
+						</div>                 
                         <?php } ?> 
                 </div>
-              </div>
-              <?php } 
-              // END PROJECT ROLES
-              ?>
+             
+              <?php
+		
+}
+		// END PROJECT ROLES
+		?>
 
-              <div class="fl-cnt-100">
+          
                 <div class="fl-roles-detail">
-                  <strong>Earned roles:</strong><br />
-                  <img src="/media/slepice-site/1.0.0/img/role_starter.png" alt="role starter icon" />
-                </div>
-              </div>
+						<strong>Earned roles:</strong><br /> <img
+							src="/media/slepice-site/1.0.0/img/role_starter.png"
+							alt="role starter icon" />
+					</div>
+				</div>
 
-            </div>
-          </div>
-        </li>
+			</div>
 
-    <?php } ?>
-  </ul>			
-  <?php } else echo "There are no users."?>
-    
 </div>
-    
-<script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/choose-role.js')?>"></script>        
-<script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-member-project-1.0.0.js')?>"></script> 
-       
-    	
+</li>
+
+<?php } ?>
+</ul>
+<?php } else echo "There are no users."?>
+
+</div>
+
+<script
+	src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/choose-role.js')?>"></script>
+<script
+	src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-member-project-1.0.0.js')?>"></script>
+
