@@ -68,7 +68,6 @@ class BrowseMemberForm extends \Twitter_Bootstrap_Form_Horizontal
 					//'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
 					'label' => 'Search',
 					'escape' => false,
-					
 					'class' => "btn btn-info  fl-width30",
 					'disableLoadDefaultDecorators' => true,
 					'decorators' => array("ViewHelper")

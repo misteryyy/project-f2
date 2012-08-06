@@ -26,12 +26,11 @@ protected $categories; // Array of categories from DB
 					UserRole::MEMBER_ROLE_GROWER => UserRole::MEMBER_ROLE_GROWER, 
 					UserRole::MEMBER_ROLE_ADVISER => UserRole::MEMBER_ROLE_ADVISER, );
 			
-			
 			// Priority
 			$this->addElement('select','category', array(
 					'label' => 'Category',
 					'class' => 'fl-width100 fl-margin0',
-					'multiOptions' => array_merge(array(''=>"All"),$this->categories),
+					'multiOptions' =>  array_merge(array('0'=>"All"),$this->categories),
 					'decorators' => array(array('ViewHelper'),array('Label',array('class'=>"hide"))),
 			));
 			
@@ -41,16 +40,13 @@ protected $categories; // Array of categories from DB
 			}
 			// Passion Bar
 			$this->addElement('select','priority', array(
-					'label' => 'Priority',
-					'multiOptions' => array_merge(array(''=>"All"),$priority),
+					'label' => 'Passion Level',
+					'multiOptions' => array_merge(array('0'=>"All"),$priority),
 					'disableLoadDefaultDecorators' => true,
 					'decorators' => array(array('ViewHelper'),array('Label')),
 			));
 				
-			for($i = 1; $i <=10;$i++){
-				$priority[$i] = $i;
-			}
-			// Passion Bar
+			// Level
 			$this->addElement('select','level', array(
 					'label' => 'Select Project Level',
 					'class' => "fl-filtr-form-level",

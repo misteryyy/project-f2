@@ -92,7 +92,7 @@ class SearchEngineFacade {
 	public function buildProjectIndexes($options = array()){
 		
 		
-		if(trim($options['category']) != '') $paginator = $this->facadeProject->findAllProjectsByCategoryPaginator($options['category']);
+		if(!empty( $options['category']) ) $paginator = $this->facadeProject->findAllProjectsByCategoryPaginator($options['category']);
 		else $paginator = $this->facadeProject->findAllProjects();
 	
 		\Zend_Search_Lucene_Analysis_Analyzer::setDefault(new \Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8Num_CaseInsensitive ());
@@ -125,9 +125,6 @@ class SearchEngineFacade {
 		}
 		
  		$projectRoles = implode(' ',$freePositions);
- 		echo $projectRoles. ' PROJECT FREE ROLES <br> ';
-	
- 		
  		
  		$doc = new \Zend_Search_Lucene_Document();
  		$doc->addField(\Zend_Search_Lucene_Field::text('project_id', $project->id));
