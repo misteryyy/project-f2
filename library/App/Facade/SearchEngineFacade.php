@@ -57,7 +57,6 @@ class SearchEngineFacade {
 	
 		$projects = array();
 		foreach ($hits as $h){
-			echo $h->project_id;
 			$projects[] = $this->facadeProject->findOneProject($h->project_id);
 		}
 	
@@ -138,8 +137,7 @@ class SearchEngineFacade {
 	
 	}
 	
-	
-	
+
 	public function addUserIndex($user){
 		// open index
 		$index = \Zend_Search_Lucene::open(APPLICATION_PATH . '/indexes/members');
@@ -151,10 +149,10 @@ class SearchEngineFacade {
 			sort($specificRoles);
 			$specificRoles = implode(' ',$specificRoles);
 		};
-		echo $specificRoles ." for ".$user->name ." <br>" ;
+		//echo $specificRoles ." for ".$user->name ." <br>" ;
 		
 		$projectRoles = implode(' ',$this->findProjectRolesForUser($user->id));
-		echo $projectRoles. ' PROJECT ROLES <br> ';
+		//echo $projectRoles. ' PROJECT ROLES <br> ';
 		
 		$doc = new \Zend_Search_Lucene_Document();
 		$doc->addField(\Zend_Search_Lucene_Field::text('user_id', $user->id));
@@ -179,7 +177,7 @@ class SearchEngineFacade {
 		
 		foreach($hits as $h){
 			$index->delete($h->id);	
-			echo $h->id . ' has been deleted with name '.$h->name;
+			//echo $h->id . ' has been deleted with name '.$h->name;
 		}
 		
 		
@@ -208,12 +206,11 @@ class SearchEngineFacade {
 		
 		$user = $this->findOneUser($user_id);
 		
-		$stmt = 'SELECT p FROM App\Entity\ProjectRole p WHERE p.type = ?1 AND p.user = ?2 GROUP BY p.name';
-		$stmt .= '';
-		
+		$stmt = 'SELECT p FROM App\Entity\ProjectRole p WHERE p.user = ?1 GROUP BY p.name';
+
 		$query = $this->em->createQuery($stmt);
-		$query->setParameter(2, $user_id);
-		$query->setParameter(1, \App\Entity\ProjectRole::PROJECT_ROLE_TYPE_CREATOR);
+		$query->setParameter(1, $user_id);
+		//$query->setParameter(1, \App\Entity\ProjectRole::PROJECT_ROLE_TYPE_CREATOR);
 		
 		$roles = $query->getResult();
 		

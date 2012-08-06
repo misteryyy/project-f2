@@ -37,20 +37,31 @@ if(count ($this->projects) > 0){
                       
                       <div class="fl-cnt-100 fl-list-project-roles fl-top10">
                         <div class="fl-list-project-roles-available">
-                        <?php 
-		                        // if level 1 display all logos   
-								if($project->level == 1)
-		                        $freePositions = \App\Entity\ProjectRole::getRolesArray();
-		                        
-								if($project->level == 2){
-		                       // if level 2 display free positions
-		                        $facadeProject = new \App\Facade\Project\TeamFacade($this->em);
-		                    	  $freePositions = $facadeProject->findFreeUniqueProjectRolesForProjectArray($project->id); 
-								}
-		                    	// if level 3 = have no idea what to display or not
-		                    	foreach ($freePositions as $r){
-		                    		echo '<img src="/media/slepice-site/1.0.0/img/role_'.$r.'.png" alt="'.$r.'" title="'.$r.'" /> ';
-		                   		} 
+                       <?php 
+                       		 $display = false;
+                        // if level 1 display all logos   
+						if($project->level == 1) {
+                        $freePositions = \App\Entity\ProjectRole::getRolesArray();
+							$display = true;
+						}
+						if($project->level == 2){
+                       // if level 2 display free positions
+                        $facadeProject = new \App\Facade\Project\TeamFacade($this->em);
+                    	$freePositions = $facadeProject->findFreeUniqueProjectRolesForProjectArray($project->id); 
+							$display =  true;	
+						}
+						
+						if($display){
+						
+                    	// if level 3 = have no idea what to display or not
+                    	foreach ($freePositions as $r){
+                    		
+                    		
+                    		echo '<img src="/media/slepice-site/1.0.0/img/role_'.$r.'.png" alt="'.$r.'" title="'.$r.'" />';
+                    
+                    	}
+						} 
+
                     	?>
                       	<p class="fl-list-project-queue"><strong>
                       	  <?php 

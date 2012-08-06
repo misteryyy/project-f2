@@ -5,7 +5,6 @@
 <?php } ?>
 
  <?php  
-	
 	$allow[1] = false;
 	$allow[2] = false;
 	$allow[3] = false;
@@ -44,10 +43,11 @@
   </ul>
 
   <?php 
+  	
       if($this->isCreator){
  ?>
   <ul class="nav pull-right">
-  	<li><a href="/member/my-project/edit-project/id/<?php echo $this->project_id; ?>" title=""><i class="icon-wrench icon-white"></i> Edit project as a Creator</a></li>
+  	<li><a href="/member/my-project/edit-project/id/<?php echo $this->project->id; ?>" title=""><i class="icon-wrench icon-white"></i> Edit project as a Creator</a></li>
   </ul>
  <?php     
       } 

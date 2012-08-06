@@ -128,7 +128,7 @@
             
 
               <?php
-		// PROJECT ROLES
+		// SELF ROLES
 		$specRoles = $user->getSpecificRoles ();
 		if (count ( $specRoles ) > 0) {
 			?>
@@ -142,17 +142,27 @@
               </div>
              
               <?php }
+		      // SELF ROLES
+		      ?>
+		                <?php
+		// PROJECT ROLES
+		$facadeAcl = new \App\Facade\SearchEngineFacade($this->em);
+		$projectRoles = $facadeAcl->findProjectRolesForUser($user->id);
+		
+		if ( count ($projectRoles ) > 0) {
+			?>
+              <div class="fl-cnt-100">
+				<div class="fl-roles-detail">
+					<strong>Project roles:</strong><br />
+                  <?php foreach ($projectRoles as $r){?>     
+                    <img src="/media/slepice-site/1.0.0/img/role_<?php echo $r;?>.png" alt="<?php echo $r;?> icon" title="<?php echo $r;?>" />
+                  <?php } ?> 
+				</div>                 
+              </div>
+             
+              <?php }
 		      // END PROJECT ROLES
 		      ?>
-
-		      <div class="fl-cnt-100">
-                <div class="fl-roles-detail">
-				  <strong>Project roles:</strong><br />
-				  <img	src="/media/slepice-site/1.0.0/img/role_starter.png" alt="role starter icon" />
-				  <img	src="/media/slepice-site/1.0.0/img/role_starter.png" alt="role starter icon" />
-				</div>
-			  </div>
-
 
               <div class="fl-cnt-100">
                 <div class="fl-roles-detail">

@@ -12,17 +12,8 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 <!-- KONTROLNI VYPIS PRO PEPU -->
 
 <div class="fl-cnt-100">
-<div class="well">
-<?php 
-	foreach ($this->emptyAnswers as $answer){
-		$unansweredQuestion[] = $answer->question->id;
-		//	pr(array($answer->id,$answer->question->question,$answer->question->id));
-		//print ' $("li#step-title-'.$answer->question->id.'").addClass("fl-unanswered-question");
-		//';
-	}
- 	pr($unansweredQuestion);
-?>
-</div>
+
+
 </div>
 
 <div class="fl-survey-questions">
@@ -58,6 +49,16 @@ $(document).ready(function()
 				  titleClick:   true,
 				  titleTarget:  '#title-target'
 				}); 
+
+			 // coloring empty
+			 <?php 
+			 	foreach ($this->emptyAnswers as $answer){
+			 		?>
+			 		 var t = $("#step-title-<?php echo $answer->question->id?>").css("color","red");
+			 		<?php 
+			 	}
+			 ?>			
+					
 				    
 
 });
