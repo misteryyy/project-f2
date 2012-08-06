@@ -16,19 +16,19 @@ echo $this->partial('project/create-project-navigation.phtml',array("step" => $t
 <div class="fl-cnt-100">
 <?php 
 
-//pr($this->firstStep);
-//pr($this->secondStep);
+pr($this->firstStep);
+pr($this->secondStep);
 pr($this->thirdStep);
 pr($this->fourthStep);
 
-// if(!$this->thirdStep['role_widget_disable']){
-// for($i=1;$i < 6; $i++){
-// 	echo "Question for visitors ".$i." <br />";
-// 	echo $this->thirdStep['question_'.$i]." <br />";
-// }
-// }else {
-// 	echo "Widget is DISABLE. No questions.";
-// }
+if(!$this->thirdStep['role_widget_disable']){
+for($i=1;$i < 6; $i++){
+	echo "Question for visitors ".$i." <br />";
+	echo $this->thirdStep['question_'.$i]." <br />";
+}
+}else {
+	echo "Widget is DISABLE. No questions.";
+}
 ?>
 
 <div id="preview">
