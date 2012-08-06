@@ -6,7 +6,7 @@ class MemberCreateProjectStep3 extends \Twitter_Bootstrap_Form_Horizontal
 {
 	public function init()
 	{		
-		
+		$this->_addClassNames('fl-form');
 		$arrayRoles = array(
 				array("name" => UserRole::MEMBER_ROLE_STARTER, 
 					 "description" => UserRole::MEMBER_ROLE_STARTER

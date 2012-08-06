@@ -133,34 +133,28 @@
 		if (count ( $specRoles ) > 0) {
 			?>
               <div class="fl-cnt-100">
-						<div class="fl-roles-detail">
-							<strong>Self assigned:</strong><br />
+				<div class="fl-roles-detail">
+					<strong>Self assigned:</strong><br />
                   <?php foreach ($specRoles as $r){?>     
-                  <img
-								src="/media/slepice-site/1.0.0/img/role_<?php echo $r->name;?>.png"
-								alt="<?php echo $r->name;?> icon" title="<?php echo $r->name;?>" />
-						</div>                 
-                        <?php } ?> 
-                </div>
+                    <img src="/media/slepice-site/1.0.0/img/role_<?php echo $r->name;?>.png" alt="<?php echo $r->name;?> icon" title="<?php echo $r->name;?>" />
+                  <?php } ?> 
+				</div>                 
+              </div>
              
-              <?php
-		
-}
-		// END PROJECT ROLES
-		?>
+              <?php }
+		      // END PROJECT ROLES
+		      ?>
 
-          
+              <div class="fl-cnt-100">
                 <div class="fl-roles-detail">
-						<strong>Earned roles:</strong><br /> <img
-							src="/media/slepice-site/1.0.0/img/role_starter.png"
-							alt="role starter icon" />
-					</div>
+				  <strong>Earned roles:</strong><br />
+				  <img	src="/media/slepice-site/1.0.0/img/role_starter.png" alt="role starter icon" />
 				</div>
+			  </div>
 
 			</div>
-
-</div>
-</li>
+          </div>
+       </li>
 
 <?php } ?>
 </ul>
@@ -168,8 +162,6 @@
 
 </div>
 
-<script
-	src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/choose-role.js')?>"></script>
-<script
-	src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-member-project-1.0.0.js')?>"></script>
+<script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/choose-role.js')?>"></script>
+<script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-member-project-1.0.0.js')?>"></script>
 
