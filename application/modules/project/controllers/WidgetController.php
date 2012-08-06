@@ -174,6 +174,8 @@ class Project_WidgetController extends  Boilerplate_Controller_Action_Abstract
     		$this->view->aclPermissionDenied = true;
     		//return;
     	}
+    	
+    	
     	$facadeTeam = new \App\Facade\Project\TeamFacade($this->_em);
     	// free positions
     	$freePositions = $facadeTeam->findFreeProjectRolesForProject($this->project_id,array("role"=>"all"));

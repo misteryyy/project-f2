@@ -57,7 +57,6 @@ class SearchEngineFacade {
 	
 		$projects = array();
 		foreach ($hits as $h){
-			echo $h->project_id;
 			$projects[] = $this->facadeProject->findOneProject($h->project_id);
 		}
 	

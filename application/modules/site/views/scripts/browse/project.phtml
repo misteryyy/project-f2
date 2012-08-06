@@ -126,23 +126,30 @@ if ($this->displayForm) {?>
                       
                      <div class="fl-cnt-100 fl-thumb-roles">
                         <div class="fl_project_thumb_roles">
-                        <?php 
+                         <?php 
+                       		 $display = false;
                         // if level 1 display all logos   
-						if($project->level == 1)
+						if($project->level == 1) {
                         $freePositions = \App\Entity\ProjectRole::getRolesArray();
-                        
+							$display = true;
+						}
 						if($project->level == 2){
                        // if level 2 display free positions
                         $facadeProject = new \App\Facade\Project\TeamFacade($this->em);
                     	$freePositions = $facadeProject->findFreeUniqueProjectRolesForProjectArray($project->id); 
+							$display =  true;	
 						}
+						
+						if($display){
+						
                     	// if level 3 = have no idea what to display or not
                     	foreach ($freePositions as $r){
                     		
                     		echo '<div class="fl_project_thumb_role">';
                     		echo '<img src="/media/slepice-site/1.0.0/img/role_'.$r.'.png" alt="'.$r.'" title="'.$r.'" />';
                     		echo '</div>';
-                    	} 
+                    	}
+						} 
                     	?>
                        </div>
                      </div>
