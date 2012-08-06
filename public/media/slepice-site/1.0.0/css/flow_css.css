@@ -91,6 +91,10 @@ body{
   width: 100%;
 }
 
+.strong{
+  font-weight: bold;
+}
+
 .fl-cnt-100{
   width: 100%;
   float: left;
@@ -1170,7 +1174,7 @@ p.fl-list-project-queue{
   margin: 0;
 }
 
-p.fl-publishing-title{
+p.fl-publishing-title, div.fl-publishing-title{
   font-size: 12px;
   color: #000000;
   width: 100%;
@@ -2193,6 +2197,7 @@ tr.fl-user-banned:hover{
 .fl-thumb-roles{
   padding: 5px 0 5px 0;
   background: #f4f4f4;
+  min-height: 40px;
 }
 
 .fl-similar-projects-thumbnails{
