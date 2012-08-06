@@ -50,12 +50,21 @@ class MemberCreateProjectStep5 extends \Twitter_Bootstrap_Form_Horizontal
 		// submit button
 		$this->addElement('submit','submit',array(
 				'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
-				'label' => "Publish Project",
+				'label' => "Publish",
 				'escape' => false,
+				'class' => 'btn btn-info strong'
 		));
+
+		$this->addElement('button','previous',array(
+				'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
+				'label' => "Previous step",
+				'escape' => false,
+				'class' => 'btn btn-info'
+		));
+
 		// Action Section
 		$this->addDisplayGroup(
-				array('submit',),
+				array('previous','submit',),
 				'actions',
 				array(
 						'disableLoadDefaultDecorators' => true,

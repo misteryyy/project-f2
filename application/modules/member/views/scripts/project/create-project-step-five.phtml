@@ -4,40 +4,136 @@
 echo $this->partial('project/create-project-navigation.phtml',array("step" => $this->step));
 ?>
 
-<div class="fl-cnt-100">
-   <div class="alert alert-info">
-   <span class="label label-info">Info</span>
-	  Description text,Description text,Description text,Description text,Description text,Description text,
-	  Description text,Description text,Description text,Description text,Description text,Description text,
-	  Description text,Description text,Description text,Description text,Description text,Description text.
-  </div>
-</div>
+
 
 <div class="fl-cnt-100">
-<?php 
 
-pr($this->firstStep);
-pr($this->secondStep);
-pr($this->thirdStep);
-pr($this->fourthStep);
+                <span class="fl-publishing-label">Project name</span>
+                <p class="fl-publishing-title"><?php echo $this->firstStep['title']; ?></p>
 
-if(!$this->thirdStep['role_widget_disable']){
-for($i=1;$i < 6; $i++){
-	echo "Question for visitors ".$i." <br />";
-	echo $this->thirdStep['question_'.$i]." <br />";
-}
-}else {
-	echo "Widget is DISABLE. No questions.";
-}
-?>
+                <span class="fl-publishing-label">Category</span>
+                <p class="fl-publishing-title"><?php echo $this->firstStep['category']; ?></p>
 
-<div id="preview">
-<?php
-// display picture from the previous
-		echo '<div class="well"> <img src="'.$this->secondStep['webUrl'].'?foo='.time().'" alt="Profile Picture"/> </div> <hr />';
-?>
- </div>
- 
- 
- <?php echo $this->form;?>
+                <span class="fl-publishing-label">Picture</span>
+                <div class="fl-publishing-img">
+                   <?php echo '<img src="'.$this->secondStep['webUrl'].'?foo='.time().'" alt="Profile Picture"/>'; ?>
+                </div>
+                
+                <span class="fl-publishing-label">One sentence pitch</span>
+                <p class="fl-publishing-title"><?php echo $this->firstStep['pitch']; ?></p>
+
+                <span class="fl-publishing-label">Description</span>
+                <div class="fl-publishing-title">
+                	<?php echo $this->firstStep['content']; ?>
+                </div>
+
+                <span class="fl-publishing-label">Plans</span>
+                <p class="fl-publishing-title"><?php echo $this->firstStep['plan']; ?></p>
+
+                <span class="fl-publishing-label">Lessons learned</span>
+                <p class="fl-publishing-title"><?php echo $this->firstStep['lesson']; ?></p>
+
+                <span class="fl-publishing-label">Issues</span>
+                <p class="fl-publishing-title"><?php echo $this->firstStep['issue']; ?></p>
+
+                <span class="fl-publishing-label">Passion bar</span>
+                <div class="fl-publishing-bar">
+                  <span><?php echo $this->firstStep['priority']; ?></span>
+                  <div class="progress fl-passion-bar">
+                    <div class="bar fl-bar" style="width: <?php echo $this->firstStep['priority']*10; ?>%;"></div>
+                  </div>
+                </div>
+
+                <span class="fl-publishing-label">Tags</span>
+                <p class="fl-publishing-title"><?php echo $this->firstStep['project_tags']; ?></p>          
+
+                
+                <span class="fl-publishing-label">Your roles</span>
+                <div class="fl-publishing-roles">
+
+                <?php if($this->thirdStep['role_starter']){ ?>	
+                  <div class="fl-skill">
+                    <div class="fl-skill-img30">
+                      <img src="/media/slepice-site/1.0.0/img/role_starter.png" alt="starter"  />
+                    </div>
+                    <div class="fl-skill-text">
+                      <div class="fl-skill-text-roledescription30">
+                        <strong>Starter</strong> 
+                      </div>
+                    </div>
+                  </div>
+              	<?php } ?>
+
+              	<?php if($this->thirdStep['role_leader']){ ?>	
+                  <div class="fl-skill">
+                    <div class="fl-skill-img30">
+                      <img src="/media/slepice-site/1.0.0/img/role_leader.png" alt="leader"  />
+                    </div>
+                    <div class="fl-skill-text">
+                      <div class="fl-skill-text-roledescription30">
+                        <strong>Leader</strong> 
+                      </div>
+                    </div>
+                  </div>
+              	<?php } ?>
+
+              	<?php if($this->thirdStep['role_builder']){ ?>	
+                  <div class="fl-skill">
+                    <div class="fl-skill-img30">
+                      <img src="/media/slepice-site/1.0.0/img/role_builder.png" alt="builder"  />
+                    </div>
+                    <div class="fl-skill-text">
+                      <div class="fl-skill-text-roledescription30">
+                        <strong>Builder</strong> 
+                      </div>
+                    </div>
+                  </div>
+              	<?php } ?>
+
+              	<?php if($this->thirdStep['role_grower']){ ?>	
+                  <div class="fl-skill">
+                    <div class="fl-skill-img30">
+                      <img src="/media/slepice-site/1.0.0/img/role_grower.png" alt="grower"  />
+                    </div>
+                    <div class="fl-skill-text">
+                      <div class="fl-skill-text-roledescription30">
+                        <strong>Grower</strong> 
+                      </div>
+                    </div>
+                  </div>
+              	<?php } ?>
+
+              	<?php if($this->thirdStep['role_adviser']){ ?>	
+                  <div class="fl-skill">
+                    <div class="fl-skill-img30">
+                      <img src="/media/slepice-site/1.0.0/img/role_adviser.png" alt="adviser"  />
+                    </div>
+                    <div class="fl-skill-text">
+                      <div class="fl-skill-text-roledescription30">
+                        <strong>Adviser</strong> 
+                      </div>
+                    </div>
+                  </div>
+              	<?php } ?>
+
+                  
+                </div>
+
+                <?php if(!$this->thirdStep['role_widget_disable']){ ?>
+                <span class="fl-publishing-label">Questions fo new members</span>
+                  <p class="fl-publishing-title">
+                <?php
+				for($i=1;$i < 6; $i++){
+ 					echo "<strong>".$i.".</strong> ".$this->thirdStep['question_'.$i]." <br />";
+				}
+				}else {
+					echo "Widget is DISABLE. No questions.";
+				} ?>
+				  </p>
+			<div class="fl-cnt-100">
+                <?php echo $this->form;?>
+            </div>
+
+                <div class="fl_thin_divider"></div>
+
 </div>
