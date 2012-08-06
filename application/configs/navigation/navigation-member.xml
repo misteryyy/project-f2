@@ -2,6 +2,11 @@
 <config>
     <nav>
      	
+     			<lost-password>
+							<label>Lost password</label>
+							<uri>/member/index/lost-password</uri>		
+				</lost-password>
+						
                   <dashboard>
                     <label>Member Dashboard </label>
     				<module>member</module>

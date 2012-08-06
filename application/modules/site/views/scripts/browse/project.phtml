@@ -3,108 +3,81 @@
 
 <h2>Browse projects <?php echo $this->query;?></h2>
 
-<div class="fl-cnt-100"> 
-<?php echo $this->form; ?>
-</div>
-
+<?php 
+// when the most-viewed, recommened, .. is selected don't display search form
+if ($this->displayForm) {?>
 <div class="fl-cnt-100"> 
   <div class="fl-filtr-form">
-    <form>
+    <form action="<?= $this->form->getAction(); ?>" method="<?= $this->form->getMethod(); ?>" >
       <fieldset>
         <legend class="hide">Browse projects: </legend>
 
         <div class="fl-width100">
           <div class="fl-width25 left">
-            <label for="" class="hide">Category:</label>
-            <select name="" class="fl-width100 fl-margin0">
-              <option value="">All</option>
-              <option value="">All</option>
-              <option value="">All</option>
-              <option value="">All</option>
-            </select>
+          <?php echo $this->form->category?>
           </div>
 
           <div class="fl-width75 right">
             <label for="" class="hide">Keyword:</label>
             <div class="input-append fl-filtr-search">
-              <input type="text" name="" id="" class="fl-width85"/><input type="submit" class="btn btn-info fl-width30" value="search" />
+             <?php echo $this->form->q;?><input type="submit" class="btn btn-info fl-width30" value="search" />
             </div>
           </div>
         </div>
 
         <div class="fl-width100">
           <div class="hide">
-            <label for="role_starter">
-              <input type="checkbox" name="role_starter" id="role_starter" /> starter
-            </label>
-            <label for="role_leader">
-              <input type="checkbox" name="role_leader" id="role_leader" /> leader
-            </label>
-            <label for="role_grower">
-              <input type="checkbox" name="role_grower" id="role_grower" /> grower
-            </label>
-            <label for="role_builder">
-              <input type="checkbox" name="role_builder" id="role_builder" /> builder
-            </label>
-            <label for="role_adviser">
-              <input type="checkbox" name="role_adviser" id="role_adviser" /> adviser
-            </label>
+          	<?php echo $this->form->project_role;?>
           </div>
           <div class="fl-width33 left fl-top10">
             Choose available roles:
             <ul id="fl-filtr-form-choose-role">
-              <li><img src="/media/slepice-site/1.0.0/img/role_starter.png" id="role_starter" alt="role_starter" /></li>
-              <li><img src="/media/slepice-site/1.0.0/img/role_leader.png" id="role_leader" alt="role_leader" /></li>
-              <li><img src="/media/slepice-site/1.0.0/img/role_grower.png" id="role_grower" alt="role_grower" /></li>
-              <li><img src="/media/slepice-site/1.0.0/img/role_builder.png" id="role_builder" alt="role_builder" /></li>
-              <li><img src="/media/slepice-site/1.0.0/img/role_adviser.png" id="role_adviser" alt="role_adviser" /></li>
+              <li><img src="/media/slepice-site/1.0.0/img/role_starter.png" id="project_role-starter" alt="role_starter" /></li>
+              <li><img src="/media/slepice-site/1.0.0/img/role_leader.png" id="project_role-leader" alt="role_leader" /></li>
+              <li><img src="/media/slepice-site/1.0.0/img/role_grower.png" id="project_role-grower" alt="role_grower" /></li>
+              <li><img src="/media/slepice-site/1.0.0/img/role_builder.png" id="project_role-builder" alt="role_builder" /></li>
+              <li><img src="/media/slepice-site/1.0.0/img/role_adviser.png" id="project_role-adviser" alt="role_adviser" /></li>
             </ul>
           </div>
 
           <div class="fl-filtr-form-project-level">
-            Select project level:
             <div class="fl-width100 fl-top5">
-              <div class="fl-width80 left">
-                <label for="" class="hide">Sign:</label>
-                <select name="" id="" class="fl-filtr-form-sign">
-                  <option value="">equal</option>
-                  <option value="">greater than</option>
-                  <option value="">less than</option>
-                </select>
-              </div>
-              <div class="fl-width20 left">
-                <label for="" class="hide">Project level:</label>
-                <select name="" id="" class="fl-filtr-form-level">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
+              <div class="fl-width100 left">
+                <?php echo $this->form->level;?>
               </div>
             </div>
           </div>
 
           <div class="fl-filtr-form-passion-level">
-            Select level of passion:
+                <div class="fl-width100 fl-top5">
+             <?php echo $this->form->priority;?>
+             </div>
           </div>
-
         </div>
       </fieldset>
     </form>
   </div>
 </div>
+<?php 
+}
+?>
 
+
+  
 <div class="fl-cnt-100">
-  Total results: 56 projects
+  		Total results: <?php echo $this->paginator->getTotalItemCount();?> projects
 </div>
 
 
-<div class="fl-cnt-100">
-<!-- Project Displaying -->
-<?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
+<div class="fl-cnt-100 fl-top20">
+<?php if (count($this->paginator) > 1 )echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
 </div>
+
 
 <div class="fl-cnt-100">
     <?php if (count($this->paginator)) {?>
+  
+    
    <ul class="thumbnails">
     <?php foreach ($this->paginator as $project){ ?>
 
@@ -152,19 +125,25 @@
                   </div>
                       
                      <div class="fl-cnt-100 fl-thumb-roles">
-                       <div class="fl_project_thumb_roles">
-                         <div class="fl_project_thumb_role">
-                           <img src="/media/slepice-site/1.0.0/img/role_starter.png" alt="" />
-                         </div>
-                         <div class="fl_project_thumb_role">
-                           <img src="/media/slepice-site/1.0.0/img/role_starter.png" alt="" />
-                         </div>
-                         <div class="fl_project_thumb_role">
-                           <img src="/media/slepice-site/1.0.0/img/role_starter.png" alt="" />
-                         </div>
-                         <div class="fl_project_thumb_role">
-                           <img src="/media/slepice-site/1.0.0/img/role_starter.png" alt="" />
-                         </div>
+                        <div class="fl_project_thumb_roles">
+                        <?php 
+                        // if level 1 display all logos   
+						if($project->level == 1)
+                        $freePositions = \App\Entity\ProjectRole::getRolesArray();
+                        
+						if($project->level == 2){
+                       // if level 2 display free positions
+                        $facadeProject = new \App\Facade\Project\TeamFacade($this->em);
+                    	$freePositions = $facadeProject->findFreeUniqueProjectRolesForProjectArray($project->id); 
+						}
+                    	// if level 3 = have no idea what to display or not
+                    	foreach ($freePositions as $r){
+                    		
+                    		echo '<div class="fl_project_thumb_role">';
+                    		echo '<img src="/media/slepice-site/1.0.0/img/role_'.$r.'.png" alt="'.$r.'" title="'.$r.'" />';
+                    		echo '</div>';
+                    	} 
+                    	?>
                        </div>
                      </div>
                 </li>
@@ -175,7 +154,6 @@
       </div>
 
 </div>
-	   
 	  <div class="span2">	    
 	    <!-- Category menu and filters module -->
 	  	<?= $this->action('category', 'widget', 'site');  ?>

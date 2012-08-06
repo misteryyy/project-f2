@@ -41,7 +41,41 @@ class ProjectFacade {
 	public function findAllProjectsPaginator($options=array()){
 		
 			$stmt = 'SELECT p FROM App\Entity\Project p ';
-			$stmt .= 'ORDER BY p.created DESC';
+			
+			// newest, random, most-viewed, recommended
+			if(!empty($options['type'])){
+				
+				// ch
+				switch($options['type']){
+					case 'most-viewed':
+						$stmt .= 'ORDER BY p.viewCount DESC'; // newest			
+						break;	
+					case 'recommended':
+							$stmt .= 'ORDER BY p.featured DESC'; // if many admins like this project, the project has higher rating
+							break;
+					case 'random':
+								$q = $this->em->createQuery('SELECT x.id FROM \App\Entity\Project x');
+								$idss = $q->getArrayResult();
+								$mixArray = array();
+								foreach($idss as $id){
+									$mixArray[] = $id['id'];
+								}
+								shuffle($mixArray); // randomize array
+								$qb = $this->em->createQueryBuilder('p');
+								$stmt .= " WHERE ". $qb->expr()->in('p.id', $mixArray);
+
+					break;
+					
+					default:
+						$stmt .= 'ORDER BY p.created DESC'; // newest
+						break;
+					
+				}
+				
+			// else display just projects	
+			} else {
+				$stmt .= 'ORDER BY p.created DESC'; // newest first when DESC
+			}
 			
 			// if category	
 			$query = $this->em->createQuery($stmt);

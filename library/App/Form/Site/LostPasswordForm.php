@@ -6,8 +6,6 @@ class LostPasswordForm extends \Twitter_Bootstrap_Form_Horizontal
 {
    public function init()
     {
-    	
-
   
     	//Member email
     	$this->addElement('text', 'email', array(
@@ -19,34 +17,27 @@ class LostPasswordForm extends \Twitter_Bootstrap_Form_Horizontal
     			'validators' => array("EmailAddress")
     	));
     	
-    	
-    	
         	/**
         	 * ORDERING IN FIELDSET
         	 */
          	$this->addDisplayGroup(
         			array("email","password"), 
          			'login',
-         			array('legend' => 'Login')
+         			array('legend' => 'Lost password')
         	);
        
          	// submit button
          	$this->addElement('submit','submit',array(
          			'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
-         			'label' => "Save",
+         			'label' => "Send me new password",
          			'escape'        => false,
          	));
          	 
-         	 
-         	$this->addElement('button', 'reset', array(
-         			'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
-         			'label'         => 'Reset',
-         			'type'          => 'reset'
-         	));
+    
          	
          	// Action Section
         	$this->addDisplayGroup(
-        			array('submit', 'reset'),
+        			array('submit'),
         			'actions',
         			array(
         					'disableLoadDefaultDecorators' => true,

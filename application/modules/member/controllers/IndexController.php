@@ -8,9 +8,9 @@ class Member_IndexController extends Boilerplate_Controller_Action_Abstract {
 	}
 	
 	public function indexAction() {
-	
 		$this->_redirect('/member/dashboard');
 	}
+	
 	
 	/*
 	 * Lost password 

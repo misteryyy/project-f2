@@ -37,7 +37,7 @@
                         <p class="fl-list-project-info"><i class="icon-user"></i> Creator, <i class="icon-folder-close"></i> <?php echo $project->category->name?>, <i class="icon-eye-open"></i> <?php echo $project->getCountFollowers();?> Followers</p>
                       </div>
                       <div class="fl-cnt-100 fl-bottom10">
-                        <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text.</p>
+                        <p><?php echo $project->pitchSentence?></p>
                       </div>
                       <div class="fl-list-project-roles">
                         <?php 

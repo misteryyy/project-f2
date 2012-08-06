@@ -77,9 +77,6 @@
 								id="er_role_earned" alt="role eaned" /></li>
 						</ul>
 					</div>
-
-
-
 				</div>
 			</fieldset>
 		</form>
@@ -87,12 +84,12 @@
 </div>
 
 <div class="fl-cnt-100 fl-top20">
-	<!-- Project Displaying -->
-<?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
+<?php if (count($this->paginator) > 1 )echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
 </div>
 
 <div class="fl-cnt-100">
 <?php if (count($this->paginator)) {?>
+
 	<ul class="fl-browse-members">
     <?php foreach ($this->paginator as $user){ ?> 
        

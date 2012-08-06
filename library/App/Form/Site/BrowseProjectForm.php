@@ -30,7 +30,9 @@ protected $categories; // Array of categories from DB
 			// Priority
 			$this->addElement('select','category', array(
 					'label' => 'Category',
+					'class' => 'fl-width100 fl-margin0',
 					'multiOptions' => array_merge(array(''=>"All"),$this->categories),
+					'decorators' => array(array('ViewHelper'),array('Label',array('class'=>"hide"))),
 			));
 			
 			
@@ -40,8 +42,9 @@ protected $categories; // Array of categories from DB
 			// Passion Bar
 			$this->addElement('select','priority', array(
 					'label' => 'Priority',
-					'description' => "Passion level?",
-					'multiOptions' => array_merge(array(''=>"All"),$priority)
+					'multiOptions' => array_merge(array(''=>"All"),$priority),
+					'disableLoadDefaultDecorators' => true,
+					'decorators' => array(array('ViewHelper'),array('Label')),
 			));
 				
 			for($i = 1; $i <=10;$i++){
@@ -49,33 +52,21 @@ protected $categories; // Array of categories from DB
 			}
 			// Passion Bar
 			$this->addElement('select','level', array(
-					'label' => 'Level',
-					'description' => "Project Level level?",
+					'label' => 'Select Project Level',
+					'class' => "fl-filtr-form-level",
 					'multiOptions' => array(''=>"All",1 => 1,2 =>2,3 => 3)
 			));
 			
 			$addToGroup[] = 'category';
 			$addToGroup[] = 'priority';
 				
-			// decorator for radios
-			$decors = array(
-					'ViewHelper',
-					array('HtmlTag',array('tag'=>'div','class'=>"fl-feedback-answer")),
-					//array('HtmlTag', array('tag' => 'dd')),
-					array( array('labelDivClose' => 'HtmlTag'), array('tag' => 'div', 'closeOnly' => true, 'placement' => 'prepend')),
-					'Label',
-					array(array('labelDivOpen' => 'HtmlTag'), array('tag' => 'div', 'openOnly' => true, 'placement' => 'prepend', 'class' => 'fl-feedback-question')),
-					array(array('labelLiOpen' => 'HtmlTag'), array('tag' => 'li', 'openOnly' => true, 'placement' => 'prepend')),
-						
-			
-			);
 
  			// Project Roles
  			$this->addElement('MultiCheckbox','project_role',array(
  					'label' => "Choose project roles",
  					'multiOptions' => $arrSpecRoles,
  					'disableLoadDefaultDecorators' => true,
- 					'decorators' => $decors,
+ 					'decorators' => array('ViewHelper'),
  			));
  			
  			
@@ -85,9 +76,11 @@ protected $categories; // Array of categories from DB
 			
 			$this->addElement('text', 'q', array(
 					'label' => 'Keyword',
-					'required' => true,
+					'required' => false,
 					'filters'    => array('StringTrim'),
-					'description' => "Search",
+					'class' => "fl-width85",
+					'disableLoadDefaultDecorators' => true,
+					'decorators' => array('ViewHelper'),
 					'validators' => array( array('StringLength', false, array(0,100) ))));
 			
 			//	submit button

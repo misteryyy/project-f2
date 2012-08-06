@@ -7,7 +7,6 @@ namespace App\Entity;
  */
 class ProjectSurveyAnswer
 {
-	
     /**
      * @Id @Column(type="integer", name="id")
      * @GeneratedValue
@@ -23,7 +22,6 @@ class ProjectSurveyAnswer
      **/
     private $question;
 
-    
     
     /**
      * @ManyToOne(targetEntity="Project", inversedBy="roles")
