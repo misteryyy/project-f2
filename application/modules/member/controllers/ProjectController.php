@@ -191,7 +191,7 @@ class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
     			// fetch values
     			debug('Current Session Data');
     			debug($session_step1->thirdFormData);
-    			$this->_helper->FlashMessenger( array('success' => "Lets to the survey"));
+    			//$this->_helper->FlashMessenger( array('success' => "Lets to the survey"));
     			$this->_redirect('/member/project/create-project-step-four');
 	 
     		}

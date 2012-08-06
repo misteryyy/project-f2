@@ -23,14 +23,23 @@ class ProjectSurveyAdminForm extends \Twitter_Bootstrap_Form_Horizontal
 	public function init()
 	{	
 
-		
+		$this->_addClassNames('fl-form');
 	    $this->addAttribs(array("id" => "step")); // for jquery stepy plugin
 		
 		// GENERATE QUESTIONS
 		foreach($this->questions as $index => $q){	
+
 			$answerObj = $this->answers[$index-1];
+
+			$this->addElement('hidden','a_'.$answerObj->id, array(
+				'description' => '<h3 class="fl-bottom10">'.$q.'</h3>',
+				'ignore' => true,
+				'decorators' => array(array('Description', array('escape'=>false, 'tag'=>'')))
+			));
+
+			
 			$this->addElement('textarea', 'answer_'.$answerObj->id, array(
-					'label' => 'Your answer:',
+					'label' => '',
 					'value' => $answerObj->answer, // displaing answers
 					'required' => false,
 					'class' => 'span8',
@@ -41,7 +50,7 @@ class ProjectSurveyAdminForm extends \Twitter_Bootstrap_Form_Horizontal
 			));
 			
 			$this->addDisplayGroup(
-					array('answer_'.$answerObj->id), 'Q'.$index, array('legend' => $q,'title'=>"Q".$index)
+					array('a_'.$answerObj->id, 'answer_'.$answerObj->id), 'Q'.$index, array('legend' => $q,'title'=>"Q".$index)
 			);
 		}
 		
@@ -52,16 +61,18 @@ class ProjectSurveyAdminForm extends \Twitter_Bootstrap_Form_Horizontal
 				'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
 				'label' => "Save",
 				'escape' => false,
+				'class' => 'btn btn-info'
 		));
 		$this->addElement('button', 'reset', array(
 				'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
 				'label' => 'Reset',
-				'type' => 'reset'
+				'type' => 'reset',
+				'class' => 'btn'
 		));
 		 
 		// Action Section
 		$this->addDisplayGroup(
-				array('submit','reset'),
+				array('reset', 'submit'),
 				'actions',
 				array(
 						'disableLoadDefaultDecorators' => true,
