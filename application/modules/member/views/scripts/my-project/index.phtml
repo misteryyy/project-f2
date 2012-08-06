@@ -45,7 +45,7 @@ if(count ($this->projects) > 0){
 								if($project->level == 2){
 		                       // if level 2 display free positions
 		                        $facadeProject = new \App\Facade\Project\TeamFacade($this->em);
-		                    	$freePositions = $facadeProject->findFreeUniqueProjectRolesForProjectArray($project->id); 
+		                    	  $freePositions = $facadeProject->findFreeUniqueProjectRolesForProjectArray($project->id); 
 								}
 		                    	// if level 3 = have no idea what to display or not
 		                    	foreach ($freePositions as $r){

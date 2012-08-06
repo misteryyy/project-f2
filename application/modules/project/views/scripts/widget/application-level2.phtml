@@ -20,23 +20,25 @@ foreach($allRoles as $currentRole){
 	
 	// display form for current role with free positions
 	if($count > 0){
+		$s = '';
+		if($count != 1){ $s = 's'; }
 	?>	
-		<div class="free-roles-<?php echo $currentRole;?>">
-		<span><?php echo $count;?> roles is free for <?php echo $currentRole;?>'s positions </span>
-		<div class="modal span7 hide" id="modal-form-application-level2-<?php echo $currentRole;?>">
+		<div class="fl-cnt-100 fl-bottom5">
+			<div class="fl-cnt-60">
+			  <img src="/media/slepice-site/1.0.0/img/role_<?php echo $currentRole;?>.png" alt="<?php echo $currentRole;?>" /> <?php echo $count;?> free position<?php echo $s;?>
+			</div>
+			<div class="fl-cnt-40 text-right fl-top6">
+				<a class="btn btn-info fl-width80" data-toggle="modal" href="#modal-form-application-level2-<?php echo $currentRole;?>">Apply for <?php echo $currentRole;?></a>
+			</div>
+		</div>
+
+<div class="modal span7 hide" id="modal-form-application-level2-<?php echo $currentRole;?>">
  <?php 
 
  $form = new \App\Form\Project\AddProjectApplicationLevel2Form($this->member, $this->project, $this->freePositions, $currentRole);
  echo $form;
 ?>
-</div>
 
-
-	<div style="text-align: center">
-		<a class="btn btn-xlarge btn-info" data-toggle="modal"
-			href="#modal-form-application-level2-<?php echo $currentRole;?>">Apply for <?php echo $currentRole;?> positions</a>
-	</div>
-	<hr>
 <script type="text/javascript">
 $(document).ready(function() { 
 	var form = $('#form-application-level-2-<?php echo $currentRole;?>');
