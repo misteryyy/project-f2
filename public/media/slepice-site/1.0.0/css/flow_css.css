@@ -1027,7 +1027,7 @@ p.fl-list-project-queue{
 }
 
 .fl-choosing-roles li, .fl-choosing-roles li:hover{
-  padding: 5px 0 5px 0;
+  padding: 7px 0 7px 0;
   background: #ffffff;
   color: #12599b;
   width: 100%;
@@ -1044,8 +1044,15 @@ p.fl-list-project-queue{
   float: left;
 }
 
+.fl-choosing-roles li input[type="text"], .fl-choosing-roles li:hover input[type="text"]{
+  margin: 1px 0 0 5px;
+  display: inline-block;
+  float: left;
+}
+
 .fl-choosing-roles li label, .fl-choosing-roles li:hover label{
   display: inline-block;
+  width: 100px;
   float: left;
   margin: 0;
   padding: 0;
@@ -2420,10 +2427,13 @@ tr.fl-user-banned:hover{
   color: red !important;
 }
 
+.fl-form-my-skills legend{
+  display: none;
+}
 
-
-
-
+.fl-form-my-skills input[type="text"], .fl-form-my-skills input[type="text"]:hover{
+  margin: 1px 0 0 5px;
+}
 
 
 
@@ -2474,6 +2484,11 @@ tr.fl-user-banned:hover{
     font-weight: bold;
     color: #3e499c;
 }
+
+.form-horizontal .control-group{
+  margin-bottom: 0;
+}
+
 
 .form-horizontal .controls{
   display: block;

@@ -8,6 +8,8 @@ class MemberSkill extends \Twitter_Bootstrap_Form_Horizontal
 {
    public function init()
     {
+
+        
     	
     $arrayRoles = array(array("name" => UserRole::MEMBER_ROLE_STARTER, ),
     					array("name" => UserRole::MEMBER_ROLE_LEADER),
@@ -18,24 +20,24 @@ class MemberSkill extends \Twitter_Bootstrap_Form_Horizontal
     
     $addList = array(); // saving name for element group
 
-    
+       
     foreach($arrayRoles as $role){
     
     	$addList[] = "role_".$role['name'];
     	$addList[] = "role_".$role['name'].'_tags';
     	 
-    	$this->addElement('checkbox','role_'.$role['name'],
-    			array(
-    					'label' => $role['name'],
-    			)
-    	);
+    	$this->addElement('checkbox','role_'.$role['name'], array(
+    			'label' => $role['name'],
+                'id' => "role_".$role['name'],
+                'decorators' => array( array('ViewHelper'),)
+    	));
     	
     	$this->addElement('text', 'role_'.$role['name'].'_tags', array(
-    			'label' => 'Be more specific',
     			'required' => false,
     			'filters'    => array (array('StringTrim'), array("StringToLower")),
     			//	'errorMessages' => array("The date should be int format"),
-    			'description' => "outsourcing, start ups, programming, ... ",
+                'placeholder' => 'be more specific...',
+    			//'description' => "outsourcing, start ups, programming, ... ",
     			'validators' => array( array('StringLength', false, array(0,250) ),
     					array('regex',false, array('/^([\+\-\#\.a-z0-9A-Z ]*[,]?)+$/') ) //
     			)
@@ -56,18 +58,20 @@ class MemberSkill extends \Twitter_Bootstrap_Form_Horizontal
          			'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
          			'label' => "Save",
          			'escape'        => false,
+                    'class' => 'btn btn-info'
          	));
          	 
          	 
          	$this->addElement('button', 'reset', array(
          			'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
          			'label'         => 'Reset',
-         			'type'          => 'reset'
+         			'type'          => 'reset',
+                    'class' => 'btn'
          	));
          	
          	// Action Section
         	$this->addDisplayGroup(
-        			array('submit', 'reset'),
+        			array('reset', 'submit'),
         			'actions',
         			array(
         					'disableLoadDefaultDecorators' => true,

@@ -77,17 +77,19 @@ class EditNofificationAndNewsletterForm extends \Twitter_Bootstrap_Form_Horizont
          			'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
          			'label' => "Save",
          			'escape' => false,
+                    'class' => 'btn btn-info'
          	));
          	 
          	$this->addElement('button', 'reset', array(
          			'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
          			'label' => 'Reset',
-         			'type' => 'reset'
+         			'type' => 'reset',
+                    'class' => 'btn'
          	));
          		
          	// Action Section
          	$this->addDisplayGroup(
-         			array('submit', 'reset'),
+         			array('reset', 'submit'),
          			'actions',
          			array(
          					'disableLoadDefaultDecorators' => true,

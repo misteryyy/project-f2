@@ -1,5 +1,3 @@
-
-
   <?php
   $this->step = 2;
   echo $this->partial('profile-setting/profile-setting-navigation.phtml',array("step" => $this->step));
@@ -17,26 +15,14 @@
                 <div class="fl-cnt-50">
                   <h3>New picture:</h3>
                   <div class="fl_thin_divider"></div>
-                  <form>
-                    <fieldset>
-                      <legend class="hide">Change profile picture:</legend>
+                  <div class="fl-cnt-100">
+                    <div class="alert alert-info">
+                      <span class="label label-info">Info</span>
+                      Image will be automatically cropped. Try to upload image which has resolution 200x200 to have the best image quality and proportion.
+                    </div>
+                  </div>
 
-                      <label for="" class="hide">Choose file</label>
-                      <input type="file" name="" id="" />
-
-                      <div class="fl-cnt-100">
-                        <div class="fl_thin_divider"></div>
-                        <input type="submit" class="btn right" value="save" />
-                      </div>
-
-                    </fieldset>
-                  </form>
-
-                  <div class="alert alert-info">
-   <span class="label label-info">Info</span>
-  Image will be automatically cropped. Try to upload image which has resolution 200x200 to have the best image quality and proportion.
-  </div>
-   <?php  echo $this->form;  
+<?php  echo $this->form;  
     
 //  $dir = new DirectoryIterator(APPLICATION_PATH . '/../public/storage/users/');
 //  foreach ($dir as $fileinfo) {
