@@ -550,17 +550,22 @@ class TeamFacade {
 	
 		$stmt = 'SELECT COUNT(a.id) FROM App\Entity\ProjectApplication a WHERE a.project = ?1';
 	
-		if(isset($options['state'])){
+		if(($options['state'])){
+		
+		
 			// select just new application
-			if( $options['state'] == \App\Entity\ProjectApplication::APPLICATION_NEW)
+			if( $options['state'] == \App\Entity\ProjectApplication::APPLICATION_NEW){
 				$stmt .= ' AND a.state = 0 '; //. \App\Entity\ProjectApplication::APPLICATION_NEW;
+			}
 			
-			if( $options['state'] == \App\Entity\ProjectApplication::APPLICATION_ACCEPTED)
+			if( $options['state'] == \App\Entity\ProjectApplication::APPLICATION_ACCEPTED){
 				$stmt .= ' AND a.state = 2 '; //. \App\Entity\ProjectApplication::APPLICATION_NEW;
 			
+			}	
 			
 		}
 	
+		
 		// filter level
 		if(isset($options['level'])){
 			// select application for level

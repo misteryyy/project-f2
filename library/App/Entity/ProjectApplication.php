@@ -260,6 +260,7 @@ class ProjectApplication {
 				"created" => $this->created->format('Y/m/d h:m:s'),
 				"user_id" => $this->user->id,
 				"user_name" => $this->user->name,
+				"user" => $this->user->toArray(),
 				
 				
 		);

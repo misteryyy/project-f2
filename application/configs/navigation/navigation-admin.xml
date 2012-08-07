@@ -4,7 +4,7 @@
      
          <admin>
 			<label>Admin Dashboard</label>
-			<uri>/admin/index/index</uri>
+			<uri>#</uri>
 					<pages>
 		             <admin-user>
 							<label>Admin Members</label>

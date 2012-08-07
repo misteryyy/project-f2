@@ -629,7 +629,11 @@ class User {
 	 */
 	public function toArray(){
 		$params = array ("id" => $this->id,
-				"count_friends" => $this->getCountMyFriends()
+				'name' => $this->name,
+				"count_friends" => $this->getCountMyFriends(),
+				"profile_picture_large" => $this->getProfilePicture(),
+				"profile_picture_medium" => $this->getProfilePicture(100),
+				"profile_picture_small" => $this->getProfilePicture(50),
 				);
 		return $params;
 	}
