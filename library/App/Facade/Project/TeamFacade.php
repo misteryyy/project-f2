@@ -263,7 +263,7 @@ class TeamFacade {
 			throw new \Exception("Can't find this project.");
 		}
 		
-		$content = "<h3>Survey for level ". $data['level']. "  </h3> <br/>";
+		$content = "";
 		// if level 1
 		if($data['level'] == 1) {
 	
@@ -273,13 +273,13 @@ class TeamFacade {
 				$answerString = "answer_".$i;
 			
 				if(isset($data[$answerString]) ){
-					$content .= "Question: ". $data[$questionString] . "<br/>";
-					$content .= "Answer: ". $data[$answerString] . "<br/>";
-					$content ." <hr> ";
+					$content .= "<strong>Question: ". $data[$questionString] . "</strong><br />";
+					$content .= $data[$answerString] . "<br /><br />";
 				}		
 			}
 		
-			$content .= "General question: " .$data['content']. " <br />";
+			$content .= "<strong>General question: </strong><br />";
+			$content .= $data['content']. " <br />";
 				
 			$newApplication = new  \App\Entity\ProjectApplication($user, $project, $data['level'], $content, $data['role']);
 			$this->em->persist($newApplication);
@@ -292,7 +292,8 @@ class TeamFacade {
 			// find project role
 			$role = $this->findOneProjectRole($project_id, $data['role_id']);
 			
-			$content .= "General question: " .$data['content']. " <br />";
+			$content .= "<strong>General question: </strong><br />";
+			$content .= $data['content']. " <br />";
 			$newApplication = new  \App\Entity\ProjectApplication($user, $project, $data['level'], $content, $role->name);
 			$newApplication->setDescription($role->description);
 			$newApplication->setProjectRole($role);

@@ -29,7 +29,7 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
                   <div class="inner">
                     <div class="fl-team-logged-user-left">
                  
-                    <a href="<?php echo $this->yourRole->user->getProfileUrl();?>"><img src="/storage/users/<?php echo $this->yourRole->user->getProfilePicture(50)?>" alt="<?php echo $this->yourRole->user->getName(); ?>" class="fl-img-list" /><a/>
+                    <a href="<?php echo $this->yourRole->user->getProfileUrl();?>"><img src="/storage/users/<?php echo $this->yourRole->user->getProfilePicture(50)?>" alt="<?php echo $this->yourRole->user->getName(); ?>" class="fl-img-list" /></a>
              
                       <span class="fl-team-logged-user-name"><?php echo $this->yourRole->user->name;?></span><br />
                       <span class="fl-team-logged-user-since">~ team member since <?php echo $this->yourRole->created->format("d/m/Y");?></span>
@@ -57,25 +57,24 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
                 <!-- TEAM -->
                 <div class="fl-project-team">
                   
+                  <?php $currentRole = $this->paginator[0]->name; ?>
                   <!-- ROLE -->
+
+                  <?php foreach($this->paginator as $role){ ?>
+                  
+                  <?php if($currentRole != $role->name) {
+                        echo '<div class="fl_thin_divider"></div>';
+                        $currentRole = $role->name;
+                      };
+                    
+                  ?>
+
                   <div class="fl-project-team-role">
-                    <?php 
-                    $currentRole = $this->paginator[0]->name;
                     
-                    
-                    ?>
-                    <?php foreach($this->paginator as $role){ 
-                    
-                    	if($currentRole != $role->name) {
-                    		echo "<h1>New section for $role->name; </h1>";
-                    		$currentRole = $role->name;
-                    	};
-                    
-                    ?>
-                    <!-- USER -->
+                   <!-- USER -->
                     <div class="fl-project-team-role-user">
                       <div class="fl-project-team-role-user-left">
-                        <a href="<?php echo $role->user->getProfileUrl();?>"><img src="/storage/users/<?php echo $role->user->getProfilePicture(50)?>" alt="<?php echo $role->user->getName(); ?>"  /></a>
+                        <a href="<?php echo $role->user->getProfileUrl();?>"><img src="/storage/users/<?php echo $role->user->getProfilePicture(50)?>" alt="<?php echo $role->user->getName(); ?>" class="fl-img-list" /></a>
           
                         <h4><?php echo $role->user->name; ?></h4>
                         <p><i class="icon-file"></i> <a href="<?php echo $role->user->getProfileUrl();?>">Profile</a></p>
@@ -94,13 +93,10 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
                       </div>
                     </div>
                     <!-- / USER -->
-					<?php }?>
-                
-
-                  </div>
+					        </div>
                   <!-- / ROLE -->
 
-                  <div class="fl_thin_divider"></div>
+                <?php }?>  
 
                 </div>
                 <!-- / TEAM -->

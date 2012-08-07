@@ -16,37 +16,28 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
   <div id="alert-area"></div>
 </div>	
 
-<div class="fl-cnt-100">
+<div class="fl-form-ajax fl-bottom20">
 <!-- Form for creating new task -->
-<form id="form-create-task" class="well form-search" action="#" method="post" autocomplete="off">
-			<div class="control-group">
-				<div class="controls">
-						<input type="hidden" name="level" value="<?php echo $this->project->level;?>" />
-						<input type="text" name="task" placeholder="write your task for this level" class="input-xlarge" id="input-task-create"/>
-					
-				</div>
-			</div>
-		<!-- cant change or add div, because its looking in the script for this-->
-		<input type="submit" class="btn btn-primary create"  name='submit' data-toggle="button" data-loading-text="processing..." value="create task" />						
-    </form>
+<form id="form-create-task" action="#" method="post" autocomplete="off">
+	<div class="input-append">
+		<input type="hidden" name="level" value="<?php echo $this->project->level;?>" />
+		<input type="text" name="task" placeholder="write your task for this level" class="span6" id="input-task-create"/><input type="submit" class="btn btn-primary create"  name='submit' data-toggle="button" data-loading-text="processing..." value="create new task" />
+	</div>						
+</form>
 </div>
 
-    <!-- Add data-toggle="buttons-checkbox" for checkbox style toggling on btn-group -->
- 	
+ <div class="fl-cnt-100">   
  	<ol id="question_list">
 	<table id ="question_list" class="table">
 		<tr> <td>
 		<script id="question_list_template" type="text/x-handlebars-template">
 				{{#each this}}				
 					<form method="post" action="" class="form-search" data-question_id="{{id}}">
-						<input  class="finish" type="checkbox" name="finished" {{#if finished}}
-  						checked="checked"
-  						{{/if}}
-						 />
+						<input  class="finish" type="checkbox" name="finished" {{#if finished}} checked="checked" {{/if}} />
 						<input type="hidden" name="task_id" value="{{id}}" />
-						<input  type="text" name="task" value="{{task}}" />
-						<input  class="btn btn-success update" type="submit"  data-loading-text="processing..." value="edit" name="submit" />
-						<input class="btn  btn-danger delete" type="submit"  data-loading-text="processing..." value="x" name="submit" />
+						<input type="text" name="task" value="{{task}}" class="span5"/>
+						<input class="btn btn-success update" type="submit"  data-loading-text="processing..." value="edit" name="submit" />
+						<input class="btn  btn-danger delete" type="submit"  data-loading-text="processing..." value="delete" name="submit" />
 						</form>
 				{{/each}}
 
@@ -55,22 +46,21 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 		</tr>
 	</table>
 	</ol>
-			
-	<div id="question_info">
-		<script id="question_info_template" type="text/x-handlebars-template">
-					<div class="well">
-						{{question}} has id {{id}}
-					</div>
-		</script>
-	</div>
-		
-<!-- <script src="http://cloud.github.com/downloads/wycats/handlebars.js/handlebars-1.0.0.beta.6.js"></script>
-      --> 
+</div>
+
+<div class="fl-cnt-100">		
+		<div id="question_info">
+			<script id="question_info_template" type="text/x-handlebars-template">
+						<div class="well">
+							{{question}} has id {{id}}
+						</div>
+			</script>
+		</div>
+</div>
+
+
 <script src="/media/tools/handlebars-1.0.0.beta.6.js"></script>
-       
-       
-       
-        <script type="text/javascript">  	
+<script type="text/javascript">  	
 
 			var Questions = {
 
@@ -98,7 +88,7 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 				this.config.questionList.on('click','form input.update',this.updateQuestion); // edit question 
 				this.config.questionList.on('click','form input.delete',this.deleteQuestion); // delete question
 				this.config.questionList.on('click','form input.finish',this.finishTask); // complete question
-				this.config.formCreate.on('click','input.create',this.createQuestion); // create new question
+				this.config.formCreate.on('click','.input-append input.create',this.createQuestion); // create new question
 				
 				},
 				
@@ -112,7 +102,6 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 				 			self.config.questionList.empty();
 							if(results.data[0]){
 								self.config.questionList.append(self.config.questionListTemplate(results.data));
-								//newAlert (results.respond, results.message)
 							}else{
 								self.config.questionList.append("No tasks.");
 								
@@ -128,14 +117,10 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 					var form = $(this).parent(); // directly this form
 					//create method
 					 $.ajax({
-					 	data: form.serialize() + "&_method=finish", // take data from the form and send it to the method delete
+					 	data: form.serialize() + "&_method=finish", // take data from the form and send it to the method finish
 					 }).done(
 							function (results){
 					 			newAlert (results.respond, results.message); // display alert
-					 			//self.findQuestions(); // refresh questions
-					 			//form.each (function(){
-	  							//			this.reset();
-								//});
 					 		}
 					 );
 					
@@ -147,10 +132,10 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 				var self = Questions;
 				var but  = $(this).button('toggle');
 				but.button('loading');
-				var form = $(this).parent(); // directly this form
+				var form = $(this).parent().parent(); // directly this form
 				//create method
 				 $.ajax({
-				 	data: form.serialize() + "&_method=create", // take data from the form and send it to the method delete
+				 	data: form.serialize() + "&_method=create", // take data from the form and send it to the method create
 				 }).done(
 						function (results){
 				 			newAlert (results.respond, results.message); // display alert
@@ -209,7 +194,6 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 				questionInfo :  $("#question_info"),
 				QuestionInfoTemplate :  $("#question_info_template"),
 
-				
 			});
 
  </script>  

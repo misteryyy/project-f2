@@ -22,37 +22,31 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 	<div id="alert-area"></div>
 </div>
 
-<div class="fl-cnt-100">
+<div class="fl-form-ajax">
 	<!-- Form for creating new question -->
-    <form id="form-create-question" class="well form-search" action="#" method="post" autocomplete="off">
+    <form id="form-create-question" class="form-search" action="#" method="post" autocomplete="off">
     	<div class="input-append">
-			<div class="control-group">
 			<label class="control-label hide" for="input-question-create">Add new question: </label>
-				<div class="controls">
-					
-						<input type="text" name="question" placeholder="write a new question for applicant" class="input-xlarge" id="input-question-create"/><input type="submit" class="btn btn-primary create"  name='submit' data-toggle="button"  data-complete-text="finished!"  data-loading-text="processing..." value="add new question" />
-				    </div>
-				</div>
-			</div>
-		<!-- cant change or add div, because its looking in the script for this-->
+			<input type="text" name="question" placeholder="write a new question for applicant"  class="span5" id="input-question-create"/><input type="submit" class="btn btn-primary create"  name='submit' data-toggle="button"  data-complete-text="finished!"  data-loading-text="processing..." value="add new question" />
+		</div>
 	</form>
 </div>
 
-    <!-- Add data-toggle="buttons-checkbox" for checkbox style toggling on btn-group -->
- 	<hr/>   
+<div class="fl-cnt-100 fl-top20">
  	<ol id="question_list">
 		<script id="question_list_template" type="text/x-handlebars-template">
 				{{#each this}}				
 					<form method="post" action="" class="form-search" data-question_id="{{id}}">
 						<input type="hidden" name="question_id" value="{{id}}" />
-						<input  type="text" name="question" value="{{question}}" />
+						<input  type="text" name="question" value="{{question}}" class="span5"/>
 						<input  class="btn btn-success update" type="submit"  data-loading-text="processing..." value="edit" name="submit" />
 						<input class="btn  btn-danger delete" type="submit"  data-loading-text="processing..." value="delete" name="submit" />
 					</form>
 				{{/each}}
 	</script>
 	</ol>
-			
+</div>
+
 	<div id="question_info">
 		<script id="question_info_template" type="text/x-handlebars-template">
 					<div class="well">
@@ -117,7 +111,7 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 				var self = Questions;
 				var but  = $(this).button('toggle');
 				but.button('loading');
-				var form = $(this).parent(); // directly this form
+				var form = $(this).parent().parent(); // directly this form
 				//create method
 				 $.ajax({
 				 	data:  form.serialize() + "&_method=create", // take data from the form and send it to the method delete

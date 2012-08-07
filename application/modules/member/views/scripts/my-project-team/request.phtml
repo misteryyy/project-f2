@@ -14,11 +14,7 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
   </div>
 
 <h3 class="fl-edit-project-subsection">Applications for Level 1</h3>
-
-
-
-    <!-- Add data-toggle="buttons-checkbox" for checkbox style toggling on btn-group -->
-<div id="model_list">
+<div id="model_list" class="fl-cnt-100 fl-bottom20">
     		<script id="model_list_template" type="text/x-handlebars-template">
 			
 				{{#each this}}	
@@ -30,20 +26,28 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 				    <img src="/media/slepice-site/1.0.0/img/role_{{role_name}}.png" alt="{{role_name}} icon" />
 				  </div>
 				  <div class="fl-app-buttons text-right actions" id="{{id}}">
-				    <a class="btn btn-info" data-toggle="modal" href="#surveyModal-id-{{id}}" >Survey</a>
-					<input  class="btn btn-success accept" type="submit"  data-loading-text="processing..." value="Accept" name="submit" />
-					<input  class="btn btn-danger deny" type="submit"  data-loading-text="processing..." value="Deny" name="submit" />
+				    <a class="btn btn-info" data-toggle="modal" href="#surveyModal-id-{{id}}" ><i class="icon-list icon-white"></i> Survey</a>
+					<a  class="btn btn-success accept" type="submit" data-loading-text="processing..." name="submit" ><i class="icon-ok icon-white"></i>Accept</a>
+					<a  class="btn btn-danger deny" type="submit" data-loading-text="processing..." name="submit" ><i class="icon-remove icon-white"></i> Deny</a>
 				  </div>
 				</div>
+
+
+
 				<!-- modal  -->
 		    	<div class="modal hide" id="surveyModal-id-{{id}}">
+		    		<div class="modal-header">
+		    		  <h2>Survey <span>Level 1</span></h2>
+		    		</div>
 					<div class="modal-body">
-	    			  <p>{{{content}}}</p>
+	    			  {{{content}}}
 	    			</div>
-    				<div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Close</a></div>
+    				<div class="modal-footer">
+    				  <a href="#" class="btn" data-dismiss="modal">Close</a>
+    				 </div>
     			</div>	
 				{{/each}}
-		</script>
+			</script>
 		
 </div>
 
@@ -52,24 +56,23 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 	<form id="form-deny" class=" form-horizontal" action="/member/my-project-team/ajax-request/id/<?php echo $this->project->id;?>/_method/deny" method="post">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>Please Explain the reason why you have denied the member.</h3>
+			<h2>Why do you want to deny the member?</h2>
 		</div>
 		<div class="modal-body">
 					<fieldset id="fieldset-application_group">
 						<input type="hidden" name="application_id" value="" class="" id="application_id">              
 						<div class="control-group">
 						
-						<label for="message" class="control-label required">Reason</label>	
+						<label for="message" class="control-label required">Reason:</label>	
 							<div class="controls">
-								 <textarea name="message" id="message" rows="4" class="" cols="80"></textarea>
+								 <textarea name="message" id="message" rows="4" class="span5"></textarea>
 							</div>
 						</div>
 					</fieldset>
 				</div>
-		<div class="modal-footer">	
-			<input type="submit" name="submit" id="submit" value="Confirm deny" class="btn btn-primary deny">
-			<button name="reset" id="reset" type="reset" value="Reset" class="btn btn-primary">Reset</button>
-			<a href="#" class="btn" data-dismiss="modal">Close</a>
+		<div class="modal-footer">
+          <button name="reset" id="reset" type="reset" value="Reset" class="btn">Reset</button>	
+		  <input type="submit" name="submit" id="submit" value="Confirm deny" class="btn btn-info deny" />
 		</div>
    
     </form>	
@@ -88,9 +91,9 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
  $roles = \App\Entity\ProjectRole::getRolesArray();
 ?>
 
-<div class="fl-cnt-100">
-	<!-- Form for creating new task -->
-	<form id="form-create-role" class="well form-inline" action="#" method="post" autocomplete="off">
+<div class="fl-form-ajax fl-bottom20">
+	<!-- Form for creating new position -->
+	<form id="form-create-role" class="form-inline" action="#" method="post" autocomplete="off">
 	  <input type="hidden" name="level" value="2" />
 	  <div class="input-append">
 		<select id="role_name" class="" name="role_name">
@@ -100,7 +103,7 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 							   		}
 							   ?>
 		</select>
-		<input type="text" name="description" placeholder="write detailed specification for position" class="input-xlarge" id="input-role-create"/><input type="submit" class="btn btn-primary create" id="submit-create" name='submit' data-toggle="button" data-loading-text="processing..." value="create new position" />
+		<input type="text" name="description" placeholder="write detailed specification for position" class="span3" id="input-role-create"/><input type="submit" class="btn btn-primary create" id="submit-create" name='submit' data-toggle="button" data-loading-text="processing..." value="create new position" />
 	  </div>
 	</form>
 </div>
@@ -121,24 +124,31 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 			</div>
 
 			{{#each this.applications}}
+			
 			<div class="fl-app-user" id="model_list_level2">
 			  <div class="fl-app-text">
 			    <img src="/storage/users/{{user.profile_picture_small}}" alt="user img" class="fl-img-list"/> <a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a>
 			  </div>
 			  <div class="fl-app-buttons text-right actions" id="{{id}}">
-			    <a class="btn btn-info" data-toggle="modal" href="#surveyModal-id-{{id}}" >Survey</a>
-				<input  class="btn btn-success accept" type="submit"  data-loading-text="processing..." value="Accept" name="submit" />
-				<input  class="btn btn-danger deny" type="submit"  data-loading-text="processing..." value="Deny" name="submit" />
+			    <a class="btn btn-info" data-toggle="modal" href="#surveyModal-id-{{id}}" ><i class="icon-list icon-white"></i> Survey</a>
+					<a  class="btn btn-success accept" type="submit"  data-loading-text="processing..." name="submit" ><i class="icon-ok icon-white"></i>Accept</a>
+					<a  class="btn btn-danger deny" type="submit"  data-loading-text="processing..." name="submit" ><i class="icon-remove icon-white"></i> Deny</a>
 			  </div>
 			</div>
 			<div class="fl_thin_divider"></div>
+			
+
+
 			<!-- modal  -->
 		    	<div class="modal hide" id="surveyModal-id-{{id}}">
+		    	  <div class="modal-header">
+		    	  	<h2>Survey <span>Level 2</span></h2>
+		    	  </div>
 				  <div class="modal-body">
-    			    <p>{{{content}}}</p>
+    			    {{{content}}}
     			  </div>
     			  <div class="modal-footer"> 
-    			    <a href="#" class="btn" data-dismiss="modal">Close</a>
+    			    <a href="#" class="btn" data-dismiss="modal"><i class="icon-remove"></i> Close</a>
     			  </div>
     			</div>
 
@@ -183,18 +193,18 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 				
 			bindEvents: function(){
 				// events for level 1
-				this.config.modelList.on('click','div.actions input.accept',this.acceptMember); // accept member 	
-				this.config.modelList.on('click','div.actions input.deny',this.showModaldenyMember); // show modal Deny 	
+				this.config.modelList.on('click','a.accept',this.acceptMember); // accept member 	
+				this.config.modelList.on('click','a.deny',this.showModaldenyMember); // show modal Deny 	
 
 				// events for level 2		
 				this.config.formCreate.on('click','input.create',this.createData); // create new position
-				this.config.formDeny.on('click','input.deny',this.denyMember); // create new question
-
-				console.log(this.config.formCreate);
+				this.config.modelListL2.on('click','input.delete',this.deleteRole); // delete position 
 				
-				this.config.modelListL2.on('click','div.actions input.delete',this.deleteRole); // delete role 
-				this.config.modelListL2.on('click','div.actions input.accept',this.acceptMember); // edit question 	
-				this.config.modelListL2.on('click','div.actions input.deny',this.showModaldenyMember); // edit question 			
+				this.config.modelListL2.on('click','a.accept',this.acceptMember); //  accept the member	
+				this.config.modelListL2.on('click','a.deny',this.showModaldenyMember); //  show modal deny		
+
+				//deny modal form
+				this.config.formDeny.on('click','input.deny',this.denyMember); // deny a member	
 					
 				},
 				
@@ -229,7 +239,7 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 								self.config.modelListL2.append(self.config.modelListTemplateL2(results.data));
 								//newAlert (results.respond, results.message)
 							}else{
-								self.config.modelListL2.append("No members in your team.");
+								self.config.modelListL2.append("No requests for level 2.");
 							}
 				 		}
 				 );
@@ -249,7 +259,7 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 		    	    		},
 		    	    		   submitHandler: function(form) {
 		    	    			  form.submit();			 		    
-		    			 		   }
+		    			 	   }
 		    	    	}
 		    	   );
 
@@ -267,9 +277,9 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 					form.validate({
 					    		rules: {
 					    			description :{
-						    			required: true,
-					    				minlength: 2
-							    		}
+						    		required: true,
+					    			minlength: 2
+							    }
 					    		},
 					   			submitHandler: function(f) {
 								// send data
@@ -295,6 +305,7 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 					
 				
 				},
+
 				// delete Role
 				deleteRole:function(e){
 					var self = Models;
@@ -319,12 +330,12 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 				var par = $(this).parent();
 				var application_id = par.attr("id");
 				$(this).button('loading');
-				console.log($(this));
+				//console.log($(this));
 				$.ajax({
-					data:   "&_method=accept&&application_id="+application_id, // take data from the form and send it to the method update
+					data: "&_method=accept&&application_id="+application_id, // take data from the form and send it to the method update
 				}).done(
 						function (results){
-							newAlert (results.respond, results.message); // display alert
+							//newAlert (results.respond, results.message); // display alert
 							self.findData(); // refresh questions
 							self.findDataL2(); // refresh questions
 							
@@ -338,19 +349,20 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 				
 				$('#modal-form-deny').modal('show');
 				$('#form-deny #application_id').val($(this).parent().attr("id")); // add id
-
-			
-				
 			},
 
 			};
 
 			Models.init({
+				// level 1 setting
 				modelListTemplate: $('#model_list_template').html(),
 				modelList: $("#model_list"),
-				formCreate: $('#form-create-role .input-append'),
+				
+				//form for deny a member
 				formDeny: $('#form-deny'),
+
 				// level 2 setting
+				formCreate: $('#form-create-role .input-append'),
 				modelListTemplateL2: $('#model_list_template_level2').html(),
 				modelListL2: $("#model_list_level2"),
 			});

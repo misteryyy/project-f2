@@ -50,7 +50,7 @@ class AddProjectApplicationLevel2Form extends \Twitter_Bootstrap_Form_Horizontal
 		$addToGroup = 	array('logged_member','level','role');
 		// Notification about level
 		$this->addElement('hidden', 'hr', array(
-				'description' => '<hr />',
+				'description' => '<div class="fl_thin_divider"></div>',
 				'ignore' => true,
 				'decorators' => array(
 						array('Description', array('escape'=>false, 'tag'=>'')),
@@ -66,18 +66,19 @@ class AddProjectApplicationLevel2Form extends \Twitter_Bootstrap_Form_Horizontal
 		
 		$addToGroup[] = 'role_name';
 		$this->addElement('text', 'role_name', array(
-				'label' => 'Role',
+				'label' => 'Role:',
 				'value' => $this->role,
 				'required' => true,
 				'disabled' => true,
+				'class' => 'span5',
 				'filters'    => array('StringTrim'),
-				'description' => "Position you are applying for.",
+				//'description' => "Position you are applying for.",
 				'validators' => array( array('StringLength', false, array(0,100) ))));
 
 		$addToGroup[] = 'role_id'; 
 		// Country Select Box
 		$this->addElement('select','role_id', array(
-				'label' => 'Choose specific position',
+				'label' => 'Choose specific position:',
 				'multiOptions' => $arrayDescription
 					
 		));
@@ -98,8 +99,9 @@ class AddProjectApplicationLevel2Form extends \Twitter_Bootstrap_Form_Horizontal
 				'label' => 'What can you offer for this project?',
 				'required' => true,
 				'rows' => 4,
+				'class' => 'span5',
 				'errorMessages' => array("You should have descripton of your project."),
-				'description' => "description",
+				//'description' => "description",
 				'validators' => array("NotEmpty"),
 				'disableLoadDefaultDecorators' => true,
 		));
@@ -129,7 +131,7 @@ class AddProjectApplicationLevel2Form extends \Twitter_Bootstrap_Form_Horizontal
 		// Notification about level
 		$this->addElement('hidden', 'header', array(
 				'description' => '<div class="modal-header"><button type="button" class="close" data-dismiss="modal">×</button>
-				<h3>Application for level '.$this->project->level.'</h3></div>',
+				<h2>Application for level '.$this->project->level.'</h2></div>',
 				'ignore' => true,
 				'decorators' => array(
 						array('Description', array('escape'=>false, 'tag'=>'')),
@@ -138,7 +140,7 @@ class AddProjectApplicationLevel2Form extends \Twitter_Bootstrap_Form_Horizontal
 	
 		// Currently Logged Applicant
 		$this->addElement('hidden', 'logged_member', array(
-				'description' => '<div class="alert alert-info">Logged as: <strong>'.$this->member['name'].'</strong></div>',
+				'description' => '<div class="fl-cnt-100"><div class="alert alert-info">Logged as: <strong>'.$this->member['name'].'</strong></div></div>',
 				'ignore' => true,
 				'decorators' => array(
 						array('Description', array('escape'=>false, 'tag'=>'')),
@@ -156,18 +158,20 @@ class AddProjectApplicationLevel2Form extends \Twitter_Bootstrap_Form_Horizontal
 				'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
 				'label' => "Send Application",
 				'escape' => false,
+				'class' => 'btn btn-info'
 		));
 			
 			
 		$this->addElement('button', 'reset', array(
 				'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
 				'label' => 'Reset',
-				'type' => 'reset'
+				'type' => 'reset',
+				'class' => 'btn'
 		));
 			
 		// Action Section
 		$this->addDisplayGroup(
-				array('submit', 'reset'),
+				array('reset', 'submit'),
 				'actions',
 				array(
 						'disableLoadDefaultDecorators' => true,
