@@ -36,6 +36,13 @@ class MemberCreateProjectStep2 extends \Twitter_Bootstrap_Form_Horizontal
 				array('file_1'), 'Create Project Choose Profile Photo', array('legend' => 'Step 2 / Choose Picture')
 		);
 		 
+		$this->addElement('hidden', 'previous', array(
+				'description' => '<a class="btn btn-info" href="/member/project/create-project-step-four">Previous</a>',
+				'ignore' => true,
+				'decorators' => array(
+						array('Description', array('escape'=>false, 'tag'=>'')),
+				),
+		));
 		 
 		// submit button
 		$this->addElement('submit','submit',array(
@@ -48,7 +55,7 @@ class MemberCreateProjectStep2 extends \Twitter_Bootstrap_Form_Horizontal
 		 
 		// Action Section
 		$this->addDisplayGroup(
-				array('submit'),
+				array('previous','submit'),
 				'actions',
 				array(
 						'disableLoadDefaultDecorators' => true,

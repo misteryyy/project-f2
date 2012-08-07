@@ -64,11 +64,11 @@ class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
     					$this->view->fourthStep);
     			$this->_helper->FlashMessenger( array('info' => "Your Project has been created :)"));
     			// unset sessions
-//     			Zend_Session::namespaceUnset('projectStep1');
-//     			Zend_Session::namespaceUnset('projectStep2');
-//     			Zend_Session::namespaceUnset('projectStep3');
-//     			Zend_Session::namespaceUnset('projectStep4');
-//     			Zend_Session::namespaceUnset('projectStep5');   
+     			Zend_Session::namespaceUnset('projectStep1');
+     			Zend_Session::namespaceUnset('projectStep2');
+     			Zend_Session::namespaceUnset('projectStep3');
+     			Zend_Session::namespaceUnset('projectStep4');
+     			Zend_Session::namespaceUnset('projectStep5');   
 				
 				// add notification
     			$this->_redirect("member/my-project");
@@ -112,7 +112,7 @@ class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
     		if ($form->isValid($this->_request->getPost())) {
     			// store data to session, user can cancel the project in the end
     			$session_step1 = new Zend_Session_Namespace('projectStep1');
-    			$session_step1->firstFormData = $form->getValues();
+    			$session_step1->firstFormData = $form->getValues();	
     			// fetch values
     			$this->_helper->FlashMessenger( array('info' => "Time to Choose profile Picture"));
     			$this->_redirect('/member/project/create-project-step-two');	

@@ -3,16 +3,19 @@
 <?php 
 echo $this->partial('project/create-project-navigation.phtml',array("step" => $this->step));
 ?>
-
-
-
 <div class="fl-cnt-100">
 
                 <span class="fl-publishing-label">Project name</span>
                 <p class="fl-publishing-title"><?php echo $this->firstStep['title']; ?></p>
 
                 <span class="fl-publishing-label">Category</span>
-                <p class="fl-publishing-title"><?php echo $this->firstStep['category']; ?></p>
+                <p class="fl-publishing-title">
+                <?php 
+                	$facadeProject = new \App\Facade\Site\ProjectFacade($this->em);
+                	$category = $facadeProject->findCategoryById($this->firstStep['category']);
+                	echo $category->name;
+                ?>
+                </p>
 
                 <span class="fl-publishing-label">Picture</span>
                 <div class="fl-publishing-img">
