@@ -60,7 +60,7 @@ class AddProjectApplicationForm extends \Twitter_Bootstrap_Form_Horizontal
 		
 		// Country Select Box
 		$this->addElement('select','role', array(
-				'label' => 'Choose role',
+				'label' => 'Choose role:',
 				'multiOptions' => $arrayRoles
 					
 		));
@@ -69,9 +69,20 @@ class AddProjectApplicationForm extends \Twitter_Bootstrap_Form_Horizontal
 		$this->addElement('hidden','level', array(
 				'value' => 1
 		));
+
+
+		$this->addElement('hidden', 'thick', array(
+				'description' =>  '<div class="fl_thick_divider"></div>',
+				'ignore' => true,
+				'decorators' => array(
+						array('Description', array('escape'=>false, 'tag'=>'')),
+				),
+		));
+		
 	
 		// maximum 5 question
 		$addToGroup = 	array('logged_member','level','role');
+		$addToGroup[] = 'thick'; // make separator
 		$index = 1;
 		foreach($this->questions as $q){
 			
@@ -79,13 +90,16 @@ class AddProjectApplicationForm extends \Twitter_Bootstrap_Form_Horizontal
 			$this->addElement('hidden','question_'.$index, array(
 					'value' => $this->project->level
 			));
+
+
 			
 			$this->addElement('textarea', 'answer_'.$index, array(
 				'label' => $q->question,
 				'required' => true,
 				'rows' => 4,
+				'class' => 'span5',
 				'errorMessages' => array("You should have descripton of your project."),
-				'description' => "description",
+				//'description' => "description",
 				'validators' => array("NotEmpty"),
 				'disableLoadDefaultDecorators' => true,
 			));
@@ -95,23 +109,26 @@ class AddProjectApplicationForm extends \Twitter_Bootstrap_Form_Horizontal
 			$index++;
 		} 
 
-		// Notification about level
-		$this->addElement('hidden', 'hr', array(
-				'description' => '<hr />',
+		
+		$this->addElement('hidden', 'thin', array(
+				'description' =>  '<div class="fl_thin_divider"></div>',
 				'ignore' => true,
 				'decorators' => array(
 						array('Description', array('escape'=>false, 'tag'=>'')),
 				),
 		));
-		$addToGroup[] = 'hr'; // make separator
+
+
+		$addToGroup[] = 'thin'; // make separator
 			
 		$addToGroup[] = 'content'; // make separator
 		$this->addElement('textarea', 'content', array(
 				'label' => 'What can you offer for this project?',
 				'required' => true,
 				'rows' => 4,
+				'class' => 'span5',
 				'errorMessages' => array("You should have descripton of your project."),
-				'description' => "description",
+				//'description' => "description",
 				'validators' => array("NotEmpty"),
 				'disableLoadDefaultDecorators' => true,
 		));
@@ -168,18 +185,20 @@ class AddProjectApplicationForm extends \Twitter_Bootstrap_Form_Horizontal
 				'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
 				'label' => "Send Application",
 				'escape' => false,
+				'class' => 'btn btn-info'
 		));
 			
 			
 		$this->addElement('button', 'reset', array(
 				'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
 				'label' => 'Reset',
-				'type' => 'reset'
+				'type' => 'reset',
+				'class' => 'btn'
 		));
 			
 		// Action Section
 		$this->addDisplayGroup(
-				array('submit', 'reset'),
+				array('reset', 'submit'),
 				'actions',
 				array(
 						'disableLoadDefaultDecorators' => true,
