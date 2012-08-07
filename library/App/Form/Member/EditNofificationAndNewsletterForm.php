@@ -15,6 +15,7 @@ class EditNofificationAndNewsletterForm extends \Twitter_Bootstrap_Form_Horizont
    public function init()
     {
     	
+        $this->_addClassNames('fl-form');
     // Description for Newsletters
     $this->addElement('hidden', 'newsletter_info', array(
     			'description' => '<div class="alert alert-info"> <span class="label label-info">Info</span> BLABLABL INFO</div>',
