@@ -1,0 +1,40 @@
+<h3 class="fl-sidebar">Projects I like</h3>
+                <div class="fl_thick_divider"></div>
+                
+                <div class="fl-cnt-100">
+                 
+
+    <?php if (count($this->paginator)) {?>
+	<ul class="fl-similar-projects-thumbnails">
+    <?php foreach ($this->paginator as $project){ ?>
+    
+    			 <li>
+                      <div class="fl-similar">
+                        <div class="inner-similar">
+ 					 <a href="/project/index/index/id/<?php echo $project->id?>" title="<?php echo $project->title; ?>"> 
+                        <img alt="<?php echo $project->title; ?> - main picture" src="/storage/projects/<?php echo $project->dir."/".$project->getPicture('small'); ?> " />
+                     </a>
+                          <h4><?php echo $project->title; ?></h4>
+                          
+                            <div class="fl-level">
+                        <?php 
+                        // Display Current Level
+                        $array[1] = array('fl_level1','bar','bar');
+                        $array[2] = array('fl_level2','fl_level2','bar');
+                        $array[3] = array('fl_level3','fl_level3','fl_level3');
+                        foreach($array[$project->level] as $c){ ?>
+                                            <div class="progress">
+                                                  <div class="<?php echo $c?>"></div>
+                                            </div>
+                        <?php } ?>
+                        </div>
+                        
+                        </div>
+                      </div>
+                    </li>
+
+    <?php } ?>
+  </ul>
+
+    <?php } else echo "No Projects Available"?>
+    </div>

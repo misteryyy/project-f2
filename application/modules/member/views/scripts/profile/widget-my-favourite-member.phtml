@@ -1,0 +1,33 @@
+<h3 class="fl-sidebar">People I like</h3>
+ <div class="fl_thick_divider"></div>
+                
+                <div class="fl-cnt-100">
+                 
+                  
+ 				
+
+
+    <?php if (count($this->paginator)) {?>
+	<ul class="fl-similar-projects-thumbnails">
+    <?php foreach ($this->paginator as $user){ ?>
+    
+    			 <li>
+                      <div class="fl-similar">
+                        <div class="inner-similar">
+ 						<a href="<?php echo $user->getProfileUrl();?>"><img
+							src="/storage/users/<?php echo $user->getProfilePicture(100)?>"
+							alt="<?php echo $user->name; ?>"
+							class="fl-browse-members-img" /> </a>
+							
+                          <h4><?php echo $user->name; ?></h4>    
+                        </div>
+                      </div>
+                    </li>
+
+    <?php } ?>
+  </ul>
+
+    <?php } else echo "No Members Available"?>
+    
+                </div>
+    
