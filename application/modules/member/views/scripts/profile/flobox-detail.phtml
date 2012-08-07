@@ -10,10 +10,10 @@
 <?php 
 // if current user is owner, he will have link to his administration of 
 if ($this->message->user->id == $this->member['id']) { ?>
-	<a class="btn btn-success right" href="/member/flobox">Back to all FloBox messages</a></h2>  
+	<a class="btn btn-success right" href="/member/flobox/index/id/<?php echo $this->message->user->id;?>">Back to all FloBox messages</a></h2>  
 <?php 
 } else {?>
-	<a class="btn btn-success right" href="/member/profile/flobox">Back to all FloBox messages</a></h2>  
+	<a class="btn btn-success right" href="/member/profile/flobox/id/<?php echo $this->message->user->id;?>">Back to all FloBox messages</a></h2>  
 <?php }?>
 
 

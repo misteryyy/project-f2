@@ -3,20 +3,16 @@
 echo $this->partial('/profile/profile-navigation.phtml',array("step" => $this->step,"user" => $this->user,"loggedMember"=> $this->loggedMember));		
 			
 	?>
- <div class="row">
+<div class="row">
             <div class="span7">	
 	
-	<h2 class="fl-bottom20">People I like</h2>
-
-
+<h2 class="fl-bottom20">People I like</h2>
 <div class="fl-cnt-100">
 <?php if (count($this->paginator)) {?>
 <?php if (count($this->paginator) > 1 )echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
 
 	
     <?php foreach ($this->paginator as $user){ ?> 
-       
-
     	<div class="fl-list-user">
                 <div class="fl-cnt-20">
                   <div class="fl-user-thumb">
@@ -40,14 +36,27 @@ echo $this->partial('/profile/profile-navigation.phtml',array("step" => $this->s
              <?php } else { ?>
                             <a href="" title="" class="like-member btn btn-danger" id="<?php echo $user->id;?>"><i class="icon-thumbs-down icon-white"></i> Dislike</a>
                          <?php } ?>
-
-
-                      
+                           
                     </div>
                     <div class="fl-list-user-projects">
                       <strong>Current projects:</strong><br />
-                      <a href="" title="">Name of the project</a>, <a href="" title="">Name of the project</a>, <a href="" title="">Name of the project</a>, <a href="" title="">Name of the project</a>
-                    </div>
+                      <?php 
+                      		$projects = $user->projects->slice(0,5); 
+                      		$count = count($projects);
+                      	
+                      		foreach($projects as $project){
+                      			$count--;
+                      			?>
+                      		   <a href="/project/index/index/id/<?php echo $project->id?>" title="<?php echo $project->title; ?>"> 
+                 				<?php echo $project->title?></a>
+                      			<?php
+                      			if($count != 0) echo ","; 
+                      		} 	
+                      		$projects = null;
+                      
+                      
+                      ?>
+                           </div>
                   </div>
                 </div>
               </div>

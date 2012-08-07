@@ -38,41 +38,8 @@
               <div class="inner">
                 <h3 class="fl-sidebar-h3-first">My Skills</h3>
                 <div class="fl_thick_divider"></div>
-                
-                <div class="fl-cnt-100">
-                
-                <?php 
-                foreach($this->user->specificRoles as $r){
-                	?>
-                	
-                	 <div class="fl-skill">
-                    <div class="fl-skill-img40">
-                      <img src="/media/slepice-site/1.0.0/img/role_<?php echo $r->name;?>.png" alt="<?php echo $r->name;?>" title="<?php echo $r->name;?>" />
-                    </div>
-                    <div class="fl-skill-text">
-                      <div class="fl-skill-text-role">
-                       <?php echo $r->name;?>
-                      </div>
-                      <div class="fl-skill-text-tags">
-                       <?php 
-                       		foreach($r->tags as $t){
-                       			echo $t->name." ";
-                       		}
-                       ?>
-                      </div>
-                    </div>
-                  </div>
-                	
-
-                <?php }  ?>
-                 
-
-                  <div class="fl_thin_divider"></div>
-                  tady ma bejt earned role pokud ji má
-
-                </div>
-
-                
+               
+					<?php echo $this->action('widget-my-role', 'profile', 'member',array("id" => $this->user->id));?>
                 	<?php echo $this->action('widget-my-favourite-project', 'profile', 'member',array("id" => $this->user->id));?>
                 	<?php echo $this->action('widget-my-favourite-member', 'profile', 'member',array("id" => $this->user->id));?>
                 

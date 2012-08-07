@@ -161,6 +161,7 @@ class User {
 		$this->specRoles = new \Doctrine\Common\Collections\ArrayCollection ();
 		$this->projectRoles = new \Doctrine\Common\Collections\ArrayCollection ();	
 		$this->floMessages = new \Doctrine\Common\Collections\ArrayCollection ();
+		$this->projects = new \Doctrine\Common\Collections\ArrayCollection ();
 		$this->emailVisibility = false;
 		$this->dateOfBirthVisibility = false;
 		$this->confirmed = true;
@@ -169,6 +170,7 @@ class User {
 		$this->ban = false;
 		$this->info = new \App\Entity\UserInfo();
 		
+	
 		// notification settings
 		$this->emailNewsletter = true;
 		$this->emailNotification = true;

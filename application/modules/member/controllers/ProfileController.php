@@ -49,7 +49,7 @@ class Member_ProfileController extends  Boilerplate_Controller_Action_Abstract
 	 * Display members projects
 	 */
 	public function widgetMyProjectAction(){
-		$this->checkUser();
+	
 		$facadeProject = new \App\Facade\ProjectFacade($this->_em);
 		$paginator = $facadeProject->findAllProjectsForUserPaginator($this->user_id);
 	
@@ -88,11 +88,20 @@ class Member_ProfileController extends  Boilerplate_Controller_Action_Abstract
 	
 	}
 	
+	
+	/**
+	 * Display members projects
+	 */
+	public function widgetMyRoleAction(){
+	
+	
+	}
+	
 	/**
 	 * Display members projects
 	 */
 	public function widgetMyCollaborationAction(){
-		$this->checkUser();
+	
 		
 		$facadeCollaboration = new \App\Facade\Project\CollaborationFacade($this->_em);
 		$paginator = $facadeCollaboration->findApplicationsPaginator($this->user_id, array('state'=>\App\Entity\ProjectApplication::APPLICATION_ACCEPTED ));
@@ -138,7 +147,7 @@ class Member_ProfileController extends  Boilerplate_Controller_Action_Abstract
      */
     public function indexAction()
     {	 	
-		$this->checkUser();
+	
 		$this->view->pageTitle = $this->user->getName() ." 's Profile " ;
 		
     	
@@ -178,7 +187,7 @@ class Member_ProfileController extends  Boilerplate_Controller_Action_Abstract
      * Public Profile for Everybody
      */
     public function floboxAction()
-    { 	$this->checkUser();   	
+    {  	
     	$this->view->pageTitle = 'FloBox' ;
     
     	$zend_paginator = $this->facadeFlobox->findFloMessages($this->user_id);

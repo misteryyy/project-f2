@@ -57,12 +57,20 @@ class ProjectFacade {
 								$q = $this->em->createQuery('SELECT x.id FROM \App\Entity\Project x');
 								$idss = $q->getArrayResult();
 								$mixArray = array();
+								
 								foreach($idss as $id){
-									$mixArray[] = $id['id'];
+									$mixArray[] = ' p.id = '.$id['id'];		
 								}
+								
 								shuffle($mixArray); // randomize array
+								$mixArray = array_slice($mixArray, 0, 6); // take just part
+								
 								$qb = $this->em->createQueryBuilder('p');
-								$stmt .= " WHERE ". $qb->expr()->in('p.id', $mixArray);
+								
+								$stmt .= " WHERE ".implode(" OR ", $mixArray);
+								
+							
+								//$stmt .= " WHERE ". $qb->expr()->in('p.id', $mixArray);
 
 					break;
 					
@@ -76,7 +84,7 @@ class ProjectFacade {
 			} else {
 				$stmt .= 'ORDER BY p.created DESC'; // newest first when DESC
 			}
-			
+
 			// if category	
 			$query = $this->em->createQuery($stmt);
 				

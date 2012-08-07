@@ -560,7 +560,6 @@ class TeamFacade {
 			
 			if( $options['state'] == \App\Entity\ProjectApplication::APPLICATION_ACCEPTED){
 				$stmt .= ' AND a.state = 2 '; //. \App\Entity\ProjectApplication::APPLICATION_NEW;
-			
 			}	
 			
 		}

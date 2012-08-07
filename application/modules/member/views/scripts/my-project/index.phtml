@@ -37,6 +37,7 @@ if(count ($this->projects) > 0){
                       
                       <div class="fl-cnt-100 fl-list-project-roles fl-top10">
                         <div class="fl-list-project-roles-available">
+                         <span>Available roles:</span><br />
                        <?php 
                        		 $display = false;
                         // if level 1 display all logos   
@@ -54,11 +55,8 @@ if(count ($this->projects) > 0){
 						if($display){
 						
                     	// if level 3 = have no idea what to display or not
-                    	foreach ($freePositions as $r){
-                    		
-                    		
+                    	foreach ($freePositions as $r){	
                     		echo '<img src="/media/slepice-site/1.0.0/img/role_'.$r.'.png" alt="'.$r.'" title="'.$r.'" />';
-                    
                     	}
 						} 
 
@@ -72,6 +70,7 @@ if(count ($this->projects) > 0){
                         
                         </div>
                         <div class="fl-list-project-roles-my">
+                         <span>My role:</span><br />
                           <?php 
 	                 	  foreach($project->getCreatorRolesArray() as $r){
 	                 	  	echo  '<img src="/media/slepice-site/1.0.0/img/role_'.$r.'.png" alt="'.$r.'" title="'.$r.'" /> ';
@@ -101,9 +100,12 @@ if(count ($this->projects) > 0){
 	                      <?php 
 	                      // Display informatino about the survey
 	                      $surveyFacade = new \App\Facade\Project\SurveyFacade($this->em);
-	                      echo count( $surveyFacade->findEmptyAnswers($this->loggedMember->id, $project->id));
-	                      echo "/";
-	                      echo $surveyFacade->findAllProjectSurveyQuestionsCount();
+							$empty = count( $surveyFacade->findEmptyAnswers($this->loggedMember->id, $project->id));
+	                      	$all =   $surveyFacade->findAllProjectSurveyQuestionsCount();
+	                      
+	                      echo $all-$empty;
+	                       echo "/";
+	                      echo $all;
 	                      ?>
                       </span></a></li>
                       <li><a href="/member/my-project/comment-creator/id/<?php echo $project->id?>" title="Comments for creator of the project">Comments for you <span class="label label-info">

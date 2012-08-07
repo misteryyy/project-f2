@@ -93,7 +93,10 @@ if(count ($this->projects) > 0){ ?>
                       </div>
                       <div class="fl-list-project-roles-my">
                         <span>My role:</span><br />
-                        <img src="slepice/img/role40x40_4.png" alt="" title="" />
+                          <?php 
+	                 	  foreach($project->getCreatorRolesArray() as $r){
+	                 	  	echo  '<img src="/media/slepice-site/1.0.0/img/role_'.$r.'.png" alt="'.$r.'" title="'.$r.'" /> ';
+	                 	  }?>      
                       </div>
                     </div>
                   </div>
