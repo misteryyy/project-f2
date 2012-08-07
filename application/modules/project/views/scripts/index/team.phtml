@@ -52,13 +52,26 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
                 <div class="fl_thin_divider"></div>
     	<?php }  ?>
 	 
+	 
+	 <?php if(count($this->paginator)> 0) {?>
                 <!-- TEAM -->
                 <div class="fl-project-team">
                   
                   <!-- ROLE -->
                   <div class="fl-project-team-role">
+                    <?php 
+                    $currentRole = $this->paginator[0]->name;
                     
-                    <?php foreach($this->paginator as $role){?>
+                    
+                    ?>
+                    <?php foreach($this->paginator as $role){ 
+                    
+                    	if($currentRole != $role->name) {
+                    		echo "<h1>New section for $role->name; </h1>";
+                    		$currentRole = $role->name;
+                    	};
+                    
+                    ?>
                     <!-- USER -->
                     <div class="fl-project-team-role-user">
                       <div class="fl-project-team-role-user-left">
@@ -91,6 +104,7 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
 
                 </div>
                 <!-- / TEAM -->
+                <?php } else { echo "No members in your team"; }?>
 
 </div>
 </div>
