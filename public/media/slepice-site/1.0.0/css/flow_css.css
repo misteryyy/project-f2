@@ -2442,6 +2442,19 @@ tr.fl-user-banned:hover{
   margin: 1px 0 0 5px;
 }
 
+.fl-form-ajax{
+  border-top: 1px solid #d6d6d6;
+  border-bottom: 1px solid #d6d6d6;
+  background: #f0f0f0;
+  width: 100%;
+  float: left;
+  padding: 20px 0 20px 0;
+}
+
+.fl-form-ajax form{
+  width: 90%;
+  margin: 0 5% 0 5%;
+}
 
 
 

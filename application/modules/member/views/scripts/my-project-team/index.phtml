@@ -40,11 +40,11 @@ echo $this->partial ( 'my-project-team/my-project-navigation.phtml', array ("ste
 <td><img src="/storage/users/{{user.profile_picture_small}}" title="{{role_name}}" alt="{{role_name}} picture" class="fl-img-list"/> <a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a></td>
 <td><img src="/media/slepice-site/1.0.0/img/role_{{role_name}}.png" alt="{{role_name}} icon" style="width: 30px" /></td>
 <td class="save-description" id="{{id}}">
-<form method="post" action="" class="form-search" data-question_id="{{id}}" id="form-edit-{{id}}">
-<div class="input-append">
-<input type="text" name="description" value="{{description}}"/><input class="btn btn-info update" type="submit" data-loading-text="processing..." value="edit" name="submit" />
-</div>
-</form>
+  <form method="post" action="" class="form-search" data-question_id="{{id}}" id="form-edit-{{id}}">
+    <div class="input-append">
+      <input type="text" name="description" value="{{description}}"/><input class="btn btn-info update" type="submit" data-loading-text="processing..." value="edit" name="submit" />
+    </div>
+  </form>
 </td>
    <td class="actions" id="{{id}}">
 <input class="btn btn-danger delete" type="submit" data-loading-text="processing..." value="delete" name="submit" />
@@ -92,7 +92,7 @@ this.config.modelListTemplate = Handlebars.compile(this.config.modelListTemplate
 
 bindEvents: function(){
 this.config.modelList.on('click','td.actions input.delete',this.deleteModel); // delete
-this.config.modelList.on('click','td.save-description input.update',this.updateModel); // edit
+this.config.modelList.on('click','input.update',this.updateModel); // edit
 
 },
 
@@ -118,17 +118,17 @@ self.config.modelList.append("No members in your team.");
 // update question
 updateModel:function(e){
 var self = Models;
-var par = $(this).parent();
+var par = $(this).parent().parent().parent();
 var role_id = par.attr("id");
-var form = $('#form-edit-'+role_id);
+var form = $("#form-edit-"+role_id);
 $(this).button('loading');
 //delete method
 $.ajax({
 data: form.serialize() + "&_method=update&&role_id=" + role_id, // take data from the form and send it to the method update
 }).done(
 function (results){
-newAlert (results.respond, results.message); // display alert
-self.findData(); // refresh questions
+  newAlert (results.respond, results.message); // display alert
+  self.findData(); // refresh questions
 }
 );
 e.preventDefault();
