@@ -24,9 +24,8 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
        </div>
        <div class="row">
             <div class="span7">	
-
             <div class="fl-cnt-img">
-                <img alt="<?php echo $this->project->title; ?> - main picture" src="/storage/projects/<?php echo $this->project->dir."/".$this->project->getPicture('large'); ?> " />
+                <img alt="<?php echo $this->project->title; ?> - main picture" src="/storage/projects/<?php echo $this->project->dir."/".$this->project->getPicture('small'); ?> " />
             </div>
 
               <div class="fl-cnt-pitch">
@@ -38,17 +37,12 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
               </div>
 
               <div class="fl-cnt-plans-issues-lessons">
-                
                 <p>
                   <span class="fl-cnt-plans-title-first">Plans</span>
                   <?php echo $this->project->plan;?></p>
-
-                
                 <p>
                   <span class="fl-cnt-plans-title">Issues</span>
                   <?php echo $this->project->issue;?></p>
-
-                
                 <p>
                   <span class="fl-cnt-plans-title">Lessons Learned</span>
                   <?php echo $this->project->lesson;?></p>

@@ -60,7 +60,8 @@ class TeamFacade {
 		}
 	
 		$stmt = 'SELECT r FROM App\Entity\ProjectRole r WHERE r.project = ?1 AND r.type = ?2 AND r.user != ?3 ';
-	
+		$stmt .= ' ORDER BY r.name ';
+		
 		$query = $this->em->createQuery($stmt);
 		$query->setParameter(1, $project_id);
 		$query->setParameter(2, \App\Entity\ProjectRole::PROJECT_ROLE_TYPE_MEMBER);
