@@ -10,9 +10,8 @@ class LoginForm extends \Twitter_Bootstrap_Form_Horizontal
     	$this->addElement('text', 'email', array(
     			'label' => 'Email',
     			'required' => true,
-    		//	'prepend'       => '@',
+    			'prepend'       => '@',
     			'class'         => 'focused',
-    			'description' => "Your email which you have registered for login.",
     			'validators' => array("EmailAddress")
     	));
     	
@@ -21,8 +20,6 @@ class LoginForm extends \Twitter_Bootstrap_Form_Horizontal
     			'label' => 'Password',
     			'required' => true,
     			'class'         => 'focused',
-    			//'description' => "Your email which is used for login. Can't be changed.",
-    			//'validators' => array("EmailAddress")
     	));
     	
         	/**

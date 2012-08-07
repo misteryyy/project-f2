@@ -562,6 +562,8 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
     	$this->view->projects = $projects;
     }
     
+    
+    
 
     /**
      * Display Creators project for sign user

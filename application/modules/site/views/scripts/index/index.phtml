@@ -11,7 +11,8 @@
 	
   	<div class="span9">
 <!-- Project Displaying -->
-<?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
+<?php if (count($this->paginator) > 1) echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
+  	
     <?php if (count($this->paginator)) {?>
    <ul class="thumbnails">
     <?php foreach ($this->paginator as $project){ ?>

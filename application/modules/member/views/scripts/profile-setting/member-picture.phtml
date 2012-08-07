@@ -1,4 +1,4 @@
-<h2>Personal info</h2>
+
 
   <?php
   $this->step = 2;
@@ -11,7 +11,7 @@
                   <h3>Current picture:</h3>
                   <div class="fl_thin_divider"></div>
                   <div class="fl-cnt-100 text-center">
-                    <img src="<?php echo $this->member["profile_picture_200"].'?foo='.time()?>" alt="<?= $this->member['name'];?>" class="fl-img" />
+                    <img src="/storage/users/<?php echo $this->loggedMember->getProfilePicture().'?foo='.time()?>" alt="<?= $this->member['name'];?>" class="fl-img" />
                   </div>
                 </div>
                 <div class="fl-cnt-50">

@@ -165,28 +165,6 @@
               
             		</pages>	
 			</admin>
-        
-        
-     
-           <playground>
-			<label>Playground</label>
-			<uri>/site/playground/index</uri>
-					<pages>
-		              <server-info>
-							<label>Server info</label>
-							<uri>/site/index/php-info</uri>
-						</server-info>
-						
-						<rack-test>
-								<label>Rack Test</label>
-								<uri>/check-env.php</uri>
-						</rack-test>
-							
-              
-            		</pages>	
-			</playground>
-     
- 
     </nav>
 </config>
 

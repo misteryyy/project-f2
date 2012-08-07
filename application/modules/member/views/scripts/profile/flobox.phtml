@@ -1,10 +1,16 @@
+<?php 
+	$this->step = 2;
+	echo $this->partial('/profile/profile-navigation.phtml',array("step" => $this->step,"user" => $this->user,"loggedMember"=> $this->loggedMember));		
+		
+	?>
+
 <h2>FloBox</h2>		
 
 <div class="fl-cnt-100">
 <!-- FloBox Table Ideas -->
-<?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
-    <?php if (count($this->paginator)) {?>
-
+<?php if (count($this->paginator)) {?>
+	<?php if (count($this->paginator) > 1) echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
+    
     <?php foreach ($this->paginator as $message){ ?>
     <div class="fl-cnt-100">
     	<?php
@@ -20,7 +26,7 @@
         <p><?php echo $message->message; ?></p>
       </div>
       <div class="fl-cnt-100 text-right fl-top10">
-        <a class="btn btn-info" href="/member/profile/flobox-detail/member_id/<?php echo $this->member['id']?>/message_id/<?php echo $message->id ?>">Detail</a>
+        <a class="btn btn-info" href="/member/profile/flobox-detail/id/<?php echo $this->member['id']?>/message_id/<?php echo $message->id ?>">Detail</a>
       </div>    
     </div>	
     <div class="fl_thick_divider"></div> 		

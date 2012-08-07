@@ -1,33 +1,7 @@
-<?php if (count($this->user) != 0) { ?>
-
-<div class="row">
-    <div class="span11">
-            
-            <div class="fl-membeprofile-head">
-              <img src="/storage/users/<?php echo $this->user->getProfilePicture()?>" alt="<?= $this->member['name'];?>" class="fl-memberprofile-member-img-thumb" />
-              <h2><?php echo $this->user->getName(); ?></h2>
-              <p class="fl_project_head_info">
-                <i class="icon-time"></i> Member sicne 20th of July, <i class="icon-thumbs-up"></i> <a href="" title="">like</a>
-              </p>
-            </div>
-
-              <div class="navbar fl-project-profile-navbar">
-                <div class="navbar-inner">
-                  <div class="container">
-                      <ul class="nav">
-                        <li><a href="/member/profile/index/id/<?php echo $this->user->getId(); ?>">Summary</a></li>
-                        <li><a href="/member/profile/flobox/id/<?php echo $this->user->getId(); ?>">FLO~  Box</a></li>
-                        <li><a href="/member/profile/my-projects/id/<?php echo $this->user->getId(); ?>">My projects</a></li>
-                        <li><a href="/member/profile/my-collaborations/id/<?php echo $this->user->getId(); ?>">My collaborations</a></li>
-                        <li><a href="/member/profile/prople-i-like/id/<?php echo $this->user->getId(); ?>">People I like</a></li>
-                        <li><a href="/member/profile/projects-i-like/id/<?php echo $this->user->getId(); ?>">Projects I like</a></li>
-                      </ul>
-                  </div>
-                </div>
-              </div>
-          </div>
-       </div>
-
+ 	<?php 
+	$this->step = 1;
+	echo $this->partial('/profile/profile-navigation.phtml',array("step" => $this->step,"user" => $this->user,"loggedMember"=> $this->loggedMember));		
+	?>
        <div class="row">
             <div class="span7">
             
@@ -38,8 +12,14 @@
                 <div class="span4">
                   <h2>About me</h2>
                   <ul class="fl-ul-list-style-none">
-                    <li><strong>Date of birth: </strong> <?= $this->user->dateOfBirth->format('Y/m/d'); ?> // visibility: <?= $this->user->dateOfBirthVisibility; ?></li>
-                    <li><strong>Email: </strong> <?= $this->user->email; ?> // visibility: <?= $this->user->emailVisibility; ?></li>
+					<?php if(!$this->user->dateOfBirthVisibility){?>                   
+                    <li><strong>Date of birth: </strong> <?= $this->user->dateOfBirth->format('Y/m/d'); ?> </li>
+                     <?php }?>
+                    
+                    <?php if(!$this->user->emailVisibility){?>                   
+                    <li><strong>Email: </strong> <?= $this->user->email; ?> </li>
+                    <?php }?>
+                    
                     <li><strong>Phone: </strong> <?= $this->user->getUserInfo()->getPhone(); ?></li>
                     <li><strong>Country: </strong> adf</li>
                     <li><strong>Skype: </strong> <?= $this->user->getUserInfo()->getSkype(); ?></li>
@@ -59,145 +39,27 @@
 
               <div class="fl-cnt-100">
                 <h2>Field of interest</h2>
-                <p>fad fa d,f daf ad f,ad f,ad, fa, df,as df,a</p>
+             	<?php 
+             	if(count ($this->user->userFieldOfInterestTags) > 0){
+             	 foreach($this->user->userFieldOfInterestTags as $t){
+             	 	echo $t->name;
+             	 	echo " ";
+             	 }
+             	} else echo "No field of interest";
+             	?>
               </div>
 
               <div class="fl_thin_divider"></div>
 
-              <div class="fl-cnt-100">
-                <h2>My projects</h2>
-                <ul class="fl-ul-list-style-none fl-member-projects">
-                    <li>
-                      <div class="fl-member-project">
-                        <div class="inner-similar">
-                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
-                          <h4>Web for Pub in Africa</h4>
-                          <div class="progress fl-similar-project-bar">
-                            <div class="fl_level1 fl-similar-bar"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    
-                    <li>
-                      <div class="fl-member-project">
-                        <div class="inner-similar">
-                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
-                          <h4>Web for Pub in Africa</h4>
-                          <div class="progress fl-similar-project-bar">
-                            <div class="fl_level1 fl-similar-bar"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="fl-member-project">
-                        <div class="inner-similar">
-                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
-                          <h4>Web for Pub in Africa</h4>
-                          <div class="progress fl-similar-project-bar">
-                            <div class="fl_level1 fl-similar-bar"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="fl-member-project">
-                        <div class="inner-similar">
-                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
-                          <h4>Web for Pub in Africa</h4>
-                          <div class="progress fl-similar-project-bar">
-                            <div class="fl_level1 fl-similar-bar"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="fl-member-project">
-                        <div class="inner-similar">
-                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
-                          <h4>Web for Pub in Africa</h4>
-                          <div class="progress fl-similar-project-bar">
-                            <div class="fl_level1 fl-similar-bar"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                  <p class="fl-more"><a href="" title="">more details</a></p>
-              </div>
-
+           
+           
+              <!-- Recent projects widget -->
+   				<?php echo $this->action('widget-my-project', 'profile', 'member',array("id" => $this->user->id));?>
+              	
               <div class="fl_thin_divider"></div>
-
-              <div class="fl-cnt-100">
-                <h2>My Collaborations</h2>
-                <ul class="fl-ul-list-style-none fl-member-projects">
-                    <li>
-                      <div class="fl-member-project">
-                        <div class="inner-similar">
-                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
-                          <h4>Web for Pub in Africa</h4>
-                          <div class="progress fl-similar-project-bar">
-                            <div class="fl_level1 fl-similar-bar"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    
-                    <li>
-                      <div class="fl-member-project">
-                        <div class="inner-similar">
-                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
-                          <h4>Web for Pub in Africa</h4>
-                          <div class="progress fl-similar-project-bar">
-                            <div class="fl_level1 fl-similar-bar"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="fl-member-project">
-                        <div class="inner-similar">
-                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
-                          <h4>Web for Pub in Africa</h4>
-                          <div class="progress fl-similar-project-bar">
-                            <div class="fl_level1 fl-similar-bar"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="fl-member-project">
-                        <div class="inner-similar">
-                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
-                          <h4>Web for Pub in Africa</h4>
-                          <div class="progress fl-similar-project-bar">
-                            <div class="fl_level1 fl-similar-bar"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="fl-member-project">
-                        <div class="inner-similar">
-                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
-                          <h4>Web for Pub in Africa</h4>
-                          <div class="progress fl-similar-project-bar">
-                            <div class="fl_level1 fl-similar-bar"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                  <p class="fl-more"><a href="" title="">more details</a></p>
-              </div>
-
+              	<?php echo $this->action('widget-my-collaboration', 'profile', 'member',array("id" => $this->user->id));?>
+			
+              <div class="fl_thin_divider"></div>
             </div>
 
             <div class="span4 fl-sidebar">
@@ -206,127 +68,51 @@
                 <div class="fl_thick_divider"></div>
                 
                 <div class="fl-cnt-100">
-                  <div class="fl-skill">
+                
+                <?php 
+                foreach($this->user->specificRoles as $r){
+                	?>
+                	
+                	 <div class="fl-skill">
                     <div class="fl-skill-img40">
-                      <img src="slepice/img/role40x40_4.png" alt="" title="" />
+                      <img src="/media/slepice-site/1.0.0/img/role_<?php echo $r->name;?>.png" alt="<?php echo $r->name;?>" title="<?php echo $r->name;?>" />
                     </div>
                     <div class="fl-skill-text">
                       <div class="fl-skill-text-role">
-                        Leader
+                       <?php echo $r->name;?>
                       </div>
                       <div class="fl-skill-text-tags">
-                        afdaw fd af fa dw 
+                       <?php 
+                       		foreach($r->tags as $t){
+                       			echo $t->name." ";
+                       		}
+                       ?>
                       </div>
                     </div>
                   </div>
+                	
 
-                  <div class="fl-skill">
-                    <div class="fl-skill-img40">
-                      <img src="slepice/img/role40x40_4.png" alt="" title="" />
-                    </div>
-                    <div class="fl-skill-text">
-                      <div class="fl-skill-text-role">
-                        Leader
-                      </div>
-                      <div class="fl-skill-text-tags">
-                        afdaw fd af fa dw 
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="fl-skill">
-                    <div class="fl-skill-img40">
-                      <img src="slepice/img/role40x40_4.png" alt="" title="" />
-                    </div>
-                    <div class="fl-skill-text">
-                      <div class="fl-skill-text-role">
-                        Leader
-                      </div>
-                      <div class="fl-skill-text-tags">
-                        afdaw fd af fa dw 
-                      </div>
-                    </div>
-                  </div>
+                <?php 
+                
+                }
+                
+                
+                ?>
+                 
 
                   <div class="fl_thin_divider"></div>
 
-                  <div class="fl-skill">
-                    <div class="fl-skill-img40">
-                      <img src="slepice/img/role40x40_4.png" alt="" title="" />
-                    </div>
-                    <div class="fl-skill-text">
-                      <div class="fl-skill-text-role">
-                        Leader
-                      </div>
-                      <div class="fl-skill-text-tags">
-                        afdaw fd af fa dw 
-                      </div>
-                    </div>
-                  </div>
                 </div>
 
                 
-                <h3 class="fl-sidebar">Projects I like</h3>
-                <div class="fl_thick_divider"></div>
-                <div class="fl-cnt-100">
-                  <ul class="fl-similar-projects-thumbnails">
-                    <li>
-                      <div class="fl-similar">
-                        <div class="inner-similar">
-                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
-                          <h4>Web for Pub in Africa</h4>
-                          <div class="progress fl-similar-project-bar">
-                            <div class="fl_level1 fl-similar-bar"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    
-                    <li>
-                      <div class="fl-similar">
-                        <div class="inner-similar">
-                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
-                          <h4>Web for Pub in Africa</h4>
-                          <div class="progress fl-similar-project-bar">
-                            <div class="fl_level1 fl-similar-bar"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="fl-similar">
-                        <div class="inner-similar">
-                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
-                          <h4>Web for Pub in Africa</h4>
-                          <div class="progress fl-similar-project-bar">
-                            <div class="fl_level1 fl-similar-bar"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="fl-similar">
-                        <div class="inner-similar">
-                          <a href="" title=""><img src="slepice/img/project_img_similar.jpg" alt="" title="" /></a>
-                          <h4>Web for Pub in Africa</h4>
-                          <div class="progress fl-similar-project-bar">
-                            <div class="fl_level1 fl-similar-bar"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
+                	<?php echo $this->action('widget-my-favourite-project', 'profile', 'member',array("id" => $this->user->id));?>
+                	<?php echo $this->action('widget-my-favourite-member', 'profile', 'member',array("id" => $this->user->id));?>
+                
+                
               </div>
             </div>
-      
-
-
-
        </div>
-
-
-
-<?php };?>
+       
+           	
+<script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-member-project-1.0.0.js')?>"></script> 
+       
