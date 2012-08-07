@@ -7,7 +7,7 @@
             
               <div class="row">
                 <div class="span3">
-                  <img src="/storage/users/<?php echo $this->user->getProfilePicture()?>" alt="<?= $this->member['name'];?>" class="fl-memberprofile-member-img-thumb" />
+                  <img src="/storage/users/<?php echo $this->user->getProfilePicture()?>" alt="<?= $this->member['name'];?>" class="fl-memberprofile-member-img" />
                 </div>
                 <div class="span4">
                   <h2>About me</h2>
@@ -54,17 +54,14 @@
            
            
               <!-- Recent projects widget -->
-   				<?php echo $this->action('widget-my-project', 'profile', 'member',array("id" => $this->user->id));?>
+   				    <?php echo $this->action('widget-my-project', 'profile', 'member',array("id" => $this->user->id));?>
               	
               <div class="fl_thin_divider"></div>
               	<?php echo $this->action('widget-my-collaboration', 'profile', 'member',array("id" => $this->user->id));?>
 			
               <div class="fl_thin_divider"></div>
             </div>
-
-           
-       </div>
-       
+      
            	
 <script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-member-project-1.0.0.js')?>"></script> 
        

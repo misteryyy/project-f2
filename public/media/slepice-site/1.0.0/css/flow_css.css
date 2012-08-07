@@ -67,6 +67,10 @@ body{
   margin: 10px 0 0 0;
 }
 
+.fl-left10{
+  margin-left: 10px;
+}
+
 .inner{
   margin: 10px;
 }
@@ -110,6 +114,12 @@ body{
   float: left;
 }
 
+.fl-cnt-75{
+  width: 75%;
+  float: left;
+}
+
+
 .fl-cnt-70{
   width: 70%;
   float: left;
@@ -117,6 +127,11 @@ body{
 
 .fl-cnt-60{
   width: 60%;
+  float: left;
+}
+
+.fl-cnt-55{
+  width: 55%;
   float: left;
 }
 
@@ -2051,11 +2066,15 @@ tr.fl-user-banned:hover{
   margin: 10px 0 10px 0;
 }
 
-.fl-memberprofile-member-img-thumb{
+.fl-memberprofile-member-img, .fl-memberprofile-member-img-thumb{
   border: 4px solid #f5f5f5;
   display: block;
   float: left;
   margin: 0 5px 0 0;
+}
+
+.fl-memberprofile-member-img-thumb{
+  width: 50px;
 }
 
 .fl-cnt-member-img{
