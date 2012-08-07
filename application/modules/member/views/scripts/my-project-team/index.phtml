@@ -37,7 +37,7 @@ echo $this->partial ( 'my-project-team/my-project-navigation.phtml', array ("ste
     <tbody>
 {{#each this}}
 <tr>
-<td><img src="/storage/users/{{user.profile_picture_small}}" title="{{role_name}}" alt="{{role_name}} picture" class="fl-img"/> <a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a></td>
+<td><img src="/storage/users/{{user.profile_picture_small}}" title="{{role_name}}" alt="{{role_name}} picture" class="fl-img-list"/> <a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a></td>
 <td><img src="/media/slepice-site/1.0.0/img/role_{{role_name}}.png" alt="{{role_name}} icon" style="width: 30px" /></td>
 <td class="save-description" id="{{id}}">
 <form method="post" action="" class="form-search" data-question_id="{{id}}" id="form-edit-{{id}}">

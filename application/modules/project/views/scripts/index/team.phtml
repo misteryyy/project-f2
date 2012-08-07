@@ -18,49 +18,18 @@ $this->step = 5;
 echo $this->partial('/index/project-navigation.phtml',array("step" => $this->step,"project" => $this->project,"isCreator"=> $this->isCreator));
 ?>
 
-     
+<div class="row">
+            <div class="span7">      
 
 <h2>Team</h2>
 <div class="fl-cnt-100">
-	 <?php 
-	    // Is creator
-    	if($this->isCreator){ ?>
-    	 <!-- POKUD PRIHLASENEJ UZIVATEL KOUKA DO TETO ZALOZKY A JE COLLABORATOR, TAK SE ZOBRAZI TADY -->
-                <div class="fl-team-logged-user">
-                  <div class="inner">
-                    <div class="fl-team-logged-user-left">
-                
-                         <a href="<?php echo $this->project->user->getProfileUrl();?>"><img src="/storage/users/<?php echo $this->project->user->getProfilePicture(50)?>" alt="<?php echo $this->project->user->getName(); ?>" />
-             
-                      <span class="fl-team-logged-user-name"><?php echo $this->project->user->name;?></span><br />
-                       <span class="fl-team-logged-user-since">~ you started this project <?php echo $this->project->created->format("d/m/Y");?></span>
-                 
-                    </div>
-                    <div class="fl-team-logged-user-right">
-                      <div class="fl-skill">
-                      <?php 
-                      foreach($this->project->getCreatorRolesArray() as $r){
-                      	echo  '<img src="/media/slepice-site/1.0.0/img/role_'.$r.'.png" alt="'.$r.'" title="'.$r.'" /> ';
-                      }
-                      ?> 
-                      </div>
-                    </div>
-                  </div>
-                </div>
-    	<?php 
-	
-    	}
-     ?>
-
-
-          
-   <?php if($this->isCollaborator){ ?>
+	 <?php if($this->isCollaborator){ ?>
     	<!-- POKUD PRIHLASENEJ UZIVATEL KOUKA DO TETO ZALOZKY A JE V TEAMU, TAK SE ZOBRAZI TADY -->
                 <div class="fl-team-logged-user">
                   <div class="inner">
                     <div class="fl-team-logged-user-left">
                  
-                    <a href="<?php echo $this->yourRole->user->getProfileUrl();?>"><img src="/storage/users/<?php echo $this->yourRole->user->getProfilePicture(50)?>" alt="<?php echo $this->yourRole->user->getName(); ?>" />
+                    <a href="<?php echo $this->yourRole->user->getProfileUrl();?>"><img src="/storage/users/<?php echo $this->yourRole->user->getProfilePicture(50)?>" alt="<?php echo $this->yourRole->user->getName(); ?>" class="fl-img-list" /><a/>
              
                       <span class="fl-team-logged-user-name"><?php echo $this->yourRole->user->name;?></span><br />
                       <span class="fl-team-logged-user-since">~ team member since <?php echo $this->yourRole->created->format("d/m/Y");?></span>
@@ -80,17 +49,9 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
                     </div>
                   </div>
                 </div>
-    	<?php 
-	
-    	}
-     ?>
-	 
-
-
-
                 <div class="fl_thin_divider"></div>
-
-
+    	<?php }  ?>
+	 
                 <!-- TEAM -->
                 <div class="fl-project-team">
                   
@@ -101,7 +62,7 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
                     <!-- USER -->
                     <div class="fl-project-team-role-user">
                       <div class="fl-project-team-role-user-left">
-                        <a href="<?php echo $role->user->getProfileUrl();?>"><img src="/storage/users/<?php echo $role->user->getProfilePicture(50)?>" alt="<?php echo $role->user->getName(); ?>" />
+                        <a href="<?php echo $role->user->getProfileUrl();?>"><img src="/storage/users/<?php echo $role->user->getProfilePicture(50)?>" alt="<?php echo $role->user->getName(); ?>"  /></a>
           
                         <h4><?php echo $role->user->name; ?></h4>
                         <p><i class="icon-file"></i> <a href="<?php echo $role->user->getProfileUrl();?>">Profile</a></p>
@@ -132,27 +93,7 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
                 <!-- / TEAM -->
 
 </div>
-                    <!-- CREATOR // liší se to jenom tou jednou tridou navic hned v tom prvnim divu-->
-<!--                     <div class="fl-project-team-role-user  fl-project-team-role-user-author"> -->
-<!--                       <div class="fl-project-team-role-user-left"> -->
-<!--                         <img src="slepice/img/project_team_user_img.jpg" alt="" title="" /> -->
-<!--                         <h4></h4> -->
-<!--                         <p><i class="icon-file"></i> <a href="" title="">Profile</a></p> -->
-<!--                       </div> -->
-<!--                       <div class="fl-project-team-role-user-right"> -->
-<!--                         <div class="fl-skill"> -->
-<!--                           <div class="fl-skill-img30"> -->
-<!--                             <img src="/media/slepice-site/1.0.0/img/role_grower.png" alt="grower role icon" /> -->
-<!--                           </div> -->
-<!--                           <div class="fl-skill-text"> -->
-<!--                             <div class="fl-skill-text-roledescription30"> -->
-<!--                               <strong>Role ~</strong> specification -->
-<!--                             </div> -->
-<!--                           </div> -->
-<!--                         </div> -->
-<!--                       </div> -->
-<!--                     </div> -->
-                    <!-- / CREATOR -->
+</div>
 
 
                 

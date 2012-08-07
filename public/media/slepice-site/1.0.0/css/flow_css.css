@@ -1563,6 +1563,12 @@ li.fl-li-info{
   margin: 0 10px 0 0;
 }
 
+.fl-img-list{
+  border: 1px solid #ffffff;
+  margin: 0 10px 0 0;
+  width: 40px;
+}
+
 .fl-survey-list-answers{
   margin: 20px 0 0 0;
   color: #136396;
@@ -1824,6 +1830,7 @@ tr.fl-user-banned:hover{
   float: left;
   margin: 0 0 10px 0;
   background: #c2f5ca;
+  padding: 0 0 10px 0;
 }
 
 .fl-team-logged-user-left, .fl-team-logged-user-right{
@@ -1835,7 +1842,7 @@ tr.fl-user-banned:hover{
   display: block;
   width: 40px;
   float: left;
-  margin: 0 5px 10px 0;
+  margin: 0 5px 0 0;
 }
 
 .fl-team-logged-user-right p{
