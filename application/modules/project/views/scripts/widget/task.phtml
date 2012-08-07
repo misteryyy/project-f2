@@ -6,73 +6,114 @@
 				$tasks[$t->level][] = $t->toArray();
 			}
 		}
-?>
-<ul id="levelTab" class="nav nav-tabs">
-	<li class="active"><a data-toggle="tab" href="#level1">Level 1</a></li>
-	<li><a data-toggle="tab" href="#level2">Level 2</a></li>
-	<li><a data-toggle="tab" href="#level3">Level 3</a></li>	
-</ul>
 
-
-<div id="levelTabContent" class="tab-content">
-	<div id="level1" class="tab-pane fade in active">
-	<?php 
 		$level= 1;
-		if(isset($tasks[$level])){ // if something for first level 
-			echo '<ul>';
+		$content_lvl1 = '<span>Level 1</span>';
+		$content_lvl1 .= '<div class="fl_thin_divider"></div>';
+		$content_lvl1 .= '<div class="fl_tasks">';
+
+		if(isset($tasks[$level])){ // if is something for first level 
 			foreach ( $tasks[$level] as $t ) {
-					echo "<li>";
-						$disabled = "disabled";
-						if($t['finished']) $disabled = "disabled checked='checked'"; 
-					echo "<input type='checkbox' $disabled >";
-					echo  $t['task'] ." for level> ". $t['level'] ; 
-					echo "</li>";
-				}
-			echo '</ul>';		
+				if($t['finished']){ 
+				  $content_lvl1 .= '<i class="icon-ok icon-white"></i> '.$t['task']; 
+			    }else{
+				  $content_lvl1 .= '<i class="icon-minus icon-white"></i> <em>'.$t['task'].'</em>';
+			    }
+				$content_lvl1 .= '<br />';
+			}
 		}else {
-			echo "No tasks for level ".$level;
+			$content_lvl1 .= 'No tasks for level '.$level;
 		}
-		?>
-	</div>
-	<div id="level2" class="tab-pane fade">
-	<?php 
+		$content_lvl1 .= '</div>';
+
 		$level = 2;
+		$content_lvl2 = '<span>Level 2</span>';
+		$content_lvl2 .= '<div class="fl_thin_divider"></div>';
+		$content_lvl2 .= '<div class="fl_tasks">';
 		if(isset($tasks[$level])){ // 
-			echo '<ul>';
-			foreach ( $tasks[$level] as $t ) {
-					echo "<li>";
-						$disabled = "disabled";
-						if($t['finished']) $disabled = "disabled checked='checked'"; 
-					echo "<input type='checkbox' $disabled >";
-					echo  $t['task'] ." for level> ". $t['level'] ; 
-					echo "</li>";
-				}
-			echo '</ul>';		
+			
+		    foreach ( $tasks[$level] as $t ) {
+				if($t['finished']){ 
+				  $content_lvl2 .= '<i class="icon-ok icon-white"></i> '.$t['task']; 
+			    }else{
+				  $content_lvl2 .= '<i class="icon-minus icon-white"></i> <em>'.$t['task'].'</em>';
+			    }
+				$content_lvl2 .= '<br />';				
+			}
+			
 		}else {
-				echo "No tasks for level ".$level;
+				$content_lvl2 .= "No tasks for level ".$level;
 		}
-		?>
-	</div>
-	<div id="level3" class="tab-pane fade">
-	<?php 
+		$content_lvl2 .= '</div>';
+
 		$level = 3;
-		if(isset($tasks[$level]) > 0){ // if something for first level 
-			echo '<ul>';
+		$content_lvl3 = '<span>Level 3</span>';
+		$content_lvl3 .= '<div class="fl_thin_divider"></div>';
+		$content_lvl3 .= '<div class="fl_tasks">';
+		if(isset($tasks[$level])){ // 
+			
 			foreach ( $tasks[$level] as $t ) {
-					echo "<li>";
-						$disabled = "disabled";
-						if($t['finished']) $disabled = "disabled checked='checked'"; 
-					echo "<input type='checkbox' $disabled >";
-					echo  $t['task'] ." for level> ". $t['level'] ; 
-					echo "</li>";
-				}
-			echo '</ul>';		
+				if($t['finished']){ 
+				  $content_lvl3 .= '<i class="icon-ok icon-white"></i> '.$t['task']; 
+			    }else{
+				  $content_lvl3 .= '<i class="icon-minus icon-white"></i> <em>'.$t['task'].'</em>';
+			    }
+				$content_lvl3 .= '<br />';				
+			}
+			
+		
 		}else {
-			echo "No tasks for level ". $level;
-		}
+		  $content_lvl3 .=  "No tasks for level ".$level;
+		} 
+		$content_lvl3 .= '</div>';
 		?>
-	</div>
-</div>	
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	var level = $('.fl-level');
+	var lvl1 = $(level).find('.lvl1');
+	var lvl2 = $(level).find('.lvl2');
+	var lvl3 = $(level).find('.lvl3');
+
+	var position_lvl1 = ["0", "25"];
+	var position_lvl2 = ["-120", "25"];
+	var position_lvl3 = ["-240", "25"];	
+
+	var content_lvl1 = '<?php echo $content_lvl1; ?>';
+	var content_lvl2 = '<?php echo $content_lvl2; ?>';
+	var content_lvl3 = '<?php echo $content_lvl3; ?>';
+
+
+    $(lvl1).simpletip({
+    	baseClass: 'fl-simpletip-tooltip',
+    	activeClass: 'fl-simpletip-tooltip-lvl1',
+    	position: position_lvl1,
+        content: content_lvl1,
+        hideEffect: 'none',
+    });
+
+    $(lvl2).simpletip({
+    	baseClass: 'fl-simpletip-tooltip',
+    	activeClass: 'fl-simpletip-tooltip-lvl2',
+    	position: position_lvl2,
+        content: content_lvl2,
+        hideEffect: 'none',
+    });
+
+    $(lvl3).simpletip({
+    	baseClass: 'fl-simpletip-tooltip',
+    	activeClass: 'fl-simpletip-tooltip-lvl3',
+    	position: position_lvl3,
+        content: content_lvl3,
+        hideEffect: 'none',
+    });
+
+
+
+});
+</script>
 
 <script>
 // set the active level 

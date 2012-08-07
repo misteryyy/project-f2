@@ -51,7 +51,7 @@ class BrowseMemberForm extends \Twitter_Bootstrap_Form_Horizontal
 			
 			$this->addElement('text', 'q', array(
 					'label' => 'Keyword',
-					'class' => 'fl-width91',
+					'class' => 'fl-width90 text-left',
 					'required' => true,
 					'filters'    => array('StringTrim'),
 					'description' => "Search",

@@ -49,24 +49,28 @@
                 <div class="fl_thick_divider"></div>
                 <div class="fl-project-level">
 
+                  
                   <div class="fl-level">
-                        <?php 
-                        // Display Current Level
-                        $array[1] = array('fl_level1','bar','bar');
-                        $array[2] = array('fl_level2','fl_level2','bar');
-                        $array[3] = array('fl_level3','fl_level3','fl_level3');
-                        foreach($array[$this->project->level] as $c){ ?>
-                                            <div class="progress">
-                                                  <div class="<?php echo $c?>"></div>
-                                            </div>
-                        <?php } ?>
-                        </div>
+					<?php // Display Current Level
+					$array[1] = array('fl_level1','bar','bar');
+					$array[2] = array('fl_level2','fl_level2','bar');
+					$array[3] = array('fl_level3','fl_level3','fl_level3');
+					$i = 1;
+					foreach($array[$this->project->level] as $c){ ?>
+					  <div class="progress lvl<?php echo $i; $i++;?>">
+					    <div class="<?php echo $c?>"></div>
+					  </div>
+					<?php } ?>
+				  </div>
+
 
                   <p class="fl-project-level-info"><a href="" title="Learn more about Levels">Learn more about Levels</a></p>
                 </div>
 
+
                 <?php
-	                echo $this->action('task', 'widget', 'project',array("id" => $this->project->id));  ?>
+	                echo $this->action('task', 'widget', 'project',array("id" => $this->project->id));
+	            ?>
 	    	      
                 <h3 class="fl-sidebar">Team</h3>
                 <div class="fl_thick_divider"></div>
@@ -87,17 +91,15 @@
 
                   <div class="fl_thin_divider"></div>
                   
-                  <div class="fl-team-join-team">
-                    <div class="inner">
+                  
                       <!-- Form Applications for Level 1 -->
                       <?php 
                         if($this->project->level == 1)          
                              echo $this->action('application', 'widget', 'project',array("id" => $this->project->id));?>
-                          <!-- Form Applications for Level 2 -->
+                      <!-- Form Applications for Level 2 -->
                        <? if($this->project->level == 2)
                             echo $this->action('application-level2', 'widget', 'project',array("id" => $this->project->id));?>
-                     </div>
-                  </div>
+                  
                 </div>
 
 
@@ -202,8 +204,12 @@
 				likeProjectBtn: $(".like-project"), //select a with class 
 				 
 			});
+
+
  </script>
 
+ <script src="/media/jquery.simpletip-1.3.1/jquery.simpletip-1.3.1.js"></script>
+ <script src="/media/slepice-site/1.0.0/js/tooltips-tasks.js"></script>
  
 </body>
 </html>
