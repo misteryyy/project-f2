@@ -28,7 +28,8 @@ class Twitter_Bootstrap_Form_Decorator_Actions extends Zend_Form_Decorator_Abstr
         $output = '';
         foreach ($this->getElement() as $element) {
             $element->setDecorators(array(
-                array('ViewHelper')
+                array('ViewHelper'),
+				array('Description', array('escape'=>false, 'tag'=>''))
             ));
 
             $output .= $element->render();

@@ -58,10 +58,12 @@ class MemberCreateProjectStep4 extends \Twitter_Bootstrap_Form_Horizontal
 				'class' => 'btn btn-info'
 		));
 
-		$this->addElement('button', 'previous', array(
-				'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
-				'label' => 'Previous step',
-				'class' => 'btn btn-info'
+		$this->addElement('hidden', 'previous', array(
+				'description' => '<a class="btn btn-info" href="/member/project/create-project-step-three">Previous</a>',
+				'ignore' => true,
+				'decorators' => array(
+						array('Description', array('escape'=>false, 'tag'=>'')),
+				),
 		));
 
 		// Action Section

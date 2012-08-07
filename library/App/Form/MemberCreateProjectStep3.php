@@ -144,11 +144,12 @@ EOT;
 				array('legend' => 'Questions for project')
 		);
 
-
-		$this->addElement('button', 'previous', array(
-				'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
-				'label' => 'Previous step',
-				'class' => 'btn btn-info'
+			$this->addElement('hidden', 'previous', array(
+				'description' => '<a class="btn btn-info" href="/member/project/create-project-step-two">Previous</a>',
+				'ignore' => true,
+				'decorators' => array(
+						array('Description', array('escape'=>false, 'tag'=>'')),
+				),
 		));
 		
 		$this->addElement('button', 'reset', array(
