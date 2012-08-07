@@ -30,8 +30,8 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
 </div>
 
 <div class="fl-cnt-100">
-<?php echo $this->paginationControl($this->paginator, 'All', 'partials/pagination-control-bootstrap.phtml'); ?> 
-    <?php if (count($this->paginator) > 0) {?>
+<?php if (count($this->paginator) > 1 )echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
+<?php if (count($this->paginator) > 0) {?>
     <div class="fl-project-comments-comments">
     	<?php foreach ($this->paginator as $comment){ ?>
 

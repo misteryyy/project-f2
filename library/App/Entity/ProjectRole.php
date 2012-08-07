@@ -182,6 +182,8 @@ class ProjectRole {
 		if(isset($this->user)){
 			$params["user_id"]= $this->user->id;
 			$params["user_name"] = $this->user->name;
+			$params["user"] = $this->user->toArray();
+				
 		}
 		
 		

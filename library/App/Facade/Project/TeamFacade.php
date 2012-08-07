@@ -550,7 +550,7 @@ class TeamFacade {
 	
 		$stmt = 'SELECT COUNT(a.id) FROM App\Entity\ProjectApplication a WHERE a.project = ?1';
 	
-		if(($options['state'])){
+		if(isset($options['state'])){
 		
 		
 			// select just new application
@@ -563,7 +563,6 @@ class TeamFacade {
 			}	
 			
 		}
-	
 		
 		// filter level
 		if(isset($options['level'])){

@@ -16,6 +16,8 @@ class Member_MyProjectTeamController extends  Boilerplate_Controller_Action_Abst
 		$this->facadeProjectUpdate = new \App\Facade\Project\UpdateFacade($this->_em);
 		$this->facadeProjectTeam = new \App\Facade\Project\TeamFacade($this->_em);
 		
+		$this->checkProjectAndUser();
+		$this->view->project = $this->project;
 	}
 
 	/**
@@ -23,11 +25,12 @@ class Member_MyProjectTeamController extends  Boilerplate_Controller_Action_Abst
 	 */
 	public function indexAction()
 	{
-		$this->checkProjectAndUser();
 		$this->view->pageTitle = "Team" ;	
+		$facadeTeam = new \App\Facade\Project\TeamFacade($this->_em);		 
+		// Roles
+		$roles = $facadeTeam->findProjectRolesForProject($this->_member_id, $this->project_id);
+		$this->view->paginator = $roles; // its not actualy paginator
 		
-		$this->view->creatorRoles = $this->facadeProjectTeam->findCreatorRolesForProject($this->project_id);
-		$this->view->project = $this->project;
 
 	}
 
@@ -50,7 +53,7 @@ class Member_MyProjectTeamController extends  Boilerplate_Controller_Action_Abst
 				case 'findAllProjectRoles':
 					try{
 						$applications = $facadeTeam->findApplications($this->_member_id,$this->project_id,array('state' =>\App\Entity\ProjectApplication::APPLICATION_ACCEPTED));
-						$roles = $facadeTeam->findProjectRolesForProject($this->project_id);
+						$roles = $facadeTeam->findProjectRolesForProject($this->_member_id,$this->project_id);
 						$data = array(); // data for sending to the script
 						foreach($roles as $a){
 							$data[] = $a->toArray();

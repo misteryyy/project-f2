@@ -24,7 +24,7 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 				{{#each this}}	
 				<div class="fl-app-user">
 				  <div class="fl-app-text">
-				    <img src="" alt="user img" /> <a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a>
+				    <img src="/storage/users/{{user.profile_picture_small}}" alt="user img" /> <a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a>
 				  </div>
 				  <div class="fl-app-role-img">
 				    <img src="/media/slepice-site/1.0.0/img/role_{{role_name}}.png" alt="{{role_name}} icon" />
@@ -123,7 +123,7 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 			{{#each this.applications}}
 			<div class="fl-app-user" id="model_list_level2">
 			  <div class="fl-app-text">
-			    <img src="" alt="user img" /> <a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a>
+			    <img src="/storage/users/{{user.profile_picture_small}}" alt="user img" /> <a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a>
 			  </div>
 			  <div class="fl-app-buttons text-right actions" id="{{id}}">
 			    <a class="btn btn-info" data-toggle="modal" href="#surveyModal-id-{{id}}" >Survey</a>

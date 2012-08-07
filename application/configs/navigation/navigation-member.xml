@@ -98,25 +98,18 @@
 						</pages>
  	
                  </dashboard>
-                     <profile>
-               		<label>My Profile</label>
-                    <module>member</module>
-            		<controller>profile</controller>
-           			 <action>index</action>
-                   	<resource>member</resource>   
-                   	<params_id>ID_USER</params_id>
-                   			<pages>
-						<flobox>
-							<label>Flo Box</label>
-							    <module>member</module>
-            					<controller>profile</controller>
-           			 			<action>flobox</action> 
-							<params_id>ID_USER</params_id>
-						</flobox>
-						</pages>
+                     
+                    <profile>
+	               		<label>My Public Profile</label>
+	                    <module>member</module>
+	            		<controller>profile</controller>
+	           			 <action>index</action>
+	                   	<resource>member</resource>   
+	                   	<params_id>ID_USER</params_id>
                    	 </profile>
+                   	 
+                   	 
                    	<profile-setting> 
-                   	
                    	<label>Profile Settings</label>
                     <uri>/member/profile-setting/index</uri>
                    	<resource>member</resource>   
