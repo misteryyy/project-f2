@@ -6,25 +6,96 @@
 
 
 
- <div class="row">
-  <div class="span7">
-   <?php  echo $this->form;   ?>
+<div class="fl-cnt-100">
+<form class="form-horizontal fl-form-my-skills" action="<?php echo $this->form->getAction(); ?>"  method="<?php echo $this->form->getMethod(); ?>" >
+  <fieldset><legend class="hide">Your role(s) in this project:</legend>
+                 <div class="fl-cnt-100 fl-bottom40">
+                   <div class="fl-choosing-roles-top">
+                          <div class="fl-choosing-roles-top-left">
+                            
+                          </div>
+                          <div class="fl-choosing-roles-top-right">
+                            
+                          </div>
+                   </div>
+                   <div class="fl-choosing-roles-middle">
+                          <div class="fl-choosing-roles-list">
+                            <ul class="fl-choosing-roles">
+                              <?php 
+                              // generate all role options
+                              $arrayRoles = \App\Entity\ProjectRole::getRolesArray();
+                              foreach($arrayRoles as $role){	
+								$r = "role_".$role;
+								$t = "role_".$role."_tags"; ?>	
+                              <li id="<?php echo $r; ?>"> <?php echo $this->form->$r; ?>
+                                <label for="<?php echo $r; ?>">
+                                  <div class="fl-skill">
+                                    <div class="fl-skill-img30">
+                                      <img src="/media/slepice-site/1.0.0/img/role_<?php echo $role;?>.png" alt="<?php echo $role;?> role icon" />
+                                    </div>
+                                    <div class="fl-skill-text">
+                                      <div class="fl-skill-text-roledescription30">
+                                       <?php echo $role;?>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </label>
+                                  <?php echo $this->form->$t; ?>
+                              </li>
+							  <?php  } ?>
+                            </ul>
+                          </div>
+                          <div class="fl-choosing-roles-description">
+                            <h4>Starter</h4>
+                            <div class="fl_thin_divider"></div>
+                            <p>Description for starter ... </p>
+                          </div>
+                   </div>
+                   <div class="fl-choosing-roles-bottom">
+                          <div class="fl-choosing-roles-bottom-left">
+                            
+                          </div>
+                          <div class="fl-choosing-roles-bottom-right"> 
+                          </div>
+                   </div>
+                 </div>
 
+  <div class="hide">
+    <div id="hide_role_starter">
+      <h4>Starter</h4>
+      <div>description for starter It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</div>
+    </div>
+
+    <div id="hide_role_leader">
+      <h4>Leader</h4>
+      <div>description for It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</div>
+    </div>
+
+    <div id="hide_role_grower">
+      <h4>Grower</h4>
+      <div>description for grower</div>
+    </div>
+
+    <div id="hide_role_builder">
+      <h4>Builder</h4>
+      <div>description for builder</div>
+    </div>
+
+    <div id="hide_role_adviser">
+      <h4>Adviser</h4>
+      <div>description for adviser</div>
+    </div>
   </div>
-  <div class="span4"> 
-		  <div class="alert alert-info">
-		 <a class="close" data-dismiss="alert">×</a>
-		  <h4 class="alert-heading">ROLE 1 Description</h4>
-		  We gonna chung pellentesque nibh et turpizzle. Shut the shizzle up shit tortizzle. I saw beyonces tizzles and my pizzle went crizzle eleifend rhoncizzle nisi. In hac break yo neck, yall platea dictumst. Gangster things. Funky fresh tellus gangsta, pretium yippiyo, mattis izzle, pimpin' vitae, nunc. Gizzle suscipizzle. Integer semper check out this rizzle shiz.
-		  <h4 class="alert-heading">ROLE 2 Description</h4>
-		  We gonna chung pellentesque nibh et turpizzle. Shut the shizzle up shit tortizzle. I saw beyonces tizzles and my pizzle went crizzle eleifend rhoncizzle nisi. In hac break yo neck, yall platea dictumst. Gangster things. Funky fresh tellus gangsta, pretium yippiyo, mattis izzle, pimpin' vitae, nunc. Gizzle suscipizzle. Integer semper check out this rizzle shiz.
-	  <h4 class="alert-heading">ROLE 3 Description</h4>
-		  We gonna chung pellentesque nibh et turpizzle. Shut the shizzle up shit tortizzle. I saw beyonces tizzles and my pizzle went crizzle eleifend rhoncizzle nisi. In hac break yo neck, yall platea dictumst. Gangster things. Funky fresh tellus gangsta, pretium yippiyo, mattis izzle, pimpin' vitae, nunc. Gizzle suscipizzle. Integer semper check out this rizzle shiz.
-	  <h4 class="alert-heading">ROLE 4 Description</h4>
-		  We gonna chung pellentesque nibh et turpizzle. Shut the shizzle up shit tortizzle. I saw beyonces tizzles and my pizzle went crizzle eleifend rhoncizzle nisi. In hac break yo neck, yall platea dictumst. Gangster things. Funky fresh tellus gangsta, pretium yippiyo, mattis izzle, pimpin' vitae, nunc. Gizzle suscipizzle. Integer semper check out this rizzle shiz.
-	  <h4 class="alert-heading">ROLE 5 Description</h4>
-		  We gonna chung pellentesque nibh et turpizzle. Shut the shizzle up shit tortizzle. I saw beyonces tizzles and my pizzle went crizzle eleifend rhoncizzle nisi. In hac break yo neck, yall platea dictumst. Gangster things. Funky fresh tellus gangsta, pretium yippiyo, mattis izzle, pimpin' vitae, nunc. Gizzle suscipizzle. Integer semper check out this rizzle shiz.
-		  </div>
-  </div>
+		
+		<div class="fl-cnt-100">
+			<?php echo $this->form->actions; ?>
+		</div>
+
+</fieldset>
+</form>
 </div>
+
+
+  <script type="text/javascript" src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/description.js')?>"></script>
+
  

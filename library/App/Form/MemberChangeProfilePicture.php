@@ -6,7 +6,7 @@ class MemberChangeProfilePicture extends \Twitter_Bootstrap_Form_Horizontal
 {
    public function init()
     {
-
+        $this->_addClassNames('fl-form');
       	$this->addElement('file', 'file_1', array(
     			'label' => 'Choose Picture',	
     			'description' => "Max size 4MB (jpg,jpeg,png)",
@@ -37,6 +37,7 @@ class MemberChangeProfilePicture extends \Twitter_Bootstrap_Form_Horizontal
          			'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
          			'label' => "Change Picture",
          			'escape'        => false,
+              'class' => 'btn btn-info'
          	));
          	 
          	// Action Section

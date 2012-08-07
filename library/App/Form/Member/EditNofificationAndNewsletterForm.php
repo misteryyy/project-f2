@@ -15,6 +15,7 @@ class EditNofificationAndNewsletterForm extends \Twitter_Bootstrap_Form_Horizont
    public function init()
     {
     	
+        $this->_addClassNames('fl-form');
     // Description for Newsletters
     $this->addElement('hidden', 'newsletter_info', array(
     			'description' => '<div class="alert alert-info"> <span class="label label-info">Info</span> BLABLABL INFO</div>',
@@ -77,17 +78,19 @@ class EditNofificationAndNewsletterForm extends \Twitter_Bootstrap_Form_Horizont
          			'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
          			'label' => "Save",
          			'escape' => false,
+                    'class' => 'btn btn-info'
          	));
          	 
          	$this->addElement('button', 'reset', array(
          			'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
          			'label' => 'Reset',
-         			'type' => 'reset'
+         			'type' => 'reset',
+                    'class' => 'btn'
          	));
          		
          	// Action Section
          	$this->addDisplayGroup(
-         			array('submit', 'reset'),
+         			array('reset', 'submit'),
          			'actions',
          			array(
          					'disableLoadDefaultDecorators' => true,

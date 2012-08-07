@@ -29,7 +29,7 @@ class MemberCreateProjectStep3 extends \Twitter_Bootstrap_Form_Horizontal
 		
 		$addList = array(); // saving name for element group
 	
-	foreach($arrayRoles as $role){
+	    foreach($arrayRoles as $role){
 			//$addList[] = "role_description_".$role['name'];
 			$addList[] = "role_".$role['name'];
 			
@@ -53,7 +53,7 @@ class MemberCreateProjectStep3 extends \Twitter_Bootstrap_Form_Horizontal
 		$this->addDisplayGroup(
 				$addList,
 				'creator role',array(	
-						'legend' => 'Choose your role',
+						'legend' => 'Choose your role:',
 						'disableLoadDefaultDecorators' => true,
 						'decorators' => array(
 								array('FormElements'),
