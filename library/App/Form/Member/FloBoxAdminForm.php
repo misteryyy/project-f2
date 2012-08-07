@@ -4,9 +4,18 @@ namespace App\Form\Member;
 
 class FloBoxAdminForm extends \Twitter_Bootstrap_Form_Horizontal
 {
+	
+	public function __construct()
+	{
+		parent::__construct();
+	}
+	
+	
    public function init()
     {
 
+    $this->_addClassNames('fl-form');
+    	
     $this->addElement('text', 'title', array(
                 'label' => 'Title:',
                 'required' => true,
@@ -45,31 +54,38 @@ class FloBoxAdminForm extends \Twitter_Bootstrap_Form_Horizontal
     			'filters' => array('StringTrim'),
     			'rows' => 5,
                 'class' => 'span8',
-    			'description' => "Describe your idea in max 250 letters.",
-    			'validators' => array( array('StringLength', false, array(0,250) ))
+    			'description' => "Describe your idea in max 1000 letters.",
+    			'validators' => array( array('StringLength', false, array(0,1000) ))
     	));
 
- 	
- 	// submit button
- 	$this->addElement('submit','submit',array(
- 			'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
- 			'label' => "Submit",
- 			'escape'        => false,
- 			'decorators' => array(   
-    							array('Description', array('tag' => 'p', 'class' => 'help-block')),
- 								array('ViewHelper'),
- 								array('HtmlTag', array('tag' => 'div', 'class' => 'controls')),
-    							array('Wrapper')
-    					),
- 	));
- 	 
+
  			/**
         	 * ORDERING IN FIELDSET
         	 */
          	$this->addDisplayGroup(
-        			array('title','type','typeDetail','message','submit'), 'FLO~Box Idea',	array('legend' => 'FLO~Box Admin')
+        			array('title','type','typeDetail','message'), 
+         			'FLO~Box Idea',	
+         			array('legend' => 'FLO~Box Admin')
         	);
        
+         	// submit button
+         	$this->addElement('submit','submit',array(
+         			'label' => "Submit",
+         			'escape' => false,
+         			'class' => 'btn btn-info'
+         	));
+         		
+         	
+         		
+         	// Action Section
+         	$this->addDisplayGroup(
+         			array( 'submit'),
+         			'actions',
+         			array(
+         					'disableLoadDefaultDecorators' => true,
+         					'decorators' => array('Actions')
+         			)
+         	);
     
         	     	   
     }

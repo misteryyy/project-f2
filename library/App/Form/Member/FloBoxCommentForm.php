@@ -48,18 +48,20 @@ class FloBoxCommentForm extends \Twitter_Bootstrap_Form_Horizontal
 				array( 'legend' => 'Answer')
 		);
 		 
-		 
+		
 		// submit button
 		$this->addElement('submit','submit',array(
 				'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
-				'label' => "Submit comment",
+				'label' => "Save",
 				'escape' => false,
 				'class' => 'btn btn-info'
 		));
-		  
+		 
+	
+		 
 		// Action Section
 		$this->addDisplayGroup(
-				array('submit'),
+				array( 'submit'),
 				'actions',
 				array(
 						'disableLoadDefaultDecorators' => true,

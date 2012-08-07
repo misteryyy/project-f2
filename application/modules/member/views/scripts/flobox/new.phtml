@@ -2,15 +2,8 @@
 
 <div class="fl-cnt-100">
 <!-- Other way how to display forms -->
-<form id="flo-box" class="form-horizontal fl-form" action="<?= $this->form->getAction(); ?>" method="<?= $this->form->getMethod(); ?>">
-	<fieldset id="fieldset-FLOBoxIdea"><legend>Create New FloBox Message</legend>
-		<?= $this->form->title ?>
-		<?= $this->form->type; ?>
-		<?= $this->form->typeDetail; ?>
-		<?= $this->form->message ?>
-		<?= $this->form->submit ?>
-	</fieldset>
-	
-</form>
+<?php 
+echo $this->form;
+?>
 </div>
 
