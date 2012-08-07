@@ -1,3 +1,10 @@
+<?php 
+  $this->step = 2;
+  echo $this->partial('/profile/profile-navigation.phtml',array("step" => $this->step,"user" => $this->user,"loggedMember"=> $this->loggedMember));   
+    
+  ?>
+  <div class="row">
+            <div class="span7">
 <h2>FloBox <span>#<?php echo $this->message->title; ?></span> 
 
 <?php 
@@ -62,4 +69,6 @@ if ($this->message->user->id == $this->member['id']) { ?>
 
 <div class="fl-cnt-100">	
 	<?php echo $this->form ;?>
+</div>
+
 </div>

@@ -3,7 +3,8 @@
 echo $this->partial('/profile/profile-navigation.phtml',array("step" => $this->step,"user" => $this->user,"loggedMember"=> $this->loggedMember));		
 			
 	?>
-	
+ <div class="row">
+            <div class="span7">	
 	
 	<h2 class="fl-bottom20">People I like</h2>
 
@@ -12,97 +13,54 @@ echo $this->partial('/profile/profile-navigation.phtml',array("step" => $this->s
 <?php if (count($this->paginator)) {?>
 <?php if (count($this->paginator) > 1 )echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
 
-	<ul class="fl-browse-members">
+	
     <?php foreach ($this->paginator as $user){ ?> 
        
-        <li>
-			<div class="fl-cnt-95">
-				<div class="inner">
 
-					<div class="fl-cnt-100">
-						<a href="<?php echo $user->getProfileUrl();?>"><img
-							src="/storage/users/<?php echo $user->getProfilePicture()?>"
-							alt="<?php echo $user->getName(); ?>"
-							class="fl-browse-members-img" /> </a>
-					</div>
+    	<div class="fl-list-user">
+                <div class="fl-cnt-20">
+                  <div class="fl-user-thumb">
+                    <div class="inner-5">
+                      <a href="<?php echo $user->getProfileUrl();?>"><img src="/storage/users/<?php echo $user->getProfilePicture()?>" alt="<?php echo $user->getName(); ?>" /> 
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="fl-cnt-80">
+                  <div class="inner-list-user">
+                    <div class="fl-list-user-head">
+                      <h3 class="fl-list-user-h3"><?php echo $user->name?> <span>, <i class="icon-file"></i> <a href="<?php echo $user->getProfileUrl();?>" title="<?php echo $user->name?>' profile page">Profile</a></span></h3>
+                    </div>
+                    <div class="fl-list-user-like">
 
-					<div class="fl-cnt-100">
-						<h4><?php echo $user->name?></h4>
-						<div class="fl-cnt-100 fl-bottom10">
-							<p class="info">
-								<span class="followers"><i class="icon-eye-open"></i> <strong
-									class="follower-count"><?php echo $user->getCountFriendsWithMe();?></strong>
-									followers</span> <span class="like"><i class="icon-thumbs-up"></i> 
-                         <?php
+<?php
 		// like dislike solution
 		if (! $user->isFriendWithMe ( $this->loggedMember )) {
-			?> <a href="" title="" class="like-member"
-									id="<?php echo $user->id;?>">Like</a>
+			?> <a href="" title="" class="like-member btn btn-success" id="<?php echo $user->id;?>"><i class="icon-thumbs-up icon-white"></i> Like</a>
              <?php } else { ?>
-                            <a href="" title="" class="like-member"
-									id="<?php echo $user->id;?>">Dislike</a>
+                            <a href="" title="" class="like-member btn btn-danger" id="<?php echo $user->id;?>"><i class="icon-thumbs-down icon-white"></i> Dislike</a>
                          <?php } ?>
-                         </span>
-							</p>
-						</div>
-					</div>
 
-            
 
-              <?php
-		// SELF ROLES
-		$specRoles = $user->getSpecificRoles ();
-		if (count ( $specRoles ) > 0) {
-			?>
-              <div class="fl-cnt-100">
-				<div class="fl-roles-detail">
-					<strong>Self assigned:</strong><br />
-                  <?php foreach ($specRoles as $r){?>     
-                    <img src="/media/slepice-site/1.0.0/img/role_<?php echo $r->name;?>.png" alt="<?php echo $r->name;?> icon" title="<?php echo $r->name;?>" />
-                  <?php } ?> 
-				</div>                 
+                      
+                    </div>
+                    <div class="fl-list-user-projects">
+                      <strong>Current projects:</strong><br />
+                      <a href="" title="">Name of the project</a>, <a href="" title="">Name of the project</a>, <a href="" title="">Name of the project</a>, <a href="" title="">Name of the project</a>
+                    </div>
+                  </div>
+                </div>
               </div>
-             
-              <?php }
-		      // SELF ROLES
-		      ?>
-		                <?php
-		// PROJECT ROLES
-		$facadeAcl = new \App\Facade\SearchEngineFacade($this->em);
-		$projectRoles = $facadeAcl->findProjectRolesForUser($user->id);
-		
-		if ( count ($projectRoles ) > 0) {
-			?>
-              <div class="fl-cnt-100">
-				<div class="fl-roles-detail">
-					<strong>Project roles:</strong><br />
-                  <?php foreach ($projectRoles as $r){?>     
-                    <img src="/media/slepice-site/1.0.0/img/role_<?php echo $r;?>.png" alt="<?php echo $r;?> icon" title="<?php echo $r;?>" />
-                  <?php } ?> 
-				</div>                 
-              </div>
-             
-              <?php }
-		      // END PROJECT ROLES
-		      ?>
-		      
-              <div class="fl-cnt-100">
-                <div class="fl-roles-detail">
-				  <strong>Earned roles:</strong><br />
-				  <img	src="/media/slepice-site/1.0.0/img/role_starter.png" alt="role starter icon" />
-				</div>
-			  </div>
+              <div class="fl_thin_divider"></div>
 
-			</div>
-          </div>
-       </li>
 
 <?php } ?>
 </ul>
 <?php } else echo "There are members who I like."?>
 
 </div>
-	
+
+</div>	
 <script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-member-project-1.0.0.js')?>"></script> 
        
     	

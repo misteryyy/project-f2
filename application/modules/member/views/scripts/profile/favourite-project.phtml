@@ -3,6 +3,8 @@
 echo $this->partial('/profile/profile-navigation.phtml',array("step" => $this->step,"user" => $this->user,"loggedMember"=> $this->loggedMember));		
 			
 ?>
+ <div class="row">
+            <div class="span7">
 
 <h2 class="fl-bottom20">Projects I like</h2>
 
@@ -12,89 +14,88 @@ echo $this->partial('/profile/profile-navigation.phtml',array("step" => $this->s
 <?php if (count($this->paginator) > 1) echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
 
     <?php if (count($this->paginator)) {?>
-   <ul class="thumbnails">
+
     <?php foreach ($this->paginator as $project){ ?>
 
-        <li class="span3 fl-thumbnail-frame">
-                  <div class="inner-5">
-
-                     <a href="/project/index/index/id/<?php echo $project->id?>" title="<?php echo $project->title; ?>"> 
+        
+              <div class="fl-list-project">
+                <div class="fl-cnt-20">
+                  <div class="fl-project-thumb">
+                    <div class="inner-5">
+                      <a href="/project/index/index/id/<?php echo $project->id?>" title="<?php echo $project->title; ?>"> 
                         <img alt="<?php echo $project->title; ?> - main picture" src="/storage/projects/<?php echo $project->dir."/".$project->getPicture('large'); ?> " />
                      </a>
-
-  						<div class="fl-level">
+                                    <div class="fl-level">
                         <?php 
                         // Display Current Level
                         $array[1] = array('fl_level1','bar','bar');
                         $array[2] = array('fl_level2','fl_level2','bar');
                         $array[3] = array('fl_level3','fl_level3','fl_level3');
                         foreach($array[$project->level] as $c){ ?>
-                                            <div class="progress">
+                                            <div class="progress fl-small-bar">
                                                   <div class="<?php echo $c?>"></div>
                                             </div>
                         <?php } ?>
                         </div>
-                        
-                     
-                     <h3><?php echo $project->title; ?></h3>
-                     
-                     <div class="fl-cnt-100">
-                       <span class="author"><i class="icon-user"></i> <a href="/member/profile/index/id/<?php echo $project->user->id?>" title="<?php echo $project->user->name?>'s profile"><?php echo $project->user->name?></a></span>
-                       <div class="fl-cnt-100 fl-height-60">
-                         <p><?php echo shorter($project->pitchSentence, 100); ?></p>
-                       </div>
-                       <p class="info">
-                         <span class="category"><i class="icon-folder-close"></i> <?php echo $project->category->name?></span>
-                         <span class="followers"><i class="icon-eye-open"></i> <strong class="follower-count"><?php echo $project->getCountFollowers();?></strong>  followers</span>
-                          <span class="like"><i class="icon-thumbs-up"></i> 
-                         <?php
+                    </div>
+                  </div>
+                </div>
+                <div class="fl-cnt-80">
+                  <div class="inner-list-project">
+                    <div class="fl-list-project-head">
+                      <h3 class="fl-list-project-h3"><?php echo $project->title; ?></h3>
+                      <p class="fl-list-project-info"><span class="author"><i class="icon-user"></i> <a href="/member/profile/index/id/<?php echo $project->user->id?>" title="<?php echo $project->user->name?>'s profile"><?php echo $project->user->name?></a></span> <span class="category"><i class="icon-folder-close"></i> <?php echo $project->category->name?></span>
+                         <span class="followers"><i class="icon-eye-open"></i> <strong class="follower-count"><?php echo $project->getCountFollowers();?></strong>  followers</span></p>
+                    </div>
+                    <div class="fl-list-project-like">
+                      <?php
                          // like dislike solution 
                          if(!$project->isFollower($this->loggedMember)) {
-						 ?> <a href="" title="" class="like-project" id="<?php echo $project->id;?>" >Like</a>
-						 <?php } else { ?>
-                            <a href="" title="" class="like-project" id="<?php echo $project->id;?>" >Dislike</a>
+             ?> <a href="" title="" class="like-project btn btn-success" id="<?php echo $project->id;?>" ><i class="icon-thumbs-up"></i> Like</a>
+             <?php } else { ?>
+                            <a href="" title="" class="like-project btn btn-danger" id="<?php echo $project->id;?>" ><i class="icon-thumbs-down"></i> Dislike</a>
                          <?php } ?>
-                         </span>
-                       </p>
-                     </div>
-                  </div>
-                      
-                     <div class="fl-cnt-100 fl-thumb-roles">
-                 
-                       <div class="fl_project_thumb_roles">
-                        <?php 
-                       		 $display = false;
+                    </div>
+                    <div class="fl-list-project-roles">
+                      <?php 
+                           $display = false;
                         // if level 1 display all logos   
-						if($project->level == 1) {
+            if($project->level == 1) {
                         $freePositions = \App\Entity\ProjectRole::getRolesArray();
-							$display = true;
-						}
-						if($project->level == 2){
+              $display = true;
+            }
+            if($project->level == 2){
                        // if level 2 display free positions
                         $facadeProject = new \App\Facade\Project\TeamFacade($this->em);
-                    	$freePositions = $facadeProject->findFreeUniqueProjectRolesForProjectArray($project->id); 
-							$display =  true;	
-						}
-						
-						if($display){
-						
-                    	// if level 3 = have no idea what to display or not
-                    	foreach ($freePositions as $r){
-                    		
-                    		echo '<div class="fl_project_thumb_role">';
-                    		echo '<img src="/media/slepice-site/1.0.0/img/role_'.$r.'.png" alt="'.$r.'" title="'.$r.'" />';
-                    		echo '</div>';
-                    	}
-						} 
-                    	?>
-                       </div>
-                     </div>
-                </li>
-    <?php } ?>
-  </ul>
+                      $freePositions = $facadeProject->findFreeUniqueProjectRolesForProjectArray($project->id); 
+              $display =  true; 
+            }
+            
+            if($display){
+            
+                      // if level 3 = have no idea what to display or not
+                      foreach ($freePositions as $r){
+                        
+                       
+                        echo '<img src="/media/slepice-site/1.0.0/img/role_'.$r.'.png" alt="'.$r.'" title="'.$r.'" /> ';
+                       
+                      }
+            } 
+                      ?>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="fl_thin_divider"></div>
 
-    <?php } else echo "No Projects Available"?>
-    
+
+
+
+       
+    <?php }  } else echo "No Projects Available"?>
+ 
+ </div>
+ </div>   
     	
 <script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-member-project-1.0.0.js')?>"></script> 
     
