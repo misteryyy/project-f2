@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <nav>
-     
+     	<home>
+            <label>Go to Home</label>
+            <module>site</module>
+            <controller>index</controller>
+            <action>index</action>
+         </home>      
+        <member>
+            <label>Go To Member Zone</label>
+            <uri>/member/</uri>
+      	</member>
          <admin>
 			<label>Admin Dashboard</label>
-			<uri>#</uri>
+			<action>index</action>
+			<module>admin</module>
+			<controller>index</controller>
 					<pages>
 		             <admin-user>
 							<label>Admin Members</label>

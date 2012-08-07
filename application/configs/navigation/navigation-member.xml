@@ -1,135 +1,344 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-    <nav>
-     	
-     			<lost-password>
-							<label>Lost password</label>
-							<uri>/member/index/lost-password</uri>		
-				</lost-password>
-						
-                  <dashboard>
-                    <label>Member Dashboard </label>
-    				<module>member</module>
-            		<controller>dashboard</controller>
-            		<action>index</action>                   
-                   	<pages>
-						<flobox>
-							<label>Flo Box Admin</label>
-							<uri>/member/flobox/index</uri>
+	<nav>
+		<dashboard>
+			<label>Member Zone</label>
+			<uri>#</uri>
+			<pages>
+				<dash>
+					<label>Member Dashboard</label>
+					
+					<module>member</module>
+					<controller>dashboard</controller>
+					<action>index</action>
+				</dash>
+
+				<!-- My Projects with all subpages -->
+				<my-project>
+					<label>My Projects</label>
+					<module>member</module>
+					<controller>my-project</controller>
+					<action>index</action>
+					<pages>
+						<description>
+							<label>Project Edit</label>
+							<module>member</module>
+							<visible>0</visible>
+							<controller>my-project</controller>
+							<action>edit-project</action>
+							<params_label>ID_PROJECT_NAME</params_label>
+							<params_id>ID_PROJECT</params_id>
 							<pages>
-								<flobox-create>
-								<label>Create New</label>
-								<uri>/member/flobox/message-create</uri>
-								</flobox-create>
-							</pages>
-						</flobox>
-						<my-project>
-							<label>My Projects</label>
+								<survey>
+									<label>Project Survey</label>
+									<visible>0</visible>
 									<module>member</module>
 									<controller>my-project</controller>
-            						<action>index</action>  
-            						<pages>
-            							<my-project-team>
-										<label>Team</label>
-										<module>member</module>
-										<controller>my-project-team</controller>
-            							<action>index</action>                   
-       	            	</my-project-team>
-            						</pages>                 
-       	            	</my-project>
-       	            
-       	            	
-						<my-collaboration>
-							<label>My Collaborations</label>
-								<module>member</module>
-            					<controller>my-collaboration</controller>
-            				<action>index</action>   
-						</my-collaboration>
+									<action>survey</action>
+								</survey>
+								<comment-creator>
+									<label>Comments for you</label>
+									<visible>0</visible>
+									<module>member</module>
+									<controller>my-project</controller>
+									<action>comment-creator</action>
+								</comment-creator>
+								<picture>
+									<label>Project Picture</label>
+									<visible>0</visible>
+									<module>member</module>
+									<controller>my-project</controller>
+									<action>edit-project-picture</action>
+								</picture>
+								<update>
+									<label>Updates</label>
+									<visible>0</visible>
+									<module>member</module>
+									<controller>my-project</controller>
+									<action>update</action>
+								</update>
+								<team>
+									<label>Team</label>
+									<visible>0</visible>
+									<module>member</module>
+									<controller>my-project-team</controller>
+									<action>index</action>
+								</team>
+								<team-req>
+									<label>Team - Requests</label>
+									<visible>0</visible>
+									<module>member</module>
+									<controller>my-project-team</controller>
+									<action>request</action>
+								</team-req>
+								<team-q>
+									<label>Team - Questions</label>
+									<visible>0</visible>
+									<module>member</module>
+									<controller>my-project-team</controller>
+									<action>question</action>
+								</team-q>
+								<team-setting>
+									<label>Team - Settings</label>
+									<visible>0</visible>
+									<module>member</module>
+									<controller>my-project-team</controller>
+									<action>setting</action>
+								</team-setting>
+								<level>
+									<label>Levels and Tasks</label>
+									<visible>0</visible>
+									<module>member</module>
+									<controller>my-project</controller>
+									<action>task</action>
+								</level>
+								<poll>
+									<label>Polls</label>
+									<visible>0</visible>
+									<module>member</module>
+									<controller>my-project</controller>
+									<action>poll</action>
+									<pages>
+										<poll-detail>
+											<label>Poll Detail</label>
+											<visible>0</visible>
+											<module>member</module>
+											<controller>my-project</controller>
+											<action>poll-detail</action>
+										</poll-detail>
+									</pages>
+								</poll>
+							</pages>
+						</description> <!-- End of all -->
+
+
+					</pages>
+				</my-project>
+
+
+				<!-- My Projects with all subpages -->
+				<my-collaboration>
+					<label>My Collaboration</label>
+					<module>member</module>
+					<controller>my-collaboration</controller>
+					<action>index</action>
+					<pages>
+						<denied>
+							<label>Denied</label>
+							<module>member</module>
+							<controller>my-collaboration</controller>
+							<action>denied</action>
+						</denied>
+						<waiting>
+							<label>Waiting for response</label>
+							<module>member</module>
+							<controller>my-collaboration</controller>
+							<action>waiting</action>
+						</waiting>
+
+
+					</pages>
+
+				</my-collaboration>
+
+
+
+				<flobox>
+					<label>Flo Box Admin</label>
+					<module>member</module>
+					<controller>flobox</controller>
+					<action>index</action>
+					<pages>
+						<flobox-create>
+							<label>Create</label>
+							<uri>/member/flobox/new</uri>
+						</flobox-create>
+					</pages>
+				</flobox>
+
+				<my-friends>
+					<label>People I Like</label>
+					<module>member</module>
+					<controller>my-favourite</controller>
+					<action>member</action>
+				</my-friends>
+
+				<my-favourite-projects>
+					<label>Projects I like</label>
+					<module>member</module>
+					<controller>my-favourite</controller>
+					<action>project</action>
+				</my-favourite-projects>
+
+			
+
+				<create-project-one>
+					<label>Create Project</label>
+					
+					<module>member</module>
+					<controller>project</controller>
+					<action>create-project-step-one</action>
+					<visible>0</visible>
+					<pages>
 						
-						
-						<my-friends>
-							<label>People I Like</label>
-								<module>member</module>
-            					<controller>my-favourite</controller>
-            				<action>member</action>   
-						</my-friends>
-						
-						<my-favourite-projects>
-							<label>My Favourite Projects</label>
-								<module>member</module>
-            					<controller>my-favourite</controller>
-            				<action>project</action>   
-						</my-favourite-projects>
-						
-						<create-project-one>
-						      <label>Create Project</label>
-    							<module>member</module>
-            					<controller>project</controller>
-            					<action>create-project-step-one</action>                   			                 
-               			<pages>
-	               			<create-project-two>
-							      <label>Create Project / Picture</label>
-	    							<module>member</module>
-	            					<controller>project</controller>
-	            					<action>create-project-step-two</action>                   			                 
-	               			</create-project-two>
-	               			<create-project-three>
-							      <label>Create Project / Staff</label>
-	    							<module>member</module>
-	            					<controller>project</controller>
-	            					<action>create-project-step-three</action>                   			                 
-	               			</create-project-three>
-	               			<create-project-four>
-							      <label>Create Project / Survey</label>
-	    							<module>member</module>
-	            					<controller>project</controller>
-	            					<action>create-project-step-four</action>                   			                 
-	               			</create-project-four>
-	               			<create-project-five>
-							      <label>Create Project / Publishing</label>
-	    							<module>member</module>
-	            					<controller>project</controller>
-	            					<action>create-project-step-five</action>                   			                 
-	               			</create-project-five>
-               			</pages>
-               			</create-project-one>
-               			
-               			
-						</pages>
- 	
-                 </dashboard>
-                     
-                    <profile>
-	               		<label>My Public Profile</label>
-	                    <module>member</module>
-	            		<controller>profile</controller>
-	           			 <action>index</action>
-	                   	<resource>member</resource>   
-	                   	<params_id>ID_USER</params_id>
-                   	 </profile>
-                   	 
-                   	 
-                   	<profile-setting> 
-                   	<label>Profile Settings</label>
-                    <uri>/member/profile-setting/index</uri>
-                   	<resource>member</resource>   
- 					<pages>
-						<personal-info>
-							<label>Personal Info</label>
-							<uri>/member/profile-setting/member-info</uri>
-						</personal-info>
-						<member-skills>
-							<label>My skills</label>
-							<uri>/member/profile-setting/member-skills</uri>
-						</member-skills>	
-						<member-picture>
-							<label>Profile picture</label>
-							<uri>/member/profile-setting/member-picture</uri>
-						</member-picture>
-        			</pages>  
-        			</profile-setting>
-        
- 
-    </nav>
+						<create-project-two>
+							<label>Create Project / Picture</label>
+								<visible>0</visible>
+							<module>member</module>
+							<controller>project</controller>
+							<action>create-project-step-two</action>
+						</create-project-two>
+						<create-project-three>
+							<label>Create Project / Staff</label>
+								<visible>0</visible>
+							<module>member</module>
+							<controller>project</controller>
+							<action>create-project-step-three</action>
+						</create-project-three>
+						<create-project-four>
+							<label>Create Project / Survey</label>
+								<visible>0</visible>
+							<module>member</module>
+							<controller>project</controller>
+							<action>create-project-step-four</action>
+						</create-project-four>
+						<create-project-five>
+							<label>Create Project / Publishing</label>
+								<visible>0</visible>
+							<module>member</module>
+							<controller>project</controller>
+							<action>create-project-step-five</action>
+						</create-project-five>
+					</pages>
+				</create-project-one>
+
+
+			</pages>
+
+		</dashboard>
+
+
+
+
+		<profile-setting>
+			<label>Profile Settings</label>
+			<uri>/member/profile-setting/index</uri>
+			<resource>member</resource>
+			<pages>
+				<personal-info>
+					<label>Personal Info</label>
+					<uri>/member/profile-setting/member-info</uri>
+				</personal-info>
+				<member-skills>
+					<label>My skills</label>
+					<uri>/member/profile-setting/member-skills</uri>
+				</member-skills>
+				<member-picture>
+					<label>Profile picture</label>
+					<uri>/member/profile-setting/member-picture</uri>
+				</member-picture>
+					<notification>
+					<label>Notifications</label>
+					<module>member</module>
+					<controller>profile-setting</controller>
+					<action>notification</action>
+				</notification>
+
+				<change-pass>
+					<label>Change Password</label>
+						<visible>0</visible>
+					<module>member</module>
+					<controller>profile-setting</controller>
+					<action>change-password</action>
+				</change-pass>
+			</pages>
+		</profile-setting>
+
+		<admin>
+			<label>Go to Admin</label>
+			<action>index</action>
+			<module>admin</module>
+			<controller>index</controller>
+		</admin>
+
+		<home>
+			<label>Go to Home</label>
+			<module>site</module>
+			<controller>index</controller>
+			<action>index</action>
+		</home>
+
+
+		<profile>
+			<label>Public profile</label>
+			<visible>0</visible>
+			<module>member</module>
+			<controller>profile</controller>
+			<action>index</action>
+			<params_id>ID_USER</params_id>
+			<pages>
+				<flobox-public>
+					<label>FloBox</label>
+					<module>member</module>
+					<controller>profile</controller>
+					<action>flobox</action>
+					<pages>
+						<flobox-public-detail>
+							<label>Detail</label>
+							<module>member</module>
+							<controller>profile</controller>
+							<action>flobox-detail</action>
+						</flobox-public-detail>
+
+					</pages>
+				</flobox-public>
+				<my-project-public>
+					<label>My Projects</label>
+					<module>member</module>
+					<controller>profile</controller>
+					<action>my-project</action>
+				</my-project-public>
+				<my-collaboration-public>
+					<label>My Collaborations</label>
+					<module>member</module>
+					<controller>profile</controller>
+					<action>my-collaboration</action>
+				</my-collaboration-public>
+				<my-fav-member-public>
+					<label>People I like</label>
+					<module>member</module>
+					<controller>profile</controller>
+					<action>favourite-member</action>
+				</my-fav-member-public>
+				<my-fav-project-public>
+					<label>Projects I like</label>
+					<module>member</module>
+					<controller>profile</controller>
+					<action>favourite-project</action>
+				</my-fav-project-public>
+
+
+			</pages>
+		</profile>
+
+
+		<!-- Invisible, just for breadcrumbs -->
+		<lost-password>
+			<visible>0</visible>
+			<label>Lost password</label>
+			<uri>/member/index/lost-password</uri>
+		</lost-password>
+		<login>
+			<visible>0</visible>
+			<label>Login</label>
+			<uri>/member/index/login</uri>
+		</login>
+		<signup>
+			<visible>0</visible>
+			<label>Sign Up</label>
+			<uri>/member/index/sign-up</uri>
+		</signup>
+
+	</nav>
 </config>
 

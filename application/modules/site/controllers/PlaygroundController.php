@@ -3,24 +3,8 @@
 class Site_PlaygroundController extends  Boilerplate_Controller_Action_Abstract
 {
 
-    /**
-     * @var Doctrine\ORM\EntityManager
-     */
-    protected $_em = null;
 
-    /**
-     * @var \sfServiceContainer
-     */
-    protected $_sc = null;
-
-    /**
-     * @var \App\Service\RandomQuote
-     * @InjectService RandomQuote
-     */
-    protected $_randomQuote = null;
-
-    
-    
+        
     public function init()
     {
     	parent::init();
@@ -28,7 +12,32 @@ class Site_PlaygroundController extends  Boilerplate_Controller_Action_Abstract
     }
 
    
-
+    /**
+     * S3 server
+     */
+	public function s3Action(){
+		$this->ajaxify();
+		echo "Welcome to S3 playground.";
+		
+		$s3 = new Zend_Service_Amazon_S3('AKIAIIT4QVXXNFSXG3BA','aPe8De9tNYpl5kz8aCYUBWVg2aEcFsV/rMyMx9fT');
+		$s3->getBuckets();
+		
+		//Connecting to bucket
+		$my_buckets = $s3->getBuckets();
+		echo "<br/>";
+		if($s3->isBucketAvailable($my_buckets[0])) {echo "Bucket ".$my_buckets[0]." is available.";}
+		
+		$list = $s3->getObjectsByBucket($my_buckets[0]);
+		print_r($list);
+		
+		
+// 		$s3->createBucket("my-own-bucket");
+// 		$s3->putObject("my-own-bucket/myobject", "somedata");
+// 		echo $s3->getObject("my-own-bucket/myobject");
+		
+	}
+    
+    
     
     public function indexAction()  {
     	//TODO tomas rada breadcrumb

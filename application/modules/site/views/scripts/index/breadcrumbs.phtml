@@ -9,6 +9,7 @@
 			
 			$pg = $container->findAllBy('params_label', 'ID_PROJECT_NAME');
 			foreach($pg as &$p){
+				if(isset($this->project->title))
 				$p->setLabel($this->project->title);
 			}
 			
@@ -19,7 +20,7 @@
 						'id'=> Zend_Controller_Front::getInstance()->getRequest()->getParam('id'),));
 			}
 			
-			echo $this->navigation()->breadcrumbs()
+			echo $this->navigation()->breadcrumbs()->breadcrumbs()->setRenderInvisible(true)
 			->setLinkLast(true)->setMinDepth(0)
 			->setPartial(array('/index/partials/breadcrumb.phtml','site'));
 			?>

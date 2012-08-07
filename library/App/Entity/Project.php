@@ -287,6 +287,7 @@ class Project {
 	 * Return all tags for this project in Doctrine OBJs
 	 */
 	public function getTags() {
+		
 		return $this->tags;
 	}
 	
