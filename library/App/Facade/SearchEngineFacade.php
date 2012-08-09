@@ -112,7 +112,7 @@ class SearchEngineFacade {
 		// open index
 		$index = \Zend_Search_Lucene::open(APPLICATION_PATH . '/indexes/projects');
 
-		
+		$freePositions= array();
 		// if level 1 display all logos
 		if($project->level == 1)
 			$freePositions = \App\Entity\ProjectRole::getRolesArray();

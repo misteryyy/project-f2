@@ -8,6 +8,12 @@
 			<controller>index</controller>
 			<action>index</action>
 		</home>
+		<offer>
+			<label>Offer</label>
+			<module>launch</module>
+			<controller>index</controller>
+			<action>offer</action>
+		</offer>
 		<about>
 			<label>About</label>
 			<module>launch</module>

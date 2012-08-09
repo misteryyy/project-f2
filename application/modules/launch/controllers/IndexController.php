@@ -60,7 +60,14 @@ class Launch_IndexController extends Boilerplate_Controller_Action_Abstract
     	 
     }
     
-     
+    /*
+     * Sign up process, validation of form
+    */
+    public function offerAction() {
+    	$this->view->pageTitle = 'FLO~ Start.Build.Lead.Grow. - Pre-Order Offer';
+    
+    
+    }
     
     
     	/*
@@ -117,52 +124,6 @@ class Launch_IndexController extends Boilerplate_Controller_Action_Abstract
 		}
     	
     }
-    /**
-     * Generate CVS file for signed users
-     */
-    public function downloadBetaUsersAction(){
-    	$this->ajaxify();
-    
-    	// send response headers to the browser
-    	header( 'Content-Type: text/csv' );
-    	header( 'Content-Disposition: attachment;filename=newsletters-'.time().'.csv');
-    	$fp = fopen('php://output', 'w');
-    
-    	$facadeLaunch = new \App\Facade\Launch\LaunchFacade($this->_em);
-    	$news = $facadeLaunch->findBetaAccounts();
-    
-    	foreach($news as $a){
-    		if($a->location == 1){
-    			$location = "From Prague";
-    		} else {$location = "Outside Prague";}
-    		fputcsv($fp, array($a->created->format('Y/m/d'),$a->email,$a->name,$location, $a->password));
-    		 
-    	}
-    
-    	fclose($fp);
-    }
-    
-    
-    /**
-     * Generate CVS file for signed users
-     */
-    public function downloadNewslettersAction(){
-    	$this->ajaxify();
-    
-    	// send response headers to the browser
-    	header( 'Content-Type: text/csv' );
-    	header( 'Content-Disposition: attachment;filename=newsletters-'.time().'.csv');
-    	$fp = fopen('php://output', 'w');
-    
-    	$facadeLaunch = new \App\Facade\Launch\LaunchFacade($this->_em);
-    	$news = $facadeLaunch->findNewsletters();
-    
-    	foreach($news as $n){
-    		fputcsv($fp, array($n->date->format('Y/m/d'),$n->email,$n->id));
-    	}
-    	 
-    	fclose($fp);
-    }
 
     public function headerAction()
     {    
@@ -184,7 +145,54 @@ class Launch_IndexController extends Boilerplate_Controller_Action_Abstract
     	
     }
     
-
+    /**
+     * Generate CVS file for signed users
+     */
+    public function downloadNewslettersAction(){
+    	$this->ajaxify();
+    
+    	// send response headers to the browser
+    	header( 'Content-Type: text/csv' );
+    	header( 'Content-Disposition: attachment;filename=newsletters-'.time().'.csv');
+    	$fp = fopen('php://output', 'w');
+    
+    	$facadeLaunch = new \App\Facade\Launch\LaunchFacade($this->_em);
+    	$news = $facadeLaunch->findNewsletters();
+    
+    	foreach($news as $n){
+    		fputcsv($fp, array($n->date->format('Y/m/d'),$n->email,$n->id));
+    	}
+    
+    	fclose($fp);
+    }
+    
+   
+    
+    /**
+     * Generate CVS file for signed users
+     */
+    public function downloadBetaUsersAction(){
+    	$this->ajaxify();
+    
+    	// send response headers to the browser
+    	header( 'Content-Type: text/csv' );
+    	header( 'Content-Disposition: attachment;filename=newsletters-'.time().'.csv');
+    	$fp = fopen('php://output', 'w');
+    
+    	$facadeLaunch = new \App\Facade\Launch\LaunchFacade($this->_em);
+    	$news = $facadeLaunch->findBetaAccounts();
+    
+    	foreach($news as $a){
+    		if($a->location == 1){
+    			$location = "From Prague";
+    		} else {$location = "Outside Prague";
+    		}
+    		fputcsv($fp, array($a->created->format('Y/m/d'),$a->email,$a->name,$location, $a->password));
+    		 
+    	}
+    
+    	fclose($fp);
+    }
     
     public function sitemapAction()
     {
