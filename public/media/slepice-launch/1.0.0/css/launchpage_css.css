@@ -316,6 +316,15 @@ h4{
   padding: 15px;
 }
 
+.lp-btn-xxl{
+  padding: 16px 25px;
+  font-size: 22px;
+  line-height: normal;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
 .lp-further{
   font-size: 13px;
   list-style: none;
