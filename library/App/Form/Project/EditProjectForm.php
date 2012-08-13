@@ -69,7 +69,7 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 				'description' => "description",
 				'filters' => array('StringTrim'),
 				'class' => 'span8',
-				'validators' =>	array( array("NotEmpty"), array('StringLength', false, array(1,250) )),
+				'validators' =>	array( array("NotEmpty")),
 				'disableLoadDefaultDecorators' => true,
 		));
 		
