@@ -48,9 +48,9 @@ class Project_IndexController extends  Boilerplate_Controller_Action_Abstract
 	
 	public function init(){
 		parent::init();
+		$this->view->module = "project";
 		$this->facadeProject = new \App\Facade\ProjectFacade($this->_em);
 		$this->facadeACL = new \App\Facade\ACLFacade($this->_em);
-		
 		$this->checkProject();
 		
 	}

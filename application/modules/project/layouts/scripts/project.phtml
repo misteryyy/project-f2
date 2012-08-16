@@ -1,11 +1,9 @@
 <!DOCTYPE HTML>
-
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-  <title>Project-F Beta / <?= (!is_null($this->pageTitle)) ? $this->pageTitle : " Default "; ?> </title>
+  <title><?= (!is_null($this->pageTitle)) ? $this->pageTitle : " Default "; ?> </title>
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -14,33 +12,24 @@
     <link rel="stylesheet" href="<?=$this->baseUrl('/media/slepice-site/1.0.0/css/flow_css.css')?>">
 
 </head>
-
 <body>
  	<div id="fl-container">
+ 	<?= $this->action('menu-debug', 'menu', 'project');  ?>  
    <div class="container">
      <?= $this->action('header', 'index', 'site');  ?>
    </div>
- 
-	 <?= $this->action('menu-debug', 'menu', 'project');  ?>  
-	  	
-	 <?php 
-	    // collaborator widget
-    	if($this->isCollaborator){
-    		echo "Yes, you are collaborating in this project.";
-    	}
-     ?>
   <div id="fl-content">
    <div class="container"> 
 	<?= $this->action('breadcrumbs', 'index', 'site');  ?>
 	 
 
-        <div class="row">
-          <div class="span11">
+    <div class="row">
+       <div class="span11">
  	<!-- Bootstrap messaging generator -->
-   <div class="fl-cnt-100">
-     <?php echo $this->flashMessenger() ; ?>
-   </div>
-  <?php echo $this->layout()->content; ?>
+ 	<div class="fl-cnt-100">
+	     <?php echo $this->flashMessenger() ; ?>
+	 </div>
+  	<?php echo $this->layout()->content; ?>
   	    
 	        <div class="span4 fl-sidebar-bg">
 	    	    <div class="inner">
@@ -48,8 +37,7 @@
                 <h3 class="fl-sidebar-h3-first">Project Level</h3>
                 <div class="fl_thick_divider"></div>
                 <div class="fl-project-level">
-
-                  
+               
                   <div class="fl-level">
 					<?php // Display Current Level
 					$array[1] = array('fl_level1','bar','bar');
@@ -89,17 +77,14 @@
                   </div>
                  
 
-                  <div class="fl_thin_divider"></div>
-                  
-                  
+                  <div class="fl_thin_divider"></div> 
                       <!-- Form Applications for Level 1 -->
                       <?php 
                         if($this->project->level == 1)          
                              echo $this->action('application', 'widget', 'project',array("id" => $this->project->id));?>
                       <!-- Form Applications for Level 2 -->
-                       <? if($this->project->level == 2)
+                       <?php if($this->project->level == 2)
                             echo $this->action('application-level2', 'widget', 'project',array("id" => $this->project->id));?>
-                  
                 </div>
 
 
@@ -116,11 +101,8 @@
                 
 				<!-- Similar projects widget -->
 				  <?php echo $this->action('similar', 'widget', 'project',array("id" => $this->project->id));?>
-             
-
 	         </div>
          </div>
-         
        </div>
      </div>
    </div>

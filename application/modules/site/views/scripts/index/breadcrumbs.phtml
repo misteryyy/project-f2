@@ -7,19 +7,24 @@
 			
 			$container = $this->navigation()->breadcrumbs()->getContainer();
 			
-			$pg = $container->findAllBy('params_label', 'ID_PROJECT_NAME');
-			foreach($pg as &$p){
-					// set project title 
-					$p->setLabel($this->project->title);
+			/**
+			 * Add Project ID and Change Breadcrumbs
+			 */
+			if($this->module == 'project'){
+					$pg = $container->findAllBy('params_label', 'ID_PROJECT_NAME');
+					foreach($pg as &$p){
+							// set project title 
+							$p->setLabel($this->project->title);
+					}
+					
+					
+					// adding current parrameter
+					$pg = $container->findAllBy('params_id', 'ID_PROJECT');
+					foreach($pg as &$p){
+						$p->setParams(array(
+								'id'=> Zend_Controller_Front::getInstance()->getRequest()->getParam('id'),));
+					}
 			}
-			
-			// adding current parrameter
-			$pg = $container->findAllBy('params_id', 'ID_PROJECT');
-			foreach($pg as &$p){
-				$p->setParams(array(
-						'id'=> Zend_Controller_Front::getInstance()->getRequest()->getParam('id'),));
-			}
-			
 			echo $this->navigation()->breadcrumbs()->breadcrumbs()->setRenderInvisible(true)
 			->setLinkLast(true)->setMinDepth(0)
 			->setPartial(array('/index/partials/breadcrumb.phtml','site'));

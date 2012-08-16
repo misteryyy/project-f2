@@ -27,18 +27,8 @@ class Boilerplate_Util_FileManagerS3
 			
 		}
 		
-		
-		
-		function createProjectDirectoryOnS3($directoryName){
-			echo "Creating DIR on S3".$directoryName;
-			
-			
-			
-		}
-		
-		
 		/**
-		 * Generates valid $file
+		 * Generates new file name in format ftimestamp
 		 * @param unknown_type $file
 		 * @throws \Exception
 		 */
@@ -46,7 +36,6 @@ class Boilerplate_Util_FileManagerS3
 			if(!is_file($file)) throw new \Exception("Is not valid file.");
 			$ext = substr(strrchr($name,'.'), 1);  // get file extension	
 			$newFileName = 'pf'.time().'.'.$ext;
-			
 			return array('temp' => $file,'file' => $newFileName, 'type' => $type,'size'=> $size);
 				
 		}

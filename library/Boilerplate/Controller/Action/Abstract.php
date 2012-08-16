@@ -34,6 +34,12 @@ abstract class Boilerplate_Controller_Action_Abstract extends Zend_Controller_Ac
  	$this->_helper->viewRenderer->setNoRender(true);
  }  
    
+ 
+ 
+ /**
+  * Doctrine Debug
+  * @param unknown_type $var
+  */
  public function dPr($var){
  	\Doctrine\Common\Util\Debug::dump($var);
  }
