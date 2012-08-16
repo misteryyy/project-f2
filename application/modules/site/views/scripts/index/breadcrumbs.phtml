@@ -9,8 +9,8 @@
 			
 			$pg = $container->findAllBy('params_label', 'ID_PROJECT_NAME');
 			foreach($pg as &$p){
-				if(isset($this->project->title))
-				$p->setLabel($this->project->title);
+					// set project title 
+					$p->setLabel($this->project->title);
 			}
 			
 			// adding current parrameter

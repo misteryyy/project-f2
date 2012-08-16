@@ -134,10 +134,7 @@
             </pages>
         </member>
         
-         <project>
-            <label>Project</label>
-            <uri>/project/</uri>
-            <pages>        
+                
                   <main>
                     <label>Project name</label>
     				<module>project</module>
@@ -153,6 +150,15 @@
 		           			<action>comment</action>
 		                   	<params_id>ID_PROJECT_NAME</params_id>
 		                   	</comments>
+		                   	  <board>
+		               		<label>Project Board</label>
+		                    <module>project</module>
+		            		<controller>index</controller>
+		           			<action>project-board</action>
+		                   	<params_id>ID_PROJECT</params_id> 	
+		                   	<params_id>ID_PROJECT_NAME</params_id>
+		                   
+		                   	</board>
 		                   	 
 		                   	 <survey>
 		               		<label>Survey</label>
@@ -163,8 +169,7 @@
 		                   	</survey>
             		</pages>
             		</main>
-            </pages>
-        </project>
+       
         
          <admin>
 			<label>Admin Dashboard</label>

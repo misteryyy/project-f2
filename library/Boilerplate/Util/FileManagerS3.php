@@ -1,6 +1,6 @@
 <?php
 
-class Boilerplate_Util_FileManager
+class Boilerplate_Util_FileManagerS3
 {	
 
 		// *** Class variables
@@ -10,13 +10,21 @@ class Boilerplate_Util_FileManager
 		private $absolutPath; // absolut path to the root
 		private $webPath;
 		private $project; // project entity
-		
+		private $s3;
+		private $bucket = 'floplatform-storage';
 		
 		function __construct($project,$uploadDir,$fileName)
 		{
 			$this->project = $project;
 			$this->absolutPath = APPLICATION_PATH .  '/../public/'.$uploadDir.'/';
 			$this->webPath = $uploadDir."/".$fileName;
+				
+			$this->s3 = new Zend_Service_Amazon_S3('AKIAIIT4QVXXNFSXG3BA','aPe8De9tNYpl5kz8aCYUBWVg2aEcFsV/rMyMx9fT');
+			if(!$this->s3->isBucketAvailable($this->bucket)) {
+				throw new \Exception("Can't connect to file server. Try it later.");
+			}
+						
+			
 		}
 		
 		
@@ -29,44 +37,67 @@ class Boilerplate_Util_FileManager
 		}
 		
 		
+		/**
+		 * Generates valid $file
+		 * @param unknown_type $file
+		 * @throws \Exception
+		 */
+		function generateNewFileInformation($file,$name,$type,$size){
+			if(!is_file($file)) throw new \Exception("Is not valid file.");
+			$ext = substr(strrchr($name,'.'), 1);  // get file extension	
+			$newFileName = 'pf'.time().'.'.$ext;
+			
+			return array('temp' => $file,'file' => $newFileName, 'type' => $type,'size'=> $size);
+				
+		}
+		
 		
 		/**
 		 * Upload file from Project Board to S3 server
 		 */
-		function uploadFileToS3FromPost(\App\Entity\Project $project){
+		function uploadFileToS3FromPost(){
+			// check files
+			$upload = new Zend_File_Transfer();
+			$adapter = new Zend_File_Transfer_Adapter_Http();
 			
+			// setting upload file
+			$adapter->setDestination($this->absolutPath);
+			$adapter->addValidator('Size', false, 4*10*102400)
+			->addValidator('Count', false, 5)
+			->addValidator('Extension', false, 'pdf,doc,docx,odt,jpg,jpeg,png');
 			
-			echo $project->dir;
-			//$this->createProjectDirectoryOnS3();
-			
-			
-			
-			
-			 
-			echo "Welcome to S3 playground.";
-			 
-			$s3 = new Zend_Service_Amazon_S3('AKIAIIT4QVXXNFSXG3BA','aPe8De9tNYpl5kz8aCYUBWVg2aEcFsV/rMyMx9fT');
-			$s3->getBuckets();
-			 
-			//Connecting to bucket
-			$my_buckets = $s3->getBuckets();
-			echo "<br/>";
-			if($s3->isBucketAvailable($my_buckets[0])) {
-				echo "Bucket ".$my_buckets[0]." is available.";
+			// validate files
+			$i= 1;
+			foreach ($adapter->getFileInfo() as $file => $info) {
+				// check if uploaded
+				if ($adapter->isUploaded($file)) {
+					// validators are ok ?
+					if (!$adapter->isValid($file)) {
+						throw new \Exception($info['name'] . " is not valid. ");
+					}
+				}
+				$i++; // increment file
 			}
-			 
-			$list = $s3->getObjectsByBucket($my_buckets[0]);
-			print_r($list);
-			 
-			 exit;
-			// 		$s3->createBucket("my-own-bucket");
-			// 		$s3->putObject("my-own-bucket/myobject", "somedata");
-			// 		echo $s3->getObject("my-own-bucket/myobject");
+			$files = array();
 			
-			
-			
-			
+			// copying and renaming files
+			$i= 1;
+			foreach ($adapter->getFileInfo() as $file => $info) {
+				if ($adapter->isUploaded($file)) {
+				
+					$file = $this->generateNewFileInformation($info['tmp_name'],$info['name'],$info['type'],$info['size']);					
+					$output = $this->bucket.'/projects/'.$this->project->dir.'/pb/'.$file['file'];					
+					$this->s3->putFile($file['temp'], $output,
+							array(Zend_Service_Amazon_S3::S3_ACL_HEADER =>
+									Zend_Service_Amazon_S3::S3_ACL_PRIVATE));
+				 	$files[] = $file; // adding files for information
+				}
+				$i++; // increment file
+			}
 		}
+		
+		
+		
 		/**
 		 * Upload Files From Post Data
 		 * @throws \Exception
