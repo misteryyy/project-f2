@@ -17,6 +17,7 @@ class ProjectBoardForm extends \Twitter_Bootstrap_Form_Horizontal
 
 		$this->_addClassNames('fl-form');
 		
+		
 		// Description of roles
 		 $this->addElement('hidden', 'logged_member', array(
 		 					'description' => '<div class="fl-cnt-100 fl-top10"><div class="alert alert-info">Logged as: <strong>'.$this->member['name'].'</strong></div></div>',
@@ -30,7 +31,7 @@ class ProjectBoardForm extends \Twitter_Bootstrap_Form_Horizontal
 		 		'label' => 'Title',
 		 		'required' => true,
 		 		'filters'    => array('StringTrim'),
-		 		'description' => "Title. Max 50 letters.",
+		 		//'description' => "Title. Max 50 letters.",
 		 		'validators' => array( array('StringLength', false, array(0,100) ))));
 		 	
  
@@ -41,7 +42,7 @@ class ProjectBoardForm extends \Twitter_Bootstrap_Form_Horizontal
 				'rows' => 4,
 				'class' => "span5",
 				'errorMessages' => array("You missing content of your comment."),
-				'description' => "description",
+				//'description' => "description",
 				'validators' => array("NotEmpty"),
 		));
 		

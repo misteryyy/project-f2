@@ -1,9 +1,4 @@
-<?php 
-if(count ($this->project) > 0){ ?>
-
 <h2><?php echo $this->project->title?></h2>
-
-     
               <p class="fl_project_head_info"><i class="icon-user"></i> <a href="<?php echo $this->project->user->getProfileUrl();?>" title=""><?php echo $this->project->user->name?></a>, <i class="icon-folder-close"></i> <?php echo $this->project->category->name;?>, <i class="icon-time"></i> <?php echo $this->project->created->format('Y/m/d');?>,  
                  <span class="like"><i class="icon-thumbs-up"></i> 
                          <?php
@@ -18,14 +13,13 @@ if(count ($this->project) > 0){ ?>
 <?php
 $this->step = 1;
 echo $this->partial('/index/project-navigation.phtml',array("step" => $this->step,"project" => $this->project,"isCreator"=> $this->isCreator));
-?>
-        
+?>    
      </div>
        </div>
        <div class="row">
             <div class="span7">	
             <div class="fl-cnt-img">
-                <img alt="<?php echo $this->project->title; ?> - main picture" src="/storage/projects/<?php echo $this->project->dir."/".$this->project->getPicture('small'); ?> " />
+                <img alt="<?php echo $this->project->title; ?> - main picture" src="/storage/projects/<?php echo $this->project->dir."/".$this->project->getPicture('large'); ?> " />
             </div>
 
               <div class="fl-cnt-pitch">
@@ -57,18 +51,8 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
 				}
 			?></p>
      </div>
-     
 				<!-- Author Widget -->
 				<?php echo $this->action('author', 'widget', 'project',array("id" => $this->project->id));?>
-             
-     
-     
-<?php } else {
-	
-	echo "This project doesn't exists.";
-	
-}?>
-
 </div>
 
  
