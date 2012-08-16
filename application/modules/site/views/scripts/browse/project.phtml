@@ -160,14 +160,13 @@ if ($this->displayForm) {?>
     <?php } else echo "There are no projects for this search."?>
       </div>
 
-</div>
-	  <div class="span2">	    
-	    <!-- Category menu and filters module -->
-	  	<?= $this->action('category', 'widget', 'site');  ?>
-       </div>
-  
-    </div>
   </div>
+  <div class="span2">	    
+  <!-- Category menu and filters module -->
+	  <?= $this->action('category', 'widget', 'site');  ?>
+  </div>
+</div>
+
     
 <script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/choose-role.js')?>"></script>        
 <script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-member-project-1.0.0.js')?>"></script> 

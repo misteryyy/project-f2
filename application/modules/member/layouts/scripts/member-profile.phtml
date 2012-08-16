@@ -17,6 +17,13 @@
 
 </head>
 <body>
+
+  <div id="fl-top">
+   <div id="fl-container">
+    <p>What is FLO~? How does it work? <i class="icon-share-alt"></i> <a href="/index/learn-more" title="Learn more about FLO~">Learn more!</a></p>
+   </div>
+ </div>
+ 
  <div id="fl-container">
   <?= $this->action('menu-debug', 'menu', 'project');  ?>
    <div class="container">
@@ -50,20 +57,18 @@
 
      <div id="bottom">
         <?= $this->action('footer', 'index', 'site');  ?>
-     </div>
-     
-    </div>
+   </div>
+
+  </div>
 </div>
 
-  
- <div class="fl-bottom-line">
-  <p>&copy; 2012 SLEPICE / ZF <br />
-<small><?php echo $this->translate("Today is"); ?> <b><?php echo new Zend_Date($this->timestamp); ?></b> <?php if ($this->cachedTimestamp) { ?>(<?php echo $this->translate("Timestamp served from Memcached");?>)<?php } ?></small></p>
- </div>
+<div id="fl-bottom-line">
+  <p>&copy; 2012 SLEPICE / ZF</p>
+</div>
+
+<script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-member-project-1.0.0.js')?>"></script>
+    </body>
+</html>
 
             	
-<script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-member-project-1.0.0.js')?>"></script> 
-       
  
-</body>
-</html>

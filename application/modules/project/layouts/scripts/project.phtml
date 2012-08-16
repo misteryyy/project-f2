@@ -16,6 +16,12 @@
 </head>
 
 <body>
+	<div id="fl-top">
+   <div id="fl-container">
+    <p>What is FLO~? How does it work? <i class="icon-share-alt"></i> <a href="/index/learn-more" title="Learn more about FLO~">Learn more!</a></p>
+   </div>
+ </div>
+ 
  	<div id="fl-container">
    <div class="container">
      <?= $this->action('header', 'index', 'site');  ?>
@@ -123,12 +129,19 @@
          
        </div>
      </div>
+   
+
+<div id="bottom">
+        <?= $this->action('footer', 'index', 'site');  ?>
    </div>
- </div>
-  
- <div class="fl-bottom-line">
-      <?= $this->action('footer', 'index', 'site');  ?>
- </div>
+
+  </div>
+</div>
+
+<div id="fl-bottom-line">
+  <p>&copy; 2012 SLEPICE / ZF</p>
+</div>
+
 
     
  <script type="text/javascript">  
