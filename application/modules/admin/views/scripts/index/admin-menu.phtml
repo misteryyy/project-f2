@@ -1,0 +1,30 @@
+<?php  
+	$allow[1] = false;
+	$allow[2] = false;
+	$allow[3] = false;
+	$allow[4] = false;
+
+	// select active controller
+	$controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
+	$action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
+	
+	switch ($controller){
+		case 'project' : $allow[1] = true;
+		break;
+		case 'member' : $allow[2] = true;
+		break;
+		case 'newsletter' : $allow[3] = true;
+		break;
+		case 'slideshow' : $allow[4] = true;
+		break;
+	}	
+  ?>
+
+                <div class="tabs-right">
+                  <ul class="nav nav-tabs fl-right-nav">
+                   <li class="<?php echo($allow[1] == true ? "active" : "disable" );?>"><a href="/admin/project/index" title="Manage projects"> Browse projects</a></li>
+                   <li class="<?php echo($allow[2] == true ? "active" : "disable" );?>"><a href="/admin/member/index" title="Manage members"> Browse members</a></li>
+                   <li class="<?php echo($allow[3] == true ? "active" : "disable" );?>"><a href="/admin/newsletter/index" title="Manage newsletter"> Newsletters</a></li>
+                   <li class="<?php echo($allow[4] == true ? "active" : "disable" );?>"><a href="/admin/slideshow/index" title="Manage slideshow"> Slideshow</a></li>
+                  </ul>
+ 				</div>

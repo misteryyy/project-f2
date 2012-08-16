@@ -1,7 +1,48 @@
+<div id="container-74-4">
+      <div id="container-74-7">
+        <div id="col-7"> 
+
+<h2>Welcome back, <?php echo $this->member['name']?></h2>
+<!-- <p>Your last visit was on <strong>20th of July 2012</strong></p> -->
+
+              <div class="fl-cnt-100">
+                <ul class="fl-dashboard">
+                  <li><a href="/admin/project/index" title="Manage projects"><i class="fl-dashboard-icon-myprojects"></i> Browse projects</a></li>
+                  <li><a href="/admin/member/index" title="Manage members"><i class="fl-dashboard-icon-peopleilike"></i> Browse members</a></li>
+                  <li><a href="/admin/newsletter/index" title="Manage newsletter"><i class="fl-dashboard-icon-new"></i> Newsletters</a></li>
+                  <li><a href="/admin/slideshow/index" title="Manage slideshow"><i class="fl-dashboard-icon-flobox"></i> Slideshow</a></li>
+                </ul>
+              </div>
+  </div>
+
+  <div id="col-4">
+    <div class="inner">
+    	<h3 class="fl-uppercase">Statistics</h3>
+                <div class="fl_thick_divider"></div>
+                
+                <div class="fl-cnt-100">
+                  <ul class="fl-ul-list-style-none">
+                    <li>
+                      <div class="fl-cnt-100">
+                        <span class="fl-stat-overall"><?php echo $this->countUsers;?></span> 
+                        <span class="fl-stat-overall-note">members</span>
+                        <span class="fl-stat-new">~ <strong>... new</strong> members since last log in</span>
+                      </div>
+                      <div class="fl_thin_divider"></div>
+                    </li>
+                    <li>
+                      <div class="fl-cnt-100">
+                        <span class="fl-stat-overall"><?php echo $this->countProjects;?></span> 
+                        <span class="fl-stat-overall-note">projects</span>
+                        <span class="fl-stat-new">~ <strong>... new</strong> projects since last log in</span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+    </div>
+  </div>
+  
+</div>
+</div>
 
 
-
-Count of project:
-<?php echo $this->countProjects;?>
-Count of users:
-<?php echo $this->countUsers;?>

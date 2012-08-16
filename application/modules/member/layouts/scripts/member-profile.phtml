@@ -41,25 +41,29 @@
   </div>
   <?php echo $this->layout()->content; ?>
   
-   <div class="span4 fl-sidebar">
+
+
+            <div id="col-4">
               <div class="inner">
-                <h3 class="fl-sidebar-h3-first">My Skills</h3>
-                <div class="fl_thick_divider"></div>
+                
                
-					<?php echo $this->action('widget-my-role', 'profile', 'member',array("id" => $this->user->id));?>
+					        <?php echo $this->action('widget-my-role', 'profile', 'member',array("id" => $this->user->id));?>
                 	<?php echo $this->action('widget-my-favourite-project', 'profile', 'member',array("id" => $this->user->id));?>
                 	<?php echo $this->action('widget-my-favourite-member', 'profile', 'member',array("id" => $this->user->id));?>
                 
                 
               </div>
             </div>
-          </div>
 
-     <div id="bottom">
+       </div>
+     </div>
+   
+   </div>
+   
+   <div id="bottom">
         <?= $this->action('footer', 'index', 'site');  ?>
    </div>
 
-  </div>
 </div>
 
 <div id="fl-bottom-line">

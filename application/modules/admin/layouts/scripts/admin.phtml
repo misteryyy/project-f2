@@ -34,22 +34,27 @@
     <div class="container"> 
   		 <?= $this->action('breadcrumbs', 'index', 'site');  ?>
 
-    <div class="row">
-      <div class="span8">
+    <div id="container-83-3">
+      <div id="container-83-8">
+       <div id="col-8">
         <!-- Bootstrap messaging generator -->
         <?php echo $this->flashMessenger() ; ?>
         <?php echo $this->layout()->content; ?>
-      </div>
-      <div class="span3 fl-sidebar">
-    		<?= $this->action('left-menu', 'index', 'site');  ?>
        </div>
-      </div>
+       
+       <div id="col-3">
+    		<?php echo  $this->action('admin-menu', 'index', 'admin');  ?>
+       </div>
+     </div>
+   </div>
 
-    <div id="bottom">
+   </div>
+   
+   <div id="bottom">
         <?= $this->action('footer', 'index', 'site');  ?>
    </div>
 
-  </div>
+</div>
 </div>
 
 <div id="fl-bottom-line">

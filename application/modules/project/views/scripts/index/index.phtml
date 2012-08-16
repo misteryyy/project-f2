@@ -14,10 +14,13 @@
 $this->step = 1;
 echo $this->partial('/index/project-navigation.phtml',array("step" => $this->step,"project" => $this->project,"isCreator"=> $this->isCreator));
 ?>    
-     </div>
-       </div>
-       <div class="row">
-            <div class="span7">	
+      </div>
+    </div>
+
+    <div id="container-74-4">
+      <div id="container-74-7">
+        <div id="col-7">
+            
             <div class="fl-cnt-img">
                 <img alt="<?php echo $this->project->title; ?> - main picture" src="/storage/projects/<?php echo $this->project->dir."/".$this->project->getPicture('large'); ?> " />
             </div>
@@ -42,17 +45,17 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
                   <?php echo $this->project->lesson;?></p>
               </div>
 
-			  <div class="fl-cnt-100 fl-bottom20">
-                <p><?php 
-				// displaying of tags for this project
-				$tags = $this->project->getTagsArray();
-				foreach($tags as $tag){
-					echo $tag;
-				}
-			?></p>
-     </div>
-				<!-- Author Widget -->
-				<?php echo $this->action('author', 'widget', 'project',array("id" => $this->project->id));?>
-</div>
+    			  <div class="fl-cnt-100 fl-bottom20">
+                    <p><?php 
+          				// displaying of tags for this project
+          				$tags = $this->project->getTagsArray();
+          				foreach($tags as $tag){
+          					echo $tag;
+          				}
+          			  ?></p>
+            </div>
+    				<!-- Author Widget -->
+    				<?php echo $this->action('author', 'widget', 'project',array("id" => $this->project->id));?>
+        </div>
 
  

@@ -29,16 +29,21 @@
 	<?= $this->action('breadcrumbs', 'index', 'site');  ?>
 	 
 
+
+
     <div class="row">
        <div class="span11">
- 	<!-- Bootstrap messaging generator -->
- 	<div class="fl-cnt-100">
+ 	     <!-- Bootstrap messaging generator -->
+ 	     <div class="fl-cnt-100">
 	     <?php echo $this->flashMessenger() ; ?>
-	 </div>
-  	<?php echo $this->layout()->content; ?>
+	     </div>
+
+	     	<?php 
+	     	// content of the section
+	     	echo $this->layout()->content; ?>
   	    
-	        <div class="span4 fl-sidebar-bg">
-	    	    <div class="inner">
+	        <div id="col-4">
+	    	  <div class="inner">
                 <!-- Levels and Tasks module -->
                 <h3 class="fl-sidebar-h3-first">Project Level</h3>
                 <div class="fl_thick_divider"></div>
@@ -107,17 +112,18 @@
                 
 				<!-- Similar projects widget -->
 				  <?php echo $this->action('similar', 'widget', 'project',array("id" => $this->project->id));?>
-	         </div>
-         </div>
+	          </div>
+            </div>
+       
        </div>
      </div>
    
-
-<div id="bottom">
+   </div>
+   
+   <div id="bottom">
         <?= $this->action('footer', 'index', 'site');  ?>
    </div>
-
-  </div>
+ 
 </div>
 
 <div id="fl-bottom-line">
