@@ -22,7 +22,7 @@ var Models = {
 			// likeMember
 			likeMember: function(e) {
 				var follower_count = $(this).closest('.info').find(".follower-count");
-				console.log(follower_count);
+				//console.log(follower_count);
 				var val = $(this).text();
 				var user_id = $(this).attr("id");
 				if(val == 'Like') {
@@ -44,13 +44,13 @@ var Models = {
 			// likeProject
 			likeProject: function(e) {
 				var follower_count = $(this).closest('.info').find(".follower-count");
-				console.log(follower_count);
+				//console.log(follower_count);
 				var val = $(this).text();
-				var project_id = $(this).attr("id");
+				var user_id = $(this).attr("id");
 				if(val == 'Like') {
-					$(this).html("Dislike");
+					$(this).html('Dislike');
 				}else {
-					$(this).html("Like");
+					$(this).html('Like');
 				} 	
 					// send data to server
 					$.ajax({

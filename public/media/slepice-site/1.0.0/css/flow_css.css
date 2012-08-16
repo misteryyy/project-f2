@@ -2667,7 +2667,7 @@ tr.fl-user-banned:hover{
    position: absolute;
    top: 0;
    left: 0;
-   z-index: 3;
+   z-index: 6;
    display: none;
 }
 
@@ -2675,7 +2675,7 @@ tr.fl-user-banned:hover{
   background-color: #dd514c;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  width: 330px;
+  width: 322px;
   padding: 10px;
   color: white;
 }

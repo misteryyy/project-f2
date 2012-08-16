@@ -23,17 +23,32 @@
                      .addClass( (conf.fixed) ? conf.fixedClass : '' )
                      .addClass( (conf.persistent) ? conf.persistentClass : '' )
                      .html(conf.content)
-                     .appendTo(elem);
+                     .appendTo('body');
       
       if(!conf.hidden) tooltip.show();
       else tooltip.hide();
       
       if(!conf.persistent)
       {
-         elem.hover(
-            function(event){ self.show(event) },
-            function(){ self.hide() }
-         );
+          elem.hover(
+                  function(event){ self.show(event) },
+                  function(){ 
+                     setTimeout(
+                           function() {
+                              if(tooltip.hasClass('isCurrentlyHovered') == false) {
+                                       self.hide();
+                              }
+                           }
+                           ,100
+                        );
+                  }
+                           
+               );
+
+          tooltip.hover(
+                  function(){ tooltip.addClass('isCurrentlyHovered') },
+                  function(){ tooltip.removeClass('isCurrentlyHovered'); tooltip.hide(); }
+            );
          
          if(!conf.fixed)
          {
@@ -42,28 +57,6 @@
             });
          };
       }
-      else
-      {
-         elem.click(function(event)
-         {
-            if(event.target === elem.get(0))
-            {
-               if(tooltip.css('display') !== 'none')
-                  self.hide();
-               else
-                  self.show();
-            };
-         });
-         
-         jQuery(window).mousedown(function(event)
-         { 
-            if(tooltip.css('display') !== 'none')
-            {
-               var check = (conf.focus) ? jQuery(event.target).parents('.tooltip').andSelf().filter(function(){ return this === tooltip.get(0) }).length : 0;
-               if(check === 0) self.hide();
-            };
-         });
-      };
       
       
       jQuery.extend(self,

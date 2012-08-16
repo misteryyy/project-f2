@@ -56,9 +56,9 @@ if(count ($this->projects) > 0){ ?>
                   <?php
                    // like dislike solution 
                    if(!$project->isFollower($this->loggedMember)) { ?>
-                     <a href="" title="" class="like-project btn btn-success" id="<?php echo $project->id;?>" ><i class="icon-thumbs-up icon-white"></i> Like</a>
+                     <button title="Like this project" class="like-project btn btn-success" id="<?php echo $project->id;?>" ><i class="icon-thumbs-up icon-white"></i> Like</button>
                    <?php } else { ?>
-                      <a href="" title="" class="like-project btn btn-danger" id="<?php echo $project->id;?>" ><i class="icon-thumbs-down icon-white"></i> Dislike</a>
+                      <button title="Unlike this project" class="like-project btn btn-danger" id="<?php echo $project->id;?>" ><i class="icon-thumbs-down icon-white"></i> Dislike</button>
                    <?php } ?>
                 </div>
                 <div class="fl-cnt-75 fl-left10 fl-top10">

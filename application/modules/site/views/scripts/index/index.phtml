@@ -41,20 +41,20 @@
                      <h3><?php echo $project->title; ?></h3>
                      
                      <div class="fl-cnt-100">
-                       <span class="author"><i class="icon-user"></i> <a href="/member/profile/index/id/<?php echo $project->user->id?>" title="<?php echo $project->user->name?>'s profile"><?php echo $project->user->name?></a></span>
+                       <span class="author">by <a href="/member/profile/index/id/<?php echo $project->user->id?>" title="<?php echo $project->user->name?>'s profile"><?php echo $project->user->name?></a></span>
                        <div class="fl-cnt-100 fl-height-60">
                          <p><?php echo shorter($project->pitchSentence, 100); ?></p>
                        </div>
                        <p class="info">
                          <span class="category"><i class="icon-folder-close"></i> <?php echo $project->category->name?></span>
                          <span class="followers"><i class="icon-eye-open"></i> <strong class="follower-count"><?php echo $project->getCountFollowers();?></strong>  followers</span>
-                          <span class="like"><i class="icon-thumbs-up"></i> 
+                          <span class="like"><i class="icon-thumbs-up"></i>
                          <?php
                          // like dislike solution 
-                         if(!$project->isFollower($this->loggedMember)) {
-						 ?> <a href="" title="" class="like-project" id="<?php echo $project->id;?>" >Like</a>
-						 <?php } else { ?>
-                            <a href="" title="" class="like-project" id="<?php echo $project->id;?>" >Dislike</a>
+                         if(!$project->isFollower($this->loggedMember)) { ?>
+                         <a href="" class="like-project" title="Like this project" id="<?php echo $project->id;?>" >Like</a>
+						                <?php } else { ?>
+                         <a href="" class="like-project" title="Dislike this project" id="<?php echo $project->id;?>" >Dislike</a>
                          <?php } ?>
                          </span>
                        </p>
