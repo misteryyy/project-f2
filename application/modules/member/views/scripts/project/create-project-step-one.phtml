@@ -9,18 +9,18 @@ echo $this->partial('project/create-project-navigation.phtml',array("step" => $t
 <?php  echo $this->form;   ?>
 </div>
 
-
-<!-- Load jQuery build -->
-<script type="text/javascript" src="<?=$this->baseUrl('/media/tiny_mce/tiny_mce.js')?>"></script>
-<script type="text/javascript">
-tinyMCE.init({
-        // General options
-        mode : "textareas",
-        theme : "simple",
-        mode : "exact",
-        elements : "content", // just for textarea with id content   
-        plugins : "autolink",
-        
-     
-});
-</script>
+	<!-- Load jQuery build -->
+	<script type="text/javascript" src="<?=$this->baseUrl('/media/tiny_mce/tiny_mce.js')?>"></script>
+	<script type="text/javascript">
+		tinyMCE.init({
+		        // General options
+		        mode : "textareas",
+		        theme : "simple",
+		        valid_styles : { '*' : 'color,font-size,font-weight,text-decoration' },
+		        mode : "exact",
+		        elements : "content", // just for textarea with id content   
+		        plugins : "autolink",
+		        invalid_elements: "span",
+		        content_css : "/media/slepice-site/1.0.0/css/flow_css_tinymce.css",
+	});
+	</script>
