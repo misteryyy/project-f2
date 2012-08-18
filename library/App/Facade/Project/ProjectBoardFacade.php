@@ -39,7 +39,7 @@ class ProjectBoardFacade {
 		// add files
 		if(count($files) > 0 ){
 			foreach ($files as $file){
-				$newFile = new \App\Entity\ProjectBoardFile($file['file'],$file['type'],$file['size']);
+				$newFile = new \App\Entity\ProjectBoardFile($file['name'],$file['type'],$file['size'],$file['file']);
 				$newComment->addFile($newFile);			
 			}
 		}

@@ -19,6 +19,7 @@ class Boilerplate_Util_FileManagerS3
 			// settinf of bucket
 			$config = new \Zend_Config(\Zend_Registry::get('config'));
 			$this->bucket =  $config->app->s3->storage->bucket;	
+			$this->absolutPath = $config->app->storage->project;
 			$this->project = $project;				
 			$this->s3 = new Zend_Service_Amazon_S3('AKIAIIT4QVXXNFSXG3BA','aPe8De9tNYpl5kz8aCYUBWVg2aEcFsV/rMyMx9fT');
 			if(!$this->s3->isBucketAvailable($this->bucket)) {
@@ -279,7 +280,7 @@ class Boilerplate_Util_FileManagerS3
 			$adapter = new Zend_File_Transfer_Adapter_Http();
 			
 			// setting upload file
-			$adapter->setDestination($this->absolutPath);
+			$adapter->setDestination($this->absolutPath.$this->project->dir);
 			$adapter->addValidator('Size', false, 4*10*102400)
 			->addValidator('Count', false, 5)
 			->addValidator('Extension', false, 'pdf,doc,docx,odt,jpg,jpeg,png');
@@ -308,15 +309,12 @@ class Boilerplate_Util_FileManagerS3
 					$this->s3->putFile($file['temp'], $output,
 							array(Zend_Service_Amazon_S3::S3_ACL_HEADER =>
 									Zend_Service_Amazon_S3::S3_ACL_PRIVATE));
-				 	$files[] = $file; // adding files for information
+				 	$files[] = array('name'=>$info['name'],'type'=> $info['type'],'file'=> $file['file'],"size"=> $info['size']);
 				}
 				$i++; // increment file
 			}
+		
+			return $files;
 		}
 		
-		
-		
-		
-
-	
 			}

@@ -126,11 +126,9 @@ class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
     		if(isset($session['firstFormData'])){
     			$form->setDefaults($session['firstFormData']);
     		}
-    	};
-    	
+    	};	
     	//display form
     	$this->view->form = $form;
-    	
     }
     
     
