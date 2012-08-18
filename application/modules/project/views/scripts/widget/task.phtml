@@ -78,8 +78,8 @@ $(document).ready(function(){
 	var lvl3 = $(level).find('.lvl3');
 
 	var position_lvl1 = ["0", "25"];
-	var position_lvl2 = ["-120", "25"];
-	var position_lvl3 = ["-240", "25"];	
+	var position_lvl2 = ["-117", "25"];
+	var position_lvl3 = ["-235", "25"];	
 
 	var content_lvl1 = '<?php echo $content_lvl1; ?>';
 	var content_lvl2 = '<?php echo $content_lvl2; ?>';
@@ -114,10 +114,3 @@ $(document).ready(function(){
 
 });
 </script>
-
-<script>
-// set the active level 
-$('#levelTab li:eq(<?php echo ($this->project->level -1);?>) a').tab('show'); // Select third tab (0-indexed)
-</script>
-
-<hr>

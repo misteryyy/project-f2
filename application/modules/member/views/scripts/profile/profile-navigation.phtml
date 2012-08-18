@@ -32,14 +32,13 @@
   ?>
 
   <div class="row">
- 
     <div class="span11">
        <?php if($this->user->ban) {?> 
               <div class="alert alert-danger">This User Has Been Banned</div>
               <?php 
               }
         ?>
-   <div class="fl-membeprofile-head">
+   			<div class="fl-membeprofile-head">
               <img src="/storage/users/<?php echo $this->user->getProfilePicture(50)?>" alt="<?= $this->member['name'];?>" class="fl-memberprofile-member-img-thumb" />
               <h2><?php echo $this->user->getName(); ?></h2>
               <p class="fl_project_head_info">

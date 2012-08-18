@@ -20,7 +20,7 @@ class MemberCreateProjectStep1 extends \Twitter_Bootstrap_Form_Horizontal
 		$this->_addClassNames('fl-form');
 		
 		$this->addElement('text', 'title', array(
-				'label' => 'Project name:',
+				'label' => 'Project Name:',
 				'required' => true,
 				'class' => 'span8',
 				'filters' => array('StringTrim'),
@@ -43,20 +43,20 @@ class MemberCreateProjectStep1 extends \Twitter_Bootstrap_Form_Horizontal
 		}
 		// Passion Bar
 		$this->addElement('select','priority', array(
-				'label' => 'How serious you are with this project?',
-				'description' => "Explanation what the passion is for!",
+				'label' => 'How committed are you to the success of this project?',
+				'description' => "If this number is high, you’re signalling to others on the FLO~ Platform that you are very committed to the success of the project. The higher this number, the more likely you are to get people interested in collaborating with you!",
 				'class' => 'span3',
 				'multiOptions' => $priority
 		));
 			
 		
 		$this->addElement('textarea', 'pitch', array(
-				'label' => 'Sentence pitch:',
+				'label' => 'Sentence Pitch:',
 				'class' => 'span8',
 				'rows' => '4',
 				'required' => true,
 				'errorMessages' => array("You should have sentence pitch which will simply describe your goal."),
-				'description' => "What is sentence pitch!",
+				'description' => "In one sentence (if possible) state the problem that you hope your project will solve clearly, concisely, and effectively ie: ‘A new early-stage entrepreneurial development platform utilizing crowdsourced feedback and a clear, step-by-step process’.",
 				'filters' => array('StringTrim'),
 				'validators' => array("NotEmpty"),
 		));
@@ -91,7 +91,7 @@ class MemberCreateProjectStep1 extends \Twitter_Bootstrap_Form_Horizontal
 		));
 		
 		$this->addElement('textarea', 'lesson', array(
-				'label' => 'Lessons learned:',
+				'label' => 'Lessons Learned:',
 				'class' => 'span8',
 				'rows' => '4',
 				'required' => false,

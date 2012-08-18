@@ -8,6 +8,7 @@ class Admin_IndexController extends Boilerplate_Controller_Action_Abstract {
 	public function indexAction() {
 		
 		$this->view->pageTitle = 'Admin Dashboard';
+		$this->_helper->_layout->setLayout('admin-dashboard');
 		
 		$facadeProjects = new \App\Facade\ProjectFacade($this->_em);
 		$this->view->countProjects = count($facadeProjects->findAllProjects());
@@ -17,6 +18,9 @@ class Admin_IndexController extends Boilerplate_Controller_Action_Abstract {
 		
 	}
 	
+	public function adminMenuAction(){
+		
+	}
 
 
 

@@ -8,7 +8,7 @@
 if ($this->displayForm) {?>
 <div class="fl-cnt-100"> 
   <div class="fl-filtr-form">
-    <form action="<?= $this->form->getAction(); ?>" method="<?= $this->form->getMethod(); ?>" >
+    <form action="<?= $this->form->getAction(); ?>" method="<?= $this->form->getMethod(); ?>" id="form-browse-projects">
       <fieldset>
         <legend class="hide">Browse projects: </legend>
 
@@ -160,14 +160,13 @@ if ($this->displayForm) {?>
     <?php } else echo "There are no projects for this search."?>
       </div>
 
-</div>
-	  <div class="span2">	    
-	    <!-- Category menu and filters module -->
-	  	<?= $this->action('category', 'widget', 'site');  ?>
-       </div>
-  
-    </div>
   </div>
+  <div class="span2">	    
+  <!-- Category menu and filters module -->
+	  <?= $this->action('category', 'widget', 'site');  ?>
+  </div>
+</div>
+
     
 <script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/choose-role.js')?>"></script>        
 <script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-member-project-1.0.0.js')?>"></script> 

@@ -17,9 +17,12 @@
 $this->step = 5;
 echo $this->partial('/index/project-navigation.phtml',array("step" => $this->step,"project" => $this->project,"isCreator"=> $this->isCreator));
 ?>
+      </div>
+    </div>
 
-<div class="row">
-            <div class="span7">      
+    <div id="container-74-4">
+      <div id="container-74-7">
+        <div id="col-7">     
 
 <h2>Team</h2>
 <div class="fl-cnt-100">
@@ -100,7 +103,7 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
 
                 </div>
                 <!-- / TEAM -->
-                <?php } else { echo "No members in your team"; }?>
+                <?php } else { echo "No members in this team"; }?>
 
 </div>
 </div>

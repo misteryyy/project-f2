@@ -1,6 +1,6 @@
 /* FLOW CSS Document */
 body{
-  background: #e7e8ea url('../img/bcg.jpg') left -100px no-repeat;
+  background: #e7e8ea url('../img/bcg.jpg') left -150px no-repeat;
 }
 
 #fl-top{
@@ -58,9 +58,69 @@ body{
 
 .container{
   margin: 0 10px 0 10px;
+  float: left;
+  position: relative;
 }
 
+#container-74-4 {
+    float:left;
+    width:100%;
+    background: #f7f7f7;
+    position:relative;
+    overflow:hidden;
+}
+#container-74-7 {
+    float:left;
+    width:100%;
+    background: white;
+    position:relative;
+    right:35%;
+}
+#col-7 {
+    float:left;
+    width:64%;
+    padding-right: 1%;
+    position:relative;
+    left:35%;
+    overflow:hidden;
+}
+#col-4 {
+    float:left;
+    width:35%;
+    position:relative;
+    left:35%;
+    overflow:hidden;
+}
 
+#container-83-3 {
+    float:left;
+    width:100%;
+    background: #f7f7f7;
+    position:relative;
+    overflow:hidden;
+}
+#container-83-8 {
+    float:left;
+    width:100%;
+    background: white;
+    position:relative;
+    right:26%;
+}
+#col-8 {
+    float:left;
+    width:73%;
+    padding-right: 1%;
+    position:relative;
+    left:26%;
+    overflow:hidden;
+}
+#col-3 {
+    float:left;
+    width:26%;
+    position:relative;
+    left:26%;
+    overflow:hidden;
+}
 
 .left{
   float: left;
@@ -120,11 +180,13 @@ body{
 }
 
 .inner{
-  margin: 10px;
+  margin: 10px 10px 0 10px;
+  padding-bottom: 10px;
 }
 
 .inner-5{
-  margin: 5px;
+  margin: 5px 5px 0 5px;
+  padding-bottom: 5px;
 }
 
 .inner-list-project, .inner-list-user{
@@ -145,6 +207,10 @@ body{
 
 .strong{
   font-weight: bold;
+}
+
+.fl-minh-400{
+  min-height: 400px;
 }
 
 .fl-cnt-100{
@@ -295,7 +361,7 @@ h2 a, h2 a:hover, h2 a:focus, .create-new a, .create-new a:hover{
 }
 
 #bottom h2{
-  color: #7e7c7c;
+  color: #b7b7b7;
   text-shadow: none;
   margin: 0px;
 }
@@ -391,7 +457,7 @@ h3 a{
 }
 
 h4{
-  font-size: 10px;
+  font-size: 11px;
   color: #000000;
   font-weight: bold;
   margin: 4px 0 4px 0;
@@ -475,6 +541,7 @@ h4.fl-project-name span{
 
 .fl-sidebar, .fl-sidebar-bg{
   background: #f7f7f7;
+  padding: 0 0 20px 0;
 }
 
 .fl-ul-breadcrumb{
@@ -1039,6 +1106,10 @@ p.fl-list-project-queue{
   cursor: pointer;
 }
 
+#fl-filtr-form-choose-role li:hover{
+  background: #91a5ca;
+}
+
 .fl-filtr-form-project-level, .fl-filtr-form-passion-level{
   width: 30%;
   margin: 10px 10px 0 20px;
@@ -1365,6 +1436,10 @@ p.fl-publishing-title, div.fl-publishing-title{
   width: 100%;
   float: left;
   margin: 0 0 20px 0;
+}
+
+.fl-cnt-project-by{
+  margin-bottom: 0px;
 }
 
 .fl-cnt-img img{
@@ -2592,7 +2667,7 @@ tr.fl-user-banned:hover{
    position: absolute;
    top: 0;
    left: 0;
-   z-index: 3;
+   z-index: 6;
    display: none;
 }
 
@@ -2600,7 +2675,7 @@ tr.fl-user-banned:hover{
   background-color: #dd514c;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  width: 330px;
+  width: 322px;
   padding: 10px;
   color: white;
 }

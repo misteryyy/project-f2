@@ -18,6 +18,12 @@
 
 <body>
 
+  <div id="fl-top">
+   <div id="fl-container">
+    <p>What is FLO~? How does it work? <i class="icon-share-alt"></i> <a href="/index/learn-more" title="Learn more about FLO~">Learn more!</a></p>
+   </div>
+ </div>
+
 <div id="fl-container">
   <?= $this->action('menu-debug', 'menu', 'project');  ?>
    <div class="container">
@@ -28,30 +34,33 @@
     <div class="container"> 
   		 <?= $this->action('breadcrumbs', 'index', 'site');  ?>
 
-    <div class="row">
-      <div class="span8">
+    <div id="container-83-3">
+      <div id="container-83-8">
+       <div id="col-8">
         <!-- Bootstrap messaging generator -->
         <?php echo $this->flashMessenger() ; ?>
         <?php echo $this->layout()->content; ?>
-      </div>
-      <div class="span3 fl-sidebar">
-    		<?= $this->action('left-menu', 'index', 'site');  ?>
        </div>
-      </div>
+       
+       <div id="col-3">
+    		<?php echo  $this->action('admin-menu', 'index', 'admin');  ?>
+       </div>
+     </div>
+   </div>
 
-    <div id="bottom">
-      <?= $this->action('footer', 'index', 'site');  ?>
-    </div>
+   </div>
+   
+   <div id="bottom">
+        <?= $this->action('footer', 'index', 'site');  ?>
+   </div>
 
-
-    </div>
-  </div>
+</div>
 </div>
 
-    <div class="fl-bottom-line">
-      <p>&copy; 2012 SLEPICE / ZF <br />
-      <small><?php echo $this->translate("Today is"); ?> <b><?php echo new Zend_Date($this->timestamp); ?></b> <?php if ($this->cachedTimestamp) { ?>(<?php echo $this->translate("Timestamp served from Memcached");?>)<?php } ?></small></p>
-    </div>
+<div id="fl-bottom-line">
+  <p>&copy; 2012 SLEPICE / ZF</p>
+</div>
 
-  </body>
+
+    </body>
 </html>

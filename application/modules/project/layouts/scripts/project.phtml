@@ -13,6 +13,12 @@
 
 </head>
 <body>
+	<div id="fl-top">
+   <div id="fl-container">
+    <p>What is FLO~? How does it work? <i class="icon-share-alt"></i> <a href="/index/learn-more" title="Learn more about FLO~">Learn more!</a></p>
+   </div>
+ </div>
+ 
  	<div id="fl-container">
  	<?= $this->action('menu-debug', 'menu', 'project');  ?>  
    <div class="container">
@@ -23,16 +29,21 @@
 	<?= $this->action('breadcrumbs', 'index', 'site');  ?>
 	 
 
+
+
     <div class="row">
        <div class="span11">
- 	<!-- Bootstrap messaging generator -->
- 	<div class="fl-cnt-100">
+ 	     <!-- Bootstrap messaging generator -->
+ 	     <div class="fl-cnt-100">
 	     <?php echo $this->flashMessenger() ; ?>
-	 </div>
-  	<?php echo $this->layout()->content; ?>
+	     </div>
+
+	     	<?php 
+	     	// content of the section
+	     	echo $this->layout()->content; ?>
   	    
-	        <div class="span4 fl-sidebar-bg">
-	    	    <div class="inner">
+	        <div id="col-4">
+	    	  <div class="inner">
                 <!-- Levels and Tasks module -->
                 <h3 class="fl-sidebar-h3-first">Project Level</h3>
                 <div class="fl_thick_divider"></div>
@@ -101,16 +112,24 @@
                 
 				<!-- Similar projects widget -->
 				  <?php echo $this->action('similar', 'widget', 'project',array("id" => $this->project->id));?>
-	         </div>
-         </div>
+	          </div>
+            </div>
+       
        </div>
      </div>
+   
    </div>
- </div>
-  
- <div class="fl-bottom-line">
-      <?= $this->action('footer', 'index', 'site');  ?>
- </div>
+   
+   <div id="bottom">
+        <?= $this->action('footer', 'index', 'site');  ?>
+   </div>
+ 
+</div>
+
+<div id="fl-bottom-line">
+  <p>&copy; 2012 SLEPICE / ZF</p>
+</div>
+
 
     
  <script type="text/javascript">  
@@ -191,7 +210,6 @@
  </script>
 
  <script src="/media/jquery.simpletip-1.3.1/jquery.simpletip-1.3.1.js"></script>
- <script src="/media/slepice-site/1.0.0/js/tooltips-tasks.js"></script>
  
 </body>
 </html>
