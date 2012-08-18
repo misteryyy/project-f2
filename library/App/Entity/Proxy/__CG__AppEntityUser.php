@@ -393,7 +393,7 @@ class User extends \App\Entity\User implements \Doctrine\ORM\Proxy\Proxy
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'name', 'email', 'profilePicture', 'emailVisibility', 'emailNewsletter', 'emailNotification', 'password', 'country', 'confirmed', 'description', 'dateOfBirth', 'created', 'dateOfBirthVisibility', 'ban', 'roles', 'specRoles', 'projectRoles', 'userInfo', 'projects', 'userFieldOfInterestTags', 'friendsWithMe', 'favouriteProjects', 'myFriends');
+        return array('__isInitialized__', 'id', 'name', 'email', 'profilePicture', 'emailVisibility', 'emailNewsletter', 'emailNotification', 'password', 'country', 'confirmed', 'description', 'dateOfBirth', 'created', 'lastLogin', 'dateOfBirthVisibility', 'ban', 'roles', 'specRoles', 'projectRoles', 'userInfo', 'projects', 'userFieldOfInterestTags', 'friendsWithMe', 'favouriteProjects', 'myFriends');
     }
 
     public function __clone()

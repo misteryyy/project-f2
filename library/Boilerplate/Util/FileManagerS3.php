@@ -1,5 +1,5 @@
 <?php
-
+use App\Entity\Project;
 class Boilerplate_Util_FileManagerS3
 {	
 
@@ -12,17 +12,43 @@ class Boilerplate_Util_FileManagerS3
 		private $project; // project entity
 		private $s3;
 		private $bucket = 'floplatform-storage';
+		private $resolutions;
 		
-		function __construct($project,$uploadDir,$fileName)
+		function __construct($project = null)
 		{
-			$this->project = $project;
-			$this->absolutPath = APPLICATION_PATH .  '/../public/'.$uploadDir.'/';
-			$this->webPath = $uploadDir."/".$fileName;
-				
+			// settinf of bucket
+			$config = new \Zend_Config(\Zend_Registry::get('config'));
+			$this->bucket =  $config->app->s3->storage->bucket;	
+			$this->project = $project;				
 			$this->s3 = new Zend_Service_Amazon_S3('AKIAIIT4QVXXNFSXG3BA','aPe8De9tNYpl5kz8aCYUBWVg2aEcFsV/rMyMx9fT');
 			if(!$this->s3->isBucketAvailable($this->bucket)) {
 				throw new \Exception("Can't connect to file server. Try it later.");
 			}
+
+			$this->resolutions =  array(
+						array('type'=>"tiny",
+								'width'=>Project::PROJECT_PHOTO_RESOLUTION_TINY_WIDTH,
+								'height'=> Project::PROJECT_PHOTO_RESOLUTION_TINY_HEIGHT
+						),
+				
+						array('type'=>"small",
+								'width'=>Project::PROJECT_PHOTO_RESOLUTION_SMALL_WIDTH,
+								'height'=> Project::PROJECT_PHOTO_RESOLUTION_SMALL_HEIGHT
+						),
+						array('type'=>"medium",
+								'width'=>Project::PROJECT_PHOTO_RESOLUTION_MEDIUM_WIDTH,
+								'height'=> Project::PROJECT_PHOTO_RESOLUTION_MEDIUM_HEIGHT
+						),
+						array('type'=>"big",
+								'width'=>Project::PROJECT_PHOTO_RESOLUTION_BIG_WIDTH,
+								'height'=> Project::PROJECT_PHOTO_RESOLUTION_BIG_HEIGHT
+						),
+						
+						array('type'=>"large",
+								'width'=>Project::PROJECT_PHOTO_RESOLUTION_LARGE_WIDTH,
+								'height'=> Project::PROJECT_PHOTO_RESOLUTION_LARGE_HEIGHT
+						)
+				);
 						
 			
 		}
@@ -35,10 +61,213 @@ class Boilerplate_Util_FileManagerS3
 		function generateNewFileInformation($file,$name,$type,$size){
 			if(!is_file($file)) throw new \Exception("Is not valid file.");
 			$ext = substr(strrchr($name,'.'), 1);  // get file extension	
-			$newFileName = 'pf'.time().'.'.$ext;
-			return array('temp' => $file,'file' => $newFileName, 'type' => $type,'size'=> $size);
-				
+			$newFileName = 'pf-'.date("Ymd-H:i:s").'.'.$ext;
+			return array('temp' => $file,'file' => $newFileName, 'type' => $type,'size'=> $size);	
 		}
+		
+		
+		/**
+		 * File method to create thumbnails
+		 */		
+		function createThumbnailsForProject($user_id,$image_path,$file){
+
+			// create project folder and save path for directory
+			$config = new \Zend_Config(\Zend_Registry::get('config'));
+			$path = $config->app->storage->project;
+			
+			$dir = sha1($this->project->id .'+' . $user_id)."_".$this->project->id;
+			$thumbDir = $dir.'/thumbs/';
+			rrmdir($path.$dir); // delete previous files
+			mkdir($path.$dir); // creating of the new directory
+			mkdir($path.$thumbDir); // creating dir for thumbs
+		
+			
+			$newImagePath = $path.$thumbDir.$file;
+			
+			if (copy($image_path,$newImagePath)) {
+				// creating new thumbs
+				$imageManager = new \Boilerplate_Util_ImageManager($newImagePath);
+				$ext = substr(strrchr($newImagePath, '.'), 1);
+				
+				$pre = substr($newImagePath,0,strrpos($newImagePath, '.'));
+				$preFile = substr($file,0,strrpos($file, '.'));
+
+				$output = $this->bucket.'/projects/'.$thumbDir;
+
+				//Create all resolutions and copy them to s3 server
+				foreach($this->resolutions as $r){
+					$imagePath = $pre.'_'.$r['type'].'.'.$ext;
+					$imageS3Path = $output.$preFile.'_'.$r['type'].'.'.$ext; // addres to S3 server
+					$imageManager->resizeImage($r['width'], $r['height'], 'crop');
+					$imageManager->saveImage($imagePath, 100);
+					
+					// upload to S3 server
+					$this->s3->putFile($imagePath, $imageS3Path,
+							array(Zend_Service_Amazon_S3::S3_ACL_HEADER =>
+									Zend_Service_Amazon_S3::S3_ACL_PUBLIC_READ));
+				}
+				
+				return array('dir'=>$dir,'file'=>$preFile.'_large.'.$ext);
+				
+			} else {
+					
+				throw new \Exception("Can't copy the file." );
+			}
+
+		}
+		
+		/**
+		 * Create new thumbnail in temporary storage
+		 */
+		function createTemporaryThumbnailFromPost($user_id){
+			
+			$upload = new Zend_File_Transfer();
+			// Returns all known internal file information
+			$adapter = new Zend_File_Transfer_Adapter_Http();
+			
+			$config = Zend_Registry::get('config');
+			$tempPath = $config['app']['storage']['project_temp'];
+			$tempWebPath = $config['app']['storage']['project_web_temp'];
+			
+			
+			// setting upload file
+			$adapter->setDestination($tempPath);
+			$adapter->addValidator('Size', false, 4*10*102400)
+			->addValidator('Count', false, 1)
+			->addValidator('Extension', false, 'jpg,jpeg,png');
+			
+			$files = array();
+			$i= 1;
+			foreach ($adapter->getFileInfo() as $file => $info) {
+				// check if uploaded
+				if (!$adapter->isUploaded($file)) {
+					throw new \Exception("You haven't choose the file. Try it again :D.");
+					break;
+				}
+			
+				// validators are ok ?
+				if (!$adapter->isValid($file)) {
+					throw new \Exception("Please check the file: ".$info["name"] );	
+					break;
+				}
+			
+				$ext = substr(strrchr($info['name'],'.'), 1);
+				$fileName = 'project'.sha1("s@4d".$user_id);
+			
+				// resolution path
+				$path = $tempPath.$fileName.'.'.$ext;
+				$web_url = $tempWebPath.$fileName.'.'.$ext;
+		
+				$adapter->addFilter('Rename',array('target' => $path,'overwrite' => true));
+				
+				// receiving files
+				if(!$adapter->receive($file)){
+					throw new \Exception("Can't upload file. Try it later please" );
+					break;
+				}
+			
+				//PROCESSING OF IMAGE
+				$imageManager = new \Boilerplate_Util_ImageManager($path);
+				$imageManager->resizeImage(Project::PROJECT_PHOTO_RESOLUTION_LARGE_WIDTH,Project::PROJECT_PHOTO_RESOLUTION_LARGE_HEIGHT,'crop');
+				$imageManager->saveImage($path, 100);
+					
+				$files[] = array('path'=> $path,'web_url'=>$web_url,'file'=> $fileName.'.'.$ext);
+				$i++; // increment file
+				} // end foreach through all files
+			 return $files[0];
+		}
+		
+		
+		/**
+		 * Create new thumbnail in temporary storage
+		 */
+		function updateThumbnail($user_id){
+				
+			$upload = new Zend_File_Transfer();
+			// Returns all known internal file information
+			$adapter = new Zend_File_Transfer_Adapter_Http();
+				
+			$config = Zend_Registry::get('config');
+			$pathToTheProjectDir =$config['app']['storage']['project'].$this->project->dir.'/thumbs/';
+				
+				
+			// setting upload file
+      		$adapter->setDestination($pathToTheProjectDir);
+           				$adapter->addValidator('Size', false, 4*10*102400)
+    	  				->addValidator('Count', false, 1)
+	      				->addValidator('Extension', false, 'jpg,jpeg,png');
+				
+			$files = array();
+			$i= 1;
+			foreach ($adapter->getFileInfo() as $file => $info) {
+				// check if uploaded
+				if (!$adapter->isUploaded($file)) {
+					throw new \Exception("You haven't choose the file. Try it again :D.");
+					break;
+				}
+					
+				// validators are ok ?
+				if (!$adapter->isValid($file)) {
+					throw new \Exception("Please check the file: ".$info["name"] );
+					break;
+				}
+					
+				$ext = substr(strrchr($info['name'],'.'), 1);
+				$pre = 'project'.sha1("s@4d".$user_id);
+					
+				// resolution path
+				$path = $pathToTheProjectDir.$pre.'.'.$ext;
+				$web_url = $config['app']['storage']['project_web'].$this->project->dir.'/thumbs/'.$pre.'.'.$ext;
+				
+				$adapter->addFilter('Rename',array('target' => $path,'overwrite' => true));
+		
+				// receiving files
+				if(!$adapter->receive($file)){
+					throw new \Exception("Can't upload file. Try it later please" );
+					break;
+				}
+					
+				//PROCESSING OF IMAGE
+				$imageManager = new \Boilerplate_Util_ImageManager($path);
+				$imageManager->resizeImage(Project::PROJECT_PHOTO_RESOLUTION_LARGE_WIDTH,Project::PROJECT_PHOTO_RESOLUTION_LARGE_HEIGHT,'crop');
+				$imageManager->saveImage($path, 100);	
+				$files[] = array('path'=> $path,'web_url'=>$web_url,'file'=> $pre.'_large.'.$ext);
+				$i++; // increment file
+			} // end foreach through all files
+			
+		
+			// create new version resolutions for pictures
+			$output = $this->bucket.'/projects/'.$this->project->dir.'/thumbs/';
+			
+			$oldExt = substr(strrchr($this->project->getPicture(),'.'), 1); // original extension, application can do png,jpeg,jpg
+		
+			//Create all resolutions and copy them to s3 server
+			foreach($this->resolutions as $r){
+				$imagePath = $pathToTheProjectDir.$pre.'_'.$r['type'].'.'.$ext;
+				$imageS3Path = $output.$pre.'_'.$r['type'].'.'.$ext; // addres to S3 server
+				$imageManager->resizeImage($r['width'], $r['height'], 'crop');
+				$imageManager->saveImage($imagePath, 100);
+				
+				// delete previous files if different extension for picture
+				if($oldExt != $ext){
+					$deleteImageS3Path = $output.$pre.'_'.$r['type'].'.'.$oldExt; // addres to S3 server
+					$deleteImagePath = $pathToTheProjectDir.$pre.'_'.$r['type'].'.'.$oldExt;
+					$this->s3->removeObject($deleteImageS3Path);
+					if(is_file($deleteImagePath)){
+						 			unlink($deleteImagePath);
+				}
+					
+				}
+			
+				// upload to S3 server
+				$this->s3->putFile($imagePath, $imageS3Path,
+						array(Zend_Service_Amazon_S3::S3_ACL_HEADER =>
+								Zend_Service_Amazon_S3::S3_ACL_PUBLIC_READ));
+			}
+			
+			return $files[0];
+		}
+		
 		
 		
 		/**
@@ -87,268 +316,7 @@ class Boilerplate_Util_FileManagerS3
 		
 		
 		
-		/**
-		 * Upload Files From Post Data
-		 * @throws \Exception
-		 */	
-		function uploadFileFromPost(){			
-					$upload = new Zend_File_Transfer();
-					$adapter = new Zend_File_Transfer_Adapter_Http();
-				
-					// setting upload file
-					$adapter->setDestination($this->absolutPath);
-					$adapter->addValidator('Size', false, 4*10*102400)
-					->addValidator('Count', false, 5)
-					->addValidator('Extension', false, 'pdf,doc,docx,odt,jpg,jpeg,png');
-				
-					// validate files	
-					$i= 1;
-					foreach ($adapter->getFileInfo() as $file => $info) {
- 						// check if uploaded
- 						if ($adapter->isUploaded($file)) {
- 										// validators are ok ?
- 							 			if (!$adapter->isValid($file)) {	 							 				
- 							 				throw new \Exception($file . " is not valid. ");
- 							 			}
- 						}
- 						$i++; // increment file
-					}
-					$files = array();
-					// copying and renaming files
-					$i= 1;
-					foreach ($adapter->getFileInfo() as $file => $info) {
-						if ($adapter->isUploaded($file)) {
-							$ext = substr(strrchr($info['name'],'.'), 1);
-							$fileName = 'f'.time().$i;
-							$path = $this->absolutPath.$fileName.'.'.$ext;
-							$files[] = array('file' => $fileName.'.'.$ext, 'type' => $info['type'],'size'=> $info['size']);	
-					
-							$adapter->addFilter('Rename',
-	 								array('target' => $path,
-	 										'overwrite' => true));
-								
- 						// receiving files
-	 						if(!$adapter->receive($file)){
-								throw new \Exception("Can't upload file ".$file);		
-	 						}					
-						
-						}
-						$i++; // increment file
-					}
-					return $files;
-		}
-
-/*
- * Updated, recognition by mimetype
- */
-private function openImage($file)
-{
-		//$extension = strtolower(strrchr($file, '.'));	
-		$info = getimagesize($file);
-		switch($info['mime'])
-		{
-				case 'image/jpeg':
-				$img = imagecreatefromjpeg($file);
-				break;
-				case 'image/gif':
-				$img = imagecreatefromgif($file);
-				break;
-				case 'image/png':
-				$img = imagecreatefrompng($file);
-				break;
-				default:
-				$img = false;
-				break;
-		}
-		return $img;
-}
-	
-				## --------------------------------------------------------
-	
-				public function resizeImage($newWidth, $newHeight, $option="auto")
-				{
-				// *** Get optimal width and height - based on $option
-					$optionArray = $this->getDimensions($newWidth, $newHeight, $option);
-	
-					$optimalWidth  = $optionArray['optimalWidth'];
-					$optimalHeight = $optionArray['optimalHeight'];
-	
-	
-					// *** Resample - create image canvas of x, y size
-				$this->imageResized = imagecreatetruecolor($optimalWidth, $optimalHeight);
-				imagecopyresampled($this->imageResized, $this->image, 0, 0, 0, 0, $optimalWidth, $optimalHeight, $this->width, $this->height);
-	
-	
-				// *** if option is 'crop', then crop too
-				if ($option == 'crop') {
-				$this->crop($optimalWidth, $optimalHeight, $newWidth, $newHeight);
-				}
-				}
-	
-				## --------------------------------------------------------
-					
-				private function getDimensions($newWidth, $newHeight, $option)
-				{
-	
-				switch ($option)
-				{
-				case 'exact':
-					$optimalWidth = $newWidth;
-						$optimalHeight= $newHeight;
-						break;
-						case 'portrait':
-						$optimalWidth = $this->getSizeByFixedHeight($newHeight);
-						$optimalHeight= $newHeight;
-						break;
-						case 'landscape':
-						$optimalWidth = $newWidth;
-						$optimalHeight= $this->getSizeByFixedWidth($newWidth);
-						break;
-						case 'auto':
-						$optionArray = $this->getSizeByAuto($newWidth, $newHeight);
-						$optimalWidth = $optionArray['optimalWidth'];
-						$optimalHeight = $optionArray['optimalHeight'];
-						break;
-						case 'crop':
-						$optionArray = $this->getOptimalCrop($newWidth, $newHeight);
-						$optimalWidth = $optionArray['optimalWidth'];
-						$optimalHeight = $optionArray['optimalHeight'];
-						break;
-					}
-					return array('optimalWidth' => $optimalWidth, 'optimalHeight' => $optimalHeight);
-				}
-	
-				## --------------------------------------------------------
-	
-					private function getSizeByFixedHeight($newHeight)
-					{
-						$ratio = $this->width / $this->height;
-						$newWidth = $newHeight * $ratio;
-						return $newWidth;
-						}
-	
-						private function getSizeByFixedWidth($newWidth)
-						{
-						$ratio = $this->height / $this->width;
-						$newHeight = $newWidth * $ratio;
-						return $newHeight;
-						}
-	
-						private function getSizeByAuto($newWidth, $newHeight)
-						{
-						if ($this->height < $this->width)
-							// *** Image to be resized is wider (landscape)
-					{
-						$optimalWidth = $newWidth;
-						$optimalHeight= $this->getSizeByFixedWidth($newWidth);
-						}
-						elseif ($this->height > $this->width)
-						// *** Image to be resized is taller (portrait)
-				{
-						$optimalWidth = $this->getSizeByFixedHeight($newHeight);
-						$optimalHeight= $newHeight;
-						}
-						else
-							// *** Image to be resizerd is a square
-							{
-						if ($newHeight < $newWidth) {
-						$optimalWidth = $newWidth;
-						$optimalHeight= $this->getSizeByFixedWidth($newWidth);
-						} else if ($newHeight > $newWidth) {
-						$optimalWidth = $this->getSizeByFixedHeight($newHeight);
-						$optimalHeight= $newHeight;
-						} else {
-						// *** Sqaure being resized to a square
-							$optimalWidth = $newWidth;
-							$optimalHeight= $newHeight;
-						}
-						}
-	
-						return array('optimalWidth' => $optimalWidth, 'optimalHeight' => $optimalHeight);
-						}
-	
-						## --------------------------------------------------------
-	
-						private function getOptimalCrop($newWidth, $newHeight)
-						{
-	
-						$heightRatio = $this->height / $newHeight;
-						$widthRatio  = $this->width /  $newWidth;
-	
-						if ($heightRatio < $widthRatio) {
-						$optimalRatio = $heightRatio;
-						} else {
-						$optimalRatio = $widthRatio;
-						}
-	
-						$optimalHeight = $this->height / $optimalRatio;
-						$optimalWidth  = $this->width  / $optimalRatio;
-	
-						return array('optimalWidth' => $optimalWidth, 'optimalHeight' => $optimalHeight);
-						}
-	
-						## --------------------------------------------------------
-	
-						private function crop($optimalWidth, $optimalHeight, $newWidth, $newHeight)
-						{
-						// *** Find center - this will be used for the crop
-							$cropStartX = ( $optimalWidth / 2) - ( $newWidth /2 );
-							$cropStartY = ( $optimalHeight/ 2) - ( $newHeight/2 );
-	
-							$crop = $this->imageResized;
-							//imagedestroy($this->imageResized);
-	
-						// *** Now crop from center to exact requested size
-						$this->imageResized = imagecreatetruecolor($newWidth , $newHeight);
-						imagecopyresampled($this->imageResized, $crop , 0, 0, $cropStartX, $cropStartY, $newWidth, $newHeight , $newWidth, $newHeight);
-						}
-	
-						
-						/**
-						 * Save Image
-						 * @param unknown_type $savePath
-						 * @param unknown_type $imageQuality
-						 */
-						public function saveImage($savePath, $imageQuality="100")
-						{
-							
-						// *** Get extension
-						$extension = strrchr($savePath, '.');
-						$extension = strtolower($extension);
-	
-						switch($extension)
-						{
-							case '.jpg':
-							case '.jpeg':
-								if (imagetypes() & IMG_JPG) {
-									imagejpeg($this->imageResized, $savePath, $imageQuality);
-								}
-								break;
-	
-							case '.gif':
-								if (imagetypes() & IMG_GIF) {
-									imagegif($this->imageResized, $savePath);
-								}
-								break;
-	
-							case '.png':
-								// *** Scale quality from 0-100 to 0-9
-								$scaleQuality = round(($imageQuality/100) * 9);
-	
-								// *** Invert quality setting as 0 is best, not 9
-								$invertScaleQuality = 9 - $scaleQuality;
-	
-								if (imagetypes() & IMG_PNG) {
-								 imagepng($this->imageResized, $savePath, $invertScaleQuality);
-								}
-								break;
-							default:
-								// *** No extension - No save.
-								break;
-						}
-	
-						imagedestroy($this->imageResized);
-						}
+		
 
 	
 			}

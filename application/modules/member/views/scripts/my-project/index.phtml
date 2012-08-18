@@ -9,7 +9,7 @@ if(count ($this->projects) > 0){
                   <div class="fl-cnt-20">
                     <div class="fl-project-thumb">
                       <div class="inner-5">
-                        <a href="/project/index/index/id/<?php echo $project->id?>" title="Public profile page"><img src="/storage/projects/<?php echo $project->dir?>/<?php echo $project->getPicture("small");?>" alt="Project picture" /></a>
+                        <a href="/project/index/index/id/<?php echo $project->id?>" title="Public profile page"><img src="<?php echo $project->getPictureUrl("small");?>" alt="Project picture" /></a>
 
                         <div class="fl-level">
                         <?php 

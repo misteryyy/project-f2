@@ -550,6 +550,59 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
     	$this->view->project = $this->project;
     }
     
+    
+    public function ajaxEditProjectPictureAction(){
+    	$this->ajaxify();
+    	$this->checkProjectAndUser();
+    	 
+    	
+    	if($this->_request->isPost() || $this->_request->isGet()){
+    		switch ($this->_request->getParam("_method")){
+    			 
+    			//  create new question
+    			case 'update':
+    				try{
+    					$fileManager = new Boilerplate_Util_FileManagerS3($this->project);
+    					// absolutePath, webUrl, fileName
+    					$file = $fileManager->updateThumbnail($this->_member_id);	
+    					
+    					// Processing new image and delete old images
+    					$this->facadeProject->updateProjectPicture($this->_member_id, $this->project_id,$file['file']);
+	
+    					$resp = array("absolutPath" => $file['path'],
+    							"webUrl" => $file['web_url'],
+    							"fileName" => $file['file']);
+    				    					
+    					// response
+    					$response = array(
+    							"respond" => "success",
+    							'message' => "Picture uploaded successfully.",
+    							"path" => $file['path'],
+    							'web_url' => $file['web_url'],
+    							"fileName" => $file['file']);
+    					$this->_response->setBody(json_encode($response));
+    	
+    	
+    				}catch (\Exception $e){
+    					$respond = array("respond" => "error",'message' => $e->getMessage());
+    					$this->_response->setBody(json_encode($respond));
+    				}
+    					
+    				break;				
+    		}
+    	} else {
+    		$this->_response->setHttpResponseCode(503); // echo error
+    	   
+    	}
+    	
+    	
+    }
+    
+    
+    
+    
+    
+    
     /**
      * Display Creators project for sign user
      */

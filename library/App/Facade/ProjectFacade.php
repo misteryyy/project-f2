@@ -170,56 +170,16 @@ class ProjectFacade {
  	 * @param unknown_type $fileName
  	 * @throws \Exception
  	 */
-	public function updateProjectPicture($user_id,$project_id,$path,$filename){
+	public function updateProjectPicture($user_id,$project_id,$filename){
 		
-		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
-		if($user){
-			
-			$project = $this->em->getRepository('\App\Entity\Project')->findOneBy(array("user" => $user,"id" => $project_id ));
-			if($project == null){ throw new \Exception("Project for this user doesn't exists");}
-			
-				$imageManager = new \Boilerplate_Util_ImageManager($path);
-				$ext = substr(strrchr($path,'.'), 1);
-				$pre = substr($path,0,strrpos($path, '.'));
-				
-				$mediumImagePath = $pre.'_medium.'.$ext;
-				$imageManager->resizeImage(240, 160, 'crop');
-				$imageManager->saveImage($mediumImagePath, 100);
-					
-				$smallImagePath = $pre.'_small.'.$ext;
-				$imageManager->resizeImage(130, 90, 'crop');
-				$imageManager->saveImage($smallImagePath, 100);
-					
-				$largeImagePath = $pre.'_large.'.$ext;
-				$imageManager->resizeImage(480, 320, 'crop');
-				$imageManager->saveImage($largeImagePath, 100);
-				// extenstion is the same, just rewrite the old files
-				if($project->getPicture('orig') != $filename){
-					// delete the old files which has different extension
-					$oldExt= substr(strrchr($project->getPicture('orig'),'.'), 1);
-					$delete = array();
-					$delete[] = $pre.'_medium.'.$oldExt;
-					$delete[] = $pre.'_small.'.$oldExt;
-					$delete[] = $pre.'_large.'.$oldExt;
-					$delete[] = $pre.'.'.$oldExt;
-					
-					foreach($delete as $deleteMe){
-						if(is_file($deleteMe)){
-							unlink($deleteMe);
-						}
-					}
-				}
-				
-				$project->setPicture($filename);
-				$this->em->flush(); // save to db
-				$this->addLogMessage($project, "Updated Project Picture");
-				
-		} else {	
-				throw new \Exception("User doesn't exists");
-				}
+		$project = $this->em->getRepository ('\App\Entity\Project')->findOneBy(array("id" => $project_id,"user" => $user_id));
+		if(!$project){
+			throw new \Exception("Can't find this project for this user.");
+		}	
 		
-		
-		
+		$project->setPicture($filename);
+		$this->em->flush(); // save to db
+		$this->addLogMessage($project, "Updated Project Picture");
 		
 	}
 	
@@ -268,46 +228,13 @@ class ProjectFacade {
 						}
 				$this->em->flush(); // save to db
 				
-				// create project folder and save path for directory
-				$config = new \Zend_Config(\Zend_Registry::get('config'));
-				$path = $config->app->storage->project;
-		
-			//	echo $newProject->getId() .' + ' . $newProject->getUser()->getId();
-				$dir = sha1($newProject->getId() .'+' . $newProject->getUser()->getId());
-				
-				rrmdir($path.$dir); // delete previous files
-				mkdir($path.$dir); // creating of the new directory
-	
-				$newImagePath = $path.$dir.'/'.$dataSecondStep['fileName'];
-
-				if (copy($dataSecondStep['absolutPath'],$newImagePath)) {
-					
-					//PROCESSING OF IMAGE
-					// creating new thumbs
-					$imageManager = new \Boilerplate_Util_ImageManager($newImagePath);
-					$ext = substr(strrchr($newImagePath, '.'), 1);
-					$pre = substr($newImagePath,0,strrpos($newImagePath, '.'));
-					$mediumImagePath = $pre.'_medium.'.$ext;
-					$imageManager->resizeImage(240, 160, 'crop');
-					$imageManager->saveImage($mediumImagePath, 100);
-					
-					$smallImagePath = $pre.'_small.'.$ext;
-					$imageManager->resizeImage(130, 90, 'crop');
-					$imageManager->saveImage($smallImagePath, 100);
-					
-					$largeImagePath = $pre.'_large.'.$ext;
-					$imageManager->resizeImage(480, 320, 'crop');
-					$imageManager->saveImage($largeImagePath, 100);
-						
-					$newProject->setPicture($dataSecondStep['fileName']);
-					echo $dataSecondStep['fileName'];
-					$newProject->setDir($dir);
-					$this->em->flush(); // save to db
-					// TODO unlink($dataSecondStep['absolutPath']);
-				} else {
-					
-					throw new \Exception("Can't copy the file." );
-				}
+				// create thumbnails
+				$fileManager = new \Boilerplate_Util_FileManagerS3($newProject);
+			
+				$info = $fileManager->createThumbnailsForProject($newProject->user->id,$dataSecondStep['absolutPath'],$dataSecondStep['fileName']);
+				$newProject->setDir($info['dir']);
+				$newProject->setPicture($info['file']);
+				$this->em->flush();
 				
 				// creating roles for creator
 				$arrayRoles = array(array("name" => \App\Entity\UserRole::MEMBER_ROLE_STARTER, ),
@@ -353,10 +280,6 @@ class ProjectFacade {
 				}
 				$this->em->flush();
 				// save answers
-				
-				
-	
-					// log
 					$this->userFacade->addLogMessage($user, "Create new project ".$newProject->getTitle()." with ID ".$newProject->getId());
 					$this->addLogMessage($newProject, "Project created");
 					

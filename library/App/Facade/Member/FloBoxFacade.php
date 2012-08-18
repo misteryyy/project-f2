@@ -35,16 +35,16 @@ class FloBoxFacade {
 	 * @param unknown_type $data
 	 */
 	public function createFloMessage($id,$data = array()){
-		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $id );	
-		if($user){
-			debug($data);			
+
+		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
+		if(!$user){
+			throw new \Exception("Member doesn't exists");
+		}
+		
 			$floMessage = new \App\Entity\UserFloBox($user, $data['type'], $data['typeDetail'], $data['title'], $data['message']);
 			$this->em->persist($floMessage);
 			$this->em->flush();
 		
-		} else {
-			throwException("Can't find this user.");
-		}
 	}
 	
 	/*

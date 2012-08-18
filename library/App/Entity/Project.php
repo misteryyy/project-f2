@@ -8,10 +8,25 @@ class Project {
 	const LEVEL_1 = 1;
 	const LEVEL_2 = 2;
 	const LEVEL_3 = 3;
+	const PROJECT_PHOTO_RESOLUTION_TINY = 'tiny';
+	const PROJECT_PHOTO_RESOLUTION_TINY_WIDTH = 102;
+	const PROJECT_PHOTO_RESOLUTION_TINY_HEIGHT = 70;
 	
-	const PROFILE_PHOTO_RESOLUTION_SMALL = 'small';
-	const PROFILE_PHOTO_RESOLUTION_MEDIUM = 'medium';
-	const PROFILE_PHOTO_RESOLUTION_LARGE = 'large';
+	const PROJECT_PHOTO_RESOLUTION_SMALL = 'small';
+	const PROJECT_PHOTO_RESOLUTION_SMALL_WIDTH = 140;
+	const PROJECT_PHOTO_RESOLUTION_SMALL_HEIGHT = 97;
+	
+	const PROJECT_PHOTO_RESOLUTION_MEDIUM = 'medium';
+	const PROJECT_PHOTO_RESOLUTION_MEDIUM_WIDTH = 265;
+	const PROJECT_PHOTO_RESOLUTION_MEDIUM_HEIGHT = 180;
+	
+	const PROJECT_PHOTO_RESOLUTION_BIG = 'big';
+	const PROJECT_PHOTO_RESOLUTION_BIG_WIDTH = 500;
+	const PROJECT_PHOTO_RESOLUTION_BIG_HEIGHT = 360;
+	
+	const PROJECT_PHOTO_RESOLUTION_LARGE = 'large';
+	const PROJECT_PHOTO_RESOLUTION_LARGE_WIDTH = 655;
+	const PROJECT_PHOTO_RESOLUTION_LARGE_HEIGHT = 400;
 	
 	/**
 	 * @Id @Column(type="integer", name="id")
@@ -355,24 +370,45 @@ class Project {
 	 * @param $path unknown_type       	
 	 */
 	public function setPicture($picture) {
-		
 		$this->picture = $picture;
 	}
 	
-	public function getPicture($size = self::PROFILE_PHOTO_RESOLUTION_LARGE) {
+	public function getPicture($size = self::PROJECT_PHOTO_RESOLUTION_LARGE) {
 		
 		if ($this->picture == null) {
 			return "no_project_image_" . $size . ".jpg";
 		}
+			
+		$arr = array (self::PROJECT_PHOTO_RESOLUTION_LARGE,
+					  self::PROJECT_PHOTO_RESOLUTION_BIG,
+					  self::PROJECT_PHOTO_RESOLUTION_SMALL, 
+					  self::PROJECT_PHOTO_RESOLUTION_MEDIUM ,
+					  self::PROJECT_PHOTO_RESOLUTION_TINY );
 		
-		$arr = array (self::PROFILE_PHOTO_RESOLUTION_LARGE, self::PROFILE_PHOTO_RESOLUTION_SMALL, self::PROFILE_PHOTO_RESOLUTION_MEDIUM );
 		if (! in_array ( $size, $arr )) {
 			return $this->picture;
 		}
+	
 		$ext = substr ( strrchr ( $this->picture, '.' ), 1 );
-		$pre = substr ( $this->picture, 0, strrpos ( $this->picture, '.' ) );
+		$pre = substr ( $this->picture, 0, strrpos ( $this->picture, '_' ) );
 		return $pre . '_' . $size . '.' . $ext;
 	}
+	
+	/**
+	 * Return the whole address for image url
+	 * @param unknown_type $size
+	 */
+	public function getPictureUrl($size = self::PROJECT_PHOTO_RESOLUTION_LARGE){
+		
+		$config = new \Zend_Config(\Zend_Registry::get('config'));
+		if($config->app->s3->storage->enabled){			
+			return $config->app->s3->storage->web_url.'projects/'.$this->dir."/thumbs/".$this->getPicture($size);
+		}
+			
+		return '/storage/projects/'.$this->dir."/thumbs/".$this->getPicture($size);
+	
+	}
+	
 	
 	/**
 	 *

@@ -68,53 +68,45 @@ private function openImage($file)
 		return $img;
 }
 	
-				## --------------------------------------------------------
+
+	public function resizeImage($newWidth, $newHeight, $option="auto"){
+		// *** Get optimal width and height - based on $option
+		$optionArray = $this->getDimensions($newWidth, $newHeight, $option);
 	
-				public function resizeImage($newWidth, $newHeight, $option="auto")
-				{
-				// *** Get optimal width and height - based on $option
-					$optionArray = $this->getDimensions($newWidth, $newHeight, $option);
+		$optimalWidth  = $optionArray['optimalWidth'];
+		$optimalHeight = $optionArray['optimalHeight'];
 	
-					$optimalWidth  = $optionArray['optimalWidth'];
-					$optimalHeight = $optionArray['optimalHeight'];
+		// *** Resample - create image canvas of x, y size
+		$this->imageResized = imagecreatetruecolor($optimalWidth, $optimalHeight);
+		imagecopyresampled($this->imageResized, $this->image, 0, 0, 0, 0, $optimalWidth, $optimalHeight, $this->width, $this->height);
+	
+		// *** if option is 'crop', then crop too
+		if ($option == 'crop') {
+		$this->crop($optimalWidth, $optimalHeight, $newWidth, $newHeight);
+		}
+	}
 	
 	
-					// *** Resample - create image canvas of x, y size
-				$this->imageResized = imagecreatetruecolor($optimalWidth, $optimalHeight);
-				imagecopyresampled($this->imageResized, $this->image, 0, 0, 0, 0, $optimalWidth, $optimalHeight, $this->width, $this->height);
-	
-	
-				// *** if option is 'crop', then crop too
-				if ($option == 'crop') {
-				$this->crop($optimalWidth, $optimalHeight, $newWidth, $newHeight);
-				}
-				}
-	
-				## --------------------------------------------------------
-					
-				private function getDimensions($newWidth, $newHeight, $option)
-				{
-	
-				switch ($option)
-				{
+	private function getDimensions($newWidth, $newHeight, $option){
+			switch ($option){
 				case 'exact':
 					$optimalWidth = $newWidth;
 						$optimalHeight= $newHeight;
 						break;
-						case 'portrait':
+				case 'portrait':
 						$optimalWidth = $this->getSizeByFixedHeight($newHeight);
 						$optimalHeight= $newHeight;
 						break;
-						case 'landscape':
+				case 'landscape':
 						$optimalWidth = $newWidth;
 						$optimalHeight= $this->getSizeByFixedWidth($newWidth);
 						break;
-						case 'auto':
+				case 'auto':
 						$optionArray = $this->getSizeByAuto($newWidth, $newHeight);
 						$optimalWidth = $optionArray['optimalWidth'];
 						$optimalHeight = $optionArray['optimalHeight'];
 						break;
-						case 'crop':
+				case 'crop':
 						$optionArray = $this->getOptimalCrop($newWidth, $newHeight);
 						$optimalWidth = $optionArray['optimalWidth'];
 						$optimalHeight = $optionArray['optimalHeight'];
@@ -123,21 +115,17 @@ private function openImage($file)
 					return array('optimalWidth' => $optimalWidth, 'optimalHeight' => $optimalHeight);
 				}
 	
-				## --------------------------------------------------------
+	private function getSizeByFixedHeight($newHeight){
+		$ratio = $this->width / $this->height;
+		$newWidth = $newHeight * $ratio;
+		return $newWidth;
+	}
 	
-					private function getSizeByFixedHeight($newHeight)
-					{
-						$ratio = $this->width / $this->height;
-						$newWidth = $newHeight * $ratio;
-						return $newWidth;
-						}
-	
-						private function getSizeByFixedWidth($newWidth)
-						{
-						$ratio = $this->height / $this->width;
-						$newHeight = $newWidth * $ratio;
-						return $newHeight;
-						}
+	private function getSizeByFixedWidth($newWidth){
+		$ratio = $this->height / $this->width;
+		$newHeight = $newWidth * $ratio;
+		return $newHeight;
+	}
 	
 						private function getSizeByAuto($newWidth, $newHeight)
 						{

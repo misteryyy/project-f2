@@ -116,8 +116,6 @@ class TeamFacade {
 	
 	}
 	
-	
-	
 	/**
 	 * Return all project widget question
 	 * @param unknown_type $user_id

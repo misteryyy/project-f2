@@ -123,10 +123,10 @@ class Project_IndexController extends  Boilerplate_Controller_Action_Abstract
     	if ($this->_request->isPost()) {
     		if ($form->isValid($this->_request->getPost())) {
     			try{
-    				$fileManager = new Boilerplate_Util_FileManagerS3($this->project,"storage/projects/".$this->project->dir, "filename.jpg");
+    				$fileManager = new Boilerplate_Util_FileManagerS3($this->project);
     				// uploading all files to the server
     				$files = $fileManager->uploadFileToS3FromPost($this->project);
-    				//$facadeProjectBoard->addComment($this->_member_id, $this->project_id,$form->getValues(),$files);
+    				$facadeProjectBoard->addComment($this->_member_id, $this->project_id,$form->getValues(),$files);
     				$this->_helper->FlashMessenger( array('success' =>  "Comment has been added."));
     	
     			} catch (\Exception $e){

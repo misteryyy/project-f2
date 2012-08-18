@@ -97,6 +97,11 @@ class User {
 	public $created;
 	
 	/**
+	 * @column(type="datetime",name="last_login",nullable=true)
+	 */
+	public $lastLogin;
+	
+	/**
 	 * @Column(type="boolean", name="date_of_birth_visibility",nullable=true)
 	 */
 	private $dateOfBirthVisibility;
@@ -167,6 +172,7 @@ class User {
 		$this->confirmed = true;
 		$this->dateOfBirth = new \DateTime();
 		$this->created = new \DateTime("now");
+		$this->lastLogin = new \DateTime("now");
 		$this->ban = false;
 		$this->info = new \App\Entity\UserInfo();
 		

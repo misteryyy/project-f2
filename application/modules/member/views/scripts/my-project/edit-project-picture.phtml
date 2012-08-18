@@ -18,14 +18,14 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 </div>
 
 <div class="fl-cnt-100">		
-	<form id="imageform" enctype="multipart/form-data" class="form-horizontal" action="/member/ajax/update-project-thumbnail" method="post">
+	<form id="imageform" enctype="multipart/form-data" class="form-horizontal" action="/member/my-project/ajax-edit-project-picture/_method/update/id/<?php echo $this->project->id;?>" method="post">
 		<fieldset id="fieldset-CreateProjectChooseProfilePhoto">
 	    <legend class="hide">Change Project Picture</legend>
 		    <div id="preview">
 					  <?php 
 					   echo '<div class="fl-cnt-100 text-center fl-bottom20">'; 
 					   ?>	
-					   <img src="/storage/projects/<?php echo $this->project->dir?>/<?php echo $this->project->getPicture("large")."?foo=".time();?>" class="fl-img" />	
+					   <img src="<?php echo $this->project->getPictureUrl("large")."?foo=".time();?>" class="fl-img" />	
 							<?php echo '</div>'; ?> 
 			</div> 
 
@@ -36,8 +36,6 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 					<p class="help-block">Max size 4MB (jpg,jpeg,png)</p>
 			    </div>
 			</div>
-			
-					<input type="hidden" name="id" value="<?php echo $this->project->id;?>"/>
 		</fieldset>
 	</form>
 </div>
@@ -51,11 +49,12 @@ $(document).ready(function()
 {
 	// disable cache
 	 $.ajaxSetup ({cache: false });  
-
-	function newAlert (type, message) {
-	    $("#alert-area").html($("<div class='alert alert-" + type + " '><a class='close' data-dismiss='alert' href='#'>×</a><p>" + message + " </p></div>"));
-	   // $(".alert-message").delay(2000).fadeOut("slow", function () { $(this).remove(); });
-	}
+	 <?php 
+	  // display picture from the previous
+	  if(!Zend_Session::namespaceIsset('projectStep2')){
+	  echo '$("#button-continue").hide();';}
+	  ?>
+	  
 	   var options = { 
 		        target: '#preview',   // target element(s) to be updated with server response 
 		        success: showResponse,  // post-submit callback 
@@ -66,30 +65,32 @@ $(document).ready(function()
 		$('#photoimg').live('change', function()
 		{
 			$("#preview").html('');
-			$("#preview").html('<img src="/img/loader.gif" alt="Processing picture..."/>');
+			$("#preview").html('<img src="/media/slepice-site/1.0.0/img/loader.gif" alt="Processing picture..."/>');
 			$("#imageform").ajaxForm(options).submit();
 		});
  
 		// post-submit callback 
 		function showResponse(responseText, statusText, xhr, $form)  { 
-			if(responseText.error){
-				newAlert('error', "Please check if you are uploading image and size is lower than 4MB.");
+			console.log(responseText);
+			
+			if(responseText.respond == "error"){
+				newAlert('error', responseText.message);
 				$("#preview").html('');
 			}else{
 				$("#preview").html('');
-				$("#preview").html('<div class="well"> <img src="'+responseText.web_url+'?foo=' + new Date().getTime()+'" alt="Profile Picture"/> </div> <hr />');
+				$("#preview").html('<div class="fl-cnt-100 text-center fl-bottom20"> <img src="'+responseText.web_url+'?foo=' + new Date().getTime()+'" alt="Profile Picture" class="fl-img"/> </div>');
 				$("#button-continue").show();
-				newAlert('success', responseText.success);
+				newAlert('success', responseText.message);
 			} 
 		} 
-		
+
 		// post-submit callback 
 		function showError(responseText, statusText, xhr, $form)  { 
 		    alert('status: ' + statusText + '\n\nresponseText: \n' + xhr.toSource() + 
 		        'We are sorry, but something is wrong. Try to check if your image is allright.'); 
 		} 		
 });
-</script>	
+</script>
 	 
 <?php } else {
 	

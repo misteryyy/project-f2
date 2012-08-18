@@ -69,7 +69,7 @@ class ProjectBoardFile extends \App\Entity\ProjectBoardFile implements \Doctrine
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'created', 'name', 'type', 'size', 'projectBoard');
+        return array('__isInitialized__', 'id', 'created', 'name', 'file', 'type', 'size', 'projectBoard');
     }
 
     public function __clone()

@@ -54,6 +54,12 @@ class Slideshow extends \App\Entity\Slideshow implements \Doctrine\ORM\Proxy\Pro
         return parent::getProject($slot);
     }
 
+    public function getAllProjectsArray()
+    {
+        $this->__load();
+        return parent::getAllProjectsArray();
+    }
+
     public function __get($property)
     {
         $this->__load();

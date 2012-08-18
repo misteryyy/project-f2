@@ -7,7 +7,7 @@ echo $this->partial('project/create-project-navigation.phtml',array("step" => $t
 <div class="fl-cnt-100">
   <div class="alert alert-info">
     <span class="label label-info">Info</span>
-    Image will be automatically cropped. Try to upload image which has resolution 480x320 to have the best image quality and proportion.
+    Image will be automatically cropped in largest size.
   </div>
 </div>
 
@@ -16,7 +16,7 @@ echo $this->partial('project/create-project-navigation.phtml',array("step" => $t
 </div>
 
 <div class="fl-cnt-100">
-<form id="imageform" enctype="multipart/form-data" class="form-horizontal" action="/member/ajax/create-thumbnail" method="post">
+<form id="imageform" enctype="multipart/form-data" class="form-horizontal" action="/member/project/ajax-create-project-step-two/_method/create" method="post">
   <fieldset id="fieldset-CreateProjectChooseProfilePhoto">
     <legend class="hide">Step 2 / Choose Picture</legend>
   <div id="preview">
@@ -75,23 +75,25 @@ $(document).ready(function()
 		$('#photoimg').live('change', function()
 		{
 			$("#preview").html('');
-			$("#preview").html('<img src="/img/loader.gif" alt="Processing picture..."/>');
+			$("#preview").html('<img src="/media/slepice-site/1.0.0/img/loader.gif" alt="Processing picture..."/>');
 			$("#imageform").ajaxForm(options).submit();
 		});
  
 		// post-submit callback 
 		function showResponse(responseText, statusText, xhr, $form)  { 
-			if(responseText.error){
-				newAlert('error', "Please check if you are uploading image and size is lower than 4MB.");
+			console.log(responseText);
+			
+			if(responseText.respond == "error"){
+				newAlert('error', responseText.message);
 				$("#preview").html('');
 			}else{
 				$("#preview").html('');
 				$("#preview").html('<div class="fl-cnt-100 text-center fl-bottom20"> <img src="'+responseText.web_url+'?foo=' + new Date().getTime()+'" alt="Profile Picture" class="fl-img"/> </div>');
 				$("#button-continue").show();
-				newAlert('success', responseText.success);
+				newAlert('success', responseText.message);
 			} 
 		} 
-		
+
 		// post-submit callback 
 		function showError(responseText, statusText, xhr, $form)  { 
 		    alert('status: ' + statusText + '\n\nresponseText: \n' + xhr.toSource() + 
