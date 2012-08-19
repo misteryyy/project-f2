@@ -8,6 +8,7 @@ body{
   background: #dedede;
   float: left;
   min-height: 40px;
+  border-bottom: 1px solid #eeeeee;
 }
 
 #fl-top p{
