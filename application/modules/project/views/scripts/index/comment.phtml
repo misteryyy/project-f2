@@ -25,7 +25,7 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
 
 <h2>Comments</h2>
 
-<div class="fl-cnt-100">
+<div class="fl-cnt-100 fl-form-box">
 <?php echo $this->form;?>
 </div>
 
@@ -73,7 +73,7 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
     	
     	<?php } ?>
 </div> <?php } else {
-	echo "No Comments for this project";
+	echo "";
 } ?>
 </div>
 

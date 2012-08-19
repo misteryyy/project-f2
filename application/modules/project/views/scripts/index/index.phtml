@@ -22,7 +22,7 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
         <div id="col-7">
             
             <div class="fl-cnt-img">
-                <img alt="<?php echo $this->project->title; ?> - main picture" src="/storage/projects/<?php echo $this->project->dir."/".$this->project->getPicture('large'); ?> " />
+                <img alt="<?php echo $this->project->title; ?> - main picture" src="<?php echo $this->project->getPictureUrl('large'); ?>" />
             </div>
 
               <div class="fl-cnt-pitch">

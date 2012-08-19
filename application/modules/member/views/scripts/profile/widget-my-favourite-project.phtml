@@ -12,7 +12,7 @@
                       <div class="fl-similar">
                         <div class="inner-similar">
  					 <a href="/project/index/index/id/<?php echo $project->id?>" title="<?php echo $project->title; ?>"> 
-                        <img alt="<?php echo $project->title; ?> - main picture" src="/storage/projects/<?php echo $project->dir."/".$project->getPicture('small'); ?> " />
+                        <img alt="<?php echo $project->title; ?> - main picture" src="<?php echo $project->getPictureUrl("tiny");?>" />
                      </a>
                           <h4><?php echo $project->title; ?></h4>
                           

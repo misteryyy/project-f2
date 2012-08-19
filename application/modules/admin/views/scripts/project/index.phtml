@@ -35,13 +35,14 @@ $message_ban = "Ban";
 			<td><?php echo $project->category->name?>		
 			</td>
 			<td>
+				<div class="input-append input-prepend">
+			      <a class="btn btn-info" href="/project/index/index/id/<?php echo $project->id?>" title="Go to profile of this project"><i class="icon-picture icon-white"></i> Profile</a><a class="btn btn-info" href="/admin/project/log/id/<?php echo $project->id?>" title="Check the log of this project"><i class="icon-th-list icon-white"></i> Log</a>
+			    </div>
 			  <?php if($project->ban){?>
-				<button class="btn btn-success ban" id="submit_ban" value="<?php echo $project->id?>" ><?php echo $message_unban?></button>
+				<button class="btn btn-success ban" id="submit_ban" value="<?php echo $project->id?>" title="Unban this project"><?php echo $message_unban?></button>
 			<?php }else{ ?>
-				<button class="btn btn-danger ban" id="submit_ban" value="<?php echo $project->id?>" ><?php echo $message_ban?></button>
+				<button class="btn btn-danger ban" id="submit_ban" value="<?php echo $project->id?>" title="Ban this project"><?php echo $message_ban?></button>
 			<?php }?>
-			  <a class="btn btn-info" href="/project/index/index/id/<?php echo $project->id?>">Profile</a>
-			  <a class="btn btn-info" href="/admin/project/log/id/<?php echo $project->id?>">Log</a>
 			</td>
 		</tr>
 		<?php	

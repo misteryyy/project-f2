@@ -12,10 +12,10 @@
 <?php 
 // if current user is owner, he will have link to his administration of 
 if ($this->message->user->id == $this->member['id']) { ?>
-	<a class="btn btn-success right" href="/member/flobox/index/id/<?php echo $this->message->user->id;?>">Back to all FloBox messages</a></h2>  
+	<a class="btn btn-inverse right" href="/member/flobox/index/id/<?php echo $this->message->user->id;?>"><i class="icon-th-list icon-white"></i> Go to administration of FLO~ Box</a></h2>  
 <?php 
 } else {?>
-	<a class="btn btn-success right" href="/member/profile/flobox/id/<?php echo $this->message->user->id;?>">Back to all FloBox messages</a></h2>  
+	</h2>  
 <?php }?>
 
 
@@ -69,7 +69,7 @@ if ($this->message->user->id == $this->member['id']) { ?>
 </div>
 <?php }?>
 
-<div class="fl-cnt-100">	
+<div class="fl-cnt-100 fl-form-box">	
 	<?php echo $this->form ;?>
 </div>
 

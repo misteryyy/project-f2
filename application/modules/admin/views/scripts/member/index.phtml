@@ -39,14 +39,14 @@ $message_ban = "Ban";
 			<td><?php echo $user->created->format('Y/m/d');?></td>
 			<td><?php echo implode(",",$user->getRolesArray())?></td>
 			<td>
+			  <div class="input-append input-prepend">
+			    <a class="btn btn-info" href="/member/profile/index/id/<?php echo $user->id?>" title="Go to profile of this member"><i class="icon-picture icon-white"></i> Profile</a><a class="btn btn-info" href="/admin/member/log/id/<?php echo $user->id?>" title="Check the log of this member"><i class="icon-th-list icon-white"></i> Log</a>
+			  </div>
 			<?php if($user->ban){?>
 				<button class="btn btn-success ban" id="submit_ban" value="<?php echo $user->id?>" ><?php echo $message_unban?></button>
 			<?php }else{ ?>
 				<button class="btn btn-danger ban" id="submit_ban" value="<?php echo $user->id?>" ><?php echo $message_ban?></button>
 			<?php }?>
-
-			<a class="btn btn-info" href="/member/profile/index/id/<?php echo $user->id?>">Profile</a>
-			<a class="btn btn-info" href="/admin/member/log/id/<?php echo $user->id?>">Log</a>
 			</td>
 		</tr>
 		<?php	

@@ -2,12 +2,13 @@
 $this->step = 5;
 echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $this->step,"project" => $this->project));
 ?>
-<div class="well">
-	<a class="btn btn-info" href="/member/my-project/update/id/<?php echo $this->project->id?>">Back to list of updates</a>
-</div>
-<hr/>
 
+<h3 class="fl-edit-project-subsection">Edit Update <a class="btn btn-inverse right" href="/member/my-project/update/id/<?php echo $this->project->id?>"><i class="icon-th-list icon-white"></i> Back to list of Updates</a></h3>
+
+
+<div class="fl-cnt-100 fl-form-box">
 <?php echo $this->form;?>
+</div>
 
 
 

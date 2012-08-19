@@ -37,7 +37,7 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 		</td>	
 		<td><?php echo $poll->created->format('Y/m/d h:m:s'); ?></td>		
 		<td> 
-    		<a class="btn btn-info" href="/member/my-project/poll-detail/id/<?php echo $this->project->id?>/poll_id/<?php echo $poll->id ?>">Detail</a> 
+    		<a class="btn btn-info" href="/member/my-project/poll-detail/id/<?php echo $this->project->id?>/poll_id/<?php echo $poll->id ?>"><i class="icon-list icon-white"></i> Detail</a> 
     	</td>			
     	</tr>	 		
     <?php } ?>

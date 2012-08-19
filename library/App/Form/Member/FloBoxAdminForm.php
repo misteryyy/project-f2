@@ -14,12 +14,12 @@ class FloBoxAdminForm extends \Twitter_Bootstrap_Form_Horizontal
    public function init()
     {
 
-    $this->_addClassNames('fl-form');
+    $this->_addClassNames('fl-form fl-form-flobox');
     	
     $this->addElement('text', 'title', array(
                 'label' => 'Title:',
                 'required' => true,
-                'class' => 'span8',
+                'class' => 'fl-width99',
                 'filters'    => array('StringTrim'),
                 //'description' => "Title. Max 50 letters.",
                 'validators' => array( array('StringLength', false, array(0,100) ))));
@@ -41,10 +41,10 @@ class FloBoxAdminForm extends \Twitter_Bootstrap_Form_Horizontal
     $this->addElement('textarea', 'typeDetail', array(
     		'label' => 'Specicify your idea:',
     		'required' => true,
-            'class' => 'span8',
             'rows' => 3,
+            'class' => 'fl-width99',
     		'filters'    => array('StringTrim'),
-    		'validators' => array(array('StringLength', false, array(1,100)) )
+    		'validators' => array(array('StringLength', false, array(1,1000)) )
     ));
      
     
@@ -52,11 +52,21 @@ class FloBoxAdminForm extends \Twitter_Bootstrap_Form_Horizontal
     			'label' => 'Text:',
     			'required' => true,
     			'filters' => array('StringTrim'),
-    			'rows' => 5,
-                'class' => 'span8',
-    			'description' => "Describe your idea in max 1000 letters.",
-    			'validators' => array( array('StringLength', false, array(0,1000) ))
+    			'rows' => 7,
+                'class' => 'fl-width99',
+    			//'placeholder' => "Describe your idea...",
+    			'validators' => array( array('StringLength', false, array(0,2000) ))
     	));
+
+/*
+         $this->addElement('hidden', 'divider', array(
+                'description' => '<div class="fl_thin_divider"></div>',
+                'ignore' => true,
+                'decorators' => array(
+                        array('Description', array('escape'=>false, 'tag'=>'')),
+                ),
+         ));
+*/       
 
 
  			/**
@@ -70,7 +80,7 @@ class FloBoxAdminForm extends \Twitter_Bootstrap_Form_Horizontal
        
          	// submit button
          	$this->addElement('submit','submit',array(
-         			'label' => "Submit",
+         			'label' => "Create New FLO~ Box message",
          			'escape' => false,
          			'class' => 'btn btn-info'
          	));

@@ -78,6 +78,7 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
     </form>	
 </div>
 
+<?php if($this->project->level < 2) {echo "";} else { ?>
 <!-- Level 2 Requests -->
 <h3 class="fl-edit-project-subsection">Applications for Level 2</h3>
 <div class="fl-cnt-100">
@@ -159,7 +160,7 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 		</script>		
 </div>
 
-	
+<?php } ?>	
 <script src="/media/tools/handlebars-1.0.0.beta.6.js"></script>   
         <script type="text/javascript">  
 

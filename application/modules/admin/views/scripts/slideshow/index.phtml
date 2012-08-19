@@ -15,7 +15,7 @@
                     <div class="fl-project-thumb">
                       <div class="inner-5">
 						 <a href="/project/index/index/id/<?php echo $project->id?>" title="<?php echo $project->title; ?>"> 
-                        <img alt="<?php echo $project->title; ?> - main picture" src="/storage/projects/<?php echo $project->dir."/".$project->getPicture('large'); ?> " />
+                        <img alt="<?php echo $project->title; ?> - main picture" src="<?php echo $project->getPictureUrl('small'); ?>" />
                     	 </a>
  						<div class="fl-level">
                         <?php 
@@ -45,8 +45,8 @@
                   <?php } 
                   // no project selected
                   else { ?>
-                  	<div class="fl-cnt-20"></div>
-                    <div class="fl-cnt-50"></div>
+                  	<div class="fl-cnt-20">&nbsp;</div>
+                    <div class="fl-cnt-50">&nbsp;</div>
                   <?php }
                   ?>
                   
@@ -54,8 +54,7 @@
 			     	  <form class="fl-slot" action="<?php echo $this->$f->getAction(); ?>"  method="<?php echo $this->$f->getMethod(); ?>" >
 			     		<fieldset>
 						     <?php echo $this->$f->project_id; ?>
-						        <?php echo $this->$f->slot_position; ?>
-						     <br/>
+						     <?php echo $this->$f->slot_position; ?>
 						     <?php echo $this->$f->submit; ?>
 						     
 			     		</fieldset>

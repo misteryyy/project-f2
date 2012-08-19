@@ -18,7 +18,7 @@
                   <div class="inner-5">
 
                      <a href="/project/index/index/id/<?php echo $project->id?>" title="<?php echo $project->title; ?>"> 
-                        <img alt="<?php echo $project->title; ?> - main picture" src="/storage/projects/<?php echo $project->dir."/".$project->getPicture('large'); ?> " />
+                        <img alt="<?php echo $project->title; ?> - main picture" src="<?php echo $project->getPictureUrl('medium'); ?> " />
                      </a>
 
   						<div class="fl-level">

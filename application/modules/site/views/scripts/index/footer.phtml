@@ -1,39 +1,49 @@
-<div class="row">
-	<div class="span3 fl-left10p">
-		<h2>Navigation</h2>
-		<ul>
-           <li><a href="/" title="">Home</a></li>
-           <li><a href="/browse-projects" title="">Browse projects</a></li>
-           <li><a href="/browse-members" title="">Browse members</a></li>
-           <li><a href="/help" title="">Help</a></li>
-           <li><a href="/about-us" title="">About us</a></li>
-        </ul>
+<div class="fl-cnt-100 hide">
+	<div class="fl-cnt-50">
+		
+		      
+		  
 	</div>
+	<div class="fl-cnt-50">
+		<h2>Subscribe</h2>
 
-	<div class="span3">
-		<h2>FLO~ on</h2>
-		<ul>
-          <li><img src="/media/slepice-launch/1.0.0/img/ico_small_facebook.png" alt="facebook icon" /> <a href="http://www.facebook.com/floplatform" title="FLO~ on Facebook" onclick="window.open(this.href); return false;">Facebook</a></li>
+		<form class="fl-form" id="form-newsletter" method="post" action="index/newsletter">
+        <fieldset><legend>Subscribe</legend>
+          <div class="control-group">
+            <label class="control-label hide" for="prependedInput">Input your email:</label>
+            <div class="controls left">
+              <div class="input-prepend input-append">
+                <input class="span2" id="appendedPrependedInput" type="text" name="email" placeholder="@" /><input type="submit" class="btn" type="button" value="Keep Me Posted!"> 
+              </div>
+                <div class="btn-group left">
+				  <button class="btn btn-small btn-warning">RSS Feed</button>
+				  <button class="btn btn-small btn-warning dropdown-toggle" data-toggle="dropdown">
+				    <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu">
+				    <?php foreach($this->categories as $c){ echo '<li><a href="/rss?category='.$c->id.'">'.$c->name.'</a> </li>'.PHP_EOL; } ?>
+				  </ul>
+				</div>
 
-      	  <li><img src="/media/slepice-launch/1.0.0/img/ico_small_twitter.png" alt="twitter icon" /> <a href="https://twitter.com/#!/flo_platform" title="FLO~ on Twitter" onclick="window.open(this.href); return false;">Twitter</a></li>
-
-      	  <li><img src="/media/slepice-launch/1.0.0/img/ico_small_tumblr.png" alt="facebook icon" /> <a href="http://floplatform.tumblr.com/" title="FLO~ on Tumblr" onclick="window.open(this.href); return false;">Tumblr</a></li>
-
-      	  <li><a href="https://angel.co/flo-3" title="FLO~ on AngelList" onclick="window.open(this.href); return false;">AngelList</a></li>
-
-      	  <li><a href="(https://www.leanlaunchlab.com/projects/6986-flo" title="FLO~ on Lean Launch Lab" onclick="window.open(this.href); return false;">Lean Launch Lab</a></li>
-        </ul>
-	</div>
-
-	<div class="span3">
-		<h2>RSS</h2>
-		<ul>
-          <?php 
-			foreach($this->categories as $c){
-			  echo '<li><img src="/media/slepice-site/1.0.0/img/ico_small_rss.png" alt="rss icon" /> <a href="/rss?category='.$c->id.'">'.$c->name.'</a> </li>'.PHP_EOL;
-			}
-		  ?>
-        </ul>
+				<div class="btn-group left">
+				  <button class="btn btn-small btn-info">Follow Us</button>
+				  <button class="btn btn-small btn-info dropdown-toggle" data-toggle="dropdown">
+				    <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu">
+				      <li><a href="http://www.facebook.com/floplatform" title="FLO~ on Facebook" onclick="window.open(this.href); return false;">Facebook</a></li>
+				      <li><a href="https://twitter.com/#!/flo_platform" title="FLO~ on Twitter" onclick="window.open(this.href); return false;">Twitter</a></li>
+				      <li><a href="http://floplatform.tumblr.com/" title="FLO~ on Tumblr" onclick="window.open(this.href); return false;">Tumblr</a></li>
+				      <li><a href="https://angel.co/flo-3" title="FLO~ on AngelList" onclick="window.open(this.href); return false;">AngelList</a></li>
+				      <li><a href="https://www.leanlaunchlab.com/projects/6986-flo" title="FLO~ on Lean Launch Lab" onclick="window.open(this.href); return false;">Lean Launch Lab</a></li>
+				  </ul>
+				</div>
+              
+            </div>
+          </div>
+        </fieldset>
+      </form>
+		
 	</div>
 </div>
 

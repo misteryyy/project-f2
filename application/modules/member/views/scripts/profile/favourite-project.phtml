@@ -24,7 +24,7 @@ echo $this->partial('/profile/profile-navigation.phtml',array("step" => $this->s
                   <div class="fl-project-thumb">
                     <div class="inner-5">
                       <a href="/project/index/index/id/<?php echo $project->id?>" title="<?php echo $project->title; ?>"> 
-                        <img alt="<?php echo $project->title; ?> - main picture" src="/storage/projects/<?php echo $project->dir."/".$project->getPicture('large'); ?> " />
+                        <img alt="<?php echo $project->title; ?> - main picture" src="<?php echo $project->getPictureUrl("small");?>" />
                      </a>
                                     <div class="fl-level">
                         <?php 
@@ -41,23 +41,16 @@ echo $this->partial('/profile/profile-navigation.phtml',array("step" => $this->s
                     </div>
                   </div>
                 </div>
-                <div class="fl-cnt-80">
+
+                <div class="fl-cnt-60">
                   <div class="inner-list-project">
                     <div class="fl-list-project-head">
                       <h3 class="fl-list-project-h3"><?php echo $project->title; ?></h3>
                       <p class="fl-list-project-info"><span class="author"><i class="icon-user"></i> <a href="/member/profile/index/id/<?php echo $project->user->id?>" title="<?php echo $project->user->name?>'s profile"><?php echo $project->user->name?></a></span> <span class="category"><i class="icon-folder-close"></i> <?php echo $project->category->name?></span>
                          <span class="followers"><i class="icon-eye-open"></i> <strong class="follower-count"><?php echo $project->getCountFollowers();?></strong>  followers</span></p>
                     </div>
-                    <div class="fl-list-project-like">
-                      <?php
-                         // like dislike solution 
-                         if(!$project->isFollower($this->loggedMember)) {
-             ?> <a href="" title="" class="like-project btn btn-success" id="<?php echo $project->id;?>" ><i class="icon-thumbs-up"></i> Like</a>
-             <?php } else { ?>
-                            <a href="" title="" class="like-project btn btn-danger" id="<?php echo $project->id;?>" ><i class="icon-thumbs-down"></i> Dislike</a>
-                         <?php } ?>
-                    </div>
-                    <div class="fl-list-project-roles">
+                    
+                    <div class="fl-list-project-roles fl-top20">
                       <?php 
                            $display = false;
                         // if level 1 display all logos   
@@ -86,6 +79,15 @@ echo $this->partial('/profile/profile-navigation.phtml',array("step" => $this->s
                     </div>
                   </div>
                 </div>
+                <div class="fl-cnt-20">
+                      <?php
+                         // like dislike solution 
+                         if(!$project->isFollower($this->loggedMember)) {
+             ?> <a href="" title="" class="like-project btn btn-success" id="<?php echo $project->id;?>" ><i class="icon-thumbs-up"></i> Like</a>
+             <?php } else { ?>
+                            <a href="" title="" class="like-project btn btn-danger" id="<?php echo $project->id;?>" ><i class="icon-thumbs-down"></i> Dislike</a>
+                         <?php } ?>
+                    </div>
               </div>
               <div class="fl_thin_divider"></div>
 
