@@ -31,8 +31,9 @@
 		<td><?php echo $message->created->format('Y/m/d'); ?></td>		
     	<td><?php echo count($message->comments) ?></td>		
     	<td>
-    		<a class="btn btn-info" href="/member/profile/flobox-detail/id/<?php echo $this->member['id']?>/message_id/<?php echo $message->id ?>"><i class="icon-file icon-white"></i> Detail</a>
-    		<a class="btn btn-danger" href="/member/profile/flobox/message-delete/message_id/<?php echo $message->id ?>"> <i class="icon-remove icon-white"></i> Delete</a>
+          <div class="input-append input-prepend">
+    		<a class="btn btn-info" href="/member/profile/flobox-detail/id/<?php echo $this->member['id']?>/message_id/<?php echo $message->id ?>"><i class="icon-list icon-white"></i> Detail</a><a class="btn btn-danger" href="/member/profile/flobox/message-delete/message_id/<?php echo $message->id ?>"> <i class="icon-remove icon-white"></i> Delete</a>
+          </div>
     	</td>			
     	</tr>	 		
     <?php } ?>

@@ -1,6 +1,6 @@
 /* FLOW CSS Document */
 body{
-  background: #e7e8ea url('../img/bcg.jpg') left -150px no-repeat;
+  background: #e7e8ea url('../img/bcg.jpg') left -200px no-repeat;
 }
 
 #fl-top{
@@ -328,6 +328,7 @@ h1{
   height: 70px;
   float: left;
   margin: 20px 0 20px 0;
+  font-size: 1px;
 }
 
 h1 span{
@@ -338,13 +339,14 @@ h1 span{
   height: 100%;
   z-index: 1;
   display: block;
-  background: #e7e8ea url('../img/flow_logo.png') top left  no-repeat;
+  background: url('../img/flow_logo.png') top left  no-repeat;
 }
 
-h1 a{
+h1 a, h1 a:hover, h1 a:focus, h1 a:visited{
   border: 0px;
   text-decoration: none;
   margin: 0px;
+  color: #e7e8ea;
 }
 
 h2{
@@ -944,7 +946,9 @@ h4.fl-project-name span{
 .fl-list-project-roles{
   color: #0c7aaf;
   font-size: 11px;
-}
+  width: 100%;
+  float: left;
+  }
 
 .fl-list-project-roles img{
   width: 30px;
@@ -1317,12 +1321,17 @@ p.fl-list-project-queue{
   margin: 0;
 }
 
-p.fl-publishing-title, div.fl-publishing-title{
+p.fl-publishing-title, div.fl-publishing-title, p.fl-publishing-title-project{
   font-size: 12px;
   color: #000000;
   width: 100%;
   float: left;
   margin: 0 0 20px 0;
+}
+
+p.fl-publishing-title-project{
+  font-size: 19px;
+  font-weight: bold;
 }
 
 .fl-publishing-img, .fl-publishing-roles{
@@ -2467,6 +2476,10 @@ tr.fl-user-banned:hover{
   width: 95%;
 }
 
+.fl-width99{
+  width: 98.666%;
+}
+
 .fl-width100{
   width: 100%;
 }
@@ -2623,7 +2636,7 @@ tr.fl-user-banned:hover{
     text-align: left;
     text-indent: 5px;
     font-weight: bold;
-    color: #3e499c;
+    color: #000000;
 }
 
 .form-horizontal .control-group{
@@ -2653,16 +2666,96 @@ tr.fl-user-banned:hover{
 
 .help-block{
   padding: 10px;
-  background-color: #f3e2c1;
-  border: 1px solid #d7bb85;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px #d7bb85;
-  -moz-box-shadow: inset 0 1px 1px #d7bb85;
-  box-shadow: inset 0 1px 1px #d7bb85;
-  color: #916613;
+  background-color: #f7f7f7;
+  border: 1px solid #e9e9e9;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 1px 1px #f2f2f2;
+  -moz-box-shadow: inset 0 1px 1px #f2f2f2;
+  box-shadow: inset 0 1px 1px #f2f2f2;
+  color: #939393;
+  font-size: 11px;
 }
+
+.fl-form-box{
+  background: #eeeeee;
+}
+
+.fl-form-new-poll, 
+.fl-form-update,
+.fl-form-flobox,
+.fl-form-flobox-comment,
+.fl-form-comment{
+  width: 96%;
+  margin: 2%;
+  float: left;
+  padding: 0px;
+}
+
+[class*="fl-form-"] fieldset,
+[class*="fl-form-"] label,
+[class*="fl-form-"] .controls{
+  margin: 0px;
+  padding: 0px;
+}
+
+[class*="fl-form-"] .control-group{
+  margin: 0px;
+}
+
+.fl-form-flobox .control-group{
+  margin: 0 0 8px 0;
+}
+
+[class*="fl-form-"] .controls{
+  width: 100%;
+}
+
+.fl-form-new-poll input[id*="question_"]{
+  margin: 3px 0 3px 0;
+}
+
+.fl-form-comment input[type="checkbox"]{
+  float: left;
+  margin: 2px 0 0 5px;
+}
+
+.fl-form-comment label[for="priority"]{
+  float: left;
+}
+
+
+.fl-form-new-poll .fl_thin_divider{
+  margin: 8px 0 8px 0;
+}
+
+[class*="fl-form-"] .form-actions {
+  padding: 0;
+  margin-top: 18px;
+  margin-bottom: 0;
+  background: #eeeeee;
+  border: 0;
+  *zoom: 1;
+}
+
+.fl-form-new-poll .control-group > label.optional,
+.fl-form-update label[for="content"]{
+  display: none;
+}
+
+.fl-form-update textarea{
+  margin: 10px 0 10px 0;
+}
+
+.fl-form-flobox-comment textarea{
+  margin: 5px 0 0 0;
+}
+
+.fl-form-comment textarea{
+  margin: 5px 0 5px 0;
+}
+
 
 .fl-simpletip-tooltip{
    position: absolute;

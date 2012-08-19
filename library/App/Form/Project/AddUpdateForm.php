@@ -6,23 +6,26 @@ class AddUpdateForm extends \Twitter_Bootstrap_Form_Horizontal
 {
    public function init()
     {
+
+        $this->_addClassNames('fl-form fl-form-update');
   
     $this->addElement('text', 'title', array(
-    			'label' => 'Title',
+    			'label' => 'Title:',
     			'required' => true,
     			'filters'    => array('StringTrim'),
-    			'description' => "Title. Max 50 letters.",
+                'class' => 'fl-width99',
+    			//'description' => "Title. Max 50 letters.",
     			'validators' => array( array('StringLength', false, array(0,100) ))));
 
  	$this->addElement('textarea', 'content', array(
-    			'label' => 'Text',
+    			'label' => 'Text:',
     			'required' => true,
     			'filters'    => array('StringTrim'),
     			'rows' => 5,
-                'class' => 'span5',
-    			'dimension' => 6,
-    			'description' => "Describe your update in max 1000 letters.",
-    			'validators' => array( array('StringLength', false, array(0,1000) ))
+                'class' => 'fl-width99',
+                'placeholder' => 'Text of your update...',
+    			//'description' => "Describe your update in max 2000 letters.",
+    			'validators' => array( array('StringLength', false, array(0,2000) ))
     	));
 
  	
@@ -41,18 +44,20 @@ class AddUpdateForm extends \Twitter_Bootstrap_Form_Horizontal
          	$this->addElement('submit','submit',array(
          			'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
          			'label' => "Create",
+                    'class' => 'btn btn-info',
          			'escape' => false,
          	));
          	 
          	$this->addElement('button', 'reset', array(
          			'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
          			'label' => 'Reset',
+                    'class' => 'btn',
          			'type' => 'reset'
          	));
          		
          	// Action Section
          	$this->addDisplayGroup(
-         			array('submit', 'reset'),
+         			array('reset', 'submit'),
          			'actions',
          			array(
          					'disableLoadDefaultDecorators' => true,

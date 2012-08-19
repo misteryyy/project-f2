@@ -37,7 +37,6 @@ class SlideshowForm extends \Twitter_Bootstrap_Form_Horizontal
 		 $this->addElement('text', 'project_id', array(
 		 		'label' => 'Project ID',
 		 		'value' => $value,
-		 		'dimension' => 1,
 		 		'class' => 'fl-width95',
 		 		'required' => true,
 		 		'filters' => array('StringTrim'),
@@ -49,7 +48,7 @@ class SlideshowForm extends \Twitter_Bootstrap_Form_Horizontal
 		 $this->addElement('submit','submit',array(
 		 		'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
 		 		'label' => "Update Slot ".$this->slot,
-		 		'class' => "btn fl-width100",
+		 		'class' => "btn btn-info",
 		 		'escape' => false,
 		 		'decorators' => array( array("ViewHelper"))
 		 ));

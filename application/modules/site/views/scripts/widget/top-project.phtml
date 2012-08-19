@@ -16,7 +16,7 @@ if(empty($projects)){ return; }
        <div class="span5"> 
          <div class="fl_slider_text">
            <h2><?php echo $project->title; ?></h2>
-            <span class="author"><i class="icon-user"></i> <a href="/member/profile/index/id/<?php echo $project->user->id;?>" title=""><?php echo $project->user->name;?></a></span>
+            <span class="author">by <a href="/member/profile/index/id/<?php echo $project->user->id;?>" title=""><?php echo $project->user->name;?></a></span>
 
   						<div class="fl-level">
                         <?php 
@@ -87,7 +87,7 @@ if(empty($projects)){ return; }
         </div>
         <div class="span6 text-right fl-top-project-img"> 
           <a href="/project/index/index/id/<?php echo $project->id?>" title="<?php echo $project->title; ?>">
-           <img alt="<?php echo $project->title; ?> - main picture" src="/storage/projects/<?php echo $project->dir."/".$project->getPicture('large'); ?> " class="fl-img"/>
+           <img alt="<?php echo $project->title; ?> - main picture" src="<?php echo $project->getPictureUrl("large");?>" class="fl-img"/>
           </a>
          
        </div> 

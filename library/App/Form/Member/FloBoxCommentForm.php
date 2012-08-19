@@ -16,25 +16,19 @@ class FloBoxCommentForm extends \Twitter_Bootstrap_Form_Horizontal
 
 	public function init()
 	{	
-		$this->_addClassNames('fl-form');
-		// Description of roles
-		 $this->addElement('hidden', 'logged_member', array(
-		 					'description' => '<div class="alert alert-info">Logged as: <strong>'.$this->member['name'].'</strong></div>',
-		 					'ignore' => true,
-		 					'decorators' => array(
-		 							array('Description', array('escape'=>false, 'tag'=>'')),
-		 					),
-		 			));
+		$this->_addClassNames('fl-form fl-form-flobox-comment');
+		
 		 
 		 // Description of roles
 		 $this->addElement('hidden', 'flobox_id', array('value'=>$this->flobox_id));
 
 		// TinyMCE configuration in the phtml file
 		$this->addElement('textarea', 'content', array(
-				'label' => 'Comment:',
+				'label' => 'Logged as: '.$this->member['name'],
 				'required' => true,
 				'rows' => 4,
-				'class' => "span7",
+				'class' => 'fl-width99',
+				'placeholder' => 'Your comment...',
 				'errorMessages' => array("You missing content of your comment."),
 				//'description' => "description",
 				'validators' => array("NotEmpty"),
@@ -43,7 +37,7 @@ class FloBoxCommentForm extends \Twitter_Bootstrap_Form_Horizontal
 		
 		// Form section
 		$this->addDisplayGroup(
-				array('logged_member','content','comment_id'),
+				array('content','comment_id'),
 				'main',
 				array( 'legend' => 'Answer')
 		);
@@ -52,7 +46,7 @@ class FloBoxCommentForm extends \Twitter_Bootstrap_Form_Horizontal
 		// submit button
 		$this->addElement('submit','submit',array(
 				'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
-				'label' => "Save",
+				'label' => "Comment",
 				'escape' => false,
 				'class' => 'btn btn-info'
 		));

@@ -29,10 +29,9 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 		<td><?php echo $update->created->format('Y/m/d'); ?></td>		
 		<td><?php echo $update->modified->format('Y/m/d'); ?></td>		
     	<td>
-            <a href="/member/my-project/update-edit/id/<?php echo $this->project->id?>/update_id/<?php echo $update->id ?>" class="btn btn-danger"><i class="icon-wrench icon-white"></i> edit</a>
-
-            <a href="/member/my-project/update-delete/id/<?php echo $this->project->id?>/update_id/<?php echo $update->id ?>" class="btn btn-danger"><i class="icon-remove icon-white"></i> delete</a>
-
+          <div class="input-prepend input-append">
+            <a href="/member/my-project/update-edit/id/<?php echo $this->project->id?>/update_id/<?php echo $update->id ?>" class="btn btn-info"><i class="icon-wrench icon-white"></i> Edit Update</a><a href="/member/my-project/update-delete/id/<?php echo $this->project->id?>/update_id/<?php echo $update->id ?>" class="btn btn-danger"><i class="icon-remove icon-white"></i> Delete</a>
+          </div>
     	</td>			
     	</tr>	 		
     <?php } ?>

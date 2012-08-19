@@ -32,9 +32,10 @@
 			</div>
 			
 			 <?php  $this->form->getElement('comment_id')->setValue($comment->id); // set target comment
-					echo $this->form; 
 			 ?>
-
+			 <div class="fl-cnt-100 fl-form-box">
+			 	<?php echo $this->form; ?>
+			 </div>
     	<?php } 
  	}
  	else {

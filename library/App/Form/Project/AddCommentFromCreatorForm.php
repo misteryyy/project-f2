@@ -15,33 +15,28 @@ class AddCommentFromCreatorForm extends \Twitter_Bootstrap_Form_Horizontal
 
 	public function init()
 	{	
-		// Description of roles
-		 $this->addElement('hidden', 'logged_member', array(
-		 					'description' => '<div class="alert alert-info">Logged as: <strong>'.$this->member['name'].'</strong></div>',
-		 					'ignore' => true,
-		 					'decorators' => array(
-		 							array('Description', array('escape'=>false, 'tag'=>'')),
-		 					),
-		 			));
+
+		$this->_addClassNames('fl-form fl-form-comment');
 		 
 		 // Description of roles
 		 $this->addElement('hidden', 'comment_id', array());
 
 		// TinyMCE configuration in the phtml file
 		$this->addElement('textarea', 'content', array(
-				'label' => 'message',
+				'label' => 'Logged as: '.$this->member['name'],
 				'required' => true,
 				'rows' => 4,
-				'class' => "span7",
+				'class' => "fl-width99",
+				'placeholder' => 'Write your respond...',
 				'errorMessages' => array("You missing content of your comment."),
-				'description' => "description",
+				//'description' => "description",
 				'validators' => array("NotEmpty"),
 		));
 
 		
 		// Form section
 		$this->addDisplayGroup(
-				array('logged_member','content','comment_id'),
+				array('content','comment_id'),
 				'main',
 				array( 'legend' => 'Answer')
 		);
@@ -50,7 +45,8 @@ class AddCommentFromCreatorForm extends \Twitter_Bootstrap_Form_Horizontal
 		// submit button
 		$this->addElement('submit','submit',array(
 				'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
-				'label' => "add comment",
+				'label' => "Respond",
+				'class' => 'btn btn-info',
 				'escape' => false,
 		));
 		  

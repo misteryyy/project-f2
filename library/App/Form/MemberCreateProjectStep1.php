@@ -66,7 +66,7 @@ class MemberCreateProjectStep1 extends \Twitter_Bootstrap_Form_Horizontal
 				'label' => 'Description:',
 				'required' => true,
 				'errorMessages' => array("You should have descripton of your project."),
-				'description' => "description",
+				//'description' => "description",
 				'class' => 'span8',
 				'validators' => array("NotEmpty"),
 				'disableLoadDefaultDecorators' => true,
@@ -78,7 +78,7 @@ class MemberCreateProjectStep1 extends \Twitter_Bootstrap_Form_Horizontal
 				'rows' => '4',
 				'required' => false,
 				'filters' => array('StringTrim'),
-				'description' => "description",
+				//'description' => "description",
 		));
 		
 		$this->addElement('textarea', 'issue', array(
@@ -87,7 +87,7 @@ class MemberCreateProjectStep1 extends \Twitter_Bootstrap_Form_Horizontal
 				'rows' => '4',
 				'required' => false,
 				'filters' => array('StringTrim'),
-				'description' => "description",
+				//'description' => "description",
 		));
 		
 		$this->addElement('textarea', 'lesson', array(
@@ -96,7 +96,7 @@ class MemberCreateProjectStep1 extends \Twitter_Bootstrap_Form_Horizontal
 				'rows' => '4',
 				'required' => false,
 				'filters' => array('StringTrim'),
-				'description' => "description",
+				//'description' => "description",
 		));
 		
 		$this->addElement('text', 'project_tags', array(
