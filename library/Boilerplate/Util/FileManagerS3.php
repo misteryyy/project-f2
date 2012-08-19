@@ -118,6 +118,26 @@ class Boilerplate_Util_FileManagerS3
 		}
 		
 		/**
+		 * Return file
+		 * @param unknown_type $file
+		 */
+		function findProjectBoardFile($file){
+			
+			$output = $this->bucket.'/projects/'.$this->project->dir."/pb/".$file->file;
+			
+			// check if the file exists
+			if(!$this->s3->isObjectAvailable($output)) {
+				throw new \Exception("The file doesn't exists." );
+			}
+			
+		
+			header( 'Content-Type:'.$file->type );
+			header( 'Content-Disposition: attachment;filename="'.$file->name.'"');
+			echo $this->s3->getObject($output);
+			
+		}
+		
+		/**
 		 * Create new thumbnail in temporary storage
 		 */
 		function createTemporaryThumbnailFromPost($user_id){

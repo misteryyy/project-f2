@@ -34,7 +34,7 @@ class FloBoxFacade {
 	 * @param unknown_type $id
 	 * @param unknown_type $data
 	 */
-	public function createFloMessage($id,$data = array()){
+	public function createFloMessage($user_id,$data = array()){
 
 		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
 		if(!$user){
