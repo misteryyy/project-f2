@@ -72,6 +72,18 @@ class UserFieldOfInterestTag extends \App\Entity\UserFieldOfInterestTag implemen
         return parent::removeUser($user);
     }
 
+    public function __get($property)
+    {
+        $this->__load();
+        return parent::__get($property);
+    }
+
+    public function __set($property, $value)
+    {
+        $this->__load();
+        return parent::__set($property, $value);
+    }
+
 
     public function __sleep()
     {

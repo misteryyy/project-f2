@@ -28,6 +28,12 @@ class ProjectBoardFile {
 	 * @Column(type="string", name="name")
 	 */
 	private $name;
+	
+	/**
+	 * @Column(type="string", name="file")
+	 */
+	private $file;
+	
 	/**
 	 * @Column(type="string", name="type")
 	 */
@@ -39,14 +45,19 @@ class ProjectBoardFile {
 	private $size;
 	
 	
+
 	/**
-	 *
-	 * @param $url unknown_type       	
+	 * 
+	 * @param unknown_type $name
+	 * @param unknown_type $type
+	 * @param unknown_type $size
+	 * @param real name $file
 	 */
-	public function __construct($name,$type,$size) {
+	public function __construct($name,$type,$size,$file) {
 		$this->name = $name;
 		$this->type = $type;
 		$this->size = $size;
+		$this->file = $file;
 		$this->created = new \DateTime ( "now" );
 		
 	}

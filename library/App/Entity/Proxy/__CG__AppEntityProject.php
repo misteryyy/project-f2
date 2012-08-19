@@ -201,6 +201,12 @@ class Project extends \App\Entity\Project implements \Doctrine\ORM\Proxy\Proxy
         return parent::getPicture($size);
     }
 
+    public function getPictureUrl($size = 'large')
+    {
+        $this->__load();
+        return parent::getPictureUrl($size);
+    }
+
     public function getCategory()
     {
         $this->__load();

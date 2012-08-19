@@ -16,7 +16,6 @@ class Project_IndexController extends  Boilerplate_Controller_Action_Abstract
 		$id = $this->_request->getParam("id");
 		// check id param for project
 		if(!is_numeric($id)){
-			echo $id . "is not numeric";
 			$this->_helper->FlashMessenger(array('error' => 'This project is not found, are you trying to hack us? :D '));
 			$this->_redirect('/project/error/');
 		}
@@ -95,10 +94,8 @@ class Project_IndexController extends  Boilerplate_Controller_Action_Abstract
     public function teamAction(){
     
     	$this->view->pageTitle .=  "~ Team ";
-    	
     	$facadeTeam = new \App\Facade\Project\TeamFacade($this->_em);	 
     	if($this->isCollaborator){
- 
     		$roles = $facadeTeam->findMemberRoleForProject($this->_member_id, $this->project_id);
     		$this->view->yourRole = $roles[0];
     	}
@@ -123,10 +120,11 @@ class Project_IndexController extends  Boilerplate_Controller_Action_Abstract
     	if ($this->_request->isPost()) {
     		if ($form->isValid($this->_request->getPost())) {
     			try{
-    				$fileManager = new Boilerplate_Util_FileManagerS3($this->project,"storage/projects/".$this->project->dir, "filename.jpg");
+    				$fileManager = new Boilerplate_Util_FileManagerS3($this->project);
     				// uploading all files to the server
     				$files = $fileManager->uploadFileToS3FromPost($this->project);
-    				//$facadeProjectBoard->addComment($this->_member_id, $this->project_id,$form->getValues(),$files);
+    				//debug($files);
+    				$facadeProjectBoard->addComment($this->_member_id, $this->project_id,$form->getValues(),$files);
     				$this->_helper->FlashMessenger( array('success' =>  "Comment has been added."));
     	
     			} catch (\Exception $e){
