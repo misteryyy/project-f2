@@ -72,6 +72,29 @@ class ProjectBoardFacade {
 		return new \Zend_Paginator($adapter);
 	}
 	
+	/**
+	 * Find file for project comment
+	 * @param unknown_type $project_id
+	 * @param unknown_type $file_id
+	 * @throws \Exception
+	 */
+	public function findFileForComment($project_id,$file_id){
+		
+		
+		$project = $this->em->getRepository ('\App\Entity\Project')->findOneById($project_id);
+		if(!$project){
+			throw new \Exception("Can't find this project.");
+		}
+
+		$file = $this->em->getRepository ('\App\Entity\ProjectBoardFile')->findOneById($file_id);
+		if(!$file){
+			throw new \Exception("Can't find this file.");
+		}
+
+		return $file;
+		
+	}
+	
 	
 	/*
 	 * Return the first layer of commments

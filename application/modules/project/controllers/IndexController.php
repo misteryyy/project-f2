@@ -74,6 +74,7 @@ class Project_IndexController extends  Boilerplate_Controller_Action_Abstract
     	$this->view->paginator = $paginator;
     	
     }
+
     
     /**
      * Survey Section in Project Page
@@ -104,6 +105,36 @@ class Project_IndexController extends  Boilerplate_Controller_Action_Abstract
     	$roles = $facadeTeam->findProjectRolesExceptLoggedUser($this->_member_id, $this->project_id);
     	$this->view->paginator = $roles; // its not actualy paginator
     
+    }
+    
+    
+    
+    /**
+     * Download file from project board
+     */
+    public function downloadAction(){
+    	$this->ajaxify();
+    	 
+    	$file_id = $this->_request->getParam("file_id");
+    	// check id param for project
+    	if(!is_numeric($file_id)){
+    		$this->_helper->FlashMessenger(array('error' => "This file doesn't exists"));
+    		$this->_redirect('/project/error/');
+    	}
+    	
+    	if($this->isCollaborator){
+    		$this->_helper->FlashMessenger(array('error' => "You are not collaborating on this project. Sorry."));
+    		$this->_redirect('/project/error/');
+    
+    	}
+    	 
+    	//find file
+    	$fileManager = new Boilerplate_Util_FileManagerS3($this->project);
+    	$facadeProjectBoard = new \App\Facade\Project\ProjectBoardFacade($this->_em);
+    	
+    	$file = $facadeProjectBoard->findFileForComment($this->project_id, $file_id);
+    	$output = $fileManager->findProjectBoardFile($file);
+       
     }
     
     /**

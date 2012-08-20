@@ -18,7 +18,7 @@ class Site_IndexController extends Boilerplate_Controller_Action_Abstract
     		// Feeding projects
     		$facadeProject = new \App\Facade\Site\ProjectFacade($this->_em);
     		$paginator = $facadeProject->findAllProjectsPaginator();
-    		$paginator->setItemCountPerPage(8); // items per page
+    		$paginator->setItemCountPerPage(9); // items per page
     		$page = $this->_request->getParam('page', 1);
     		$paginator->setCurrentPageNumber($page);
     		$this->view->paginator = $paginator;

@@ -2,7 +2,7 @@
 namespace App\Entity;
 
 /**
- * @Entity(repositoryClass="App\Repository\ProjectBoardFile")
+ * @Entity(repositoryClass="App\Repository\Project\ProjectBoardFile")
  * @Table(name="project_board_file",indexes={@index(name="search_project_board_file", columns={"project_board_comment_id"})})
  */
 class ProjectBoardFile {

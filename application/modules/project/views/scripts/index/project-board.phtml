@@ -76,7 +76,7 @@ $(function(){
 						// display children
 						foreach($comment->files as $file){ ?>		
 						   
-							<a href="/project/index/project-board/download/id/<?php echo $project->id;?>/file_id/<?php echo $file->id ;?>">
+							<a href="/project/index/download/id/<?php echo $comment->project->id;?>/file_id/<?php echo $file->id ;?>">
 							<?php echo $file->name ;?> </a>
 							<em>{<?php echo $file->getSizeFormat(); ?>,	<?php echo $file->type ; ?>}</em>
 							

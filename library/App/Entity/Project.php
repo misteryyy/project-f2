@@ -404,7 +404,6 @@ class Project {
 		if($config->app->s3->storage->enabled){			
 			return $config->app->s3->storage->web_url.'projects/'.$this->dir."/thumbs/".$this->getPicture($size);
 		}
-			
 		return '/storage/projects/'.$this->dir."/thumbs/".$this->getPicture($size);
 	
 	}

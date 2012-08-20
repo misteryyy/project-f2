@@ -95,69 +95,21 @@ class Member_ProfileSettingController extends  Boilerplate_Controller_Action_Abs
     	// Checking the file
     	
     	if($this->_request->isPost()){	
-    		
-    			$adapter = new Zend_File_Transfer_Adapter_Http();
-    			$config = new Zend_Config(Zend_Registry::get('config'));
-    			$uploadDir = $config->app->storage->profile;
+    		try{
+    			$fileManager = new Boilerplate_Util_FileManagerS3();
+    			$file = $fileManager->createThumbnailsForUser($this->loggedMember);
     			
-    			
-    			// setting upload file
-    			$adapter->setDestination($uploadDir);
-    			$adapter->addValidator('Size', false, 4*10*102400)
-    			->addValidator('Count', false, 1)
-    			->addValidator('Extension', false, 'jpg,jpeg,png')
-    			->addValidator('IsImage', false);
-
-    			$i= 1;
-    			foreach ($adapter->getFileInfo() as $file => $info) {
-    				
-    				// check if uploaded
-    				if (!$adapter->isUploaded($file)) {
-    					$errorMessage = "You haven't choose the file. Try it again :D.";
-    					$this->_helper->FlashMessenger($errorMessage);
-    					break;
-    				}
-		
-    				// validators are ok ?
-    				if (!$adapter->isValid($file)) {
-    					$errorMessage = "Please check the file: ".$info["name"] . ". \n<br />";
-    					$errorMessage .= implode("\n<br\>", $adapter->getMessages());
-    					$this->_helper->FlashMessenger( array('error' =>  $errorMessage));
-    					break;
-    				}
-    			
-    			// rename the file	
-    			$ext = substr(strrchr($info['name'],'.'), 1);
-    			$fileName = 'profile'.sha1("s@4d".$this->_member_id);
-    			
-    			// resolution path
-    			$path = $uploadDir.$fileName.'.'.$ext;	 
-    			$web_path = $this->_users_web_folder_path.$fileName.'.'.$ext;
-    			
-    			
-    			$adapter->addFilter('Rename', 
-     								array('target' => $path,	
-    										'overwrite' => true));				
-    			
-    			// receiving files
-    			if(!$adapter->receive($file)){
-     					debug($adapter->getMessages());	
-    					$this->_helper->FlashMessenger( array('error' => "Can't upload image to the server."));   
-    					break;
-    				}	
-    				
-     			$i++;	
-     		
     			// Add Profile Picture and process picture
     			$facadeUser = new \App\Facade\UserFacade($this->_em);
-    			$facadeUser->updateProfilePicture($this->_member_id,$path); // default 3 resolution
-
-    			$this->_helper->FlashMessenger( array('success' => "Profile picture has been changed."));
+    			$facadeUser->updateProfilePicture($this->_member_id,$file['file']); // default 3 resolution
+    			
+    			//$this->_helper->FlashMessenger( array('success' => "Profile picture has been changed."));
+    			//$this->_redirect('/member/profile-setting/member-picture');
+    		}catch(\Exception $e){
+    			$this->_helper->FlashMessenger( array('error' => $e->getMessage()));
     			$this->_redirect('/member/profile-setting/member-picture');
     			
-    			
-    	} // end foreach through all files
-	    
+    		}    
     	}// end if post
     
     }

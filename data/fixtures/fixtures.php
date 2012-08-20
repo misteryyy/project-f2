@@ -27,7 +27,6 @@
 
 // $em->flush();
 
-
 // SETTING BASIC SYSTEM ROLES
 $role_visitor = new \App\Entity\UserRole();
 $role_visitor->setName(\App\Entity\UserRole::SYSTEM_ROLE_VISITOR);
@@ -104,13 +103,15 @@ $project->setUserInfo($userInfo);
 $em->persist($project);
 
 
+
 $user2 = new \App\Entity\User();
-$user2->setEmail("visitor@gmail.com");
-$user2->setPassword("visitor");
-$user2->setName("Visitor Jean");
+$user2->setEmail("jake.zahradnik@gmail.com");
+$user2->setPassword("Jake123!!!");
+$user2->setName("Jake Zahradnik");
 // setting roles
 $user2->addRole($role_visitor);
 $user2->addRole($role_member);
+$user2->addRole($role_admin);
 
 // adding userInfo / skype, phone, ...
 $userInfo = new \App\Entity\UserInfo();
