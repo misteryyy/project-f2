@@ -61,7 +61,7 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
                 'class' => 'span3',
     			'filters'    => array('StringTrim'),
     			//	'errorMessages' => array("The date should be in format"),
-    			'description' => "Contact phone number in any format you want. Max 50 letters. ",
+    			//'description' => "Contact phone number in any format you want. Max 50 letters. ",
     			'validators' => array( array('StringLength', false, array(0,50) ))
     	));
     	
@@ -83,7 +83,7 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
                 'class' => 'span3',
     			'filters'    => array('StringTrim'),
     			//	'errorMessages' => array("The date should be in format"),
-    			'description' => "Your Instant Messengers accounts. Max 50 letters.",
+    			//'description' => "Your Instant Messengers accounts. Max 50 letters.",
     			'validators' => array( array('StringLength', false, array(0,50) ))
     	
     	));
@@ -94,7 +94,7 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
                 'class' => 'span3',
     			'filters'    => array('StringTrim'),
     			//	'errorMessages' => array("The date should be in format"),
-    			'description' => "Your websites. Max 100 letters.",
+    			//'description' => "Your websites. Max 100 letters.",
     			'validators' => array( array('StringLength', false, array(0,100) ))	 
     	));
     	
@@ -105,7 +105,7 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
     			'rows' => 5,
                 'class' => 'span8',
     			//	'errorMessages' => array("The date should be in format"),
-    			'description' => "Who are you? Describe yourself in max 1000 letters.",
+    			//'description' => "Who are you? Describe yourself in max 1000 letters.",
     			'validators' => array( array('StringLength', false, array(0,1000) ))
     	));
     	 
@@ -116,7 +116,7 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
                 'rows' => 2,
     			'filters'    => array (array('StringTrim'), array("StringToLower")),
     			//	'errorMessages' => array("The date should be int format"),
-    			'description' => "outsourcing, start ups, programming, ... ",
+    			//'description' => "outsourcing, start ups, programming, ... ",
     			'validators' => array( array('StringLength', false, array(0,250) ),
     						//	array('alnum',false, array("allowWhiteSpace" => true)), cant use with commas
     							array('regex',false, array('/^([\+\-\#\.a-z0-9A-Z ]*[,]?)+$/') ) // 
@@ -125,10 +125,8 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
   	
     	//Member email
     	$this->addElement('text', 'email', array(
-    			'label' => 'Email',
+    			'label' => 'Email:',
     			'required' => false,
-    			'prepend'       => '@',
-    			'class'         => 'focused',
     			'description' => "Your email which is used for login. Can't be changed.",
     			'validators' => array("EmailAddress"),
     			'attribs'    => array('disabled' => 'disabled')
@@ -141,25 +139,41 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
     			)
     	);
     		
+            /**
+             * FIELDSET top left
+             */
+            $this->addDisplayGroup(
+                    array('name',
+                          'dateOfBirth',
+                          'dateOfBirthVisibility',
+                          'country',
+                          'email',
+                          'emailVisibility'
+                          ), 
+                    'Personal Info', array('legend' => 'Personal Info')
+            );
+
         	/**
-        	 * ORDERING IN FIELDSET
+        	 * FIELDSET top right
         	 */
          	$this->addDisplayGroup(
-        			array('name',
-        				  'dateOfBirth',
-        					'dateOfBirthVisibility',
-        					'country',
-        					'email',
-        					'emailVisibility'
-        					,'im',
-        					'skype',
-        					'website'
-        					,'phone',
-        					'description',
-        					'fieldOfInterestTag'
-        					), 
-         			'Personal Info',	array('legend' => 'Personal Info')
+        			array('im',
+        				  'skype',
+        				  'website',
+        				  'phone'
+        				), 
+         			'Contacts',	array('legend' => 'Contacts')
         	);
+
+            /**
+             * FIELDSET bottom
+             */
+            $this->addDisplayGroup(
+                    array('description',
+                          'fieldOfInterestTag'
+                            ), 
+                    'About',    array('legend' => 'About')
+            );
        
          	// submit button
          	$this->addElement('submit','submit',array(

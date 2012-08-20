@@ -2864,6 +2864,18 @@ label a, label a:hover, label a:focus, label a:visited{
   width: 100%;
 }
 
+fieldset#fieldset-PersonalInfo, fieldset#fieldset-Contacts{
+  width: 49%;
+  float: left;
+  margin: 0px;
+  padding: 0 1% 0 0;
+}
+
+fieldset#fieldset-Contacts{
+  padding: 0 0 0 1%;
+  background: #eeeeee;
+}
+
 
 
 
