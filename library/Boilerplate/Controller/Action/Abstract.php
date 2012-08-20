@@ -3,6 +3,7 @@
 abstract class Boilerplate_Controller_Action_Abstract extends Zend_Controller_Action {
 
    protected $_member = array(); 
+   protected $loggedMember;
    protected $_member_id = 1;
    protected $facadeAcl;
    protected $facadeNotification;
@@ -27,7 +28,6 @@ abstract class Boilerplate_Controller_Action_Abstract extends Zend_Controller_Ac
   * Disable layout, prepare for Ajax
   */ 
  public function ajaxify(){
- 	
  	if (Zend_Controller_Action_HelperBroker::hasHelper('layout')) {
  		$this->_helper->layout->disableLayout();
  	}
@@ -49,9 +49,7 @@ abstract class Boilerplate_Controller_Action_Abstract extends Zend_Controller_Ac
   // Setting up the instance for user who is logged or not
  	$this->_em = Zend_Registry::get('em');
 	$this->view->em = $this->_em;
- 	$config = Zend_Registry::get('config');
- 	$profilePhotoPathWeb = $config['app']['storage']['profile_web'];
-     	
+  	
   	if(Zend_Auth::getInstance()->hasIdentity()){
     		$this->_member = Zend_Auth::getInstance()->getIdentity();	
     		$this->_member_id = $this->_member['id'];
@@ -65,22 +63,18 @@ abstract class Boilerplate_Controller_Action_Abstract extends Zend_Controller_Ac
   				$userArray["email"] =$user->getEmail();
   				$userArray["id"] =$user->getId();
   				$userArray["roles"] =$user->getRolesArray();
-  				$userArray["profile_picture_200"] = $profilePhotoPathWeb.$user->getProfilePicture(); 
-  				$userArray["profile_picture_100"] = $profilePhotoPathWeb.$user->getProfilePicture(\App\Entity\User::PROFILE_PHOTO_RESOLUTION_100);
-  				$userArray["profile_picture_50"] =  $profilePhotoPathWeb.$user->getProfilePicture(\App\Entity\User::PROFILE_PHOTO_RESOLUTION_50);  					
   			}
     		$this->_member = $userArray;	 
     		
     	
    }
     	
-   $this->view->userWebStorage = '/storage/users/';
-   $this->view->projectWebStorage = '/storage/projects/';
    $this->view->member = $this->_member;
    
    // save user object, used for checking if this object is in projects or in users
    $facadeUser = new \App\Facade\UserFacade($this->_em); 
    $this->view->loggedMember = $facadeUser->findOneUser($this->_member_id);
+   $this->loggedMember = $this->view->loggedMember;
    
    // for permission checking
    $this->facadeAcl = new \App\Facade\ACLFacade($this->_em);

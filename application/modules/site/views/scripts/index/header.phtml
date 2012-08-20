@@ -50,7 +50,7 @@
             <li class="dropdown">
           
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">  
-                  <img src="/storage/users/<?php echo $this->loggedMember->getProfilePicture(50).'?foo='.time()?>" 
+                  <img src="<?php echo $this->loggedMember->getProfilePictureUrl("tiny").'?foo='.time()?>" 
                   alt="<?= $this->member['name'];?>" width="25" height="25" alt="" class="fl-menu-img"/> 
                    <?= $this->member['email']?> <b class="caret"></b></a>
               <ul class="dropdown-menu fl-width100">

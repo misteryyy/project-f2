@@ -1,15 +1,12 @@
-  <?php
+<?php
   $this->step = 2;
   echo $this->partial('profile-setting/profile-setting-navigation.phtml',array("step" => $this->step));
-  ?>
-
-
-             <div class="fl-cnt-100">
+?>
                 <div class="fl-cnt-50">
                   <h3>Current picture:</h3>
                   <div class="fl_thin_divider"></div>
                   <div class="fl-cnt-100 text-center">
-                    <img src="/storage/users/<?php echo $this->loggedMember->getProfilePicture().'?foo='.time()?>" alt="<?= $this->member['name'];?>" class="fl-img" />
+                    <img src="<?php echo $this->loggedMember->getProfilePictureUrl('large').'?foo='.time()?>" alt="<?php echo $this->loggedMember->name;?> ~ Profile Picture" class="fl-img" />
                   </div>
                 </div>
                 <div class="fl-cnt-50">
@@ -21,18 +18,10 @@
                       Image will be automatically cropped. Try to upload image which has resolution 200x200 to have the best image quality and proportion.
                     </div>
                   </div>
+<div class="fl-cnt-50">
+	<?php  echo $this->form; ?>
+</div>
+</div>
 
-<?php  echo $this->form;  
-    
-//  $dir = new DirectoryIterator(APPLICATION_PATH . '/../public/storage/users/');
-//  foreach ($dir as $fileinfo) {
-//      if (!$fileinfo->isDot()) {
-//          var_dump($fileinfo->getFilename());
-//      }
-//  }
-?>
-
-                </div>
-              </div>
   
     

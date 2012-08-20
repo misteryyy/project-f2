@@ -6,10 +6,26 @@ namespace App\Entity;
  * @Table(name="user",indexes={@index(name="search_user_email",columns={"email"})})
  */
 class User {
+
+	const PROFILE_PHOTO_RESOLUTION_TINY = 'tiny';
+	const PROFILE_PHOTO_RESOLUTION_TINY_WIDTH = 25;
+	const PROFILE_PHOTO_RESOLUTION_TINY_HEIGHT = 25;
 	
-	const PROFILE_PHOTO_RESOLUTION_50 = 50;
-	const PROFILE_PHOTO_RESOLUTION_100 = 100;
-	const PROFILE_PHOTO_RESOLUTION_200 = 200;
+	const PROFILE_PHOTO_RESOLUTION_SMALL = 'small';
+	const PROFILE_PHOTO_RESOLUTION_SMALL_WIDTH = 50;
+	const PROFILE_PHOTO_RESOLUTION_SMALL_HEIGHT = 50;
+	
+	const PROFILE_PHOTO_RESOLUTION_MEDIUM = 'medium';
+	const PROFILE_PHOTO_RESOLUTION_MEDIUM_WIDTH = 100;
+	const PROFILE_PHOTO_RESOLUTION_MEDIUM_HEIGHT = 100;
+	
+	const PROFILE_PHOTO_RESOLUTION_BIG = 'big';
+	const PROFILE_PHOTO_RESOLUTION_BIG_WIDTH = 150;
+	const PROFILE_PHOTO_RESOLUTION_BIG_HEIGHT = 150;
+	
+	const PROFILE_PHOTO_RESOLUTION_LARGE = 'large';
+	const PROFILE_PHOTO_RESOLUTION_LARGE_WIDTH = 200;
+	const PROFILE_PHOTO_RESOLUTION_LARGE_HEIGHT = 200;
 	
 	/**
 	 * @Id @Column(type="integer", name="id")
@@ -218,29 +234,52 @@ class User {
 		$this->emailNotification = $emailNotification;
 	}
 
+	/**
+	 * Return profile picture for user
+	 * Options: large,big,medium,small,tiny
+	 * @param unknown_type $size
+	 */
+	public function getProfilePicture($size = self::PROFILE_PHOTO_RESOLUTION_LARGE) {
 	
-	
-	
-	public function getProfilePicture($resolution = 200){
-	
-		if($this->profilePicture == null){
-			return "no_image_".$resolution.".jpg";
+		if ($this->profilePicture == null) {
+			return null;
 		}
-		
-		// Return different resolutions
-		if($resolution == \App\Entity\User::PROFILE_PHOTO_RESOLUTION_100 ||
-				$resolution == \App\Entity\User::PROFILE_PHOTO_RESOLUTION_50 )
-		{
-			$ext = substr(strrchr($this->profilePicture, '.'), 1);
-			$pre = substr($this->profilePicture,0,strrpos($this->profilePicture, '_'));
-				
-			return $pre.'_'.$resolution.'.'.$ext;
-				
+			
+		$arr = array (self::PROFILE_PHOTO_RESOLUTION_LARGE,
+				self::PROFILE_PHOTO_RESOLUTION_BIG,
+				self::PROFILE_PHOTO_RESOLUTION_SMALL,
+				self::PROFILE_PHOTO_RESOLUTION_MEDIUM ,
+				self::PROFILE_PHOTO_RESOLUTION_TINY );
+	
+		if (! in_array ( $size, $arr )) {
+			return $this->profilePicture;
 		}
 	
-		return $this->profilePicture;
+		$ext = substr ( strrchr ( $this->profilePicture, '.' ), 1 );
+		$pre = substr ( $this->profilePicture, 0, strrpos ( $this->profilePicture, '_' ) );
+		return $pre . '_' . $size . '.' . $ext;
 	}
+
+	/**
+	 * Return the whole address for image url
+	 * @param unknown_type $size
+	 */
+	public function getProfilePictureUrl($size = self::PROFILE_PHOTO_RESOLUTION_LARGE){
+		
+		if($this->getProfilePicture($size) == null) {
+			$file =  "no_profile_picture_" . $size . ".jpg";
+		} else {$file = $this->getProfilePicture($size);}
+
+		$config = new \Zend_Config(\Zend_Registry::get('config'));
+		if($config->app->s3->storage->enabled){
+			return $config->app->s3->storage->web_url.'users/'.$file;
+		}
+			
+		return '/storage/users/'.$file;
 	
+	}
+
+		
 	/**
 	 * Return all specific roles
 	 */
