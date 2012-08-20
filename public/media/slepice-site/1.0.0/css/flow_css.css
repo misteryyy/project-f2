@@ -1116,7 +1116,7 @@ p.fl-list-project-queue{
 }
 
 .fl-filtr-form-project-level, .fl-filtr-form-passion-level{
-  width: 30%;
+  width: 31%;
   margin: 10px 10px 0 20px;
   float: left;
 }
@@ -2476,6 +2476,10 @@ tr.fl-user-banned:hover{
   width: 95%;
 }
 
+.fl-width97{
+  width: 97.666%;
+}
+
 .fl-width99{
   width: 98.666%;
 }
@@ -2663,8 +2667,29 @@ tr.fl-user-banned:hover{
   margin-left: 30px;
 }
 
+.fl-form span.help-inline,
+.fl-form-enter span.help-inline{
+  display: block;
+  width: 98%;
+  padding: 6px;
+  margin-top: 5px;
+  color: #b22e2e;
+  font-size: 11px;
+  background-color: #f6c7c7;
+  border: 1px solid #cd8d8d;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 1px 1px #ecb8b8;
+  -moz-box-shadow: inset 0 1px 1px #ecb8b8;
+  box-shadow: inset 0 1px 1px #ecb8b8;
+}
 
-.help-block{
+.fl-form-enter span.help-inline{
+  width: 96.555%;
+}
+
+p.help-block{
   padding: 10px;
   background-color: #f7f7f7;
   border: 1px solid #e9e9e9;
@@ -2674,7 +2699,7 @@ tr.fl-user-banned:hover{
   -webkit-box-shadow: inset 0 1px 1px #f2f2f2;
   -moz-box-shadow: inset 0 1px 1px #f2f2f2;
   box-shadow: inset 0 1px 1px #f2f2f2;
-  color: #939393;
+  color: #939393 !important;
   font-size: 11px;
 }
 
@@ -2682,11 +2707,48 @@ tr.fl-user-banned:hover{
   background: #eeeeee;
 }
 
+.fl-form-enter-container{
+  width: 40%;
+  margin: 0 30% 0 30%;
+  float: left;
+
+}
+
+.fl-form-enter{
+  width: 100%;
+  float: left;
+  padding: 0px;
+  background: #f5f5f5;
+  border: 1px solid #eeeeee;
+}
+
+.fl-links{
+  width: 100%;
+  clear: both;
+  float: left;
+  margin: 10px 0 0 0;
+}
+
+.fl-links a, .fl-links a:hover, .fl-links a:focus, .fl-links a:visited{
+  display: block;
+  font-size: 11px;
+  color: #acacac;
+  text-decoration: underline;
+}
+
+.fl-links a:hover, .fl-links a:focus{
+  color: #6e6e6e;
+  text-decoration: none;
+}
+
 .fl-form-new-poll, 
 .fl-form-update,
 .fl-form-flobox,
 .fl-form-flobox-comment,
-.fl-form-comment{
+.fl-form-comment,
+.fl-form-login,
+.fl-form-lost,
+.fl-form-signup{
   width: 96%;
   margin: 2%;
   float: left;
@@ -2708,6 +2770,12 @@ tr.fl-user-banned:hover{
   margin: 0 0 8px 0;
 }
 
+.fl-form-login .control-group,
+.fl-form-lost .control-group,
+.fl-form-signup .control-group{
+  margin: 0 0 10px 0;
+}
+
 [class*="fl-form-"] .controls{
   width: 100%;
 }
@@ -2725,6 +2793,29 @@ tr.fl-user-banned:hover{
   float: left;
 }
 
+.fl-form-signup .fl-control-label-checkbox,
+.fl-step5-form .fl-control-label-checkbox{
+  display: inline;
+  font-weight: normal;
+}
+
+label a, label a:hover, label a:focus, label a:visited{
+  text-decoration: underline;
+}
+
+.fl-form-signup .fl-controls-checkbox,
+.fl-step5-form .fl-controls-checkbox{
+  float: left;
+  width: 100%;
+}
+
+.fl-form-signup .fl-controls-checkbox input,
+.fl-step5-form .fl-controls-checkbox input{
+  float: left;
+  width: 15px;
+  margin: 2px 8px 2px 3px;
+}
+
 
 .fl-form-new-poll .fl_thin_divider{
   margin: 8px 0 8px 0;
@@ -2738,6 +2829,13 @@ tr.fl-user-banned:hover{
   border: 0;
   *zoom: 1;
 }
+
+.fl-form-login .form-actions,
+.fl-form-lost .form-actions,
+.fl-form-signup .form-actions{
+  background: #f5f5f5;
+}
+
 
 .fl-form-new-poll .control-group > label.optional,
 .fl-form-update label[for="content"]{
@@ -2755,6 +2853,25 @@ tr.fl-user-banned:hover{
 .fl-form-comment textarea{
   margin: 5px 0 5px 0;
 }
+
+.fl-application-form-lvl fieldset{
+  width: 98%;
+  margin: 0 1% 0 1%;
+  float: left;
+}
+
+.fl-application-form-lvl .controls{
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
 
 
 .fl-simpletip-tooltip{

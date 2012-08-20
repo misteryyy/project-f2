@@ -30,6 +30,7 @@ class AddProjectApplicationLevel2Form extends \Twitter_Bootstrap_Form_Horizontal
 	 */
 	public function init()
 	{
+		$this->_addClassNames('fl-application-form-lvl');
 		// ajax call
 		$this->setAction("/project/widget/ajax-application/id/".$this->project->id."/_method/create-level-2");
 		$this->addAttribs(array("id" => "form-application-level-2-".$this->role));
@@ -70,7 +71,7 @@ class AddProjectApplicationLevel2Form extends \Twitter_Bootstrap_Form_Horizontal
 				'value' => $this->role,
 				'required' => true,
 				'disabled' => true,
-				'class' => 'span5',
+				'class' => 'fl-width97',
 				'filters'    => array('StringTrim'),
 				//'description' => "Position you are applying for.",
 				'validators' => array( array('StringLength', false, array(0,100) ))));
@@ -99,7 +100,7 @@ class AddProjectApplicationLevel2Form extends \Twitter_Bootstrap_Form_Horizontal
 				'label' => 'What can you offer for this project?',
 				'required' => true,
 				'rows' => 4,
-				'class' => 'span5',
+				'class' => 'fl-width97',
 				'errorMessages' => array("You should have descripton of your project."),
 				//'description' => "description",
 				'validators' => array("NotEmpty"),

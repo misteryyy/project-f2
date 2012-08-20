@@ -28,7 +28,7 @@ protected $categories; // Array of categories from DB
 			
 			// Priority
 			$this->addElement('select','category', array(
-					'label' => 'Category',
+					'label' => 'Category:',
 					'class' => 'fl-width100 fl-margin0',
 					'multiOptions' =>  array_merge(array('0'=>"All"),$this->categories),
 					'decorators' => array(array('ViewHelper'),array('Label',array('class'=>"hide"))),
@@ -40,7 +40,8 @@ protected $categories; // Array of categories from DB
 			}
 			// Passion Bar
 			$this->addElement('select','priority', array(
-					'label' => 'Passion Level',
+					'label' => 'Passion Level:',
+					'class' => "fl-filtr-form-level",
 					'multiOptions' => array_merge(array('0'=>"All"),$priority),
 					'disableLoadDefaultDecorators' => true,
 					'decorators' => array(array('ViewHelper'),array('Label')),
@@ -48,9 +49,9 @@ protected $categories; // Array of categories from DB
 				
 			// Level
 			$this->addElement('select','level', array(
-					'label' => 'Select Project Level',
+					'label' => 'Select Project Level:',
 					'class' => "fl-filtr-form-level",
-					'multiOptions' => array(''=>"All",1 => 1,2 =>2,3 => 3)
+					'multiOptions' => array(''=>"All",1 => 'Level 1',2 => 'Level 2',3 => 'Level 3')
 			));
 			
 			$addToGroup[] = 'category';
@@ -59,7 +60,7 @@ protected $categories; // Array of categories from DB
 
  			// Project Roles
  			$this->addElement('MultiCheckbox','project_role',array(
- 					'label' => "Choose project roles",
+ 					'label' => "Choose project roles:",
  					'multiOptions' => $arrSpecRoles,
  					'disableLoadDefaultDecorators' => true,
  					'decorators' => array('ViewHelper'),
@@ -71,7 +72,7 @@ protected $categories; // Array of categories from DB
 
 			
 			$this->addElement('text', 'q', array(
-					'label' => 'Keyword',
+					'label' => 'Keywords:',
 					'required' => false,
 					'filters'    => array('StringTrim'),
 					'class' => "fl-width85",
