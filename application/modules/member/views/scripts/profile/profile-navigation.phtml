@@ -39,7 +39,7 @@
               }
         ?>
    			<div class="fl-membeprofile-head">
-              <img src="/storage/users/<?php echo $this->user->getProfilePicture(50)?>" alt="<?= $this->member['name'];?>" class="fl-memberprofile-member-img-thumb" />
+              <img src="<?php echo $this->user->getProfilePictureUrl("small")?>" alt="<?= $this->member['name'];?>" class="fl-memberprofile-member-img-thumb" />
               <h2><?php echo $this->user->getName(); ?></h2>
               <p class="fl_project_head_info">
                 <i class="icon-time"></i> Member since <?php echo $this->user->created->format('d/m/y');?>, <i class="icon-thumbs-up"></i> 

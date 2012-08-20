@@ -20,12 +20,12 @@ class User {
 	const PROFILE_PHOTO_RESOLUTION_MEDIUM_HEIGHT = 100;
 	
 	const PROFILE_PHOTO_RESOLUTION_BIG = 'big';
-	const PROFILE_PHOTO_RESOLUTION_BIG_WIDTH = 150;
-	const PROFILE_PHOTO_RESOLUTION_BIG_HEIGHT = 150;
+	const PROFILE_PHOTO_RESOLUTION_BIG_WIDTH = 120;
+	const PROFILE_PHOTO_RESOLUTION_BIG_HEIGHT = 120;
 	
 	const PROFILE_PHOTO_RESOLUTION_LARGE = 'large';
-	const PROFILE_PHOTO_RESOLUTION_LARGE_WIDTH = 200;
-	const PROFILE_PHOTO_RESOLUTION_LARGE_HEIGHT = 200;
+	const PROFILE_PHOTO_RESOLUTION_LARGE_WIDTH = 167;
+	const PROFILE_PHOTO_RESOLUTION_LARGE_HEIGHT = 167;
 	
 	/**
 	 * @Id @Column(type="integer", name="id")
@@ -267,7 +267,9 @@ class User {
 	public function getProfilePictureUrl($size = self::PROFILE_PHOTO_RESOLUTION_LARGE){
 		
 		if($this->getProfilePicture($size) == null) {
-			$file =  "no_profile_picture_" . $size . ".jpg";
+			$file =  "no_user_image_" . $size . ".jpg";
+			return '/media/slepice-site/1.0.0/img/'.$file;
+			
 		} else {$file = $this->getProfilePicture($size);}
 
 		$config = new \Zend_Config(\Zend_Registry::get('config'));
