@@ -17,7 +17,7 @@ class MemberCreateProjectStep5 extends \Twitter_Bootstrap_Form_Horizontal
 	public function init()
 	{
 		
-		
+		$this->_addClassNames('fl-form fl-step5-form');
 		
 		$this->addElement('checkbox', 'accept', array(
 				'label'=>'Do you agree with <a href="/index/privacy">Terms & Conditions</a>?',
@@ -36,10 +36,10 @@ class MemberCreateProjectStep5 extends \Twitter_Bootstrap_Form_Horizontal
 						array('Addon'),
 						array('ElementErrors'),
 						array('Description', array('tag' => 'p', 'class' => 'help-block')),
-						array('HtmlTag', array('tag' => 'div', 'class' => 'controls')),
-						array('Label', array('class' => 'control-label','escape' => false)),
+						array('Label', array('class' => 'fl-control-label-checkbox','escape' => false)),
+						array('HtmlTag', array('tag' => 'div', 'class' => 'fl-controls-checkbox')),
 						array('Wrapper')
-				),
+						),	
 				'required'=>true,
 		));
 		

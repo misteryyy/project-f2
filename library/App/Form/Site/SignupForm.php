@@ -6,27 +6,31 @@ class SignupForm extends \Twitter_Bootstrap_Form_Horizontal
 	public function init()
 	{	
 	
+		$this->_addClassNames('fl-form fl-form-signup');
 		$this->addAttribs(array("id" => "form-sign-up"));
 		$this->addElement('text', 'name', array(
-				'label' => 'Name',
+				'label' => 'Your Name:',
+				'class' => 'fl-width97',
 				'required' => true,
 				'filters' => array('StringTrim'),
 				//'errorMessages' => array("You have to have project title. You can use just letters and numbers"),
-				//'description' => "name description",
+				'description' => "This name will be used in the whole FLO~ system!",
 				'validators' => array( array('alnum',false, array("allowWhiteSpace" => true)), array('StringLength', false, array(1,100)) )
 		));
 			
 		$this->addElement('text', 'email', array(
-				'label' => 'Email',
+				'label' => 'Email:',
+				'class' => 'fl-width97',
 				'required' => true,
-				'errorMessages' => array("You should have emailll which will simply describe your goal."),
+				'errorMessages' => array("You should have email which will simply describe your goal."),
 				//'description' => "description",
 				'validators' => array("emailAddress"),
 		));
 
 		$this->addElement('text', 'email_verification', array(
-				'label' => 'Email verification',
+				'label' => 'Email verification:',
 				'required' => true,
+				'class' => 'fl-width97',
 				'errorMessage' => "Email is not the same as previous one.",
 				//'description' => "description",
 				'validators' => array(array("emailAddress"),
@@ -35,15 +39,17 @@ class SignupForm extends \Twitter_Bootstrap_Form_Horizontal
 		));
 		
 		$this->addElement('password', 'password', array(
-				'label' => 'Password',
+				'label' => 'Password:',
 				'required' => true,
+				'class' => 'fl-width97',
 				//'description' => "description",
 				'validators' => array( array('StringLength',array(5,20)))
 				));
 		
 		$this->addElement('password', 'password_verification', array(
-				'label' => 'Password verification',
+				'label' => 'Password verification:',
 				'required' => true,
+				'class' => 'fl-width97',
 				'errorMessages' => array("Password is not the same as previous one."),
 				//'description' => "description",
 				'validators' => array(
@@ -52,12 +58,22 @@ class SignupForm extends \Twitter_Bootstrap_Form_Horizontal
 						)
 				)
 		));
+
+		// Notification about level
+		 $this->addElement('hidden', 'divider', array(
+		 		'description' => '<div class="fl_thin_divider"></div>',
+		 		'ignore' => true,
+		 		'decorators' => array(
+		 				array('Description', array('escape'=>false, 'tag'=>'')),
+		 		),
+		 ));
+		
 		
 		
 		
 		// Passion Bar
 		$this->addElement('radio','verification', array(
-				'label' => 'Select second value.',
+				'label' => 'Select second value:',
 				'required' => true,
 				'errorMessages' => array("You have choose second value. Which is second :)"),
 				//'description' => "description",
@@ -94,8 +110,8 @@ class SignupForm extends \Twitter_Bootstrap_Form_Horizontal
 						array('Addon'),
 						array('ElementErrors'),
 						array('Description', array('tag' => 'p', 'class' => 'help-block')),
-						array('HtmlTag', array('tag' => 'div', 'class' => 'controls')),
-						array('Label', array('class' => 'control-label','escape' => false)),
+						array('Label', array('class' => 'fl-control-label-checkbox','escape' => false)),
+						array('HtmlTag', array('tag' => 'div', 'class' => 'fl-controls-checkbox')),
 						array('Wrapper')
 						),		
 				'required'=>true,
@@ -103,14 +119,15 @@ class SignupForm extends \Twitter_Bootstrap_Form_Horizontal
 		
 
 		$this->addDisplayGroup(
-				array('name','email','email_verification','password','password_verification','verification','accept'), 'Sign Up', array('legend' => 'Sign up')
+				array('name','email','email_verification','password','password_verification','divider','verification','accept'), 'Sign Up', array('legend' => 'Sign up')
 		);
 
 		
 		// submit button
 		$this->addElement('submit','submit',array(
 				'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
-				'label' => "Let's dive into FLO",
+				'label' => "Sign up for FLO~",
+				'class' => 'btn btn-inverse',
 				'escape' => false,
 		));
 		 

@@ -122,18 +122,22 @@ echo $this->partial('project/create-project-navigation.phtml',array("step" => $t
                   
                 </div>
 
+                <div class="fl-cnt-100">
                 <?php if(!$this->thirdStep['role_widget_disable']){ ?>
                 <span class="fl-publishing-label">Questions fo new members</span>
                   <p class="fl-publishing-title">
-                <?php
-				for($i=1;$i < 6; $i++){
- 					echo "<strong>".$i.".</strong> ".$this->thirdStep['question_'.$i]." <br />";
-				}
-				}else {
-					echo "Widget is DISABLE. No questions.";
-				} ?>
-				  </p>
-			<div class="fl-cnt-100">
-                <?php echo $this->form;?>
-            </div>
+                  <?php
+            				for($i=1;$i < 6; $i++){
+             					echo "<strong>".$i.".</strong> ".$this->thirdStep['question_'.$i]." <br />";
+            				}
+            				}else {
+            					//echo "Widget is DISABLE. No questions.";
+            				} ?>
+        				  </p>
+                </div>
+
+          			<div class="fl-cnt-100">
+                  <span class="fl-publishing-label">Terms &amp; Conditions </span>
+                  <?php echo $this->form;?>
+                </div>
 </div>

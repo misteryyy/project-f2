@@ -6,20 +6,22 @@ class LoginForm extends \Twitter_Bootstrap_Form_Horizontal
 {
    public function init()
     {
+
+        $this->_addClassNames('fl-form fl-form-login');
+
     	//Member email
     	$this->addElement('text', 'email', array(
-    			'label' => 'Email',
+    			'label' => 'Email:',
     			'required' => true,
-    			'prepend'       => '@',
-    			'class'         => 'focused',
+    			'class' => 'fl-width97',
     			'validators' => array("EmailAddress")
     	));
     	
     	//Member email
     	$this->addElement('password', 'password', array(
-    			'label' => 'Password',
+    			'label' => 'Password:',
     			'required' => true,
-    			'class'         => 'focused',
+    			'class' => 'fl-width97',
     	));
     	
         	/**
@@ -34,7 +36,8 @@ class LoginForm extends \Twitter_Bootstrap_Form_Horizontal
          	// submit button
          	$this->addElement('submit','submit',array(
          			'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
-         			'label' => "Login",
+         			'label' => "Log In",
+                    'class' => 'btn btn-inverse',
          			'escape'        => false,
          	));
          	 

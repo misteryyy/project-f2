@@ -28,6 +28,7 @@ class AddProjectApplicationForm extends \Twitter_Bootstrap_Form_Horizontal
 	 */
 	public function init()
 	{
+		$this->_addClassNames('fl-application-form-lvl');
 		// ajax call
 		$this->setAction("/project/widget/ajax-application/id/".$this->project->id."/_method/create");
 		$this->addAttribs(array("id" => "form-application"));
@@ -97,7 +98,7 @@ class AddProjectApplicationForm extends \Twitter_Bootstrap_Form_Horizontal
 				'label' => $q->question,
 				'required' => true,
 				'rows' => 4,
-				'class' => 'span5',
+				'class' => 'fl-width97',
 				'errorMessages' => array("You should have descripton of your project."),
 				//'description' => "description",
 				'validators' => array("NotEmpty"),
@@ -126,7 +127,7 @@ class AddProjectApplicationForm extends \Twitter_Bootstrap_Form_Horizontal
 				'label' => 'What can you offer for this project?',
 				'required' => true,
 				'rows' => 4,
-				'class' => 'span5',
+				'class' => 'fl-width97',
 				'errorMessages' => array("You should have descripton of your project."),
 				//'description' => "description",
 				'validators' => array("NotEmpty"),
