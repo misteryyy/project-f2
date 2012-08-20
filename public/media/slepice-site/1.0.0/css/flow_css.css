@@ -2794,7 +2794,8 @@ p.help-block{
 }
 
 .fl-form-signup .fl-control-label-checkbox,
-.fl-step5-form .fl-control-label-checkbox{
+.fl-step5-form .fl-control-label-checkbox,
+.fl-personal-info-form .fl-control-label-checkbox{
   display: inline;
   font-weight: normal;
 }
@@ -2804,16 +2805,24 @@ label a, label a:hover, label a:focus, label a:visited{
 }
 
 .fl-form-signup .fl-controls-checkbox,
-.fl-step5-form .fl-controls-checkbox{
+.fl-step5-form .fl-controls-checkbox,
+.fl-personal-info-form .fl-controls-checkbox-tiny-note{
+  position: relative;
+  top: -13px;
   float: left;
   width: 100%;
 }
 
 .fl-form-signup .fl-controls-checkbox input,
-.fl-step5-form .fl-controls-checkbox input{
+.fl-step5-form .fl-controls-checkbox input,
+.fl-personal-info-form .fl-controls-checkbox-tiny-note input{
   float: left;
   width: 15px;
   margin: 2px 8px 2px 3px;
+}
+
+.fl-controls-checkbox-tiny-note label{
+  font-size: 10px;
 }
 
 
@@ -2865,15 +2874,53 @@ label a, label a:hover, label a:focus, label a:visited{
 }
 
 fieldset#fieldset-PersonalInfo, fieldset#fieldset-Contacts{
-  width: 49%;
+  width: 48%;
+  min-height: 370px;
   float: left;
-  margin: 0px;
-  padding: 0 1% 0 0;
+  margin: 0 1% 0 0;
 }
 
 fieldset#fieldset-Contacts{
+  width: 49%;
+  margin: 0px;
+}
+
+fieldset#fieldset-About{
+  width: 100%;
+  float: left;
+  margin: 0px;
+  padding: 0px;
+}
+
+fieldset#fieldset-PersonalInfo, fieldset#fieldset-Contacts{
   padding: 0 0 0 1%;
+  background: #f1f1f1;
+}
+
+fieldset#fieldset-PersonalInfo:hover, fieldset#fieldset-Contacts:hover{
   background: #eeeeee;
+}
+
+fieldset#fieldset-Contacts .control-group{
+  width: 98%;
+}
+
+fieldset#fieldset-PersonalInfo .control-group{
+  width: 98%;
+}
+
+fieldset#fieldset-About .control-group{
+  width: 100%;
+}
+
+fieldset#fieldset-Contacts .controls,
+fieldset#fieldset-PersonalInfo .controls,
+fieldset#fieldset-About .controls{
+  width: 100%;
+}
+
+.fl-personal-info-form .form-actions{
+  clear: both;
 }
 
 

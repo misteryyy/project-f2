@@ -7,14 +7,14 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
    public function init()
     {
        
-        $this->_addClassNames('fl-form');
+        $this->_addClassNames('fl-form fl-personal-info-form');
        //  $this->setIsArray(true);
        // $this->setElementsBelongTo('bootstrap'); // will make form array
        
     	$this->addElement('text', 'name', array(
     			'label' => 'Name:',
     			'required' => true,
-                'class' => 'span3',
+                'class' => 'fl-width97',
     			'filters'    => array('StringTrim'),
     			//'errorMessages' => array("Your name can't be empty"),
     			//'placeholder' => "Your name or nickname",
@@ -22,22 +22,31 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
 				'validators' => array( array('alnum',false, array("allowWhiteSpace" => true)), array('StringLength', false, array(1,20)) )			
     	));
     	
-    	//TODO DatePicker
     	$this->addElement('text', 'dateOfBirth', array(
     			'label' => 'Date of birth:',
     			'placeholder'   => 'YYYY/MM/DD',
     			'required' => false,
-                'class' => 'span3',
+                'class' => 'fl-width97',
     			'filters'    => array('StringTrim'),
     		    //'errorMessages' => array("The date should be in format"),
     			//'description' => "example (1988/12/31) / YYYY/MM/DD",
     			'validators' => array( array('Date',false,array('format' => 'yyyy/MM/dd'))
-    					),    			 
+    					),   			 
     	));
     	
         $this->addElement('checkbox','dateOfBirthVisibility', array(
 				'label' => 'Hide my birthday data in profile',						
-				'checkedValue' => '1'
+				'checkedValue' => '1',
+                'decorators' => array(
+                        array('FieldSize'),
+                        array('ViewHelper'),
+                        array('Addon'),
+                        array('ElementErrors'),
+                        array('Description', array('tag' => 'p', 'class' => 'help-block')),
+                        array('Label', array('class' => 'fl-control-label-checkbox','escape' => false)),
+                        array('HtmlTag', array('tag' => 'div', 'class' => 'fl-controls-checkbox-tiny-note')),
+                        array('Wrapper')
+                        )
 		));
     
     // Getting countries
@@ -49,7 +58,7 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
     $this->addElement('select','country', array(
     		'label' => 'Country:', 
     		'value' => 'US',
-            'class' => 'span3',
+            'class' => 'fl-width97',
     		'multiOptions' => $countries
     	
     		));
@@ -58,7 +67,7 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
     	$this->addElement('text', 'phone', array(
     			'label' => 'Phone:',
     			'required' => false,
-                'class' => 'span3',
+                'class' => 'fl-width97',
     			'filters'    => array('StringTrim'),
     			//	'errorMessages' => array("The date should be in format"),
     			//'description' => "Contact phone number in any format you want. Max 50 letters. ",
@@ -69,7 +78,7 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
     	$this->addElement('text', 'skype', array(
     			'label' => 'Skype:',
     			'required' => false,
-                'class' => 'span3',
+                'class' => 'fl-width97',
     			'filters'    => array('StringTrim'),
     			//	'errorMessages' => array("The date should be in format"),
     			//'description' => "Your skype name. Max 50 letters.",
@@ -80,7 +89,7 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
     	$this->addElement('text', 'im', array(
     			'label' => 'IM:',
     			'required' => false,
-                'class' => 'span3',
+                'class' => 'fl-width97',
     			'filters'    => array('StringTrim'),
     			//	'errorMessages' => array("The date should be in format"),
     			//'description' => "Your Instant Messengers accounts. Max 50 letters.",
@@ -91,7 +100,7 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
     	$this->addElement('text', 'website', array(
     			'label' => 'Website(s):',
     			'required' => false,
-                'class' => 'span3',
+                'class' => 'fl-width97',
     			'filters'    => array('StringTrim'),
     			//	'errorMessages' => array("The date should be in format"),
     			//'description' => "Your websites. Max 100 letters.",
@@ -112,7 +121,7 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
     	$this->addElement('textarea', 'fieldOfInterestTag', array(
     			'label' => 'Field of interests:  ',
     			'required' => false,
-                'class' => 'span8',
+                'class' => 'fl-width97',
                 'rows' => 2,
     			'filters'    => array (array('StringTrim'), array("StringToLower")),
     			//	'errorMessages' => array("The date should be int format"),
@@ -127,17 +136,36 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
     	$this->addElement('text', 'email', array(
     			'label' => 'Email:',
     			'required' => false,
-    			'description' => "Your email which is used for login. Can't be changed.",
+                'class' => 'fl-width97',
+    			//'description' => "Your email which is used for login. Can't be changed.",
     			'validators' => array("EmailAddress"),
     			'attribs'    => array('disabled' => 'disabled')
     	));
     	
-    	$this->addElement('checkbox','emailVisibility',
-    			array(
-    					'label' => 'Hide my email in profile',
-    					'checkedValue' => '1',
+    	$this->addElement('checkbox','emailVisibility', array(
+    				'label' => 'Hide my email in profile',
+    				'checkedValue' => '1',
+                    'decorators' => array(
+                        array('FieldSize'),
+                        array('ViewHelper'),
+                        array('Addon'),
+                        array('ElementErrors'),
+                        array('Description', array('tag' => 'p', 'class' => 'help-block')),
+                        array('Label', array('class' => 'fl-control-label-checkbox','escape' => false)),
+                        array('HtmlTag', array('tag' => 'div', 'class' => 'fl-controls-checkbox-tiny-note')),
+                        array('Wrapper')
+                        )
     			)
     	);
+
+        $this->addElement('hidden', 'thick', array(
+                'description' =>  '<div class="fl_thick_divider"></div>',
+                'ignore' => true,
+                'decorators' => array(
+                        array('Description', array('escape'=>false, 'tag'=>'')),
+                ),
+        ));
+
     		
             /**
              * FIELDSET top left
@@ -169,7 +197,7 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
              * FIELDSET bottom
              */
             $this->addDisplayGroup(
-                    array('description',
+                    array('thick','description',
                           'fieldOfInterestTag'
                             ), 
                     'About',    array('legend' => 'About')
@@ -179,6 +207,7 @@ class MemberPersonalInfoForm extends \Twitter_Bootstrap_Form_Horizontal
          	$this->addElement('submit','submit',array(
          			'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
          			'label' => "Save",
+                    'class' => 'btn btn-info',
          			'escape'        => false,
          	));
          	 
