@@ -301,6 +301,7 @@ body{
 
 .fl-height-100{
   height: 100px;
+  overflow: hidden;
 }
 
 .fl-cnt-100 p{
@@ -2109,13 +2110,24 @@ tr.fl-user-banned:hover{
   background: #f7f7f7 url('../img/bcg_project_comments_creator_comment.jpg') top left no-repeat;
 }
 
-.fl-project-comments-comment-left, .fl-project-comments-comment-right{
+.fl-project-comments-comment-left, 
+.fl-project-comments-comment-right,
+.fl-project-comments-creator-comment-left,
+.fl-project-comments-creator-comment-right{
   width: 20%;
   float: left;
 }
 
 .fl-project-comments-comment-right{
   width: 80%;
+}
+
+.fl-project-comments-creator-comment-left{
+  width: 15%;
+}
+
+.fl-project-comments-creator-comment-right{
+  width: 85%;
 }
 
 .fl-project-comments-comment-header, .fl-project-comments-comment-creator-header{
@@ -2480,6 +2492,10 @@ tr.fl-user-banned:hover{
   width: 97.666%;
 }
 
+.fl-width98{
+  width: 98%;
+}
+
 .fl-width99{
   width: 98.666%;
 }
@@ -2497,6 +2513,7 @@ tr.fl-user-banned:hover{
 
 .fl-browse-members li{
   width: 18%;
+  min-height: 410px;
   float: left;
   background: #f4f4f4;
   margin: 0 1% 10px 1%;
@@ -2572,11 +2589,11 @@ tr.fl-user-banned:hover{
   color: red !important;
 }
 
-.fl-form-my-skills legend{
+.fl-my-skills-form legend{
   display: none;
 }
 
-.fl-form-my-skills input[type="text"], .fl-form-my-skills input[type="text"]:hover{
+.fl-my-skills-form input[type="text"], .fl-my-skills-form input[type="text"]:hover{
   margin: 1px 0 0 5px;
 }
 
@@ -2748,7 +2765,8 @@ p.help-block{
 .fl-form-comment,
 .fl-form-login,
 .fl-form-lost,
-.fl-form-signup{
+.fl-form-signup,
+.fl-form-projectboard{
   width: 96%;
   margin: 2%;
   float: left;
@@ -2795,7 +2813,8 @@ p.help-block{
 
 .fl-form-signup .fl-control-label-checkbox,
 .fl-step5-form .fl-control-label-checkbox,
-.fl-personal-info-form .fl-control-label-checkbox{
+.fl-personal-info-form .fl-control-label-checkbox,
+.fl-teamdesablewidget-form .fl-control-label-checkbox{
   display: inline;
   font-weight: normal;
 }
@@ -2807,14 +2826,18 @@ label a, label a:hover, label a:focus, label a:visited{
 .fl-form-signup .fl-controls-checkbox,
 .fl-step5-form .fl-controls-checkbox,
 .fl-personal-info-form .fl-controls-checkbox-tiny-note{
-  position: relative;
-  top: -13px;
   float: left;
   width: 100%;
 }
 
+.fl-personal-info-form .fl-controls-checkbox-tiny-note{
+  position: relative;
+  top: -13px;
+}
+
 .fl-form-signup .fl-controls-checkbox input,
 .fl-step5-form .fl-controls-checkbox input,
+.fl-teamdesablewidget-form .fl-controls-checkbox input,
 .fl-personal-info-form .fl-controls-checkbox-tiny-note input{
   float: left;
   width: 15px;
@@ -2847,15 +2870,18 @@ label a, label a:hover, label a:focus, label a:visited{
 
 
 .fl-form-new-poll .control-group > label.optional,
-.fl-form-update label[for="content"]{
+.fl-form-update label[for="content"],
+.fl-form-projectboard label[for="content"]{
   display: none;
 }
 
-.fl-form-update textarea{
+.fl-form-update textarea,
+.fl-form-projectboard textarea{
   margin: 10px 0 10px 0;
 }
 
-.fl-form-flobox-comment textarea{
+.fl-form-flobox-comment textarea,
+.fl-form-projectboard .control-group > label.optional{
   margin: 5px 0 0 0;
 }
 

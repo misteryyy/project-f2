@@ -4,44 +4,64 @@
 	echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $this->step,"project" => $this->project));
 ?>
 
-<p>Total number of unanswered comments <?php echo $this->paginator->getTotalItemCount();?> </p>
-<hr/>
+<div class="fl-cnt100">
+<p>Total number of unanswered comments: <strong><?php echo $this->paginator->getTotalItemCount();?></strong></p>
+</div>
 
+<div class="fl-cnt100">
 <?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
     <?php if (count($this->paginator) > 0) {?>
+    	<div class="fl-project-comments-comments">
     	<?php foreach ($this->paginator as $comment){ ?>
 
-    		<div class="well">
-		 		<img src="/storage/users/<?php echo $comment->user->getProfilePicture(100) ; ?>" />
-				<?php echo $comment->user->name ; ?>
-				<?php echo $comment->user->id ; ?>
-				<?php echo $comment->created->format('d-m-y') ; ?>
-				<?php echo $comment->content ; ?>
-				<?php 
-				// display children
-				foreach($comment->children as $commentChild){
-					?>		
-				 <div class="alert alert-info">
-				 	<img src="/storage/users/<?php echo $commentChild->user->getProfilePicture(100) ; ?>" />
-   					<?php echo $commentChild->user->name ; ?>
-					<?php echo $commentChild->user->id ; ?>
-					<?php echo $commentChild->created->format('d-m-y') ; ?>
-					<?php echo $commentChild->content ; ?>
-					</div>
-				<?php }?>
-			</div>
+    			 <div class="fl-project-comments-comment">
+                   <div class="fl-project-comments-creator-comment-left">
+                     <div class="inner">
+                       <img src="<?php echo $comment->user->getProfilePictureUrl('medium') ; ?>" alt="<?php echo $comment->user->name ; ?>'s picture" />
+                     </div>
+                   </div>
+                   <div class="fl-project-comments-creator-comment-right">
+                     <div class="inner">
+                       <p class="fl-project-comments-comment-header"><?php echo $comment->user->name ; ?> <span>, <i class="icon-time"></i> <?php echo $comment->created->format('d-m-y') ; ?></span></p>
+                       <p><?php echo $comment->content ; ?></p>
+                     </div>
+                   </div>
+                 </div>
+
+    		 <?php
+						// display children
+						foreach($comment->children as $commentChild){
+							?>
+
+							<div class="fl-project-comments-comment-creator">
+			                   <div class="fl-project-comments-comment-left">
+			                     <div class="inner">
+			                       <img src="<?php echo $comment->user->getProfilePictureUrl('medium'); ?>" alt="<?php echo $comment->user->name; ?>" />
+			                     </div>
+			                   </div>
+			                   <div class="fl-project-comments-comment-right">
+			                     <div class="inner">
+			                       <p class="fl-project-comments-comment-creator-header"><?php echo $commentChild->user->name; ?> <span>, <i class="icon-time"></i> <?php echo $commentChild->created->format('d-m-y'); ?></span></p>
+			                       <p><?php echo $commentChild->content; ?></p>
+			                     </div>
+			                   </div>
+			                 </div>		
+							
+						<?php }?>
+			
 			
 			 <?php  $this->form->getElement('comment_id')->setValue($comment->id); // set target comment
 			 ?>
 			 <div class="fl-cnt-100 fl-form-box">
 			 	<?php echo $this->form; ?>
 			 </div>
-    	<?php } 
- 	}
- 	else {
+    	<?php } ?>
+    </div>
+<?php 	}else{
 	echo "No Comments for this project";
 } ?>
 <?php } else {
 		echo "This project doesn't exists.";
 	
 }?>
+</div>

@@ -5,7 +5,7 @@
                 <div class="fl-cnt-project-by-content">
                   <div class="inner">
                     <div class="fl-cnt-project-by-content-left">
-                      <img src="<?php echo $this->userWebStorage;?><?php echo $this->project->user->getProfilePicture();?>" alt="" title="" class="fl-cnt-project-by-author-photo"/>
+                      <img src="<?php echo $this->project->user->getProfilePictureUrl('big');?>" alt="" title="" class="fl-cnt-project-by-author-photo"/>
                       
                       <div class="fl-cnt-project-by-content-skills">
 
@@ -26,7 +26,7 @@ foreach ($specRoles as $r){?>
                     <div class="fl-cnt-project-by-content-right">
                       <div class="fl-cnt-project-by-content-inner">
                         <h4 class="fl-cnt-project-by-content-author"><?php echo $this->project->user->name?></h4>
-                        <p class="fl-cnt-project-by-content-author-info"><i class="icon-file"></i> <a href="<?php echo $this->project->user->profileUrl?>" title="Member's Public Profile">Profile</a>,              <span class="like"><i class="icon-thumbs-up"></i> 
+                        <p class="fl-cnt-project-by-content-author-info"><i class="icon-file"></i> <a href="<?php echo $this->project->user->profileUrl?>" title="<?php echo $this->project->user->name; ?>'s profile">Profile</a>,              <span class="like"><i class="icon-thumbs-up"></i> 
                          <?php
                          // like dislike solution 
                          if(!$this->project->isFollower($this->loggedMember)) {

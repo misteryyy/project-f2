@@ -1,4 +1,4 @@
-<div class="fl-cnt-100 fl-bottom20">
+<div class="fl-cnt-100">
 
  
  <!-- Project Displaying -->
@@ -24,7 +24,7 @@
 						<?php } ?>
 						</div>                  
                           <h4><?php echo $project->title;?></h4>
-                          <p class="fl-thumb-p"><i class="icon-user"></i> <a href="/member/profile/index/id/<?php echo $project->user->id;?>" title="<?php echo $project->user->name;?>'s profile"><?php echo $project->user->name;?></a></p>
+                          <p class="fl-thumb-p">by <a href="/member/profile/index/id/<?php echo $project->user->id;?>" title="<?php echo $project->user->name;?>'s profile"><?php echo $project->user->name;?></a></p>
                           
                         </div>
                       </div>

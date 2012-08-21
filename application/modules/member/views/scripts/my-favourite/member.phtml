@@ -6,14 +6,13 @@
 <?php if (count($this->paginator)) {?>
 <?php if (count($this->paginator) > 1) echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
 
-<ul>
     <?php foreach ($this->paginator as $user){ ?> 
         <div class="fl-list-project">
                   <div class="fl-cnt-20">
                     <div class="fl-project-thumb">
                       <div class="inner-5">
-                      <a href="<?php echo $user->getProfileUrl();?>"> 
-                     <img src="/storage/users/<?php echo $user->getProfilePicture()?>" alt="<?php echo $user->getName(); ?>">
+                      <a href="<?php echo $user->getProfileUrl();?>" title="<?php echo $user->name?>' profile"> 
+                     <img src="<?php echo $user->getProfilePictureUrl('large')?>" alt="<?php echo $user->getName(); ?>">
             		 </a> 
                       </div>
                     </div>
@@ -28,19 +27,13 @@
                     </div>
                   </div>
                   <div class="fl-cnt-20">
-                    <a href="<?php echo $user->getProfileUrl();?>" class="btn btn-success fl-width80 fl-top5"><i class="icon-picture icon-white"></i> public profile</a>                   
-                    <a href="?_method=like-user&&friend_id=<?php echo $user->id;?>" title="" class="btn btn-danger fl-width80">Dislike</a>          
+                    <a href="<?php echo $user->getProfileUrl();?>" class="btn btn-success fl-width80 fl-top5" title="<?php echo $user->name?>' profile"><i class="icon-picture icon-white"></i> public profile</a>                   
+                    <a href="?_method=like-user&&friend_id=<?php echo $user->id;?>" title="Dislike <?php echo $user->name?>" class="btn btn-danger fl-width80 fl-top5">Dislike</a>          
                   </div>
-		</div>
-	
-                <div class="fl_thin_divider"></div>
-    	
-       
-       
-       
-    <?php } ?>
- 			</ul>
-  <?php } else echo "There are no users."?>
+		    </div>
+	      <div class="fl_thin_divider"></div>
+  <?php } ?>
+<?php } else echo "You don't like anyone!"?>
 </div>
 <script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-member-project-1.0.0.js')?>"></script> 
        

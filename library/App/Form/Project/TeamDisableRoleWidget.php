@@ -18,7 +18,7 @@ class TeamDisableRoleWidget extends \Twitter_Bootstrap_Form_Horizontal
 	
 	public function init()
 	{		
-			$this->_addClassNames('fl-form'); 
+			$this->_addClassNames('fl-form fl-teamdesablewidget-form'); 
 $warning_message =  <<<EOT
 	<div class="alert alert-info">
 		<span class="label label-info">Info</span>
@@ -39,7 +39,17 @@ EOT;
 		$this->addElement('checkbox','role_widget_disable',
 				array(  'value' => $this->project->disableRoleWidget,
 						'label' => "Disable Role Widget",
-						'description' => 'Please read what will happen if you will disable role widget.',
+						//'description' => 'Please read what will happen if you will disable role widget.',
+						'decorators' => array(
+							array('FieldSize'),
+							array('ViewHelper'),
+							array('Addon'),
+							array('ElementErrors'),
+							array('Description', array('tag' => 'p', 'class' => 'help-block')),
+							array('Label', array('class' => 'fl-control-label-checkbox','escape' => false)),
+							array('HtmlTag', array('tag' => 'div', 'class' => 'fl-controls-checkbox')),
+							array('Wrapper')
+						),	
 				)
 		);
 

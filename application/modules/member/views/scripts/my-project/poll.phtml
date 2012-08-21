@@ -13,12 +13,12 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 <div class="fl-cnt-100">
 <?php if (count($this->paginator) > 1 )echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
 </div>
-<div class="fl-cnt-100">
+<div class="fl-cnt-100 fl-top">
         <table class="table table-striped">
         <thead>
     		<tr>
     			<th>Name</th>
-    			<th>Questions</th>
+    			<th>Vote count</th>
     			<th>Created</th>
     			<th>Actions</th>
     		</tr>
@@ -27,13 +27,7 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
     <?php foreach ($this->paginator as $poll){ ?>
     	<tr>
     	<td><?php echo $poll->name; ?></td>
-		<td>Number of Questions : <?php echo count($poll->questions);?> <br>
-			
-			<?php foreach($poll->questions as $q){
-				echo $q->question  . ": with AVG ".$q->avgOfAnswers()."<br>".PHP_EOL;
-			}?>
-			
-			<?php echo count($poll->questions[0]->answers)." has been voted.";?>
+		<td><?php echo count($poll->questions[0]->answers)." members have been voted.";?>
 		</td>	
 		<td><?php echo $poll->created->format('Y/m/d h:m:s'); ?></td>		
 		<td> 

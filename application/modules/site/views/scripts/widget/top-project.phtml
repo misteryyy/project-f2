@@ -33,9 +33,10 @@ if(empty($projects)){ return; }
             
           <div class="fl-cnt-100 fl-top10">
             <div class="fl-cnt-100 fl-height-100">
-              <p><?php echo $project->pitchSentence; ?></p>
+              <p><?php echo shorter($project->pitchSentence, 400); ?></p>
             </div>
-            <p class="info">
+            <div class="fl-cnt-100 fl-top10">
+            <p class="info ">
               <span class="category"><i class="icon-folder-close"></i> <?php echo $project->category->name;?></span>
               <span class="followers"><i class="icon-eye-open"></i> <strong class="follower-count"><?php echo $project->getCountFollowers();?></strong> followers</span>
                 <span class="like"><i class="icon-thumbs-up"></i> 
@@ -48,6 +49,7 @@ if(empty($projects)){ return; }
                          <?php } ?>
                          </span>
             </p>
+            </div>
           </div>
             
             <div class="fl_slider_roles">

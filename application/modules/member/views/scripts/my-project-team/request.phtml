@@ -20,7 +20,7 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 				{{#each this}}	
 				<div class="fl-app-user">
 				  <div class="fl-app-text">
-				    <img src="/storage/users/{{user.profile_picture_small}}" alt="user img" class="fl-img-list"/> <a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a>
+				    <img src="{{user.profile_picture_small}}" alt="user img" class="fl-img-list"/> <a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a>
 				  </div>
 				  <div class="fl-app-role-img">
 				    <img src="/media/slepice-site/1.0.0/img/role_{{role_name}}.png" alt="{{role_name}} icon" />

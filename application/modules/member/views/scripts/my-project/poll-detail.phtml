@@ -4,36 +4,104 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 ?>
 
 <div class="fl-cnt-100">
-<a class="btn btn-info" href="/member/my-project/poll/id/<?php echo $this->project->id?>">Back to polls</a>
+<a class="btn btn-inverse right" href="/member/my-project/poll/id/<?php echo $this->project->id?>"><i class="icon-th-list icon-white"></i> Back to Polls</a>
 </div>
 
-
-
 <?php if (count($this->paginator)) {?> 
-<div class="fl-cnt-100">
+            <div class="fl-cnt-100 fl-top">
+                <h3>Name of the poll</h3>
+
+                <div class="fl_thin_divider"></div>
+
+                <div class="fl-cnt-100 fl-top fl-bottom10">
+                  <div class="fl-cnt-100">
+                    <div class="fl-cnt-50">
+                      <table class="fl-poll">
+                        <thead class="active">
+                          <tr>
+                            <th><strong>456 members</strong> have voted</th>
+                            <th class="text-right"><i class="icon-tasks"></i> Average</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Question n. 1</td>
+                            <td class="text-right">value</td>
+                          </tr>
+                          <tr>
+                            <td>Question n. 2</td>
+                            <td class="text-right">value</td>
+                          </tr>
+                          <tr>
+                            <td>Question n. 3</td>
+                            <td class="text-right">value</td>
+                          </tr>
+                          <tr>
+                            <td>Question n. 4</td>
+                            <td class="text-right">value</td>
+                          </tr>
+                          <tr>
+                            <td>Question n. 5</td>
+                            <td class="text-right">value</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="fl-cnt-50">
+                      
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="fl_thick_divider"></div>
+
+<div class="fl-cnt-100 fl-top">
 <?php if (count($this->paginator) > 1 ) echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
 
     <?php 
-    foreach ($this->paginator as $answer){ ?>
-    	<?php 
-    	$user = $answer->user;
-    	
-    	$facadePoll = new \App\Facade\Project\PollFacade($this->em);
-    	$answers = $facadePoll->findAllAnswersForUser($this->project->id, $this->loggedMember->id, $answer->poll->id);
-    
-    	?>
-    	<?php echo "User has been voting" . $user->name. " <br>";?>
-    	
-		<?php 
-				foreach ($answers as $a){
-					echo $a->question->question . ' odpo '. $a->answer;
-					echo "<br>";
-				}
+    foreach ($this->paginator as $answer){ 
+      $user = $answer->user;
+        
+      $facadePoll = new \App\Facade\Project\PollFacade($this->em);
+      $answers = $facadePoll->findAllAnswersForUser($this->project->id, $this->loggedMember->id, $answer->poll->id);
+    ?>
+
+    <div class="fl-cnt-100">
+                    <div class="fl-cnt-50">
+                      <table class="fl-poll">
+                        <thead class="active">
+                          <tr>
+                            <th><h4 class="fl-poll-name"><?php echo $user->name; ?></h4></th>
+                            <th class="text-right"><i class="icon-tasks"></i> Answers</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <?php 
+                        foreach ($answers as $a){ ?>
+                          <tr>
+                            <td><?php echo $a->question->question; ?></td>
+                            <td class="text-right"><?php echo $a->answer; ?></td>
+                          </tr>
+                        <?php } ?>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="fl-cnt-50">
+                      
+                      <div class="fl-poll-user">
+                        <img src="<?php echo $user->getProfilePictureUrl('medium'); ?>" alt="" title="" />
+                        <div class="fl-cnt-100">
+                          <span><i class="icon-file"></i> <a href="<?php echo $user->getProfileUrl();?>" title="">Profile</a>, <i class="icon-time"></i> last edit</span>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="fl_thin_divider"></div>
 		
-				echo "<hr>";
-		?>
-		
-		<?php //echo "q ". $o['question']. " answr ". $o['answer'];    	?>	 		
     <?php } ?>
     
 </div>    	
