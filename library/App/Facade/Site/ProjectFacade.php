@@ -18,10 +18,6 @@ class ProjectFacade {
 		$this->userFacade = new \App\Facade\UserFacade($em);
 	}
 	
-	
-	
-	
-	
 	/*
 	 * Returns one project by id
 	 */
@@ -86,10 +82,8 @@ class ProjectFacade {
 				$stmt .= 'ORDER BY p.created DESC'; // newest first when DESC
 			}
 
-		
 			// if category	
-			$query = $this->em->createQuery($stmt);
-				
+			$query = $this->em->createQuery($stmt);				
 			$paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
 			$iterator = $paginator->getIterator();
 			$adapter = new \Zend_Paginator_Adapter_Iterator($iterator);
