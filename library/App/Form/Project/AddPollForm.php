@@ -9,26 +9,7 @@ class AddPollForm extends \Twitter_Bootstrap_Form_Horizontal
 		// ajax call
 		$this->addAttribs(array("id" => "form-poll-create"));
 		$this->_addClassNames('fl-form fl-form-new-poll');
-		
-/*
-		 $warning_message =  <<<EOT
-	<div class="alert alert-info">
-		<span class="label label-info">Info</span>
-		How this works. How this works. How this works.
-	</div>
-EOT;
-		 
-		 $this->addElement('hidden', 'warning_survey', array(
-		 		'description' => $warning_message,
-		 		'ignore' => true,
-		 		'decorators' => array(
-		 				array('Description', array('escape'=>false, 'tag'=>'')),
-		 		),
-		 ));
-		 
-		 // Adding Survey
-		 $addGroup[] = 'warning_survey';
-*/
+
 
 		 $this->addElement('text', 'title', array(
 		 		'label' => "Poll Name:",

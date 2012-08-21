@@ -251,6 +251,8 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
     	$this->view->pageTitle = "My Project Polls" ;
     	$facadeProjectPoll = new \App\Facade\Project\PollFacade($this->_em);
     	
+    	$this->view->poll = $facadeProjectPoll->findOnePollForProject($this->_request->getParam('poll_id'));
+    	
     	// get paginator
     	$paginator = $facadeProjectPoll->findAllUsersWithAnswersForPollPaginator($this->project_id,$this->_request->getParam('poll_id'));
    

@@ -9,7 +9,7 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 
 <?php if (count($this->paginator)) {?> 
             <div class="fl-cnt-100 fl-top">
-                <h3>Name of the poll</h3>
+                <h3><?php echo $this->poll->name;?></h3>
 
                 <div class="fl_thin_divider"></div>
 
@@ -19,7 +19,7 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
                       <table class="fl-poll">
                         <thead class="active">
                           <tr>
-                            <th><strong>456 members</strong> have voted</th>
+                            <th><strong><?php echo count($this->poll->questions[0]->answers);?> members</strong> have voted</th>
                             <th class="text-right"><i class="icon-tasks"></i> Average</th>
                           </tr>
                         </thead>
