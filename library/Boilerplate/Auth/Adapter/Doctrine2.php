@@ -40,17 +40,12 @@ class Boilerplate_Auth_Adapter_Doctrine2 implements Zend_Auth_Adapter_Interface 
 			
 			// reading the path to the pictures
 			$config = Zend_Registry::get('config');
-			$profilePhotoPathWeb = $config['app']['storage']['profile_web'];
 			
 			$userArray = array();
 			$userArray["name"] =$user->getName();
 			$userArray["email"] =$user->getEmail();
 			$userArray["id"] =$user->getId();
-			$userArray["roles"] =$user->getRolesArray();
-			$userArray["profile_picture_200"] = $profilePhotoPathWeb.$user->getProfilePicture();
-			$userArray["profile_picture_100"] = $profilePhotoPathWeb.$user->getProfilePicture(\App\Entity\User::PROFILE_PHOTO_RESOLUTION_100);
-			$userArray["profile_picture_50"] =  $profilePhotoPathWeb.$user->getProfilePicture(\App\Entity\User::PROFILE_PHOTO_RESOLUTION_50);
-			 
+			$userArray["roles"] =$user->getRolesArray(); 
 			$code = Zend_Auth_Result::SUCCESS;
 			$identity = $userArray;
 		} else {

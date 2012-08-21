@@ -56,6 +56,7 @@ class ProjectFacade {
 					case 'random':
 								$q = $this->em->createQuery('SELECT x.id FROM \App\Entity\Project x');
 								$idss = $q->getArrayResult();
+								if($idss == null) break; // jump off if no projects
 								$mixArray = array();
 								
 								foreach($idss as $id){
@@ -85,6 +86,7 @@ class ProjectFacade {
 				$stmt .= 'ORDER BY p.created DESC'; // newest first when DESC
 			}
 
+		
 			// if category	
 			$query = $this->em->createQuery($stmt);
 				

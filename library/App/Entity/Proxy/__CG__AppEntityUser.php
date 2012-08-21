@@ -72,10 +72,16 @@ class User extends \App\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         return parent::setEmailNotification($emailNotification);
     }
 
-    public function getProfilePicture($resolution = 200)
+    public function getProfilePicture($size = 'large')
     {
         $this->__load();
-        return parent::getProfilePicture($resolution);
+        return parent::getProfilePicture($size);
+    }
+
+    public function getProfilePictureUrl($size = 'large')
+    {
+        $this->__load();
+        return parent::getProfilePictureUrl($size);
     }
 
     public function getSpecificRoles()
