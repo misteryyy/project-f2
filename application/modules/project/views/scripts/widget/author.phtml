@@ -43,7 +43,7 @@ foreach ($specRoles as $r){?>
                 if(count ($this->membersProject) > 0){  ?>
 
                         <div class="fl-cnt-project-by-content-author-projects">
-                          <span><a href="" title="">more of 'My Projects'</a></span>
+                          <span><a href="/member/profile/my-project/id/<?php echo $this->project->user->id; ?>" title="<?php echo $this->project->user->name; ?>' projects">more of 'My Projects'</a></span>
                         	<ul>                          
 							<?php 
 									foreach($this->membersProject as $project){ ?>	  		
@@ -55,7 +55,7 @@ foreach ($specRoles as $r){?>
 if(count ($this->collaborations) > 0){ ?>
 
                         <div class="fl-cnt-project-by-content-author-projects">
-                          <span><a href="" title="">more of 'My Collaborations'</a></span>
+                          <span><a href="/member/profile/my-collaboration/id/<?php echo $this->project->user->id; ?>" title="<?php echo $this->project->user->name; ?>' collaborations">more of 'My Collaborations'</a></span>
 							<ul>                          
 							<?php 	
 									foreach($this->collaborations as $a){

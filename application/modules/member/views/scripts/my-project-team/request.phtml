@@ -10,8 +10,8 @@ $this->sub_step = 2;
 echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" => $this->sub_step,"project" => $this->project));
 ?>
 <div class="fl-cnt-100">
-  	<div id="alert-area"></div>
-  </div>
+  <div id="alert-area"></div>
+ </div>
 
 <h3 class="fl-edit-project-subsection">Applications for Level 1</h3>
 <div id="model_list" class="fl-cnt-100 fl-bottom20">
@@ -27,7 +27,7 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 				  </div>
 				  <div class="fl-app-buttons text-right actions" id="{{id}}">
 				    <a class="btn btn-info" data-toggle="modal" href="#surveyModal-id-{{id}}" ><i class="icon-list icon-white"></i> Survey</a>
-					<a  class="btn btn-success accept" type="submit" data-loading-text="processing..." name="submit" ><i class="icon-ok icon-white"></i>Accept</a>
+					<a  class="btn btn-success accept" type="submit" data-loading-text="processing..." name="submit" ><i class="icon-ok icon-white"></i> Accept</a>
 					<a  class="btn btn-danger deny" type="submit" data-loading-text="processing..." name="submit" ><i class="icon-remove icon-white"></i> Deny</a>
 				  </div>
 				</div>
@@ -111,8 +111,8 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 
 <!-- LIST of new applications for LVL 2 -->
 <div id="model_list_level2">
-  <script id="model_list_template_level2" type="text/x-handlebars-template">
-		
+  <script id="model_list_template_level2" type="text/x-handlebars-template">	
+			
 			{{#each this}}
 			<div class="fl-cnt-100">
 			<div class="fl-app-role">
@@ -126,20 +126,17 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 
 			{{#each this.applications}}
 			
-			<div class="fl-app-user" id="model_list_level2">
+			<div class="fl-app-user">
 			  <div class="fl-app-text">
-			    <img src="/storage/users/{{user.profile_picture_small}}" alt="user img" class="fl-img-list"/> <a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a>
+			    <img src="{{user.profile_picture_small}}" alt="user img" class="fl-img-list"/> <a href="/member/profile/index/id/{{user_id}}">{{user_name}}</a>
 			  </div>
 			  <div class="fl-app-buttons text-right actions" id="{{id}}">
 			    <a class="btn btn-info" data-toggle="modal" href="#surveyModal-id-{{id}}" ><i class="icon-list icon-white"></i> Survey</a>
-					<a  class="btn btn-success accept" type="submit"  data-loading-text="processing..." name="submit" ><i class="icon-ok icon-white"></i>Accept</a>
-					<a  class="btn btn-danger deny" type="submit"  data-loading-text="processing..." name="submit" ><i class="icon-remove icon-white"></i> Deny</a>
+					<a class="btn btn-success accept" type="submit" data-loading-text="processing..." name="submit" ><i class="icon-ok icon-white"></i> Accept</a>
+					<a class="btn btn-danger deny" type="submit"  data-loading-text="processing..." name="submit"><i class="icon-remove icon-white"></i> Deny</a>
 			  </div>
 			</div>
-			<div class="fl_thin_divider"></div>
 			
-
-
 			<!-- modal  -->
 		    	<div class="modal hide" id="surveyModal-id-{{id}}">
 		    	  <div class="modal-header">
@@ -156,8 +153,7 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 			{{/each}}
 			</div>
 			{{/each}}
-
-		</script>		
+  </script>		
 </div>
 
 <?php } ?>	
@@ -185,35 +181,36 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 				
 				
 				},
-			// setting template system
-			setutTemplates: function(){
-				this.config.modelListTemplate = Handlebars.compile(this.config.modelListTemplate);
-				this.config.modelListTemplateL2 = Handlebars.compile(this.config.modelListTemplateL2);
-									
+				
+				// setting template system
+				setutTemplates: function(){
+					this.config.modelListTemplate = Handlebars.compile(this.config.modelListTemplate);
+					this.config.modelListTemplateL2 = Handlebars.compile(this.config.modelListTemplateL2);
+										
 				},
 				
-			bindEvents: function(){
-				// events for level 1
-				this.config.modelList.on('click','a.accept',this.acceptMember); // accept member 	
-				this.config.modelList.on('click','a.deny',this.showModaldenyMember); // show modal Deny 	
+				bindEvents: function(){
+					// events for level 1
+					this.config.modelList.on('click','a.accept',this.acceptMember); // accept member 	
+					this.config.modelList.on('click','a.deny',this.showModaldenyMember); // show modal Deny 	
 
-				// events for level 2		
-				this.config.formCreate.on('click','input.create',this.createData); // create new position
-				this.config.modelListL2.on('click','input.delete',this.deleteRole); // delete position 
-				
-				this.config.modelListL2.on('click','a.accept',this.acceptMember); //  accept the member	
-				this.config.modelListL2.on('click','a.deny',this.showModaldenyMember); //  show modal deny		
-
-				//deny modal form
-				this.config.formDeny.on('click','input.deny',this.denyMember); // deny a member	
+					// events for level 2		
+					this.config.formCreate.on('click','input.create',this.createData); // create new position
+					this.config.modelListL2.on('click','input.delete',this.deleteRole); // delete position 
 					
+					this.config.modelListL2.on('click','a.accept',this.acceptMember); //  accept the member	
+					this.config.modelListL2.on('click','a.deny',this.showModaldenyMember); //  show modal deny		
+
+					//deny modal form
+					this.config.formDeny.on('click','input.deny',this.denyMember); // deny a member	
+						
 				},
 				
-			findData: function(){
-				 var self = Models;
+				findData: function(){
+				  var self = Models;
 					
-				 $.ajax({
-				 	data: "_method=findAllNewApplications",// take data from the form and send it to the method delete
+				  $.ajax({
+				 	data: "_method=findAllNewApplications"
 					 }).done(
 						function (results){
 				 			self.config.modelList.empty();
@@ -228,23 +225,24 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 	
 				},
 
-			findDataL2: function(){
-				 var self = Models;
-					
-				 $.ajax({
-				 	data: "_method=findAllFreeProjectRoles",// take data from the form and send it to the method delete
-					 }).done(
-						function (results){
-				 			self.config.modelListL2.empty();
-							if(results.data[0]){
-								self.config.modelListL2.append(self.config.modelListTemplateL2(results.data));
-								//newAlert (results.respond, results.message)
-							}else{
-								self.config.modelListL2.append("No requests for level 2.");
-							}
-				 		}
-				 );
-		
+				//role pro LVL2
+				findDataL2: function(){
+					 var self = Models;
+						
+					 $.ajax({
+					 	data: "_method=findAllFreeProjectRoles"
+						 }).done(
+							function (results){
+					 			self.config.modelListL2.empty();
+								if(results.data[0]){
+									self.config.modelListL2.append(self.config.modelListTemplateL2(results.data));
+									//newAlert (results.respond, results.message)
+								}else{
+									self.config.modelListL2.append("No requests for level 2.");
+								}
+					 		}
+					 );
+			
 				},
 
 
@@ -303,8 +301,6 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 						   		}		 
 					    	}
 					   );
-					
-				
 				},
 
 				// delete Role
@@ -325,35 +321,37 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 					e.preventDefault();
 				},
 			
-			// acceptMember
-			acceptMember:function(e){
-				var self = Models;
-				var par = $(this).parent();
-				var application_id = par.attr("id");
-				$(this).button('loading');
-				//console.log($(this));
-				$.ajax({
-					data: "&_method=accept&&application_id="+application_id, // take data from the form and send it to the method update
-				}).done(
-						function (results){
-							//newAlert (results.respond, results.message); // display alert
-							self.findData(); // refresh questions
-							self.findDataL2(); // refresh questions
-							
-						}
-				);
-				e.preventDefault();
-			},
+				// acceptMember
+				acceptMember:function(e){
+					var self = Models;
+					var par = $(this).parent();
+					var application_id = par.attr("id");
+					//alert(application_id);
+					$(this).button('loading');
+					//console.log($(this));
+					$.ajax({
+						data: "&_method=accept&&application_id="+application_id, // take data from the form and send it to the method update
+					}).done(
+							function (results){
+								//newAlert (results.respond, results.message); // display alert
+								self.findData(); // refresh list
+								self.findDataL2(); // refresh list
+								
+							}
+					);
+					e.preventDefault();
+				},
 			
-			// prepare modal form for deny user
-			showModaldenyMember:function(e){
-				
-				$('#modal-form-deny').modal('show');
-				$('#form-deny #application_id').val($(this).parent().attr("id")); // add id
-			},
+				// prepare modal form for deny user
+				showModaldenyMember:function(e){
+					
+					$('#modal-form-deny').modal('show');
+					$('#form-deny #application_id').val($(this).parent().attr("id")); // add id
+				},
 
-			};
+			}; //end
 
+			//init
 			Models.init({
 				// level 1 setting
 				modelListTemplate: $('#model_list_template').html(),
