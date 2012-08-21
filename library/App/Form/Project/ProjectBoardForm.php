@@ -15,21 +15,13 @@ class ProjectBoardForm extends \Twitter_Bootstrap_Form_Horizontal
 	public function init()
 	{	
 
-		$this->_addClassNames('fl-form');
+		$this->_addClassNames('fl-form fl-form-projectboard');
 		
-		
-		// Description of roles
-		 $this->addElement('hidden', 'logged_member', array(
-		 					'description' => '<div class="fl-cnt-100 fl-top10"><div class="alert alert-info">Logged as: <strong>'.$this->member['name'].'</strong></div></div>',
-		 					'ignore' => true,
-		 					'decorators' => array(
-		 							array('Description', array('escape'=>false, 'tag'=>'')),
-		 					),
-		 			));
 		 
 		 $this->addElement('text', 'title', array(
-		 		'label' => 'Title',
+		 		'label' => 'Title:',
 		 		'required' => true,
+		 		'class' => "fl-width99",
 		 		'filters'    => array('StringTrim'),
 		 		//'description' => "Title. Max 50 letters.",
 		 		'validators' => array( array('StringLength', false, array(0,100) ))));
@@ -37,10 +29,11 @@ class ProjectBoardForm extends \Twitter_Bootstrap_Form_Horizontal
  
 		// TinyMCE configuration in the phtml file
 		$this->addElement('textarea', 'content', array(
-				'label' => 'message',
+				'label' => 'Text:',
 				'required' => true,
 				'rows' => 4,
-				'class' => "span5",
+				'class' => "fl-width99",
+				'placeholder' => 'Describe your idea...',
 				'errorMessages' => array("You missing content of your comment."),
 				//'description' => "description",
 				'validators' => array("NotEmpty"),
@@ -73,7 +66,7 @@ class ProjectBoardForm extends \Twitter_Bootstrap_Form_Horizontal
 		
 		// Form section
 		$this->addDisplayGroup(
-				array('logged_member','title','content','file_0','file_1','file_2','file_3','file_4','file_5'),
+				array('title','content','file_0','file_1','file_2','file_3','file_4','file_5'),
 				'main',
 				array( 'legend' => 'add new project message')
 		);
@@ -82,20 +75,22 @@ class ProjectBoardForm extends \Twitter_Bootstrap_Form_Horizontal
 		// submit button
 		$this->addElement('submit','submit',array(
 				'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
-				'label' => "add comment",
+				'label' => "Add on the Project Board",
+				'class' => 'btn btn-info',
 				'escape' => false,
 		));
 		
 		$this->addElement('button', 'reset', array(
 				'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
 				'label' => 'Reset',
+				'class' => 'btn',
 				'type' => 'reset'
 		));
 		 
 		  
 		// Action Section
 		$this->addDisplayGroup(
-				array('submit','reset'),
+				array('reset', 'submit'),
 				'actions',
 				array(
 						'disableLoadDefaultDecorators' => true,

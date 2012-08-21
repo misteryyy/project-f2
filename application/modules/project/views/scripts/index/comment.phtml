@@ -39,7 +39,7 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
 				<div class="fl-project-comments-comment">
                    <div class="fl-project-comments-comment-left">
                      <div class="inner">
-                       <img src="/storage/users/<?php echo $comment->user->getProfilePicture(100) ; ?>" alt="<?php echo $comment->user->name; ?>" />
+                       <img src="<?php echo $comment->user->getProfilePictureUrl('medium') ; ?>" alt="<?php echo $comment->user->name; ?>" />
                      </div>
                    </div>
                    <div class="fl-project-comments-comment-right">
@@ -58,7 +58,7 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
 				 <div class="fl-project-comments-comment-creator">
                    <div class="fl-project-comments-comment-left">
                      <div class="inner">
-                       <img src="/storage/users/<?php echo $comment->user->getProfilePicture(100) ; ?>" alt="<?php echo $comment->user->name; ?>" />
+                       <img src="<?php echo $comment->user->getProfilePictureUrl('medium'); ?>" alt="<?php echo $comment->user->name; ?>" />
                      </div>
                    </div>
                    <div class="fl-project-comments-comment-right">

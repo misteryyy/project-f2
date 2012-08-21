@@ -1,5 +1,5 @@
 <h2><?php echo $this->project->title?></h2>
-              <p class="fl_project_head_info"><i class="icon-user"></i> <a href="<?php echo $this->project->user->getProfileUrl();?>" title=""><?php echo $this->project->user->name?></a>, <i class="icon-folder-close"></i> <?php echo $this->project->category->name;?>, <i class="icon-time"></i> <?php echo $this->project->created->format('Y/m/d');?>,  
+              <p class="fl_project_head_info"><i class="icon-user"></i> <a href="<?php echo $this->project->user->getProfileUrl();?>" title="<?php echo $this->project->user->name; ?>'s profile"><?php echo $this->project->user->name?></a>, <i class="icon-folder-close"></i> <?php echo $this->project->category->name;?>, <i class="icon-time"></i> <?php echo $this->project->created->format('Y/m/d');?>,  
                  <span class="like"><i class="icon-thumbs-up"></i> 
                          <?php
                          // like dislike solution 
@@ -25,7 +25,7 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
         <div id="col-7">
 <h2>Project board</h2>
 
-<div class="fl-cnt-100">
+<div class="fl-cnt-100 fl-form-box">
 <?php echo $this->form;?>
 </div>
 
@@ -60,17 +60,18 @@ $(function(){
     			 <div class="fl-project-project-board-message">
                    <div class="fl-project-project-board-message-left">
                      <div class="inner">
-                       <img src="/storage/users/<?php echo $comment->user->getProfilePicture(100) ; ?>" alt="<?php echo $comment->user->name; ?>' profile picture" />
+                       <img src="<?php echo $comment->user->getProfilePictureUrl('medium'); ?>" alt="<?php echo $comment->user->name; ?>' profile picture" />
                      </div>
                    </div>
                    <div class="fl-project-project-board-message-right">
                      <div class="inner">
                        <h3 class="fl-project-project-board-h3"><?php echo $comment->title; ?></h3>
-                       <p class="fl-project-project-board-message-header"><i class="icon-user"></i> <?php echo $comment->user->name; ?>, <i class="icon-time"></i> <?php echo $comment->created->format('d-m-y'); ?></p>
-                       <p><?php echo $comment->content; ?></p>
-
+                       <p class="fl-project-project-board-message-header"><i class="icon-user"></i> <a href="<?php echo $comment->user->getProfileUrl();?>" title="<?php echo $comment->user->name; ?>'s profile"><?php echo $comment->user->name; ?></a>, <i class="icon-time"></i> <?php echo $comment->created->format('d-m-y'); ?></p>
+                       <div class="fl-cnt-100 fl-top10">
+                         <p class="fl-top10"><?php echo $comment->content; ?></p>
+                       </div>
                        <?php if(count($comment->files) > 0){?>
-						<div class="fl-cnt-100">
+						<div class="fl-cnt-100 fl-top10">
 						  <div class="alert alert-info">	
 							<?php 
 						// display children

@@ -15,16 +15,14 @@ if ($this->hasVoted) { ?>
 			<div class="fl-feedback-question">
 				<p><?php echo $a->question->question;?></p>
 			</div>
-			<div class="fl-feedback-answer">
-						<?php echo $a->answer . "  AVG ". $a->question->avgOfAnswers();?>           
+			<div class="fl-feedback-answer text-right">
+				<?php echo "<strong>".$a->answer."</strong> (". $a->question->avgOfAnswers().")";?>           
             </div>
 		</li>                          
 		<?php }?>      
 	 </ul>
 
-	<p class="fl-feedback-info"><?php echo $this->countOfVotedMembers; ?> has voted</p>
-	<input type="submit" name="submit" value="Change your answers"
-		class="btn btn-primary right" />
+	<p class="fl-feedback-info">Vote count: <strong><?php echo $this->countOfVotedMembers; ?></strong></p>
 
 </div>
 

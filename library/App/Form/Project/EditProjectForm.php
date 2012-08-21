@@ -121,7 +121,8 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 		// submit button
 		$this->addElement('submit','submit',array(
 				'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
-				'label' => "Save",
+				'label' => "Save changes",
+				'class' => 'btn btn-info',
 				'escape' => false,
 		));
 		 
@@ -129,12 +130,13 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 		$this->addElement('button', 'reset', array(
 				'buttonType' => \Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
 				'label' => 'Reset',
+				'class' => 'btn',
 				'type' => 'reset'
 		));
 		 
 		// Action Section
 		$this->addDisplayGroup(
-				array('submit', 'reset'),
+				array('reset','submit'),
 				'actions',
 				array(
 						'disableLoadDefaultDecorators' => true,
