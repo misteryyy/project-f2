@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<nav>
-		<dashboard>
-			<label>Member Zone</label>
-			<uri>#</uri>
-			<pages>
+	
 				<dash>
 					<label>Member Dashboard</label>
-					
 					<module>member</module>
 					<controller>dashboard</controller>
 					<action>index</action>
-				</dash>
+					<pages>			
 
 				<!-- My Projects with all subpages -->
 				<my-project>
@@ -212,14 +208,6 @@
 					</pages>
 				</create-project-one>
 
-
-			</pages>
-
-		</dashboard>
-
-
-
-
 		<profile-setting>
 			<label>Profile Settings</label>
 			<uri>/member/profile-setting/index</uri>
@@ -253,6 +241,8 @@
 				</change-pass>
 			</pages>
 		</profile-setting>
+		</pages>
+		</dash>
 
 		<admin>
 			<label>Go to Admin</label>

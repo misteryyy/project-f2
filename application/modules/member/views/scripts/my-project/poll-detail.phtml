@@ -93,7 +93,7 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
                       <div class="fl-poll-user">
                         <img src="<?php echo $user->getProfilePictureUrl('medium'); ?>" alt="" title="" />
                         <div class="fl-cnt-100">
-                          <span><i class="icon-file"></i> <a href="<?php echo $user->getProfileUrl();?>" title="">Profile</a>, <i class="icon-time"></i> last edit</span>
+                          <span><i class="icon-file"></i> <a href="<?php echo $user->getProfileUrl();?>" title="">Profile</a>, <i class="icon-time"></i> <?php echo $answer->created->format("d-m-y")?> was last edit</span>
                         </div>
                       </div>
 
