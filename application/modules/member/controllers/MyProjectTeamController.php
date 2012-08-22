@@ -73,7 +73,7 @@ class Member_MyProjectTeamController extends  Boilerplate_Controller_Action_Abst
 					
 				case 'delete' :
 						try{
-							$facadeTeam->deleteProjectRole($this->_member_id, $this->project_id, $this->_request->getParam("role_id"));
+							$facadeTeam->deleteOccupiedProjectRole($this->_member_id, $this->project_id, $this->_request->getParam("role_id"));
 							$respond = array("respond" => "success",'message' => "Position has been deleted.");
 							$this->_response->setBody(json_encode($respond));	
 						}catch(Exception $e){

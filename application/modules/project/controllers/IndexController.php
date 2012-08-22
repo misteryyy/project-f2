@@ -32,7 +32,7 @@ class Project_IndexController extends  Boilerplate_Controller_Action_Abstract
 			// is collaborator
 			$this->isCollaborator = $this->facadeACL->isCollaborator($this->_member_id, $this->project_id);
 			$this->view->isCollaborator = $this->isCollaborator;
-				
+			debug($this->isCollaborator);	
 			
 			$this->view->pageTitle = $this->project->title;
 			$this->view->project = $this->project;

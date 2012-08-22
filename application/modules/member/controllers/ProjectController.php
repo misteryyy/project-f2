@@ -112,7 +112,6 @@ class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
     			$session_step1 = new Zend_Session_Namespace('projectStep1');
     			$session_step1->firstFormData = $form->getValues();	
     			// fetch values
-    			$this->_helper->FlashMessenger( array('info' => "Time to Choose profile Picture"));
     			$this->_redirect('/member/project/create-project-step-two');	
     		}
     		// not validated properly

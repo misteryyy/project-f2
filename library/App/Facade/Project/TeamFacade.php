@@ -448,6 +448,7 @@ class TeamFacade {
 			throw new \Exception("This role application doesn't exists");
 		}
 
+		echo "blabla";
 		// change application state
 		$application->setState(\App\Entity\ProjectApplication::APPLICATION_DENIED);
 		 // update application information, if there was some change
@@ -455,11 +456,50 @@ class TeamFacade {
 		$application->setDescription($role->getDescription());
 		$application->setProjectRole(null); // member was kicked out
 		$application->setResult("You been kickout from the project.");
+		$this->em->flush();
 		
-			$this->em->remove($role);
-			$this->em->flush();
+		$this->em->remove($role);
+		$this->em->flush();
 	}
 
+	/**
+	 * Delete the role for the current project
+	 * @param unknown_type $user_id
+	 * @param unknown_type $project_id
+	 * @param unknown_type $role_id
+	 */
+	public function deleteOccupiedProjectRole($user_id, $project_id, $role_id){
+	
+		// find project for this user
+		$project = $this->em->getRepository ('\App\Entity\Project')->findOneBy(array("id" => $project_id,"user" => $user_id));
+		if(!$project){
+			throw new \Exception("Can't find this project for this user.");
+		}
+	
+		// find role
+		$role = $this->em->getRepository ('\App\Entity\ProjectRole')->findOneBy(array("id" => $role_id));
+		if(!$role){
+			throw new \Exception("This role doesn't exists");
+		}
+	
+		// should be just one accepted application
+		$applications = $this->findApplicationsForProjectRole($user_id, $project_id, $role_id,array('state' => 'accepted'));
+	
+		if(isset($applications)){
+			foreach ($applications as $a){
+				// set new state to the application
+				$a->setState(\App\Entity\ProjectApplication::APPLICATION_DENIED);
+				$a->setResult("Creator has decided to not have this position.");
+				$a->setProjectRole(null);
+				$a->setDescription($role->getDescription()); // for consistency, update the role
+			}
+		}
+	
+		$this->em->remove($role);
+		$this->em->flush();
+	}
+	
+	
 	/**
 	 * Delete the role for the current project
 	 * @param unknown_type $user_id
