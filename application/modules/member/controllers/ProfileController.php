@@ -121,7 +121,7 @@ class Member_ProfileController extends  Boilerplate_Controller_Action_Abstract
 		$this->view->pageTitle = "My Projects" ;
 		// get categories for form
 		$facadeProject = new \App\Facade\ProjectFacade($this->_em);
-		$projects = $facadeProject->findAllProjectsForUser($this->_member_id);
+		$projects = $facadeProject->findAllProjectsForUser($this->user_id);
 		$this->view->projects = $projects;
 	
 	}
