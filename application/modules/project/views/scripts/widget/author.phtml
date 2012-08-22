@@ -26,15 +26,18 @@ foreach ($specRoles as $r){?>
                     <div class="fl-cnt-project-by-content-right">
                       <div class="fl-cnt-project-by-content-inner">
                         <h4 class="fl-cnt-project-by-content-author"><?php echo $this->project->user->name?></h4>
-                        <p class="fl-cnt-project-by-content-author-info"><i class="icon-file"></i> <a href="<?php echo $this->project->user->profileUrl?>" title="<?php echo $this->project->user->name; ?>'s profile">Profile</a>,              <span class="like"><i class="icon-thumbs-up"></i> 
+                        <p class="fl-cnt-project-by-content-author-info"><i class="icon-file"></i> <a href="<?php echo $this->project->user->profileUrl?>" title="<?php echo $this->project->user->name; ?>'s profile">Profile</a>,            
+                         <span class="like"><i class="icon-thumbs-up"></i> 
                          <?php
                          // like dislike solution 
-                         if(!$this->project->isFollower($this->loggedMember)) {
-						 ?> <a href="" title="" class="like-member" id="<?php echo $this->project->id;?>" >Like</a>
+                         if(!$this->project->user->isFriendWithMe($this->loggedMember)) {
+						 ?> <a href="" title="" class="like-member" id="<?php echo $this->project->user->id;?>" >Like</a>
 						 <?php } else { ?>
-                            <a href="" title="" class="like-member" id="<?php echo $this->project->id;?>" >Dislike</a>
+                            <a href="" title="" class="like-member" id="<?php echo $this->project->user->id;?>" >Dislike</a>
                          <?php } ?>
-                         </span></p>
+                         </span>
+                         
+                         </p>
                         <p class="fl-cnt-project-by-content-author-description"><?php echo $this->project->user->description;?></p>
                         
                         <div class="fl_thin_divider"></div>

@@ -10,6 +10,7 @@ var Models = {
 				
 				this.config = config;
 				this.bindEvents();
+			
 			},
 				
 			bindEvents: function(){
@@ -43,10 +44,11 @@ var Models = {
 			},
 			// likeProject
 			likeProject: function(e) {
+				e.preventDefault();
+				var project_id = $(this).attr("id");
 				var follower_count = $(this).closest('.info').find(".follower-count");
 				//console.log(follower_count);
 				var val = $(this).text();
-				var user_id = $(this).attr("id");
 				if(val == 'Like') {
 					$(this).html('Dislike');
 				}else {
@@ -57,17 +59,21 @@ var Models = {
 						data:   "&_method=like-project&&project_id="+project_id, // take data from the form and send it to the method update
 					}).done(
 							function (results){
+								
 								// set new value for followers		
 								follower_count.html(results.data.count_followers); // number of current friends
 							}
 					);			
-				e.preventDefault();
+				
 			}
 			};
 			
 			// like models
 			Models.init({
+				
 				likeMemberBtn: $(".like-member"), //select a with class 
 				likeProjectBtn: $(".like-project"), //select a with class 
 				 
 			});
+			
+		
