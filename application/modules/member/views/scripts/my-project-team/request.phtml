@@ -333,7 +333,7 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 						data: "&_method=accept&&application_id="+application_id, // take data from the form and send it to the method update
 					}).done(
 							function (results){
-								//newAlert (results.respond, results.message); // display alert
+								newAlert (results.respond, results.message); // display alert
 								self.findData(); // refresh list
 								self.findDataL2(); // refresh list
 								

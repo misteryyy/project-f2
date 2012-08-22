@@ -680,9 +680,9 @@ class User {
 		$params = array ("id" => $this->id,
 				'name' => $this->name,
 				"count_friends" => $this->getCountMyFriends(),
-				"profile_picture_large" => $this->getProfilePicture(),
-				"profile_picture_medium" => $this->getProfilePicture(100),
-				"profile_picture_small" => $this->getProfilePicture(50),
+				"profile_picture_large" => $this->getProfilePictureUrl("large"),
+				"profile_picture_medium" => $this->getProfilePictureUrl("medium"),
+				"profile_picture_small" => $this->getProfilePictureUrl("small"),
 				);
 		return $params;
 	}

@@ -32,7 +32,7 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
                   <div class="inner">
                     <div class="fl-team-logged-user-left">
                  
-                    <a href="<?php echo $this->yourRole->user->getProfileUrl();?>"><img src="/storage/users/<?php echo $this->yourRole->user->getProfilePicture(50)?>" alt="<?php echo $this->yourRole->user->getName(); ?>" class="fl-img-list" /></a>
+                    <a href="<?php echo $this->yourRole->user->getProfileUrl();?>"><img src="<?php echo $this->yourRole->user->getProfilePictureUrl('small')?>" alt="<?php echo $this->yourRole->user->getName(); ?>" class="fl-img-list" /></a>
              
                       <span class="fl-team-logged-user-name"><?php echo $this->yourRole->user->name;?></span><br />
                       <span class="fl-team-logged-user-since">~ team member since <?php echo $this->yourRole->created->format("d/m/Y");?></span>

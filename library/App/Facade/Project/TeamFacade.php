@@ -267,7 +267,7 @@ class TeamFacade {
 	
 			$i = 1;
 			for($i; $i < 6; $i++){
-				$questionString = "question_".$i;
+				$questionString = "question_text_".$i;
 				$answerString = "answer_".$i;
 			
 				if(isset($data[$answerString]) ){
@@ -674,10 +674,7 @@ class TeamFacade {
 		
 		// second level, find role, denied all other application except this one
 		if($application->level == 2){
-			echo "level 2";
-			
 			// find role for this application 
-			
 			$role = $this->findOneProjectRole($project_id, $application->projectRole->id);
 			$role->setUser($application->user);
 			

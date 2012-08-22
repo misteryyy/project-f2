@@ -91,7 +91,11 @@ class AddProjectApplicationForm extends \Twitter_Bootstrap_Form_Horizontal
 			$this->addElement('hidden','question_'.$index, array(
 					'value' => $this->project->level
 			));
-
+		
+			// For whic level are we applying?
+			$this->addElement('hidden','question_text_'.$index, array(
+					'value' => $q->question,
+			));
 
 			
 			$this->addElement('textarea', 'answer_'.$index, array(
