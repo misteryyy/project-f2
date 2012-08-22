@@ -24,27 +24,16 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>Question n. 1</td>
-                            <td class="text-right">value</td>
-                          </tr>
-                          <tr>
-                            <td>Question n. 2</td>
-                            <td class="text-right">value</td>
-                          </tr>
-                          <tr>
-                            <td>Question n. 3</td>
-                            <td class="text-right">value</td>
-                          </tr>
-                          <tr>
-                            <td>Question n. 4</td>
-                            <td class="text-right">value</td>
-                          </tr>
-                          <tr>
-                            <td>Question n. 5</td>
-                            <td class="text-right">value</td>
-                          </tr>
-                        </tbody>
+                         
+                          <?php
+						foreach ( $this->poll->questions as $q ) {
+							?>
+							 <tr>
+	                            <td><?php echo $q->question;?></td>
+	                            <td class="text-right"><?php echo $q->avgOfAnswers(); ?></td>
+	                          </tr>
+	                       <?php }?>      
+                         </tbody>
                       </table>
                     </div>
                     <div class="fl-cnt-50">
@@ -89,19 +78,15 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
                       </table>
                     </div>
                     <div class="fl-cnt-50">
-                      
                       <div class="fl-poll-user">
                         <img src="<?php echo $user->getProfilePictureUrl('medium'); ?>" alt="" title="" />
                         <div class="fl-cnt-100">
                           <span><i class="icon-file"></i> <a href="<?php echo $user->getProfileUrl();?>" title="">Profile</a>, <i class="icon-time"></i> <?php echo $answer->created->format("d-m-y")?> was last edit</span>
                         </div>
                       </div>
-
                     </div>
                   </div>
-
                   <div class="fl_thin_divider"></div>
-		
     <?php } ?>
     
 </div>    	
