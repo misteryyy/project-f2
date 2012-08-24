@@ -99,7 +99,6 @@ var Models = {
 				var text_unlike = '<i class="icon-thumbs-down icon-white"></i>Unlike';
 				var user_id = $(this).attr("id");
 				var val = $(this).text();
-
 				if(val == text_like) {
 					$(this).html(text_unlike);
 				}else {
@@ -113,15 +112,10 @@ var Models = {
 								// set new value for followers		
 							}
 					);			
-				
 			}
-			
 			};
-			
 			// like models
 			Models.init({
-				
 				likeMemberBtn: $(".like-member-btn"), //select a with class 
-					 
 			});
 </script>			
