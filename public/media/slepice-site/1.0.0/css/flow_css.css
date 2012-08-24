@@ -2811,6 +2811,49 @@ p.help-block{
   float: left;
 }
 
+.fl-human-verification{
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.fl-human-verification label{
+  display: none;
+}
+
+.fl-human-verification li.verification-0,
+.fl-human-verification li.verification-1, 
+.fl-human-verification li.verification-2, 
+.fl-human-verification li.verification-3,
+.fl-human-verification li.verification-4{
+  padding: 10px;
+  background: blue;
+  margin: 5px;
+  display: inline;
+  float: left;
+}
+
+.fl-human-verification li.verification-1{
+  background: green;
+}
+
+.fl-human-verification li.verification-2{
+  background: red;
+}
+
+.fl-human-verification li.verification-3{
+  background: yellow;
+}
+
+.fl-human-verification li.verification-4{
+  background: black;
+}
+
+.fl-form-signup input#verification-0{
+}
+
 .fl-form-signup .fl-control-label-checkbox,
 .fl-step5-form .fl-control-label-checkbox,
 .fl-personal-info-form .fl-control-label-checkbox,
@@ -2871,7 +2914,8 @@ label a, label a:hover, label a:focus, label a:visited{
 
 .fl-form-new-poll .control-group > label.optional,
 .fl-form-update label[for="content"],
-.fl-form-projectboard label[for="content"]{
+.fl-form-projectboard label[for="content"],
+.fl-form-signup label[for*="verification-"]{
   display: none;
 }
 

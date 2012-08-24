@@ -59,7 +59,7 @@ class SignupForm extends \Twitter_Bootstrap_Form_Horizontal
 				)
 		));
 
-		// Notification about level
+		
 		 $this->addElement('hidden', 'divider', array(
 		 		'description' => '<div class="fl_thin_divider"></div>',
 		 		'ignore' => true,
@@ -71,19 +71,21 @@ class SignupForm extends \Twitter_Bootstrap_Form_Horizontal
 		
 		
 		
-		// Passion Bar
+		
 		$this->addElement('radio','verification', array(
-				'label' => 'Select second value:',
+				'label' => 'Select green square:',
 				'required' => true,
-				'errorMessages' => array("You have choose second value. Which is second :)"),
+				'errorMessages' => array("You have choose green square. Which is green :)"),
 				//'description' => "description",
-				'multiOptions' => array("Three",'One',"Two"),
+				'multiOptions' => array("Blue","Green","Red"),
 				'validators' => array(
 						array('Between',true,array('min' => 1, 'max' => 1),
 						)
-				)
-				
+				),
+
 		));
+
+
 		
 		
 // 		$radio->setLabel('Choose green color box:')
