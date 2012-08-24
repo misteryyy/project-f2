@@ -4,11 +4,16 @@ if(count ($this->user) > 0){ ?>
 
 <h2><?php echo $this->user->name; ?> <span>~ ID: <?php echo $this->user->id; ?></span> <a class="btn btn-success" href="/member/profile/index/id/<?php echo $this->user->id?>"> Public Profile</a></h2>
 
+<div class="fl-cnt-100 fl-top10">
+  <a class="btn btn-inverse right" href="/admin/member"><i class="icon-th-list icon-white"></i> Back to all members</a>
+</div>
 
+
+<div class="fl-cnt-100 fl-top20">
 <?php 
 if(count($this->logs) > 0){ ?>
 
-<div class="fl-cnt-100 fl-top10">
+
 <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
 	<thead>
 		<tr>
@@ -30,16 +35,10 @@ if(count($this->logs) > 0){ ?>
 	} // end of foreach ?>
 	</tbody>
 	</table>	
-	</div>
+	
 	
 <?php 
-} else{
-	echo "No logs messages for this member.";
-}
- 
-} else {
-	
-	echo "This user wasn't found.";
-	
-}?>
+} else{ echo "No logs messages for this member."; } ?>
+</div> 
+<?php } else { echo "This user wasn't found."; }?>
 
