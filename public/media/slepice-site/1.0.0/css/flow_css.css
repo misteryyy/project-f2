@@ -1304,11 +1304,121 @@ p.fl-list-project-queue{
   margin: 10px 0 10px 0;
   width: 100%;
   float: left;
+  padding: 0px;
+  list-style: none;
 }
 
-.fl-step{
-  width: 20%;
+li.fl-step1, li.fl-step2, li.fl-step3, li.fl-step4, li.fl-step5,
+li.fl-step1-active, li.fl-step2-active, li.fl-step3-active, li.fl-step4-active, li.fl-step5-active,
+li.fl-step1-done, li.fl-step2-done, li.fl-step3-done, li.fl-step4-done, li.fl-step5-done{
+  height: 37px;
+  float: left;
+  margin: 0px;
+  padding: 0px;
+  color: white;
 }
+
+li[class*="fl-step"] a:link, li[class*="fl-step"] a:hover, li[class*="fl-step"] a:focus, li[class*="fl-step"] a:visited{
+  color: #fbe99d;
+  text-decoration: none;
+  width: 100%;
+  display: block;
+  float: left;
+  margin: 8px 0 0 0;
+  text-indent: 10px;
+}
+
+li[class*="fl-step"] a:hover, li[class*="fl-step"] a:focus{
+  color: #c29318;
+}
+
+li[class*="-done"] a:link, li[class*="-done"] a:visited{
+  color: #def393;
+}
+
+
+li[class*="-active"] a:hover, li[class*="-active"] a:focus,
+li[class*="-done"] a:hover, li[class*="-done"] a:focus{
+  color: #688414;
+}
+
+li[class*="-active"] a:link, li[class*="-active"] a:hover, li[class*="-active"] a:focus, li[class*="-active"] a:visited{
+  color: white;
+}
+
+li[class*="fl-step"] strong{
+  font-size: 22px;
+  display: block;
+  float: left;
+}
+
+li[class*="fl-step"] span{
+  margin: 1px 0 0 0;
+  display: block;
+  float: left;
+}
+
+li.fl-step1, li.fl-step1-active, li.fl-step1-done{
+  width: 166px;
+  background: #fcc122 url('../img/step1.png') top left no-repeat;
+}
+
+li.fl-step1-active{
+  background: #abd42d url('../img/step1-active.png') top left no-repeat;
+}
+
+li.fl-step1-done{
+  background: #abd42d url('../img/step1-done.png') top left no-repeat;
+}
+
+li.fl-step2, li.fl-step2-active, li.fl-step2-done{
+  width: 184px;
+  background: #fcc122 url('../img/step2.png') top left no-repeat;
+}
+
+li.fl-step2-active{
+  background: #abd42d url('../img/step2-active.png') top left no-repeat;
+}
+
+li.fl-step2-done{
+  background: #abd42d url('../img/step2-done.png') top left no-repeat;
+}
+
+li.fl-step3, li.fl-step3-active, li.fl-step3-done{
+  width: 128px;
+  background: #fcc122 url('../img/step3.png') top left no-repeat;
+}
+
+li.fl-step3-active{
+  background: #abd42d url('../img/step3-active.png') top left no-repeat;
+}
+
+li.fl-step3-done{
+  background: #abd42d url('../img/step3-done.png') top left no-repeat;
+}
+
+li.fl-step4, li.fl-step4-active, li.fl-step4-done{
+  width: 123px;
+  background: #fcc122 url('../img/step4.png') top left no-repeat;
+}
+
+li.fl-step4-active{
+  background: #abd42d url('../img/step4-active.png') top left no-repeat;
+}
+
+li.fl-step4-done{
+  background: #abd42d url('../img/step4-done.png') top left no-repeat;
+}
+
+li.fl-step5, li.fl-step5-active{
+  width: 154px;
+  background: #fcc122 url('../img/step5.png') top left no-repeat;
+}
+
+li.fl-step5-active{
+  background: #abd42d url('../img/step5-active.png') top left no-repeat;
+}
+
 
 .fl-form-navigation{
   text-align: left;

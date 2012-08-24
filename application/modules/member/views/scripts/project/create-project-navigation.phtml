@@ -1,27 +1,38 @@
 <div class="fl-cnt-100">
    <?php  
-	$percentage = 20;
-	$allow[1] = false;
-	$allow[2] = false;	$allow[3] = false;	$allow[4] = false;$allow[5] = false;
+	$allow[1] = false;	$allow[2] = false;	$allow[3] = false;	$allow[4] = false;$allow[5] = false;
 	switch ($this->step){
 		case 1 : $allow[1] = true;
 				 break; 
-		case 2 : $percentage = 40; $allow[2] = true;
+		case 2 : $allow[2] = true;
 				 break;
-		case 3 : $percentage = 60; $allow[3] = true;
+		case 3 : $allow[3] = true;
 				 break;
-		case 4 :$percentage = 80; $allow[4] = true;
+		case 4 : $allow[4] = true;
 				break;
-		case 5 : $percentage = 100; $allow[5] = true;
+		case 5 : $allow[5] = true;
 				 break;	 
 	}
   ?>
 
-    <div class="btn-group fl-creating-steps">
-	  <a class="btn btn-large <?php echo($allow[1] == true ? "active" : "disable" );?>" href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-one'),null,true)?>">#1 / General Info</a>
-	  <a class="btn btn-large <?php echo($allow[2] == true ? "active" : "disable" );?>" href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-two'),null,true)?>">#2 / Project Picture</a>
-	  <a class="btn btn-large <?php echo($allow[3] == true ? "active" : "disable" );?>" href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-three'),null,true)?>">#3 / Team </a>
-	  <a class="btn btn-large <?php echo($allow[4] == true ? "active" : "disable" );?>" href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-four'),null,true)?>">#4 / Survey </a>
-	  <a class="btn btn-large <?php echo($allow[5] == true ? "active" : "disable" );?>" href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-five'),null,true)?>">#5  / Publishing </a>
-	</div>
+    <ul class="fl-creating-steps">
+    	<li class="fl-step1<?php echo($allow[1] == true ? "-active" : "" ); echo($this->step > 1 ? "-done" : "");?>">
+    		<a href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-one'),null,true)?>" title="General info"><strong>1</strong> <span>General info</span></a>
+    	</li>
+    	<li class="fl-step2<?php echo($allow[2] == true ? "-active" : "" ); echo($this->step > 2 ? "-done" : "");?>">
+    		<a href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-two'),null,true)?>" title="Project picture"><strong>2</strong> <span>Project picture</span></a>
+    	</li>
+    	<li class="fl-step3<?php echo($allow[3] == true ? "-active" : "" ); echo($this->step > 3 ? "-done" : "");?>">
+    		<a href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-three'),null,true)?>" title="Team"><strong>3</strong> <span>Team</span></a>
+    	</li>
+    	<li class="fl-step4<?php echo($allow[4] == true ? "-active" : "" ); echo($this->step > 4 ? "-done" : "");?>">
+    		<a href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-four'),null,true)?>" title="Survey"><strong>4</strong> <span>Survey</span></a>
+    	</li>
+    	<li class="fl-step5<?php echo($allow[5] == true ? "-active" : "" ); ?>">
+    		<a href="<?php echo $this->url(array('module' => "member",'controller'=>'project','action'=>'create-project-step-five'),null,true)?>" title="Publishing"><strong>5</strong> <span>Publishing</span></a>
+    	</li>
+    </ul>
+
 </div>
+
+<div class="fl_thick_divider"></div>
