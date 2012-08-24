@@ -22,6 +22,7 @@ var Models = {
 				
 			// likeMember
 			likeMember: function(e) {
+				e.preventDefault();
 				var follower_count = $(this).closest('.info').find(".follower-count");
 				//console.log(follower_count);
 				var val = $(this).text();
@@ -40,7 +41,7 @@ var Models = {
 								follower_count.html(results.data.count_friends); // number of current friends
 							}
 					);			
-				e.preventDefault();
+				
 			},
 			// likeProject
 			likeProject: function(e) {

@@ -15,10 +15,7 @@ echo $this->partial('/profile/profile-navigation.phtml',array("step" => $this->s
 <?php if (count($this->paginator) > 1) echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
 
     <?php if (count($this->paginator)) {?>
-
-    <?php foreach ($this->paginator as $project){ ?>
-
-        
+	 <?php foreach ($this->paginator as $project){ ?>
               <div class="fl-list-project">
                 <div class="fl-cnt-20">
                   <div class="fl-project-thumb">
@@ -66,15 +63,11 @@ echo $this->partial('/profile/profile-navigation.phtml',array("step" => $this->s
             }
             
             if($display){
-            
                       // if level 3 = have no idea what to display or not
-                      foreach ($freePositions as $r){
-                        
-                       
+                      foreach ($freePositions as $r){ 
                         echo '<img src="/media/slepice-site/1.0.0/img/role_'.$r.'.png" alt="'.$r.'" title="'.$r.'" /> ';
-                       
                       }
-            } 
+            	} 
                       ?>
                     </div>
                   </div>
@@ -83,9 +76,9 @@ echo $this->partial('/profile/profile-navigation.phtml',array("step" => $this->s
                       <?php
                          // like dislike solution 
                          if(!$project->isFollower($this->loggedMember)) {
-             ?> <a href="" title="" class="like-project btn btn-success" id="<?php echo $project->id;?>" ><i class="icon-thumbs-up"></i> Like</a>
+             ?> <a href="" title="" class="like-project-btn btn btn-success" id="<?php echo $project->id;?>" ><i class="icon-thumbs-up icon-white"></i>Like</a>
              <?php } else { ?>
-                            <a href="" title="" class="like-project btn btn-danger" id="<?php echo $project->id;?>" ><i class="icon-thumbs-down"></i> Dislike</a>
+                            <a href="" title="" class="like-project-btn btn btn-danger" id="<?php echo $project->id;?>" ><i class="icon-thumbs-down icon-white"></i>Dislike</a>
                          <?php } ?>
                     </div>
               </div>
@@ -99,8 +92,7 @@ echo $this->partial('/profile/profile-navigation.phtml',array("step" => $this->s
  
  </div>
  </div>   
-    	
-<script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-member-project-1.0.0.js')?>"></script> 
-    
-    
-    
+ <script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-button-member-project-1.0.0.js')?>"></script>
+ 
+ 
+   

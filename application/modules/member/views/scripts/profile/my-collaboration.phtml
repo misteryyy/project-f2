@@ -57,9 +57,9 @@ if(count ($this->applications) > 0){	?>
                   <?php
                    // like dislike solution 
                    if(!$project->isFollower($this->loggedMember)) { ?>
-                     <a href="" title="" class="like-project btn btn-success" id="<?php echo $project->id;?>" ><i class="icon-thumbs-up icon-white"></i> Like</a>
+                     <a href="" title="" class="like-project-btn btn btn-success" id="<?php echo $project->id;?>" ><i class="icon-thumbs-up icon-white"></i>Like</a>
                    <?php } else { ?>
-                      <a href="" title="" class="like-project btn btn-danger" id="<?php echo $project->id;?>" ><i class="icon-thumbs-down icon-white"></i> Dislike</a>
+                      <a href="" title="" class="like-project-btn btn btn-danger" id="<?php echo $project->id;?>" ><i class="icon-thumbs-down icon-white"></i>Dislike</a>
                    <?php } ?>
                 </div>
                 <div class="fl-cnt-75 fl-left10 fl-top10">
@@ -113,7 +113,6 @@ if(count ($this->applications) > 0){	?>
   </div>
 </div>
 
-    	
-<script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-member-project-1.0.0.js')?>"></script> 
-
-
+ <script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-button-member-project-1.0.0.js')?>"></script>
+ 
+ 

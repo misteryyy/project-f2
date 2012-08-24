@@ -70,52 +70,6 @@ echo $this->partial('/profile/profile-navigation.phtml',array("step" => $this->s
 </div>
 
 </div>	
-<script type="text/javascript">
-/* Like functionality for the site */
-var Models = {
-			init: function(config){
-				// ajax setup
-				$.ajaxSetup({
-					url: "/site/index/ajax-index", 
-					type: 'GET',
-					dataType: 'json',
-				});
-				
-				this.config = config;
-				this.bindEvents();
-			
-			},
-				
-			bindEvents: function(){
-				//this.config.likeMemberBtn.css("color","red");
-				this.config.likeMemberBtn.on("click", this.likeMember);					
-			},
-				
-			// likeMember
-			likeMember: function(e) {
-				e.preventDefault(); // prevent default action
-				alert("lala");
-				var text_like = '<i class="icon-thumbs-up icon-white"></i>Like';
-				var text_unlike = '<i class="icon-thumbs-down icon-white"></i>Unlike';
-				var user_id = $(this).attr("id");
-				var val = $(this).text();
-				if(val == text_like) {
-					$(this).html(text_unlike);
-				}else {
-					$(this).html(text_like);
-				} 	
-					// send data to server
-					$.ajax({
-						data:   "&_method=like-member&&friend_id="+user_id, // take data from the form and send it to the method update
-					}).done(
-							function (results){
-								// set new value for followers		
-							}
-					);			
-			}
-			};
-			// like models
-			Models.init({
-				likeMemberBtn: $(".like-member-btn"), //select a with class 
-			});
-</script>			
+ <script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-button-member-project-1.0.0.js')?>"></script>
+ 
+ 
