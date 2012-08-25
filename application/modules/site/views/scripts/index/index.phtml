@@ -62,7 +62,7 @@
                  
                        <div class="fl_project_thumb_roles">
                         <?php 
-                       		 $display = false;
+                       	$display = false;
                         // if level 1 display all logos   
 						if($project->level == 1) {
                         $freePositions = \App\Entity\ProjectRole::getRolesArray();
@@ -73,6 +73,10 @@
                         $facadeProject = new \App\Facade\Project\TeamFacade($this->em);
                     	$freePositions = $facadeProject->findFreeUniqueProjectRolesForProjectArray($project->id); 
 							$display =  true;	
+						}
+						
+						if($project->disableRoleWidget){
+							$display = false;
 						}
 						
 						if($display){

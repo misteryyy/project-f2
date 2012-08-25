@@ -6,9 +6,12 @@ use Doctrine\DBAL\Schema\Visitor\RemoveNamespacedAssets;
 class TaskFacade {
 	/** @var Doctrine\Orm\EntityManager */
 	private $em;
-
+	private $facadeNotification;
+	
 	public function __construct(\Doctrine\ORM\EntityManager $em){	
 		$this->em = $em;
+		$this->facadeNotification = new \App\Facade\NotificationFacade($em);
+		
 	}	
 	
 	/**
@@ -42,9 +45,10 @@ class TaskFacade {
 		}
 		
 		if($project->user == $user){
-				
 			// TODO checking if all task are completed
 			$project->setLevel($data['level']);
+			$this->facadeNotification->addProjectNotification($project,"Project has moved to ".$data['level'].'th level.',10);
+				
 			$this->em->flush();
 	
 		} else {

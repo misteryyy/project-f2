@@ -19,6 +19,7 @@ if(count($this->logs) > 0){ ?>
 		<tr>
 			<th>created</th>
 			<th>message</th>
+			<th>rate</th>
 			<th>type</th>
 		</tr>
 	</thead>
@@ -26,11 +27,12 @@ if(count($this->logs) > 0){ ?>
 
 <?php
 	foreach($this->logs as $log){ ?>
-	<tr>
-		<td><?php echo $log->created->format('Y-m-d')?></td>
+		<tr>
+		<td><?php echo $log->created->format('Y-m-d/H:i:s')?></td>
 			<td><?php echo $log->message?>	</td>
+			<td><?php echo $log->rate?>	</td>
 			<td><?php echo $log->type?></td>
-	</tr>	
+	</tr>		
 	<?php 	
 	} // end of foreach ?>
 	</tbody>

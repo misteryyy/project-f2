@@ -21,6 +21,15 @@ class ProjectLog {
 	 */
 	private $type;
 	
+	
+	/**
+	 * @Column(type="integer", name="rate")
+	 */
+	private $rate;
+	
+	/** @Column(type="string", name="icon") */
+	private $icon;
+	
 	/**
 	 * @Column(type="string", name="message")
 	 */
@@ -53,10 +62,19 @@ class ProjectLog {
 		$this->type = $type;
 	}
 	
-	public function __construct($message, $type = self::TYPE_SYSTEM) {
+	public function __construct($message, $type = self::TYPE_SYSTEM,$rate=0,$icon="info") {
 		$this->message = $message;
 		$this->type = $type;
 		$this->created = new \DateTime ( "now" );
+		$this->rate = $rate;
+		$this->icon = $icon;
+	}
+	
+	/**
+	 * Get Rate
+	 */
+	public function getRate(){
+		return $this->rate;
 	}
 	
 	public function setProject($project){

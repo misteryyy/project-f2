@@ -58,13 +58,7 @@ echo $this->partial('project/create-project-navigation.phtml',array("step" => $t
 $(document).ready(function()
 {
 	// disable cache
-	 $.ajaxSetup ({cache: false });  
-	 <?php 
-	  // display picture from the previous
-	  if(!Zend_Session::namespaceIsset('projectStep2')){
-	  echo '$("#button-continue").hide();';}
-	  ?>
-	  
+	 $.ajaxSetup ({cache: false });    
 	   var options = { 
 		        target: '#preview',   // target element(s) to be updated with server response 
 		        success: showResponse,  // post-submit callback 
@@ -89,7 +83,6 @@ $(document).ready(function()
 			}else{
 				$("#preview").html('');
 				$("#preview").html('<div class="fl-cnt-100 text-center fl-bottom20"> <img src="'+responseText.web_url+'?foo=' + new Date().getTime()+'" alt="Profile Picture" class="fl-img"/> </div>');
-				$("#button-continue").show();
 				newAlert('success', responseText.message);
 			} 
 		} 

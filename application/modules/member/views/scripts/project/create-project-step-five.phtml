@@ -18,9 +18,19 @@ echo $this->partial('project/create-project-navigation.phtml',array("step" => $t
                 </p>
 
                 <span class="fl-publishing-label">Picture</span>
+               
+               <?php 
+               	if(isset($this->secondStep['webUrl'])){
+               ?>
                 <div class="fl-publishing-img">
                    <?php echo '<img src="'.$this->secondStep['webUrl'].'?foo='.time().'" alt="Profile Picture"/>'; ?>
                 </div>
+                <?php } else {
+                	// no profile picture has been set
+                	?>                
+                	<img src="/media/slepice-site/1.0.0/img/no_project_image_large.png" alt="No Project picture"/>
+                	<?php 
+                }?>
                 
                 <span class="fl-publishing-label">One sentence pitch</span>
                 <p class="fl-publishing-title"><?php echo $this->firstStep['pitch']; ?></p>

@@ -75,7 +75,7 @@ class UserLog extends \App\Entity\UserLog implements \Doctrine\ORM\Proxy\Proxy
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'type', 'icon', 'message', 'created', 'user');
+        return array('__isInitialized__', 'id', 'rate', 'type', 'icon', 'message', 'created', 'user');
     }
 
     public function __clone()

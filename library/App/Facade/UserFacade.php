@@ -8,9 +8,10 @@ class UserFacade {
 	
 	/** @var Doctrine\Orm\EntityManager */
 	private $em;
+	private $facadeNotification;
 	
 	public function __construct(\Doctrine\ORM\EntityManager $em){
-		
+		$this->facadeNotification = new \App\Facade\NotificationFacade($em);
 		$this->em = $em;
 	}
 	
@@ -67,12 +68,14 @@ class UserFacade {
 		if($user->isMyFriend($friend)){
 			$user->deleteMyFriend($friend); // delete from friends
 			$friend->deleteFriendWithMe($user);
+			$this->facadeNotification->addUserNotification($user,"Member stopped following ".$friend->getProfileFullUrl(),2);	
 			$count_of_friends--;
 			$this->em->flush();
 			
 		} else {
 			$user->addNewFriend($friend); // add this friend
 			$friend->addFriendWithMe($user);
+			$this->facadeNotification->addUserNotification($user,"Member is following ".$friend->getProfileFullUrl(),2);
 			$count_of_friends++;
 			$this->em->flush();
 		}
@@ -126,20 +129,26 @@ public function findAllUsersNative($options = array()){
 	}
 	
 
-	public function findOneUser($id){
-		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $id );
-		if($user){
-			return $user;
-		}else {
-			throw new \Exception("This user doesn't exists");	
+	
+	/**
+	 * Find One User
+	 * @param unknown_type $id
+	 * @throws \Exception
+	 */
+	public function findOneUser($user_id){
+		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
+		if(!$user){
+			throw new \Exception("Member doesn't exists");
 		}
+		return $user;
 	
 	}
 		
-	/*
-	 * Creates new account
+	/**
+	 * Create user account
+	 * @param unknown_type $data
 	 */
-	public function createAccount($data){
+	public function createAccount($data = array()){
 
 		$user = new \App\Entity\User();
 		$user->setEmail($data['email']);
@@ -167,11 +176,7 @@ public function findAllUsersNative($options = array()){
 		// ->addTo($data['email'])
 		// ->setViewParam('name',"Josef Kortan")
 		// ->sendHtmlTemplate("welcome.phtml");
-		
-		// log
-		$this->addLogMessage($user, "Account created.");
-		
-		
+			
 	}
 	
 	public function makeTagArray($str){
@@ -182,18 +187,7 @@ public function findAllUsersNative($options = array()){
 	}
 	
 	// TODO cant be , after tag list
-	
-	/**
-	 * Adds log message to the user activity
-	 * @param unknown_type $user
-	 * @param unknown_type $message
-	 */
-	public function addLogMessage($user,$message){
-			$lm = new \App\Entity\UserLog($message);
-			$lm->setUser($user);
-			$this->em->persist($lm);
-			$this->em->flush();
-	}
+
 	
 	/**
 	 * Return all log information for user
@@ -204,7 +198,7 @@ public function findAllUsersNative($options = array()){
 		
 		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
 		if(!$user){
-			throw new \Exception("Member doesn't exists");
+			throw new \Exception("User doesn't exists");
 		}
 			
 		return $this->em->getRepository ('\App\Entity\UserLog')->findByUser($user);
@@ -219,10 +213,12 @@ public function findAllUsersNative($options = array()){
 	 * @param unknown_type $id
 	 * @param unknown_type $data
 	 */
-	public function updateSkills($id,$data = array()){
-		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $id );	
-		if($user){
-			
+	public function updateSkills($user_id,$data = array()){
+		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
+		if(!$user){
+			throw new \Exception("User doesn't exists");
+		}
+		
 			$arrayRoles = array(array("name" => \App\Entity\UserRole::MEMBER_ROLE_STARTER, ),
 					array("name" => \App\Entity\UserRole::MEMBER_ROLE_LEADER),
 					array("name" => \App\Entity\UserRole::MEMBER_ROLE_BUILDER),
@@ -319,15 +315,8 @@ public function findAllUsersNative($options = array()){
 				}
 			
 			
-			}
-			
-			// log
-			$this->addLogMessage($user, "Updated his skills.");	
+			}	
 			$this->em->flush();
-		
-		} else {
-			throw new \Exception("Can't find this user.");
-		}
 	
 	}
 	
@@ -337,11 +326,10 @@ public function findAllUsersNative($options = array()){
 	 * @param unknown_type $data
 	 */
 	public function updateInfo($user_id,$data = array()){
-		
 		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
-			
-		if($user){
-			//$user = new \App\Entity\User();
+		if(!$user){
+			throw new \Exception("User doesn't exists");
+		}
 			// update basic information in user entity	
 			$user->setDescription($data['description']);
 			$user->setName($data['name']);
@@ -376,8 +364,8 @@ public function findAllUsersNative($options = array()){
 					$this->em->flush();
 					
 					// log
-					$this->addLogMessage($user, "Updated profile info.");
-					
+					$this->facadeNotification->addUserNotification($user,"Member updated profile info.",1);
+						
 				}
 				
 				
@@ -423,10 +411,7 @@ public function findAllUsersNative($options = array()){
 				$this->em->flush();
 				
 				}	
-		
-		} else {
-			throwException("Can't find this user.");
-		}
+	
 		
 	}
 	
@@ -443,22 +428,34 @@ public function findAllUsersNative($options = array()){
 			
 		$user->setProfilePicture($file);
 		$this->em->flush();	
-		$this->addLogMessage($user, "Updated profile picture.");	
+		$this->facadeNotification->addUserNotification($user,"Member changed Profile Picture.",1);	
 	}
 	
+
+	
 	/**
-	 * 
-	 * @param unknown_type $id
+	 * Return all log information for user
+	 * @param unknown_type $user_id
+	 * @throws \Exception
 	 */
-	public function findUserSettings($id){
-		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $id );
-		
-		if($user){
-			return $user;
-		} else {
-			throwException("Can't find this user.");
+	public function findPublicLogForUserPaginator($user_id){
+	
+		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
+		if(!$user){
+			throw new \Exception("Member doesn't exists");
 		}
-		
+			
+		$stmt = 'SELECT u FROM App\Entity\UserLog u WHERE u.user = ?1 AND u.type = ?2 ORDER BY u.created ';
+		//$stmt .= 'ORDER BY a.created, a.roleName DESC';
+		$query = $this->em->createQuery($stmt);
+		$query->setParameter(1, $user_id);
+		$query->setParameter(2, \App\Entity\UserLog::TYPE_PRIVATE);
+	
+		$paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
+		$iterator = $paginator->getIterator();
+		$adapter = new \Zend_Paginator_Adapter_Iterator($iterator);
+		return new \Zend_Paginator($adapter);
+	
 	}
 	
 	

@@ -6,9 +6,11 @@ use Doctrine\DBAL\Schema\Visitor\RemoveNamespacedAssets;
 class PollFacade {
 	/** @var Doctrine\Orm\EntityManager */
 	private $em;
-
+	private $facadeNotification;
 	public function __construct(\Doctrine\ORM\EntityManager $em){	
 		$this->em = $em;
+		$this->facadeNotification = new \App\Facade\NotificationFacade($em);
+		
 	}	
 	
 	
@@ -69,8 +71,7 @@ class PollFacade {
 		}
 		
 		// check there is at least one question
-		if($attLeastOneQuestion === false) {throw new \Exception("You should have at least one question for your poll.");}
-
+		if($attLeastOneQuestion === false) {throw new \Exception("You should have at least one question for your poll.");}	
 		// save the data
 		$this->em->flush();
 	}
@@ -200,6 +201,7 @@ class PollFacade {
 	 			$a = new \App\Entity\ProjectPollAnswer($user, $value, $question, $poll); // create new answer for this user
 	 			$this->em->persist($a);	 			
 		}
+		$this->facadeNotification->addUserNotification($user,"Member has voted for the Poll in ".$project->getProjectFullUrl(),2);
 		
 		$this->em->flush(); // save data
 

@@ -61,7 +61,6 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 
 <script src="/media/tools/handlebars-1.0.0.beta.6.js"></script>
 <script type="text/javascript">  	
-
 			var Questions = {
 
 			init: function(config){
@@ -104,13 +103,10 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 								self.config.questionList.append(self.config.questionListTemplate(results.data));
 							}else{
 								self.config.questionList.append("No tasks.");
-								
 							}
 				 		}
 				 );	
-	
 				},
-
 				// finish task
 				finishTask:function(e){
 					var self = Questions;
@@ -195,5 +191,4 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 				QuestionInfoTemplate :  $("#question_info_template"),
 
 			});
-
  </script>  

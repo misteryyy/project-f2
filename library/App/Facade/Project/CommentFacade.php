@@ -7,10 +7,14 @@ class CommentFacade {
 	/** @var Doctrine\Orm\EntityManager */
 	private $em;
 	private $userFacade;
+	private $facadeNotification;
+	
 	public function __construct(\Doctrine\ORM\EntityManager $em){
 		
 		$this->em = $em;
 		$this->userFacade = new \App\Facade\UserFacade($em);
+		$this->facadeNotification = new \App\Facade\NotificationFacade($em);
+		
 	}
 	
 	/**
@@ -64,6 +68,9 @@ class CommentFacade {
 	
 		$newComment = new \App\Entity\ProjectComment($project, $user, $data['content'],$data['priority']);
 		$this->em->persist($newComment);
+		$this->facadeNotification->addUserNotification($user,"Member has added new comment to ".$project->getProjectFullUrl(),2);
+		
+		
 		$this->em->flush();
 	}
 	

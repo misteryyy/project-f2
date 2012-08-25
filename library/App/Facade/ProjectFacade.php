@@ -9,6 +9,7 @@ class ProjectFacade {
 	private $userFacade;
 	private $taskFacade;
 	private $aclFacade;
+	private $facadeNotification;
 	
 	public function __construct(\Doctrine\ORM\EntityManager $em){
 		
@@ -16,6 +17,8 @@ class ProjectFacade {
 		$this->userFacade = new \App\Facade\UserFacade($em);
 		$this->taskFacade = new \App\Facade\Project\TaskFacade($em);
 		$this->aclFacade = new \App\Facade\ACLFacade($em);
+		$this->facadeNotification = new \App\Facade\NotificationFacade($em);
+		
 	}
 	
 
@@ -228,13 +231,17 @@ class ProjectFacade {
 						}
 				$this->em->flush(); // save to db
 				
-				// create thumbnails
+				// create dir for project
 				$fileManager = new \Boilerplate_Util_FileManagerS3($newProject);
-			
-				$info = $fileManager->createThumbnailsForProject($newProject->user->id,$dataSecondStep['absolutPath'],$dataSecondStep['fileName']);
-				$newProject->setDir($info['dir']);
-				$newProject->setPicture($info['file']);
-				$this->em->flush();
+				$dir = $fileManager->createDirForProject($newProject->user->id);	
+				$newProject->setDir($dir);
+
+				// create thumbnails
+				if(isset($dataSecondStep)){
+					$info = $fileManager->createThumbnailsForProject($newProject->user->id,$dataSecondStep['absolutPath'],$dataSecondStep['fileName'],$dir);
+					$newProject->setPicture($info['file']);
+					$this->em->flush();
+				}
 				
 				// creating roles for creator
 				$arrayRoles = array(array("name" => \App\Entity\UserRole::MEMBER_ROLE_STARTER, ),
@@ -279,9 +286,8 @@ class ProjectFacade {
 					$newAnswer->setQuestion($question);
 				}
 				$this->em->flush();
-				// save answers
-					$this->userFacade->addLogMessage($user, "Create new project ".$newProject->getTitle()." with ID ".$newProject->getId());
-					$this->addLogMessage($newProject, "Project created");
+				// log
+				$this->facadeNotification->addUserNotification($user,"Member published new project ".$newProject->getProjectFullUrl(),5);		
 					
 				} else {	
 					throw new \Exception("Category doesn't exists");
@@ -547,6 +553,8 @@ class ProjectFacade {
 			
 			$user->deleteMyFavouriteProject($project); // delete from my projects
 			$countOfFollowers--;
+			$this->facadeNotification->addUserNotification($user,"Member stopped following project ".$project->getProjectFullUrl(),2);
+			
 			$this->em->flush();
 				
 		} else {
@@ -556,6 +564,7 @@ class ProjectFacade {
 			if($this->aclFacade->isAdmin($user_id)){
 				$project->featured++;
 			}
+			$this->facadeNotification->addUserNotification($user,"Member is following project ".$project->getProjectFullUrl(),2);
 			
 			$countOfFollowers++;
 			$this->em->flush();

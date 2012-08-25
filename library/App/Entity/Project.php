@@ -316,6 +316,12 @@ class Project {
 		return '/project/index/index/id/'.$this->id;
 	}
 
+	/**
+	 * Return project full url in format <a href="url">Title</a>
+	 */
+	public function getProjectFullUrl(){
+		return '<a href="'.$this->getProjectUrl().'">'.$this->title."</a>";
+	}
 	
 	/**
 	 * Date initialization
@@ -376,7 +382,7 @@ class Project {
 	public function getPicture($size = self::PROJECT_PHOTO_RESOLUTION_LARGE) {
 		
 		if ($this->picture == null) {
-			return "no_project_image_" . $size . ".jpg";
+			return null;
 		}
 			
 		$arr = array (self::PROJECT_PHOTO_RESOLUTION_LARGE,
@@ -400,11 +406,18 @@ class Project {
 	 */
 	public function getPictureUrl($size = self::PROJECT_PHOTO_RESOLUTION_LARGE){
 		
+		if($this->getPicture($size) == null) {
+			$file =  "no_project_image_" . $size . ".png";
+			return '/media/slepice-site/1.0.0/img/'.$file;
+				
+		} else {$file = $this->getPicture($size);
+		}
+		
 		$config = new \Zend_Config(\Zend_Registry::get('config'));
 		if($config->app->s3->storage->enabled){			
-			return $config->app->s3->storage->web_url.'projects/'.$this->dir."/thumbs/".$this->getPicture($size);
+			return $config->app->s3->storage->web_url.'projects/'.$this->dir."/thumbs/".$file;
 		}
-		return '/storage/projects/'.$this->dir."/thumbs/".$this->getPicture($size);
+		return '/storage/projects/'.$this->dir."/thumbs/".$file;
 	
 	}
 	

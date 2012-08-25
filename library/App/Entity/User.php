@@ -561,6 +561,13 @@ class User {
 		return '/member/profile/index/id/'.$this->id;
 	}
 	
+	/**
+	 * Return users profile full url in format <a href="url">Name</a>
+	 */
+	public function getProfileFullUrl(){
+		return '<a href="'.$this->getProfileUrl().'">'.$this->name."</a>";
+	}
+	
 	
 	/**
 	 * Get count member who likes

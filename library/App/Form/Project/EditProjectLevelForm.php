@@ -42,8 +42,6 @@ EOT;
 				),
 		));
 		
-	    echo $this->project->level;
-
 	    $levelArr = array(1 => "LEVEL1",2 => 'LEVEL2', 3 => 'LEVEL3');
 	    unset($levelArr[$this->project->level]);
 	    

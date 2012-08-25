@@ -75,7 +75,7 @@ class ProjectLog extends \App\Entity\ProjectLog implements \Doctrine\ORM\Proxy\P
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'type', 'message', 'created', 'project');
+        return array('__isInitialized__', 'id', 'type', 'rate', 'icon', 'message', 'created', 'project');
     }
 
     public function __clone()

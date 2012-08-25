@@ -16,6 +16,11 @@ class UserLog
      * @GeneratedValue
      */
     private $id;
+     
+    /**
+     * @Column(type="integer", name="rate")
+     */
+    private $rate;
     
     
     /** @Column(type="string", name="type") */
@@ -24,8 +29,6 @@ class UserLog
     
     /** @Column(type="string", name="icon") */
     private $icon;
-    
-    
     
     
     /** @Column(type="string", name="message") */
@@ -57,17 +60,26 @@ class UserLog
 		$this->type = $type;
 	}
 
-	public function __construct($message,$type = self::TYPE_SYSTEM,$icon="info"){
+	public function __construct($message,$type = self::TYPE_SYSTEM,$rate=0,$icon="info"){
     	$this->message = $message;
     	$this->type = $type;
     	$this->icon = $icon;
 		$this->created = new \DateTime("now");	
+		$this->rate = $rate;
     }
     
     public function setUser($user){
     	$this->user = $user;
     }
 
+    
+    /**
+     * Get Rate
+     */
+    public function getRate(){
+    	return $this->rate;
+    }
+    
     public function __get($property) {
     	// If a method exists to get the property call it.
     	if (method_exists ( $this, 'get' . ucfirst ( $property ) )) {

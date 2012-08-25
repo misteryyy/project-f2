@@ -16,6 +16,7 @@ if(count ($this->project) > 0){ ?>
 		<tr>
 			<th>Created</th>
 			<th>Message</th>
+			<th>Rate</th>
 			<th>Type</th>
 		</tr>
 	</thead>
@@ -24,8 +25,9 @@ if(count ($this->project) > 0){ ?>
 <?php
 	foreach($this->logs as $log){ ?>
 	<tr>
-		<td><?php echo $log->created->format('Y-m-d')?></td>
+		<td><?php echo $log->created->format('Y-m-d/H:i:s')?></td>
 			<td><?php echo $log->message?>	</td>
+			<td><?php echo $log->rate?>	</td>
 			<td><?php echo $log->type?></td>
 	</tr>	
 	<?php 	

@@ -59,7 +59,7 @@ class Member_ProfileSettingController extends  Boilerplate_Controller_Action_Abs
        // fetch values
        $values = $form->getValues();	      
        // retriving data for form
-        $user = $facadeUser->findUserSettings($this->_member_id);
+        $user = $facadeUser->findOneUser($this->_member_id);
         // if its not initialize
         ($user->getDateOfBirth() != null) ?  $dateOfBirth = $user->getDateOfBirth()->format('Y/m/d') : $dateOfBirth = '';
         
@@ -188,7 +188,7 @@ class Member_ProfileSettingController extends  Boilerplate_Controller_Action_Abs
      		// fetch values
      		$values = $form->getValues();
      		// retriving data for form
-     		$user = $facadeUser->findUserSettings($this->_member_id);
+     		$user = $facadeUser->findOneUser($this->_member_id);
      		// filling up form with data	
      		$arrayRoles = array(array("name" => \App\Entity\UserRole::MEMBER_ROLE_STARTER, ),
      				array("name" => \App\Entity\UserRole::MEMBER_ROLE_LEADER),

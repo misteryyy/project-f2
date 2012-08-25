@@ -6,12 +6,12 @@ use Doctrine\DBAL\Schema\Visitor\RemoveNamespacedAssets;
 class TeamFacade {
 	/** @var Doctrine\Orm\EntityManager */
 	private $em;
-
+	private $facadeNotification;
 	public function __construct(\Doctrine\ORM\EntityManager $em){	
 		$this->em = $em;
+		$this->facadeNotification = new \App\Facade\NotificationFacade($em);
+		
 	}	
-	
-	
 	
 	/**
 	 * Return one role for the logged member for the project
@@ -448,7 +448,7 @@ class TeamFacade {
 			throw new \Exception("This role application doesn't exists");
 		}
 
-		echo "blabla";
+	
 		// change application state
 		$application->setState(\App\Entity\ProjectApplication::APPLICATION_DENIED);
 		 // update application information, if there was some change
@@ -457,7 +457,7 @@ class TeamFacade {
 		$application->setProjectRole(null); // member was kicked out
 		$application->setResult("You been kickout from the project.");
 		$this->em->flush();
-		
+			
 		$this->em->remove($role);
 		$this->em->flush();
 	}
@@ -489,12 +489,12 @@ class TeamFacade {
 			foreach ($applications as $a){
 				// set new state to the application
 				$a->setState(\App\Entity\ProjectApplication::APPLICATION_DENIED);
-				$a->setResult("Creator has decided to not have this position.");
+				$a->setResult("Creator has decided to kick you off from the team.");
 				$a->setProjectRole(null);
 				$a->setDescription($role->getDescription()); // for consistency, update the role
 			}
 		}
-	
+		$this->facadeNotification->addUserNotification($role->user,"Member was kicked off the project ".$project->getProjectFullUrl(),0);
 		$this->em->remove($role);
 		$this->em->flush();
 	}
@@ -729,13 +729,17 @@ class TeamFacade {
 					foreach ($applications as $a){
 						// set new state to the application
 						$a->setState(\App\Entity\ProjectApplication::APPLICATION_DENIED);
-						$a->setResult("Creator gave this position to someone else and haven't explain the reason why.");
+						$a->setResult("Sorry, all spots seem to have been filled for this role. Try getting in touch with the creator directly if you're still interested in collaborating.");
 				}
 			}
 			
+				
 			// create new role for project
 			$this->em->flush();
 		}
+		
+		$this->facadeNotification->addUserNotification($user,"Member started to collaborate on a project ".$project->getProjectFullUrl(),5);
+		
 		
 
 	}

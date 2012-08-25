@@ -114,21 +114,27 @@ class Boilerplate_Util_FileManagerS3
 		
 		
 		/**
+		 * Creates dir for project
+		 */
+		function createDirForProject($user_id){
+			$dir = sha1($this->project->id .'+' . $user_id)."_".$this->project->id;
+			return $dir;	
+		}
+		
+		/**
 		 * File method to create thumbnails
 		 */		
-		function createThumbnailsForProject($user_id,$image_path,$file){
+		function createThumbnailsForProject($user_id,$image_path,$file,$dir){
 
 			// create project folder and save path for directory
 			$config = new \Zend_Config(\Zend_Registry::get('config'));
 			$path = $config->app->storage->project;
-			
-			$dir = sha1($this->project->id .'+' . $user_id)."_".$this->project->id;
+	
 			$thumbDir = $dir.'/thumbs/';
 			rrmdir($path.$dir); // delete previous files
 			mkdir($path.$dir); // creating of the new directory
 			mkdir($path.$thumbDir); // creating dir for thumbs
-		
-			
+				
 			$newImagePath = $path.$thumbDir.$file;
 			
 			if (copy($image_path,$newImagePath)) {
@@ -154,7 +160,7 @@ class Boilerplate_Util_FileManagerS3
 									Zend_Service_Amazon_S3::S3_ACL_PUBLIC_READ));
 				}
 				
-				return array('dir'=>$dir,'file'=>$preFile.'_large.'.$ext);
+				return array('file'=>$preFile.'_large.'.$ext);
 				
 			} else {
 					

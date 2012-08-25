@@ -8,10 +8,15 @@ class ProjectBoardFacade {
 	/** @var Doctrine\Orm\EntityManager */
 	private $em;
 	private $userFacade;
+	private $facadeNotification;
+	
+	
 	public function __construct(\Doctrine\ORM\EntityManager $em){
 		
 		$this->em = $em;
 		$this->userFacade = new \App\Facade\UserFacade($em);
+		$this->facadeNotification = new \App\Facade\NotificationFacade($em);
+		
 	}
 	
 
@@ -43,7 +48,8 @@ class ProjectBoardFacade {
 				$newComment->addFile($newFile);			
 			}
 		}
-		
+
+		$this->facadeNotification->addUserNotification($user,"Sent message to Project Board in ".$project->getProjectFullUrl(),2);
 		$this->em->persist($newComment);
 		$this->em->flush();
 	}

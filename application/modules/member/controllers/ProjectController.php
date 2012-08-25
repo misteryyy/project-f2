@@ -62,11 +62,11 @@ class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
     					$this->view->fourthStep);
     			$this->_helper->FlashMessenger( array('info' => "Your Project has been created :)"));
     			// unset sessions
-     			//Zend_Session::namespaceUnset('projectStep1');
-     			//Zend_Session::namespaceUnset('projectStep2');
-     			//Zend_Session::namespaceUnset('projectStep3');
-     			//Zend_Session::namespaceUnset('projectStep4');
-     			//Zend_Session::namespaceUnset('projectStep5');   
+     			Zend_Session::namespaceUnset('projectStep1');
+     			Zend_Session::namespaceUnset('projectStep2');
+     			Zend_Session::namespaceUnset('projectStep3');
+     			Zend_Session::namespaceUnset('projectStep4');
+     			Zend_Session::namespaceUnset('projectStep5');   
 				
 				// add notification
     			$this->_redirect("member/my-project");
@@ -228,10 +228,10 @@ class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
     public function createProjectStepThreeAction()
     {
     	//check if session from two
-    	if(!Zend_Session::namespaceIsset('projectStep2')){
-    		$this->_helper->FlashMessenger( array('success' => "I can't wait so long. You have to start again. Sorry :D"));
-    		$this->_redirect("member/project/create-project-step-two");
-    	} 	  
+    	//if(!Zend_Session::namespaceIsset('projectStep2')){
+    	//	$this->_helper->FlashMessenger( array('success' => "I can't wait so long. You have to start again. Sorry :D"));
+    	//	$this->_redirect("member/project/create-project-step-two");
+    	//} 	  
 
     	$this->view->pageTitle = "Roles Setting" ;
     	$this->view->step = 3; // for generation menu

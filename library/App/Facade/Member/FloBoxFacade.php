@@ -6,9 +6,12 @@ class FloBoxFacade {
 	
 	/** @var Doctrine\Orm\EntityManager */
 	private $em;
+	private $facadeNotification;
 	
 	public function __construct(\Doctrine\ORM\EntityManager $em){	
 		$this->em = $em;
+		$this->facadeNotification = new \App\Facade\NotificationFacade($em);
+		
 	}
 	
 	/*
@@ -54,6 +57,7 @@ class FloBoxFacade {
 		$message = $this->findOneMessage($user_id, $id);
 		
 		if($message->user->id == $user_id){
+			$this->facadeNotification->addUserNotification($message->user,"Member has deleted FLO~ BOX message",2);
 			$this->em->remove($message);
 			$this->em->flush();
 			
@@ -79,6 +83,8 @@ class FloBoxFacade {
 			if($flobox){				
 				$newComment =  new \App\Entity\UserFloBoxComment($user, $data['content']);
 				$flobox->addComment($newComment);
+				$this->facadeNotification->addUserNotification($user,"Member has added new FLO~ BOX message",2);
+				
 				$this->em->flush();	
 				// create comment
 			}else {

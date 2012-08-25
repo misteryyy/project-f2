@@ -36,7 +36,7 @@ class Member_WidgetController extends  Boilerplate_Controller_Action_Abstract
     public function notificationAction(){
     	
     	try{
-    		$facadeUser = new \App\Facade\NotificationFacade($this->_em);
+    		$facadeUser = new \App\Facade\UserFacade($this->_em);
     		$paginator = $facadeUser->findPublicLogForUserPaginator($this->_member_id);
     		$paginator->setItemCountPerPage(10);
     		$page = $this->_request->getParam('page', 1);
