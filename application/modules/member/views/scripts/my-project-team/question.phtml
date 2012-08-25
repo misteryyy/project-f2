@@ -25,10 +25,11 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 <div class="fl-form-ajax">
 	<!-- Form for creating new question -->
     <form id="form-create-question" class="form-search" action="#" method="post" autocomplete="off">
-    	<div class="input-append">
-			<label class="control-label hide" for="input-question-create">Add new question: </label>
-			<input type="text" name="question" placeholder="write a new question for applicant"  class="span5" id="input-question-create"/><input type="submit" class="btn btn-primary create"  name='submit' data-toggle="button"  data-complete-text="finished!"  data-loading-text="processing..." value="add new question" />
-		</div>
+    	<label class="control-label hide" for="input-question-create">Add new question: </label>
+		<textarea type="text" name="question" placeholder="write a new question for applicant"  class="fl-width98 right" id="input-question-create"></textarea><br />
+
+		<input type="submit" class="btn btn-primary create right fl-top5"  name='submit' data-toggle="button"  data-complete-text="finished!"  data-loading-text="processing..." value="Add New Question" />
+		
 	</form>
 </div>
 
@@ -38,10 +39,14 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 				{{#each this}}				
 					<form method="post" action="" class="form-search" data-question_id="{{id}}">
 						<input type="hidden" name="question_id" value="{{id}}" />
-						<input  type="text" name="question" value="{{question}}" class="span5"/>
-						<input  class="btn btn-success update" type="submit"  data-loading-text="processing..." value="edit" name="submit" />
-						<input class="btn  btn-danger delete" type="submit"  data-loading-text="processing..." value="delete" name="submit" />
+						<textarea  type="text" name="question" class="fl-width98 right">{{question}}</textarea><br />
+						
+						<div class="text-right fl-cnt-100 action-buttons" >
+						  <a href="#" class="btn btn-success update fl-top5" type="submit"  data-loading-text="editing..." name="submit" ><i class="icon-wrench icon-white"></i> Edit</a>
+						  <a href="#" class="btn  btn-danger delete fl-top5" type="submit"  data-loading-text="deleting..." name="submit"><i class="icon-remove icon-white"></i> Delete</a>
+						</div>
 					</form>
+					<div class="fl_thin_divider"></div>
 				{{/each}}
 	</script>
 	</ol>
@@ -82,8 +87,8 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 				},
 				
 			bindEvents: function(){
-				this.config.questionList.on('click','form input.update',this.updateQuestion); // edit question 
-				this.config.questionList.on('click','form input.delete',this.deleteQuestion); // delete question
+				this.config.questionList.on('click','form .action-buttons a.update',this.updateQuestion); // edit question 
+				this.config.questionList.on('click','form .action-buttons a.delete',this.deleteQuestion); // delete question
 				this.config.formCreate.on('click','input.create',this.createQuestion); // create new question
 				
 				},
@@ -100,7 +105,7 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 								self.config.questionList.append(self.config.questionListTemplate(results.data));
 								//newAlert (results.respond, results.message)
 							}else{
-								self.config.questionList.append("No questons.");			
+								self.config.questionList.append("No questions.");			
 							}
 				 		}
 				 );	
@@ -111,10 +116,11 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 				var self = Questions;
 				var but  = $(this).button('toggle');
 				but.button('loading');
-				var form = $(this).parent().parent(); // directly this form
+				var form = $(this).parent(); // directly this form
+				//alert(form.serialize());
 				//create method
 				 $.ajax({
-				 	data:  form.serialize() + "&_method=create", // take data from the form and send it to the method delete
+				 	 data:  form.serialize() + "&_method=create", // take data from the form and send it to the method delete
 				 }).done(
 						function (results){
 				 			newAlert (results.respond, results.message); // display alert
@@ -133,7 +139,7 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 			deleteQuestion:function(e){
 				var self = Questions;
 				$(this).button('loading');
-				var form = $(this).parent();
+				var form = $(this).parent().parent();
 				//console.log($(e.target));
 				//console.log($(this).parent());
 				//delete method
@@ -152,7 +158,7 @@ echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" =
 			// update question
 			updateQuestion:function(e){
 				var self = Questions;
-				var form = $(this).parent();
+				var form = $(this).parent().parent();
 				$(this).button('loading');
 				console.log($(this));
 				//delete method
