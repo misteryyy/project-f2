@@ -182,7 +182,6 @@ class Boilerplate_Util_FileManagerS3
 				throw new \Exception("The file doesn't exists." );
 			}
 			
-		
 			header( 'Content-Type:'.$file->type );
 			header( 'Content-Disposition: attachment;filename="'.$file->name.'"');
 			echo $this->s3->getObject($output);

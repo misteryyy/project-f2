@@ -136,17 +136,7 @@ class ProjectFacade {
 	}
 	
 	
-	/**
-	 * Adds log message to the user activity
-	 * @param unknown_type $user
-	 * @param unknown_type $message
-	 */
-	public function addLogMessage($project,$message){
-		$lm = new \App\Entity\ProjectLog($message);
-		$lm->setProject($project);
-		$this->em->persist($lm);
-		$this->em->flush();
-	}
+
 	
 	/**
 	 * Return all log information for user
@@ -182,7 +172,7 @@ class ProjectFacade {
 		
 		$project->setPicture($filename);
 		$this->em->flush(); // save to db
-		$this->addLogMessage($project, "Updated Project Picture");
+		$this->facadeNotification->addProjectNotification($project, "Updated project picture",2);
 		
 	}
 	
@@ -194,8 +184,10 @@ class ProjectFacade {
 	 */
 	public function createProject($id,$dataFirstStep = array(),$dataSecondStep = array(),$dataThirdStep = array(),$dataFourthStep = array()){
 			
-		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $id );
-		if($user){
+		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
+		if(!$user){
+			throw new \Exception("Member doesn't exists");
+		}
 				// find category
 				$category = $this->em->getRepository ('\App\Entity\Category')->findOneBy(array("id"=> $dataFirstStep['category']));
 				if($category){
@@ -293,17 +285,14 @@ class ProjectFacade {
 					throw new \Exception("Category doesn't exists");
 				}
 					
-				} else {
-				
-				throw new \Exception("User doesn't exists");
-				}
+			
 		}
 		
 	public function	updateProject($user_id,$project_id,$data = array()){
-			
-		// check if user exists
 		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
-		if($user){
+		if(!$user){
+			throw new \Exception("Member doesn't exists");
+		}
 		
 			$project = $this->em->getRepository('\App\Entity\Project')->findOneBy(array("user" => $user,"id" => $project_id ));
 			if($project == null){
@@ -361,17 +350,12 @@ class ProjectFacade {
  				}
 				
 				$this->em->flush();
-				$this->userFacade->addLogMessage($user, "Update project ".$project->getTitle()." with ID ".$project->getId());
-				$this->addLogMessage($project, "Project description updated.");
+				$this->facadeNotification->addProjectNotification($project, "Project has updated description",2);
 			}else {
 				throw new \Exception("Category  doesn't exists");
 				
 			}			
-		}
-		else {
-			throw new \Exception("User doesn't exists");
-		
-		}	
+	
 	}
 	/**
 	 * Adds creator roles

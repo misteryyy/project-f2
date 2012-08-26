@@ -122,11 +122,11 @@ class Project_IndexController extends  Boilerplate_Controller_Action_Abstract
     		$this->_redirect('/project/error/');
     	}
     	
-    	if($this->isCollaborator){
-    		$this->_helper->FlashMessenger(array('error' => "You are not collaborating on this project. Sorry."));
-    		$this->_redirect('/project/error/');
+    	//if($this->isCollaborator){
+    	//	$this->_helper->FlashMessenger(array('error' => "You are not collaborating on this project. Sorry."));
+    	//	$this->_redirect('/project/error/');
     
-    	}
+   // 	}
     	 
     	//find file
     	$fileManager = new Boilerplate_Util_FileManagerS3($this->project);
