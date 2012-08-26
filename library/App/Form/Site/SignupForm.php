@@ -67,33 +67,32 @@ class SignupForm extends \Twitter_Bootstrap_Form_Horizontal
 		 				array('Description', array('escape'=>false, 'tag'=>'')),
 		 		),
 		 ));
-		
-		
-		
-		
-		
-		$this->addElement('radio','verification', array(
-				'label' => 'Select green square:',
-				'required' => true,
-				'errorMessages' => array("You have choose green square. Which is green :)"),
-				//'description' => "description",
-				'multiOptions' => array("Blue","Green","Red"),
-				'validators' => array(
-						array('Between',true,array('min' => 1, 'max' => 1),
-						)
-				),
-
-		));
-
-
-		
-		
-// 		$radio->setLabel('Choose green color box:')
-// 		->setMultiOptions(array('1' => PHP_EOL . 'Green', '2' => PHP_EOL . 'Blue','3' => PHP_EOL . 'Red','4' => PHP_EOL . 'Black'))
-// 		->setRequired(true)
-// 		->addValidator('Between',true, array('min' => 1, 'max' => 1)); // value one
-		
-		
+		 
+		 
+		 $this->addElement('radio', 'verification', array(
+		 		'disableLoadDefaultDecorators' => true,
+		 		'label' => 'Select green square:',
+		 		'separator'=>"captcha", // special hack not so nice but works
+		 		'required' => true,
+		 		'multiOptions' => array('Blue','Green','Red','Yellow',"Black") ,		
+		 		'errorMessages' => array("You have choose green square. Which is green :)"),	
+		 		'decorators'   => array(
+		 				array('ViewHelper'),
+		 				array('FieldSize'),
+		 				array('ElementErrors'),
+		 				array('Description', array('tag' => 'p', 'class' => 'help-block')),
+		 				array(array('ulWrapper' => 'HtmlTag'), array('tag' => 'ul','class'=>'fl-human-verification')),
+		 				array('HtmlTag', array('tag' => 'div', 'class' => 'controls')),
+		 				
+		 				array('Label', array('class' => 'control-label')),
+		 				array('Wrapper')
+		 					 		),
+		 		'validators' => array(
+		 				array('Between',true,array('min' => 1, 'max' => 1),
+		 				)
+		 		)
+		 ));
+		 	
 
 		$this->addElement('checkbox', 'accept', array(
 				'label'=>'Do you agree with <a href="/index/rules">rules</a>?',

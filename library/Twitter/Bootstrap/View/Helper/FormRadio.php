@@ -121,9 +121,11 @@ class Twitter_Bootstrap_View_Helper_FormRadio extends Zend_View_Helper_FormEleme
             : '/[^a-zA-Z0-9\-\_]/';     // No Unicode
         $filter = new Zend_Filter_PregReplace($pattern, "");
         
+        
         // add radio buttons to the list.
         foreach ($options as $opt_value => $opt_label) {
 
+        	
             // Should the label be escaped?
             if ($escape) {
                 $opt_label = $this->view->escape($opt_label);
@@ -146,9 +148,17 @@ class Twitter_Bootstrap_View_Helper_FormRadio extends Zend_View_Helper_FormEleme
             // generate ID
             $optId = $id . '-' . $filter->filter($opt_value);
 
+            // init
+            $begin = $end = "";
+            
+            // if separator is set to captcha add special li
+            if($listsep == 'captcha'){
+            	$begin = '<li class="'.$optId.'">';
+            	$end = "<li/>";
+            }
             // Wrap the radios in labels
             $radio = 
-                     '<input type="' . $this->_inputType . '"'
+                    $begin. '<input type="' . $this->_inputType . '"'
                     . ' name="' . $name . '"'
                     . ' id="' . $optId . '"'
                     . ' value="' . $this->view->escape($opt_value) . '"'
@@ -162,7 +172,7 @@ class Twitter_Bootstrap_View_Helper_FormRadio extends Zend_View_Helper_FormEleme
                     
                     . (('append' == $labelPlacement) ? $opt_label."" : '')
                     . (('prepend' == $labelPlacement) ? $opt_label : '')
-                    . '</label>';
+                    . '</label>'.$end;
 
             // add to the array of radio buttons
             $list[] = $radio;

@@ -117,24 +117,17 @@ class Member_IndexController extends Boilerplate_Controller_Action_Abstract {
 	 * Sign up process, validation of form
 	 */
 	public function signUpAction() {
-		
 		$this->view->pageTitle = 'Sign up for FLO~';
 		
 		$form = new \App\Form\Site\SignupForm();
 		$this->view->form = $form;
-		
 		if ($this->_request->isPost ()) {
-			
 			if ($form->isValid ( $this->_request->getPost () )) {
-				
 				// finding user
 				$user = $this->_em->getRepository ('\App\Entity\User')->findOneByEmail ( $form->getValue ( 'email' ) );
-			
 				// user doesn't exist, we can create new one
 				if (! $user) {
-					
-					try {
-						
+					try {	
 						// storing the values
 						$facadeUser = new \App\Facade\UserFacade($this->_em);
 						$facadeUser->createAccount($form->getValues());
@@ -152,10 +145,8 @@ class Member_IndexController extends Boilerplate_Controller_Action_Abstract {
 				else {
 					$this->_helper->FlashMessenger ( array ('error' => "The provided e-mail address is already associated with a registered user." ) );
 				}
-			} 			// print error
+			} // print error
 			else {
-				pr ( $form->getValues () );
-				pr ( $this->_request );
 				$this->_helper->FlashMessenger ( array ('error' => "Please take a look at the form again." ) );
 			}
 		}
