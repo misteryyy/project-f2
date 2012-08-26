@@ -81,12 +81,27 @@ class Member_WidgetController extends  Boilerplate_Controller_Action_Abstract
     	
     	$facadeProject = new \App\Facade\ProjectFacade($this->_em);
     	$paginator = $facadeProject->findFeaturedProjectsPaginator($this->_member_id);
-    	$paginator->setItemCountPerPage(4);
+    	$paginator->setItemCountPerPage(5);
     	$page = $this->_request->getParam('page', 1);
     	$paginator->setCurrentPageNumber($page);
     	$this->view->paginator = $paginator;
     	
     	 
+    }
+
+    /**
+     * My projects widget
+     */
+    public function myProjectAction(){
+        
+        $facadeProject = new \App\Facade\ProjectFacade($this->_em);
+        $paginator = $facadeProject->findProjectsFromMyFriendPaginator($this->_member_id);
+        $paginator->setItemCountPerPage(4);
+        $page = $this->_request->getParam('page', 1);
+        $paginator->setCurrentPageNumber($page);
+        $this->view->paginator = $paginator;
+        
+         
     }
     
     

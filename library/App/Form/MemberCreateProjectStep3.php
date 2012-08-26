@@ -141,7 +141,7 @@ EOT;
 		$this->addDisplayGroup(
 				$addQuestion,
 				'role_widget_survey',
-				array('legend' => 'Questions for project')
+				array('legend' => '')
 		);
 
 			$this->addElement('hidden', 'previous', array(

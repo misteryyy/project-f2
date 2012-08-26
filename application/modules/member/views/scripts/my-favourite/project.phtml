@@ -53,6 +53,10 @@
                     	$freePositions = $facadeProject->findFreeUniqueProjectRolesForProjectArray($project->id); 
 							$display =  true;	
 						}
+
+            if($project->disableRoleWidget){
+               $display = false;
+             }
 						
 						if($display){
 						

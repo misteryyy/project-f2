@@ -61,6 +61,10 @@ echo $this->partial('/profile/profile-navigation.phtml',array("step" => $this->s
                       $freePositions = $facadeProject->findFreeUniqueProjectRolesForProjectArray($project->id); 
               $display =  true; 
             }
+
+            if($project->disableRoleWidget){
+               $display = false;
+             }
             
             if($display){
                       // if level 3 = have no idea what to display or not
