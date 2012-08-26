@@ -26,15 +26,18 @@ if(count($this->logs) > 0){ ?>
 	<tbody>
 
 <?php
+	$total = 0;
 	foreach($this->logs as $log){ ?>
 		<tr>
 		<td><?php echo $log->created->format('Y-m-d/H:i:s')?></td>
 			<td><?php echo $log->message?>	</td>
 			<td><?php echo $log->rate?>	</td>
 			<td><?php echo $log->type?></td>
+			<?php $total += $log->rate;?>
 	</tr>		
 	<?php 	
 	} // end of foreach ?>
+	<tr><td colspan="2">Total rate is</td><td colspan="2"><strong><?php echo $total;?></strong></td></tr>
 	</tbody>
 	</table>	
 	
