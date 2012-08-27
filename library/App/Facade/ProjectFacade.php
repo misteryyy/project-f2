@@ -182,7 +182,7 @@ class ProjectFacade {
 	 * @param unknown_type $dataFirstStep
 	 * @param unknown_type $dataSecondStep
 	 */
-	public function createProject($id,$dataFirstStep = array(),$dataSecondStep = array(),$dataThirdStep = array(),$dataFourthStep = array()){
+	public function createProject($user_id,$dataFirstStep = array(),$dataSecondStep = array(),$dataThirdStep = array(),$dataFourthStep = array()){
 			
 		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
 		if(!$user){
@@ -357,14 +357,7 @@ class ProjectFacade {
 			}			
 	
 	}
-	/**
-	 * Adds creator roles
-	 * @param unknown_type $id_project
-	 * @param unknown_type $data
-	 */
-	public function addCreatorRoleToProject($id_project,$data = array()){
-		
-	}
+
 	
 	/**
 	 * Return all users

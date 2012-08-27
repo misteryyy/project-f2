@@ -171,6 +171,12 @@ class Project extends \App\Entity\Project implements \Doctrine\ORM\Proxy\Proxy
         return parent::getProjectUrl();
     }
 
+    public function getProjectFullUrl()
+    {
+        $this->__load();
+        return parent::getProjectFullUrl();
+    }
+
     public function getCountFollowers()
     {
         $this->__load();

@@ -300,6 +300,12 @@ class User extends \App\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         return parent::getProfileUrl();
     }
 
+    public function getProfileFullUrl()
+    {
+        $this->__load();
+        return parent::getProfileFullUrl();
+    }
+
     public function getCountMyFriends()
     {
         $this->__load();

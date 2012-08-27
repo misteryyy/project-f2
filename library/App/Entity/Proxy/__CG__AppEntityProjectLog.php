@@ -54,6 +54,12 @@ class ProjectLog extends \App\Entity\ProjectLog implements \Doctrine\ORM\Proxy\P
         return parent::setType($type);
     }
 
+    public function getRate()
+    {
+        $this->__load();
+        return parent::getRate();
+    }
+
     public function setProject($project)
     {
         $this->__load();
