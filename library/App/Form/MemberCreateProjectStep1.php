@@ -35,7 +35,8 @@ class MemberCreateProjectStep1 extends \Twitter_Bootstrap_Form_Horizontal
 		$this->addElement('select','category', array(
 				'label' => 'Category:',
 				'class' => 'span3',
-				'multiOptions' => $this->categories,	 
+				'multiOptions' => $this->categories,
+				'description' => 'Don’t see your category listed? Fill in the specific details that make your project category unique (and easier for people to find) by tagging keyword descriptions.'	 
 		));
 		
 		for($i = 1; $i <=10;$i++){

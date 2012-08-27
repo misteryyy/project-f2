@@ -21,21 +21,25 @@ body{
 #fl-container{
   width: 1055px;
   clear: both;
-  margin: 0 auto 0 auto;
+  margin: 0 auto 30px auto;
 }
 
 #fl-content{
   background: #ffffff;
   width: 100%;
   float: left;
+  -moz-box-shadow: 0 0 5px #d1d1d1;
+  -webkit-box-shadow: 0 0 5px #d1d1d1;
+  box-shadow: 0px 0px 5px #d1d1d1;
 }
 
 #bottom{
   width: 100%;
   float: left;
+  clear: both;
   background: #f4f4f4;
-  margin: 50px 0 0 0;
-  padding: 20px 0 20px 0;
+  margin: 0;
+  padding: 0;
 }
 
 #bottom ul{
@@ -47,14 +51,69 @@ body{
 #fl-bottom-line{
   clear: both;
   float: left;
-  margin: 50px 0 10px 0;
-  text-align: center;
+  margin: 0px 0 20px 0;
   width: 100%;
   height: 40px;
+  font-size: 11px;
 }
 
 #fl-bottom-line p{
   font-size: 10px;
+  text-indent: 10px;
+  color: #373737;
+  margin: 10px 0 0 0;
+  padding: 4px 0 0 0;
+  float: left;
+}
+
+#fl-bottom-line a, #fl-bottom-line a:visited, #fl-bottom-line a:hover, #fl-bottom-line a:focus{
+  color: #666666;
+  text-decoration: none;
+}
+
+#fl-bottom-line a:hover, #fl-bottom-line a:focus{
+  color: #0088cc;
+  text-decoration: underline;
+}
+
+#fl-bottom-line ul{
+  list-style: none;
+  margin: 10px 10px 0 0;
+  padding: 0px;
+  float: right;
+}
+
+#fl-bottom-line ul li{
+  display: block;
+  float: left;
+  margin: 0 8px 0 8px;
+  height: 25px;
+  padding: 4px 0 0 0;
+}
+
+#fl-bottom-line ul li:first-child{
+  margin: 0 8px 0 0;
+}
+
+#fl-bottom-line ul li:last-child{
+  margin: 0 0 0 8px; 
+}
+
+#fl-bottom-line ul li.divider{
+  border-left:1px solid #efefef; 
+  background: #c0c0c0; 
+  height: 25px;
+  width: 1px;
+  padding: 0px;
+}
+
+.fl-footer-divider{
+  border-right:1px solid #e2e2e2;
+}
+
+.fl-footer-divider ul,
+.fl-footer-divider .fl-footer-section{
+  border-right:1px solid #ffffff;
 }
 
 .container{
@@ -2923,9 +2982,9 @@ p.help-block{
 
 .fl-human-verification{
   list-style: none;
-  width: 100%;
+  width: 60%;
+  margin: 0 0 0 20%;
   padding: 0;
-  margin: 0;
   text-align: center;
 }
 
@@ -2938,7 +2997,7 @@ p.help-block{
 .fl-human-verification li.verification-2, 
 .fl-human-verification li.verification-3,
 .fl-human-verification li.verification-4{
-  padding: 10px;
+  padding: 5px 10px 10px 10px;
   background: blue;
   margin: 5px;
   display: inline;

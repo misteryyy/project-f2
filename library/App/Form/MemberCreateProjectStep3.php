@@ -108,8 +108,7 @@ $addQuestion [] = "title_survey";
 $warning_message =  <<<EOT
 	<div class="fl-cnt-100">
 	  <div class="alert alert-info">
-		<span class="label label-info">Info</span>
-		Question description.
+		As users who match the skills you need become interested in your idea, they can get in touch with you by requesting to join  your project as a collaborator. Think about the types of questions you would  want to ask an applicant to gauge how well you match each other. Try to make your questions relevant and in-depth.
 	  </div>
 	</div>
 EOT;
