@@ -21,7 +21,7 @@ body{
 #fl-container{
   width: 1055px;
   clear: both;
-  margin: 0 auto 0 auto;
+  margin: 0 auto 30px auto;
 }
 
 #fl-content{
@@ -46,15 +46,28 @@ body{
 
 #fl-bottom-line{
   clear: both;
+  background: #101010 url('../img/footer_bcg.png') top left repeat-x;
   float: left;
-  margin: 50px 0 10px 0;
-  text-align: center;
+  margin: 0px 0 100px 0;
   width: 100%;
   height: 40px;
 }
 
 #fl-bottom-line p{
   font-size: 10px;
+  text-indent: 10px;
+  color: #dcdcdc;
+  margin: 10px 0 0 0;
+}
+
+#fl-bottom-line a, #fl-bottom-line a:visited, #fl-bottom-line a:hover, #fl-bottom-line a:focus{
+  color: #666666;
+  text-decoration: none;
+}
+
+#fl-bottom-line a:hover, #fl-bottom-line a:focus{
+  color: white;
+  text-decoration: underline;
 }
 
 .container{
@@ -2923,9 +2936,9 @@ p.help-block{
 
 .fl-human-verification{
   list-style: none;
-  width: 100%;
+  width: 60%;
+  margin: 0 0 0 20%;
   padding: 0;
-  margin: 0;
   text-align: center;
 }
 
@@ -2938,7 +2951,7 @@ p.help-block{
 .fl-human-verification li.verification-2, 
 .fl-human-verification li.verification-3,
 .fl-human-verification li.verification-4{
-  padding: 10px;
+  padding: 5px 10px 10px 10px;
   background: blue;
   margin: 5px;
   display: inline;
