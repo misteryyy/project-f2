@@ -15,6 +15,10 @@ class Project_MenuController extends  Boilerplate_Controller_Action_Abstract
 	 */
 	public function menuDebugAction()
 	{
+		if(APPLICATION_ENV == "production"){
+			$this->ajaxify(); // disable in production
+		}
+		
 	}
 	
 	/**

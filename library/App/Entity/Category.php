@@ -2,7 +2,7 @@
 namespace App\Entity;
 /**
  * @Entity(repositoryClass="App\Repository\Category")
- * @Table(name="category")
+ * @Table(name="project_category")
  */
 class Category
 {
