@@ -38,7 +38,7 @@ body{
   float: left;
   clear: both;
   background: #f4f4f4;
-  margin: 0;
+  margin: 10px 0 0 0;
   padding: 0;
 }
 
@@ -321,6 +321,11 @@ body{
 
 .fl-cnt-30{
   width: 30%;
+  float: left;
+}
+
+.fl-cnt-25{
+  width: 25%;
   float: left;
 }
 
@@ -3173,6 +3178,13 @@ fieldset#fieldset-About .controls{
 
 
 
+
+.fl-nav-tabs > li > a{
+  padding-right: 8px;
+  padding-left: 8px;
+  margin-right: 2px;
+  line-height: 14px;
+}
 
 
 .fl-simpletip-tooltip{

@@ -6,7 +6,13 @@ $this->step = 1;
 echo $this->partial('my-collaboration/my-collaboration-navigation.phtml',array("step" => $this->step));
 ?>
 
-<div class="fl-cnt-100 fl-top">
+<div class="fl-cnt-100">
+  <div class="alert alert-info">
+    <p>The list of  projects you’ve completed applications for, and have been accepted on. Once you’ve been accepted, only the project creator can remove you from a project (and even then, only in Levels 1 and 2).</p>
+  </div>
+</div>
+
+<div class="fl-cnt-100">
 
 <?php 
 if(count ($this->applications) > 0){	

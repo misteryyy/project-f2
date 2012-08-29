@@ -5,6 +5,13 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 ?>
 
 <h3 class="fl-edit-project-subsection">Your project is currently in <span class="fl-level-info">Level <?php echo $this->project->level;?></span></h3>
+
+<div class="fl-cnt-100">
+  <div class="alert alert-info">
+    <p>Think of this as the back-end management of your project. As the project creator, you are solely responsible for deciding when to progress through each of our levels. As of right now, the only target we’ve implemented for each level is a minimum of one task completed. What those tasks are is up to you, and we urge you to enter as many tasks as you can for your project. For one, this is a way of signalling the depth of your work and progress (all users can see your completed tasks via your Levels bar on the project page). Secondly, this documentation of completed tasks serves as a potential FLO~ feature in future iterations. As we aggregate this data, we can come closer to defining the tasks that most projects get done at each level and, in turn, develop an automated level system based upon this.</p>
+  </div>
+</div>
+
 <div class="fl-cnt-100">
 <?php echo $this->form;?>
 </div>
@@ -12,6 +19,13 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 <div class="fl_thick_divider"></div>
 
 <h3 class="fl-edit-project-subsection fl-top20">Tasks for <span class="fl-level-info">Level <?php echo $this->project->level;?></span></h3>
+
+<div class="fl-cnt-100">
+  <div class="alert alert-info">
+    <p>For an in-depth look at what to focus on at each level, check out our <a href="/index/learn-more" title="Learn More">Learn More</a> section. </p>
+  </div>
+</div>
+
 <div class="fl-cnt-100">
   <div id="alert-area"></div>
 </div>	

@@ -60,7 +60,7 @@ class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
     					$this->view->secondStep,
     					$this->view->thirdStep,
     					$this->view->fourthStep);
-    			$this->_helper->FlashMessenger( array('info' => "Your Project has been created :)"));
+    			$this->_helper->FlashMessenger( array('success' => "<strong>Congratulations!</strong> Your project has been published. Take a minute to familiarize yourself with this project-display layout, as there are some important functions and features that haven’t been covered in the project-setup process. You can now manage your project on the dashboard, where you can see a detailed explanation of these new available functions."));
     			// unset sessions
      			Zend_Session::namespaceUnset('projectStep1');
      			Zend_Session::namespaceUnset('projectStep2');
@@ -138,7 +138,7 @@ class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
     {
     	// check if session from one
     	if(!Zend_Session::namespaceIsset('projectStep1')){
-    		$this->_helper->FlashMessenger( array('success' => "I can't wait so long. You have to start again. Sorry :D"));
+    		$this->_helper->FlashMessenger( array('error' => "Before you can move to the next step, you need to fill in some basic information."));
     		$this->_redirect("member/project/create-project-step-one");
     	}
     	

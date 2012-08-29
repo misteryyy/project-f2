@@ -7,6 +7,12 @@ echo $this->partial('my-collaboration/my-collaboration-navigation.phtml',array("
 ?>
 
 <div class="fl-cnt-100">
+  <div class="alert alert-info">
+    <p>A list of all your collaboration requests that have yet to be answered. Once the project creator responds, these will be bumped to Accepted/Denied.</p>
+  </div>
+</div>
+
+<div class="fl-cnt-100">
 <?php 
 if(count ($this->applications) > 0){ ?>
 

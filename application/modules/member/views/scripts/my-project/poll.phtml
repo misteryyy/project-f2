@@ -3,6 +3,12 @@ $this->step = 9;
 echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $this->step,"project" => $this->project));
 ?>
 
+<div class="fl-cnt-100">
+  <div class="alert alert-info">
+    <p>Polls are meant to serve as the next step in building a successful <a href="#" rel="tooltip" data-original-title="Not sure what a customer-feedback loop is? Check out our Process Primer section.">customer-feedback loop</a>. Have specific questions and hypotheses you’d like to see directly answered by the community? Create and edit them here. You can ask up to 5 at a time. All poll results (beyond the 5 visible to users) will be stored here and are viewable individually. Start testing those assumptions of yours!</p>
+  </div>
+</div>
+
 
 <div class="fl-cnt-100 create-new">
   <a href="/member/my-project/poll-create/id/<?php echo $this->project->id?>" title="create new poll"><span class="green"><img src="/media/slepice-site/1.0.0/img/icon_new_project.jpg" alt="create new update icon" /> create new poll</span></a>

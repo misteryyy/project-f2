@@ -3,6 +3,12 @@ $this->step = 5;
 echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $this->step,"project" => $this->project));
 ?>
 
+<div class="fl-cnt-100">
+  <div class="alert alert-info">
+     Want to express your project/idea progression as more than just tasks/questions completed? Think of this as your short-length (500 words) journal/blog space to update the community on you and your project. 
+  </div>
+</div>
+
 <div class="fl-cnt-100 create-new">
   <a href="/member/my-project/update-create/id/<?php echo $this->project->id?>" title="create new update"><span class="green"><img src="/media/slepice-site/1.0.0/img/icon_new_project.jpg" alt="create new update icon" /> create new udpate</span></a>
 </div>

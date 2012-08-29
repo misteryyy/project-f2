@@ -9,11 +9,19 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 $this->sub_step = 2;
 echo $this->partial('my-project-team/my-project-navigation.phtml',array("step" => $this->sub_step,"project" => $this->project));
 ?>
+
 <div class="fl-cnt-100">
   <div id="alert-area"></div>
  </div>
 
-<h3 class="fl-edit-project-subsection">Applications for Level 1</h3>
+<h3 class="fl-edit-project-subsection fl-botom10">Applications for Level 1</h3>
+
+<div class="fl-cnt-100">
+  <div class="alert alert-info">
+     <p>All collaboration requests which have not been responded to will be listed here. Once you have requests, it’s time to begin the process of engaging your applicants and reviewing their answers to your questions (also listed here). You must respond to each request.</p>
+  </div>
+</div>
+
 <div id="model_list" class="fl-cnt-100 fl-bottom20">
     		<script id="model_list_template" type="text/x-handlebars-template">
 			

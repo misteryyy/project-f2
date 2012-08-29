@@ -202,4 +202,9 @@ class Site_IndexController extends Boilerplate_Controller_Action_Abstract
         $this->view->categories = $this->facadeProject->findAllProjectCategories();
         $this->view->timestamp = $timestamp;
     }
+
+    public function footer2Action()
+    { 
+        
+    }
 }
