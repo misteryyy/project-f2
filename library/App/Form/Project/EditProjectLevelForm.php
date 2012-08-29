@@ -23,24 +23,10 @@ class EditProjectLevelForm extends \Twitter_Bootstrap_Form_Horizontal
 	public function init()
 	{		
 			 
-$warning_message =  <<<EOT
-	<div class="alert alert-info">
-		<span class="label label-info">Info</span>
-		Description what is is this that.Description what is is this that.Description what is is this that.Description what is is this that.
-		Description what is is this that.Description what is is this that.Description what is is this that.
-	</div>
-EOT;
 // dont move with the EOT, it has to be on the first position
 	
 		$this->_addClassNames('fl-form');
 
-		$this->addElement('hidden', 'warning', array(
-				'description' => $warning_message,
-				'ignore' => true,
-				'decorators' => array(
-						array('Description', array('escape'=>false, 'tag'=>'')),
-				),
-		));
 		
 	    $levelArr = array(1 => "LEVEL1",2 => 'LEVEL2', 3 => 'LEVEL3');
 	    unset($levelArr[$this->project->level]);

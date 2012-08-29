@@ -21,9 +21,7 @@ class TeamDisableRoleWidget extends \Twitter_Bootstrap_Form_Horizontal
 			$this->_addClassNames('fl-form fl-teamdesablewidget-form'); 
 $warning_message =  <<<EOT
 	<div class="alert alert-info">
-		<span class="label label-info">Info</span>
-		Description what is role widget for. Description what is role widget for. Description what is role widget for. 
-		Description what is role widget for. Description what is role widget for. Description what is role widget for. 
+		We feel that integrating a well-balanced team that meets all the skills outlined above puts you in the best position possible to quickly and successfully get an MVP built to present to the community on your project page. You can disable this feature if you feel you’re not yet ready to get collaboration requests.
 	</div>
 EOT;
 	

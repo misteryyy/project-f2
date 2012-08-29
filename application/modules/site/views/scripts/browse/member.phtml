@@ -1,4 +1,4 @@
-<h2>Browse Members <?php echo $this->query;?></h2>
+<h2>Browse Users <?php echo $this->query;?></h2>
 
 
 <div class="fl-cnt-100">
@@ -7,14 +7,13 @@
 			action="<?= $this->form->getAction(); ?>"
 			method="<?= $this->form->getMethod(); ?>">
 			<fieldset>
-				<legend class="hide">Browse projects: </legend>
+				<legend class="hide">Browse users: </legend>
 
 				<div class="fl-width100">
 
 					<div class="input-append fl-filtr-search">
 						<label for="" class="hide">Keyword:</label>
-             	<?= $this->form->q; ?>
-           	  <?= $this->form->submit; ?>
+             	<?= $this->form->q; ?><?= $this->form->submit; ?>
             </div>
 				</div>
 
@@ -27,7 +26,7 @@
 					</div>
 
 					<div class="fl-width25 fl-filtr-sa-roles">
-						<strong>Self-assigned roles:</strong>
+						<strong>Users that have self-assigned as:</strong>
 						<ul id="fl-filtr-form-choose-role">
 							<li><img src="/media/slepice-site/1.0.0/img/role_starter.png"
 								id="specific_role-starter" alt="role starter" /></li>
@@ -50,7 +49,7 @@
 					
 					</div>
 					<div class="fl-width25 fl-filtr-pr-roles">
-						<strong>Project roles:</strong>
+						<strong>Users that are working on projects as:</strong>
 						<ul id="fl-filtr-form-choose-role">
 							<li><img src="/media/slepice-site/1.0.0/img/role_starter.png"
 								id="project_role-starter" alt="role starter" /></li>
@@ -71,7 +70,7 @@
 						</label>
 					</div>
 					<div class="fl-width25 fl-filtr-er-roles">
-						<strong>Earned roles:</strong>
+						<strong>Users that have earned roles as:</strong>
 						<ul id="fl-filtr-form-choose-role">
 							<li><img src="/media/slepice-site/1.0.0/img/role_earned.png"
 								id="er_role_earned" alt="role eaned" /></li>

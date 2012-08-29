@@ -4,6 +4,14 @@
 	echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $this->step,"project" => $this->project));
 ?>
 
+<div class="fl-cnt-100">
+  <div class="alert alert-info">
+	 This is where any unresponded-to comments or direct questions will be listed.  
+Questions/comments will be displayed here until you respond to them. This is the first step in establishing <a href="#" data-original-title="What’s this? Check out our “Process Primer” page if you’re not sure">a customer-feedback loop</a> with the community and building up your idea in the process.
+  </div>
+</div>
+
+
 <div class="fl-cnt100">
 <p>Total number of unanswered comments: <strong><?php echo $this->paginator->getTotalItemCount();?></strong></p>
 </div>

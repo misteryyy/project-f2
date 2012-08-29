@@ -30,26 +30,29 @@
      <?= $this->action('header', 'index', 'site');  ?>
    </div>
 
-<div id="fl-content">
-  <div class="container"> 
-  <?= $this->action('breadcrumbs', 'index', 'site');  ?>
-   
-          
-  <!-- Bootstrap messaging generator -->
-  <div class="fl-cnt-100">
-     <?php echo $this->flashMessenger() ; ?>
+  <div id="fl-content">
+    <div class="container"> 
+    <?= $this->action('breadcrumbs', 'index', 'site');  ?>
+     
+            
+    <!-- Bootstrap messaging generator -->
+    <div class="fl-cnt-100">
+       <?php echo $this->flashMessenger() ; ?>
+    </div>
+
+    <?php echo $this->layout()->content; ?>
+
+    </div>
+    <div id="bottom">
+          <?= $this->action('footer', 'index', 'site');  ?>
+     </div>
+     
   </div>
 
-  <?php echo $this->layout()->content; ?>
+    <div id="fl-bottom-line">
+       <?= $this->action('footer2', 'index', 'site');  ?>
+    </div>
 
-  </div>
-  <div id="bottom">
-    <?= $this->action('footer', 'index', 'site');  ?>
-  </div>
-</div>
-
-<div id="fl-bottom-line">
-  <p>&copy; 2012 SLEPICE / ZF</p>
 </div>
 
 

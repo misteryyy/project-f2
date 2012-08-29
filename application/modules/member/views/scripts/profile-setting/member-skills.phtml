@@ -4,7 +4,11 @@
   echo $this->partial('profile-setting/profile-setting-navigation.phtml',array("step" => $this->step));
   ?>
 
-
+<div class="fl-cnt-100">
+  <div class="alert alert-info">
+    <p>Self-assign the roles(s) you feel you best identify with. Be as specific in your skills as you’d like by adding in tags/keywords. By doing this you are now making it more likely that other members will contact you for collaboration (all members can be searched for by their self-assigned roles). Proactive members who need a specific role or skill can now find you easily, and contact you.</p>
+  </div>
+</div>
 
 <div class="fl-cnt-100">
 <form class="form-horizontal fl-my-skills-form" action="<?php echo $this->form->getAction(); ?>"  method="<?php echo $this->form->getMethod(); ?>" >
