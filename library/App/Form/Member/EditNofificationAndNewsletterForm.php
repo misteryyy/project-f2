@@ -25,10 +25,11 @@ class EditNofificationAndNewsletterForm extends \Twitter_Bootstrap_Form_Horizont
     			),
     	));
     	
+   // exit;
     if($this->user->emailNewsletter){
-    		$optionsN = array('yes','no');
+    		$optionsN = array(1=>'yes',0=>'no');
     }else {
-    		$optionsN = array('no','yes');
+    		$optionsN = array(0=>'no',1=>'yes');
     }
     
       // Country Select Box

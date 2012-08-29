@@ -138,7 +138,7 @@ class Member_ProfileSettingController extends  Boilerplate_Controller_Action_Abs
     	if ($this->_request->isPost()) {
     		if ($form->isValid($this->_request->getPost())) {
     			$this->_helper->FlashMessenger( array('success' => "Settings save successfully."));
-    			// update survey
+				$this->facadeUser->updateNotification($this->_member_id,$form->getValues());	
     			$this->_helper->redirector('notification', $this->getRequest()->getControllerName(), $this->getRequest()->getModuleName());
     		}
     		// not validated properly

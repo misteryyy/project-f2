@@ -76,13 +76,13 @@ class Member_IndexController extends Boilerplate_Controller_Action_Abstract {
 		
 	}
 	
+	/**
+	 * Login action
+	 */
 	public function loginAction() {
 		$this->view->pageTitle = 'Login';
-		
-		
 		$form = new \App\Form\Site\LoginForm();
 		$this->view->form = $form;
-		
 		
 		if ($this->_request->isPost ()) {
 			
@@ -92,17 +92,14 @@ class Member_IndexController extends Boilerplate_Controller_Action_Abstract {
 				
 				$authAdapter = new \Boilerplate_Auth_Adapter_Doctrine2($form->getValue("email"), $form->getValue("password"));
 				$result = Zend_Auth::getInstance()->authenticate($authAdapter);
-				
 				if ($result->isValid()) {
 					//user is valid so store and redirect to admin home
 					$this->_helper->FlashMessenger ( array ('success' => 'Login successful' ) );
 					$this->_helper->redirector('index', 'dashboard','member');
-
 				} else {					
 					// $form->buildBootstrapErrorDecorators();
 					$this->_helper->FlashMessenger ( array ('error' => 'Oops... something is wrong with your account email or password. Please try it again.' ) );	
-				}	
-			
+				}		
 			} 			
 			// print error
 			else {
@@ -133,7 +130,7 @@ class Member_IndexController extends Boilerplate_Controller_Action_Abstract {
 						$facadeUser->createAccount($form->getValues());
 											
 						// SUCCESS
-						$this->_helper->FlashMessenger ( array ('success' => "Account created! Congratulations. You will get email with information to your email." ) );
+						$this->_helper->FlashMessenger ( array ('success' => "Congratulations, account created!. An email with more information will be landing in your inbox shortly." ) );
 						$this->_redirect('/member/index/login');
 						
 						// something bad happen with Doctrine

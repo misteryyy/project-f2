@@ -15,6 +15,7 @@ class UserFacade {
 		$this->em = $em;
 	}
 	
+	
 	/**
 	 * Return all users 
 	 */
@@ -320,6 +321,24 @@ public function findAllUsersNative($options = array()){
 	
 	}
 	
+	
+	/**
+	 * Update information about user
+	 * @param unknown_type $id
+	 * @param unknown_type $data
+	 */
+	public function updateNotification($user_id,$data = array()){
+		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
+		if(!$user){
+			throw new \Exception("User doesn't exists");
+		}
+		
+		$user->emailNewsletter = $data['newsletter'];
+		$user->emailNotification = $data['notification'];
+		$this->em->flush();
+		
+	}
+		
 	/**
 	 * Update information about user
 	 * @param unknown_type $id
