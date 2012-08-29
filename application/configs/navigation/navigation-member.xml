@@ -17,7 +17,7 @@
 					<action>index</action>
 					<pages>
 						<description>
-							<label>Project Edit</label>
+							<label>Manage your Project</label>
 							<module>member</module>
 							<visible>0</visible>
 							<controller>my-project</controller>

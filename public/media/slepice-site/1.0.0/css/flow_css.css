@@ -507,7 +507,7 @@ h3.flobox-title span.flobox-title-info{
   text-transform: uppercase;
 }
 
-h3.fl-sidebar, h3.fl-sidebar-h3-first, h3.fl-cnt-project-by-h3{
+h3.fl-sidebar-h3, h3.fl-sidebar-h3-first, h3.fl-cnt-project-by-h3{
   color: #5fa0a4;
   text-transform: uppercase;
   font-weight: normal;
