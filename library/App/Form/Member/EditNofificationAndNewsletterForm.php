@@ -14,22 +14,27 @@ class EditNofificationAndNewsletterForm extends \Twitter_Bootstrap_Form_Horizont
 	
    public function init()
     {
+
+    if($this->user->emailNewsletter){
+            $optionsN = array('yes','no');
+            $descriptionN = 'Jsem subscriber';
+    }else {
+            $optionsN = array('no','yes');
+            $descriptionN = 'Nejsem subscriber';
+    }
+
     	
         $this->_addClassNames('fl-form');
     // Description for Newsletters
     $this->addElement('hidden', 'newsletter_info', array(
-    			'description' => '<div class="alert alert-info">As one of our first group of users on FLO~, you may have previously signed up for our newsletter. If you’re not signed up for our newsletter, and would like to, select Yes. If you’re already signed up, and would like to be removed, select No. Otherwise, you will stay at your current status.</div>',
+    			'description' => '<div class="alert alert-info">'.$descriptionN.'</div>',
     			'ignore' => true,
     			'decorators' => array(
     					array('Description', array('escape'=>false, 'tag'=>'')),
     			),
     	));
     	
-    if($this->user->emailNewsletter){
-    		$optionsN = array('yes','no');
-    }else {
-    		$optionsN = array('no','yes');
-    }
+    
     
       // Country Select Box
     $this->addElement('select','newsletter', array(
