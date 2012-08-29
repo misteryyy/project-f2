@@ -21,7 +21,7 @@
  </div>
  
  	<div id="fl-container">
- 	<?= $this->action('menu-debug', 'menu', 'project');  ?>  
+ 	<? // echo $this->action('menu-debug', 'menu', 'project');  ?>  
    <div class="container">
      <?= $this->action('header', 'index', 'site');  ?>
    </div>
@@ -118,20 +118,19 @@
        
        </div>
      </div>
-   
    </div>
-   
-   <div id="bottom">
+
+	<div id="bottom">
         <?= $this->action('footer', 'index', 'site');  ?>
-   </div>
- 
+    </div>
+
 </div>
 
 <div id="fl-bottom-line">
-  <p>&copy; 2012 SLEPICE / ZF</p>
+  <?= $this->action('footer2', 'index', 'site');  ?>
 </div>
 
-
+</div>
     
  <script type="text/javascript">  
 			var Models = {
