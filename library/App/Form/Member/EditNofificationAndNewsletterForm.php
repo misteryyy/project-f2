@@ -15,12 +15,13 @@ class EditNofificationAndNewsletterForm extends \Twitter_Bootstrap_Form_Horizont
    public function init()
     {
 
+
     if($this->user->emailNewsletter){
-            $optionsN = array('yes','no');
-            $descriptionN = 'Jsem subscriber';
+            $optionsN = array(1=>'yes',0=>'no');
+            $descriptionN = 'If  you  would like to be removed from our newsletter list, please select No. Otherwise, you will stay at your current status.';
     }else {
-            $optionsN = array('no','yes');
-            $descriptionN = 'Nejsem subscriber';
+            $optionsN = array(0=>'no',1=>'yes');
+            $descriptionN = 'We’re sorry to see you removed from our newsletter. If you ever change your mind and want to be re-included in our relevant updates, please change your status here.';
     }
 
     	
@@ -34,8 +35,7 @@ class EditNofificationAndNewsletterForm extends \Twitter_Bootstrap_Form_Horizont
     			),
     	));
     	
-    
-    
+   
       // Country Select Box
     $this->addElement('select','newsletter', array(
     		'label' => 'Would you like to receive newsletters?', 
