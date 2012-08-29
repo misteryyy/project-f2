@@ -181,7 +181,7 @@ class Member_MyProjectTeamController extends  Boilerplate_Controller_Action_Abst
     public function requestAction()
     {
     	$this->checkProjectAndUser();
-    	$this->view->pageTitle = "My Projects Request" ;
+    	$this->view->pageTitle = "Published Projects - Request" ;
     	$this->view->project = $this->project;
     }
      

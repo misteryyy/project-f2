@@ -16,7 +16,7 @@ class Admin_MemberController extends Boilerplate_Controller_Action_Abstract {
 	
 	public function logAction(){
 		
-		$this->view->pageTitle = "My Projects" ;
+		$this->view->pageTitle = "Detail" ;
 		 
 		$id = $this->_request->getParam("id");
 		if(is_numeric($id)){

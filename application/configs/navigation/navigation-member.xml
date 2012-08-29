@@ -11,7 +11,7 @@
 
 				<!-- My Projects with all subpages -->
 				<my-project>
-					<label>My Projects</label>
+					<label>Published Projects</label>
 					<module>member</module>
 					<controller>my-project</controller>
 					<action>index</action>
@@ -140,7 +140,7 @@
 
 
 				<flobox>
-					<label>Flo Box Admin</label>
+					<label>Ideas Sandbox Admin</label>
 					<module>member</module>
 					<controller>flobox</controller>
 					<action>index</action>
@@ -268,7 +268,7 @@
 			<params_id>ID_USER</params_id>
 			<pages>
 				<flobox-public>
-					<label>FloBox</label>
+					<label>Ideas Sandbox</label>
 					<module>member</module>
 					<controller>profile</controller>
 					<action>flobox</action>
@@ -283,7 +283,7 @@
 					</pages>
 				</flobox-public>
 				<my-project-public>
-					<label>My Projects</label>
+					<label>Published Projects</label>
 					<module>member</module>
 					<controller>profile</controller>
 					<action>my-project</action>

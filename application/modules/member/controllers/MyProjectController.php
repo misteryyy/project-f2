@@ -171,7 +171,7 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
     public function surveyAction()
     {
     	$this->checkProjectAndUser();
-    	$this->view->pageTitle = "My Projects Survey Admin" ;
+    	$this->view->pageTitle = "Published Projects Survey Admin" ;
     	// get categories for form
     	$facadeProjectSurvey = new \App\Facade\Project\SurveyFacade($this->_em);
     	$answers = $facadeProjectSurvey->findProjectSurveyAnswers($this->_member_id, $this->project_id);
@@ -206,7 +206,7 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
     public function updateAction()
     {
     	$this->checkProjectAndUser();
-    	$this->view->pageTitle = "My Projects Update" ; 
+    	$this->view->pageTitle = "Published Projects - Updates" ; 
     	
     	// receiving paginator
     	$facadeProjectUpdate = new \App\Facade\Project\UpdateFacade($this->_em);
@@ -605,7 +605,7 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
      */
     public function detailAction()
     {
-    	$this->view->pageTitle = "My Projects Detail" ;
+    	$this->view->pageTitle = "Published Projects - Detail" ;
     	// get categories for form
     	$facadeProject = new \App\Facade\ProjectFacade($this->_em);
     	$projects = $facadeProject->findAllProjectsForUser($this->_member_id);
@@ -620,7 +620,7 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
      */
     public function indexAction()
     {
-    	$this->view->pageTitle = "My Projects" ;
+    	$this->view->pageTitle = "Published Projects" ;
     	// get categories for form
     	$facadeProject = new \App\Facade\ProjectFacade($this->_em);
     	$projects = $facadeProject->findAllProjectsForUser($this->_member_id);

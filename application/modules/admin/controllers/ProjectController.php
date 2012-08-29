@@ -16,7 +16,7 @@ class Admin_ProjectController extends Boilerplate_Controller_Action_Abstract {
 	
 	public function logAction(){
 	
-		$this->view->pageTitle = "My Projects Logs" ;
+		$this->view->pageTitle = "Published Project Logs" ;
 			
 		$id = $this->_request->getParam("id");
 		if(is_numeric($id)){
