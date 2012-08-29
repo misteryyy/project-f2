@@ -2,7 +2,9 @@
 
 class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
 {
-
+	
+	private $_message_time_out = 'Before you can move to the next step, you need to fill in some basic information.';
+	
 	public function init(){	
 		parent::init();
 		//debug($_SESSION);
@@ -22,7 +24,7 @@ class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
     {
     	// check if session from one
     	if(!Zend_Session::namespaceIsset('projectStep4')){
-    		$this->_helper->FlashMessenger( array('success' => "I can't wait so long. You have to start again. Sorry :D"));
+    		$this->_helper->FlashMessenger( array('success' => $this->_message_time_out));
     		$this->_redirect("member/project/create-project-step-four");
     	}
  
@@ -138,7 +140,8 @@ class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
     {
     	// check if session from one
     	if(!Zend_Session::namespaceIsset('projectStep1')){
-    		$this->_helper->FlashMessenger( array('error' => "Before you can move to the next step, you need to fill in some basic information."));
+    		$this->_helper->FlashMessenger( array('success' => $this->_message_time_out));
+    		
     		$this->_redirect("member/project/create-project-step-one");
     	}
     	
@@ -231,7 +234,14 @@ class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
     	//if(!Zend_Session::namespaceIsset('projectStep2')){
     	//	$this->_helper->FlashMessenger( array('success' => "I can't wait so long. You have to start again. Sorry :D"));
     	//	$this->_redirect("member/project/create-project-step-two");
-    	//} 	  
+    	//} 
+    	
+    	// check if session from one
+    	if(!Zend_Session::namespaceIsset('projectStep1')){
+    		$this->_helper->FlashMessenger( array('success' => $this->_message_time_out));
+    	
+    		$this->_redirect("member/project/create-project-step-one");
+    	}	  
 
     	$this->view->pageTitle = "Roles Setting" ;
     	$this->view->step = 3; // for generation menu
@@ -284,7 +294,7 @@ class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
     {
     	// check if session from one
     	if(!Zend_Session::namespaceIsset('projectStep3')){
-    		$this->_helper->FlashMessenger( array('success' => "I can't wait so long. You have to start again. Sorry :D"));
+    		$this->_helper->FlashMessenger( array('success' => $this->_message_time_out));
     		$this->_redirect("member/project/create-project-step-three");
     	}
     	
@@ -306,12 +316,7 @@ class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
     			$session_step4 = new Zend_Session_Namespace('projectStep4');
     			$session_step4->fourthFormData = $form->getValues();
     			// fetch values
-    			debug('Current Session Data');
-    			debug($session_step4->fourhtFormData);
-    			$this->_helper->FlashMessenger( array('success' => "Check and Publish"));
     			$this->_redirect('/member/project/create-project-step-five');
-    	
-    	
     		}
     		// not validated properly
     		else {
