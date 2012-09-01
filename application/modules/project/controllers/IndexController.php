@@ -5,7 +5,6 @@ class Project_IndexController extends  Boilerplate_Controller_Action_Abstract
 	private $project = null;
 	private $isCreator = false;
 	private $isCollaborator = false;
-	
 	private $facadeProject;
 	private $facadeACL;
 	
@@ -13,34 +12,27 @@ class Project_IndexController extends  Boilerplate_Controller_Action_Abstract
 	 * Check all neccessary things
 	*/
 	public function checkProject(){
-		$id = $this->_request->getParam("id");
-		// check id param for project
-		if(!is_numeric($id)){
-			$this->_helper->FlashMessenger(array('error' => 'This project is not found, are you trying to hack us? :D '));
-			$this->_redirect('/project/error/');
-		}
-		
 		try{
+			$id = $this->_request->getParam("id");
+			// check id param for project
+			if(!is_numeric($id)){
+				throw new \Exception("Project not found");
+			}
+			
 			// init basic things
 			$this->project = $this->facadeProject->findOneProject($id);
 			$this->project_id = $id;
-			
 			// is creator
 			$this->isCreator = $this->facadeACL->isCreator($this->_member_id, $this->project_id);
 			$this->view->isCreator = $this->isCreator; 
-			
 			// is collaborator
 			$this->isCollaborator = $this->facadeACL->isCollaborator($this->_member_id, $this->project_id);
 			$this->view->isCollaborator = $this->isCollaborator;
-			debug($this->isCollaborator);	
-			
-			$this->view->pageTitle = $this->project->title;
+			$this->view->pageTitle = "Project ". $this->project->title;
 			$this->view->project = $this->project;
 	
 		} catch (\Exception $e){
-			$this->_helper->FlashMessenger(array('error' => 'This project is not found, are you trying to hack us? :D '));
-			$this->_helper->FlashMessenger(array('error' => $e->getMessage()));
-			$this->_redirect('/member/error/');
+			$this->_redirect('/error/project-not-found/');
 		}
 	}
 	
@@ -50,22 +42,22 @@ class Project_IndexController extends  Boilerplate_Controller_Action_Abstract
 		$this->view->module = "project";
 		$this->facadeProject = new \App\Facade\ProjectFacade($this->_em);
 		$this->facadeACL = new \App\Facade\ACLFacade($this->_em);
-		$this->checkProject();
-		
+		$this->checkProject();	
 	}
+
 	
 	/**
 	 * Main Project Page Section
 	 */ 
     public function indexAction(){
-    	$this->view->pageTitle .=  "~ Main ";  
-    	$this->facadeProject->addView($this->project_id); // add some viewcount
+    	$this->view->pageTitle .=  " ~ Summary ";  
+    	$this->facadeProject->addViewCount($this->project_id); // add some viewcount
     }
  
     /**
      * Update Section in Project Page
      */
-    public function updateAction(){
+    public function updatesAction(){
     	
     	$facadeUpdate = new \App\Facade\Project\UpdateFacade($this->_em);
     	$paginator = $facadeUpdate->findUpdatesForProjectPaginator($this->project_id);
@@ -74,8 +66,7 @@ class Project_IndexController extends  Boilerplate_Controller_Action_Abstract
     	$this->view->paginator = $paginator;
     	
     }
-
-    
+ 
     /**
      * Survey Section in Project Page
      */
@@ -92,9 +83,9 @@ class Project_IndexController extends  Boilerplate_Controller_Action_Abstract
     /**
      * Team Section in Project Page
      */
-    public function teamAction(){
+    public function collaborationAction(){
     
-    	$this->view->pageTitle .=  "~ Team ";
+    	$this->view->pageTitle .=  "~ Collaboration ";
     	$facadeTeam = new \App\Facade\Project\TeamFacade($this->_em);	 
     	if($this->isCollaborator){
     		$roles = $facadeTeam->findMemberRoleForProject($this->_member_id, $this->project_id);
@@ -187,7 +178,7 @@ class Project_IndexController extends  Boilerplate_Controller_Action_Abstract
     /**
      * Comments Section
      */
-    public function commentAction(){
+    public function commentsAction(){
     	
     	$this->view->pageTitle .=  "~ Comments ";
     	$form = new \App\Form\Project\AddCommentForm($this->_member,$this->project_id);

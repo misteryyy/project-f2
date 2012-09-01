@@ -1,5 +1,3 @@
-  <h2 class="fl-bottom20">My collaborations</h2>
-
 <?php 
 // The main project navigation
 $this->step = 1;
@@ -23,7 +21,7 @@ if(count ($this->applications) > 0){
                   <div class="fl-cnt-20">
                     <div class="fl-project-thumb">
                       <div class="inner-5">
-                        <a href="/project/index/index/id/<?php echo $project->id;?>" title="Public profile of project <?php echo $project->title?>"><img src="<?php echo $project->getPictureUrl("small");?>" alt="Project picture" /></a>
+                        <a href="<?php echo $project->getProjectUrl();?>" title="Public profile of project <?php echo $project->title?>"><img src="<?php echo $project->getPictureUrl("small");?>" alt="Project picture" /></a>
                         <div class="fl-level">
                         <?php 
                         // Display Current Level
@@ -36,7 +34,6 @@ if(count ($this->applications) > 0){
                                             </div>
                         <?php } ?>
                         </div>
-                      
                       </div>
                     </div>
                   </div>
@@ -85,11 +82,11 @@ if(count ($this->applications) > 0){
                   </div>
                   <div class="fl-cnt-20">
                     <ul class="nav nav-pills nav-stacked fl-collaborations-nav">
-                      <li><a href="/project/index/update/id/<?php echo $project->id?>" title="Updates of this project">Updates</a></li>
-                      <li><a href="/project/index/project-board/id/<?php echo $project->id?>" title="Project board">Project board</a></li>
-                      <li><a href="/project/index/team/id/<?php echo $project->id?>" title="Team of this project">Team</a></li>
+                      <li><a href="<?php echo $project->getProjectUrl()?>/updates" title="Updates of this project">Updates</a></li>
+                      <li><a href="<?php echo $project->getProjectUrl()?>/project-board" title="Project board">Project board</a></li>
+                      <li><a href="<?php echo $project->getProjectUrl()?>/collaboration" title="Team of this project">Team</a></li>
                       <li><a href="#surveyModal-id-<?php echo $a->id;?>" title="Project survey" data-toggle="modal">Project survey</a></li>
-                      <li><a href="/project/index/comment/id/<?php echo $project->id?>" title="Comments for this project">Comments</a></li>
+                      <li><a href="<?php echo $project->getProjectUrl()?>/comments" title="Comments for this project">Comments</a></li>
                     </ul>
                   </div>
                 </div>

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<nav>
-	
-				<dash>
+					<dash>
 					<label>Member Dashboard</label>
 					<module>member</module>
 					<controller>dashboard</controller>
@@ -22,8 +21,8 @@
 							<visible>0</visible>
 							<controller>my-project</controller>
 							<action>edit-project</action>
-							<params_label>ID_PROJECT_NAME</params_label>
-							<params_id>ID_PROJECT</params_id>
+								<params_label>ID_PROJECT_NAME</params_label> 
+            					<params_id>ID_PROJECT</params_id> 	 
 							<pages>
 								<survey>
 									<label>Project Survey</label>
@@ -54,31 +53,31 @@
 									<action>update</action>
 								</update>
 								<team>
-									<label>Team</label>
+									<label>Collaboration</label>
 									<visible>0</visible>
 									<module>member</module>
-									<controller>my-project-team</controller>
+									<controller>my-project-collaboration</controller>
 									<action>index</action>
 								</team>
 								<team-req>
-									<label>Team - Requests</label>
+									<label>Collaboration - Requests</label>
 									<visible>0</visible>
 									<module>member</module>
-									<controller>my-project-team</controller>
+									<controller>my-project-collaboration</controller>
 									<action>request</action>
 								</team-req>
 								<team-q>
-									<label>Team - Questions</label>
+									<label>Collaboration - Questions</label>
 									<visible>0</visible>
 									<module>member</module>
-									<controller>my-project-team</controller>
+									<controller>my-project-collaboration</controller>
 									<action>question</action>
 								</team-q>
 								<team-setting>
-									<label>Team - Settings</label>
+									<label>Collaboration - Settings</label>
 									<visible>0</visible>
 									<module>member</module>
-									<controller>my-project-team</controller>
+									<controller>my-project-collaboration</controller>
 									<action>setting</action>
 								</team-setting>
 								<level>

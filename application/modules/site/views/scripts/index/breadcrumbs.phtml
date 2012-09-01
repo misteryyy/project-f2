@@ -25,6 +25,25 @@
 								'id'=> Zend_Controller_Front::getInstance()->getRequest()->getParam('id'),));
 					}
 			}
+			
+			// add id 
+			if($this->module == 'member'){		
+				// adding current parrameter
+				$pg = $container->findAllBy('params_id', 'ID_PROJECT');
+				foreach($pg as &$p){
+					$p->setParams(array(
+							'id'=> Zend_Controller_Front::getInstance()->getRequest()->getParam('id'),));
+				}
+				
+				// adding current parrameter
+				$pg = $container->findAllBy('params_id', 'ID_USER');
+				foreach($pg as &$p){
+					
+					$p->setParams(array(
+							'id'=> Zend_Controller_Front::getInstance()->getRequest()->getParam('id'),));
+				}
+			}
+	
 			echo $this->navigation()->breadcrumbs()->breadcrumbs()->setRenderInvisible(true)
 			->setLinkLast(true)->setMinDepth(0)
 			->setPartial(array('/index/partials/breadcrumb.phtml','site'));
@@ -32,7 +51,4 @@
 			</ul>
 		</div>
       </div> 
-
      <div class="fl_thin_divider"></div> 
-
-		

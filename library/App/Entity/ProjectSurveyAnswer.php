@@ -13,7 +13,7 @@ class ProjectSurveyAnswer
      */
     private $id;
     
-    /** @Column(type="string", name="answer",nullable=false) */
+    /** @Column(type="text", name="answer",nullable=false) */
     private $answer;   
       
     /**

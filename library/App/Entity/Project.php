@@ -39,7 +39,7 @@ class Project {
 	private $title;
 	
 	/**
-	 * @Column(type="string", name="content")
+	 * @Column(type="text", name="content")
 	 */
 	private $content;
 	/**
@@ -71,15 +71,15 @@ class Project {
 	private $dir;
 	
 	/**
-	 * @Column(type="string", name="issue",nullable=true)
+	 * @Column(type="text", name="issue",nullable=true)
 	 */
 	private $issue;
 	/**
-	 * @Column(type="string", name="lesson",nullable=true)
+	 * @Column(type="text", name="lesson",nullable=true)
 	 */
 	private $lesson;
 	/**
-	 * @Column(type="string", name="plan",nullable=true)
+	 * @Column(type="text", name="plan",nullable=true)
 	 */
 	private $plan;
 	
@@ -313,7 +313,7 @@ class Project {
 	 */
 	public function getProjectUrl(){
 	
-		return '/project/index/index/id/'.$this->id;
+		return '/project/'.$this->id;
 	}
 
 	/**

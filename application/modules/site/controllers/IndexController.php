@@ -11,7 +11,6 @@ class Site_IndexController extends Boilerplate_Controller_Action_Abstract
 		//$this->checkProject();
 	}
 	
- 
     public function indexAction()
     {    
     	$this->view->pageTitle = 'FLO~ Grow.Lead...';

@@ -11,10 +11,10 @@ class Boilerplate_Controller_Plugin_ModuleLayout extends Zend_Controller_Plugin_
             "/layouts/scripts"
         );
 
-        $eh = Zend_Controller_Front::getInstance()->getPlugin(
-            "Zend_Controller_Plugin_ErrorHandler"
-        );
-
-        $eh->setErrorHandlerModule($request->getModuleName());
+        // $eh = Zend_Controller_Front::getInstance()->getPlugin(
+         //    "Zend_Controller_Plugin_ErrorHandler"
+         //j);
+         //$eh->setErrorHandlerModule($request->getModuleName());
+    	
     }
 }

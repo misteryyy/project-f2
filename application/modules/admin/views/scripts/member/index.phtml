@@ -1,8 +1,5 @@
 <h2 class="fl-bottom20">Browse members</h2>
-
               <div class="fl-cnt-100">
-       
-             
 <div class="fl-cnt-100">
 <?php 
 if(count ($this->users) > 0){ ?>
@@ -10,7 +7,6 @@ if(count ($this->users) > 0){ ?>
 <?php 
 $message_unban = "Unban";
 $message_ban = "Ban";
-
 ?>
 
 <div id="result">
@@ -65,7 +61,7 @@ $message_ban = "Ban";
 		 // disable cache
 		 $.ajaxSetup ({cache: false });  
 		 //  load() functions   
-		  var loadUrl = "/admin/ajax/ban-user";  
+		  var loadUrl = "/admin/member/ajax-ban-user";  
 		  
 		    $(".ban").click(function(){  
 				// send request for changing the user state

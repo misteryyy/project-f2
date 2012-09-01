@@ -19,7 +19,7 @@ class UserFloBoxComment {
 	private $created;
 
 	/**
-	 * @Column(type="string", name="content",nullable=true)
+	 * @Column(type="text", name="content",nullable=true)
 	 */
 	private $content;
 	

@@ -34,12 +34,12 @@
                   
 
   <ul class="nav">
-  <li class="<?php echo($allow[1] == true ? "active" : "disable" );?>"> <a href="/project/index/index/id/<?php echo $this->project->id?>">Summary</a></li>
-  <li class="<?php echo($allow[2] == true ? "active" : "disable" );?>"><a href="/project/index/update/id/<?php echo $this->project->id?>">Updates</a></li>
-  <li class="<?php echo($allow[3] == true ? "active" : "disable" );?>"><a href="/project/index/comment/id/<?php echo $this->project->id?>">Comments</a></li>
-  <li class="<?php echo($allow[4] == true ? "active" : "disable" );?>"><a href="/project/index/survey/id/<?php echo $this->project->id?>">Project Survey</a></li>
-  <li class="<?php echo($allow[5] == true ? "active" : "disable" );?>"><a href="/project/index/team/id/<?php echo $this->project->id?>">Collaboration</a></li>
- <li class="<?php echo($allow[6] == true ? "active" : "disable" );?>"><a href="/project/index/project-board/id/<?php echo $this->project->id?>">Project Board</a></li>
+  <li class="<?php echo($allow[1] == true ? "active" : "disable" );?>"> <a href="<?php echo $this->project->getProjectUrl();?>">Summary</a></li>
+  <li class="<?php echo($allow[2] == true ? "active" : "disable" );?>"><a href="<?php echo $this->project->getProjectUrl();?>/updates">Updates</a></li>
+  <li class="<?php echo($allow[3] == true ? "active" : "disable" );?>"><a href="<?php echo $this->project->getProjectUrl();?>/comments">Comments</a></li>
+  <li class="<?php echo($allow[4] == true ? "active" : "disable" );?>"><a href="<?php echo $this->project->getProjectUrl();?>/survey">Project Survey</a></li>
+  <li class="<?php echo($allow[5] == true ? "active" : "disable" );?>"><a href="<?php echo $this->project->getProjectUrl();?>/collaboration">Collaboration</a></li>
+ <li class="<?php echo($allow[6] == true ? "active" : "disable" );?>"><a href="<?php echo $this->project->getProjectUrl();?>/project-board">Project Board</a></li>
   
 
   <?php 

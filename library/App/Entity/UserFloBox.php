@@ -43,7 +43,7 @@ class UserFloBox
     /** @Column(type="datetime", name="created") */
     private $created;
 
-    /** @Column(type="string", name="message") */
+    /** @Column(type="text", name="message") */
     private $message;
     
     /** 

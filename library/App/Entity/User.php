@@ -99,7 +99,7 @@ class User {
 	 */
 	private $userInfo;
 	/**
-	 * @Column(type="string", name="description",nullable=true)
+	 * @Column(type="text", name="description",nullable=true)
 	 */
 	private $description;
 	/**
@@ -558,7 +558,7 @@ class User {
 	 */
 	public function getProfileUrl(){
 		
-		return '/member/profile/index/id/'.$this->id;
+		return '/profile/'.$this->id;
 	}
 	
 	/**

@@ -1,9 +1,8 @@
    <h3 class="fl-uppercase fl-top30">Survey</h3>
-        <div class="fl-cnt-100">
+   <div class="fl-cnt-100">
    <?php 
    if(empty($this->unfinishedSurveys)) {echo "Nothing to display.";}
    ?>
-
    <?php 
    	foreach($this->unfinishedSurveys as $s){
    
@@ -11,10 +10,8 @@
    		$project = $surveyAnswer->project;
    ?>
                 <div class="fl_thick_divider"></div>
-                
-            
                   <div class="fl-cnt-100">
-                     <a href="/member/my-project/edit-project/id/<?php echo $project->id; ?>" title="Administration of this project"><img alt="<?php echo $project->title; ?> - main picture" src="<?php echo $project->getPictureUrl('tiny'); ?>" class="fl-img-survey-list"/></a>
+                     <a href="<?php echo $project->getProjectUrl();?>" title="Administration of this project"><img alt="<?php echo $project->title; ?> - main picture" src="<?php echo $project->getPictureUrl('tiny'); ?>" class="fl-img-survey-list"/></a>
           			<h4 class="fl-project-name"><?php echo $project->title;?></h4>
                     <p><i class="icon-tasks"></i>    <a href="/member/my-project/survey/id/<?php echo $project->id?>" title="Go to survey">survey</a></p>
                        

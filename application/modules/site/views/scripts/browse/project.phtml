@@ -73,7 +73,6 @@ if ($this->displayForm) {?>
 <?php if (count($this->paginator) > 1 )echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
 </div>
 
-
 <div class="fl-cnt-100">
     <?php if (count($this->paginator)) {?>
   
@@ -84,8 +83,7 @@ if ($this->displayForm) {?>
     	
         <li class="span3 fl-thumbnail-frame">
                   <div class="inner-5">
-
-                     <a href="/project/index/index/id/<?php echo $project->id?>" title="<?php echo $project->title; ?>"> 
+                     <a href="<?php echo $project->getProjectUrl();?>" title="<?php echo $project->title; ?>"> 
                         <img alt="<?php echo $project->title; ?> - main picture" src="<?php echo $project->getPictureUrl("medium");?>" />
                      </a>
  						<div class="fl-level">
@@ -104,7 +102,7 @@ if ($this->displayForm) {?>
                      <h3><?php echo $project->title; ?></h3>
                      
                      <div class="fl-cnt-100">
-                       <span class="author"><i class="icon-user"></i> <a href="" title=""><?php echo $project->user->name?></a></span>
+                       <span class="author"><i class="icon-user"></i> <a href="<?php echo $project->user->getProfileUrl(); ?>" title=""><?php echo $project->user->name?></a></span>
                        <div class="fl-cnt-100 fl-height-60">
                          <p><?php echo shorter($project->pitchSentence, 100); ?></p>
                        </div>

@@ -41,7 +41,7 @@ class ProjectApplication {
 	
 	
 	/**
-	 * @Column(type="string", name="content",nullable=false)
+	 * @Column(type="text", name="content",nullable=false)
 	 */
 	private $content;
 	

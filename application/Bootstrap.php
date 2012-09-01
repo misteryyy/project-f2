@@ -7,6 +7,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     	Zend_Registry::set('config', $this->getOptions());
     }
     
+    //adding routes to the application
+    protected function _initRewrite() {
+    	$front = Zend_Controller_Front::getInstance();
+    	$router = $front->getRouter();
+    	$config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/routes.ini', 'production');
+    	$router->addConfig($config,'routes');
+    }
+    
     /*
      * Registering of better Twitter UI FlashMessenger 
      */
@@ -53,8 +61,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         );
         
         $front->setParam('prefixDefaultModule', true);
-        $eh = new Zend_Controller_Plugin_ErrorHandler();
-        $front = Zend_Controller_Front::getInstance()->registerPlugin($eh);
+       // $eh = new Zend_Controller_Plugin_ErrorHandler();
+       // $front = Zend_Controller_Front::getInstance()->registerPlugin($eh);
+         
+        
+        
+    
     }
 
 
@@ -99,13 +111,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Zend_Form::setDefaultTranslator($translator);
     }
 
-    /**
-     * Set search engine
-     */
-    public function _initElasticSearch(){
-        $es = new Elastica_Client();
-        Zend_Registry::set('es', $es);
-    }
+
     
     
     #initializes the DEBUG constant to true or false based on config. settings and/or cookie
@@ -150,13 +156,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     	
     }
     
-    //adding routes to the application
-    protected function _initRewrite() {
-    	$front = Zend_Controller_Front::getInstance();
-    	$router = $front->getRouter();
-    	$config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/routes.ini', 'production');
-    	$router->addConfig($config,'routes');
-    }
+  
     
 
 }

@@ -6,7 +6,6 @@
  */
 class Boilerplate_Controller_Plugin_Navigation extends Zend_Controller_Plugin_Abstract {
 
-    
 	public function preDispatch(Zend_Controller_Request_Abstract $request){
 
 		// Choosing with navigation file we will use
@@ -17,6 +16,9 @@ class Boilerplate_Controller_Plugin_Navigation extends Zend_Controller_Plugin_Ab
 			case "member" :
 					$fileNavigation = "navigation-member.xml";
 					break;
+			case "member-profile" :
+						$fileNavigation = "navigation-member-profile.xml";
+						break;
 			case "project" :
 					$fileNavigation = "navigation-project.xml";
 					break;

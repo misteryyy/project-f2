@@ -9,7 +9,7 @@
         <li>
                       <div class="fl-member-project">
                         <div class="inner-similar">
-                         <a href="/project/index/index/id/<?php echo $project->id?>" title="Public profile page"><img src="<?php echo $project->getPictureUrl('small'); ?>" alt="Project picture" /></a>	
+                         <a href="<?php echo $project->getProjectUrl();?>" title="Public profile page"><img src="<?php echo $project->getPictureUrl('small'); ?>" alt="Project picture" /></a>	
        					 <div class="fl-level">                        
 						<?php 
 						// Display Current Level

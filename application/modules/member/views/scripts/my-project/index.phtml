@@ -1,4 +1,4 @@
-<h2 class="fl-bottom20">Published Projects <a href="/member/project/create-project-step-one" title="Start new project"><span class="green"><img src="/media/slepice-site/1.0.0/img/icon_new_project.jpg" alt="start new project icon" /> start new project</span></a></h2>
+<h2 class="fl-bottom20">Published Projects <a href="/member/project/create-project-step-one" title="Start new project"><span class="green"><img src="/media/slepice-site/1.0.0/img/icon_new_project.jpg" alt="start new project icon" /> Start New Project</span></a></h2>
 
 <div class="fl-cnt-100">
 <?php 
@@ -9,7 +9,7 @@ if(count ($this->projects) > 0){
                   <div class="fl-cnt-20">
                     <div class="fl-project-thumb">
                       <div class="inner-5">
-                        <a href="/project/index/index/id/<?php echo $project->id?>" title="Public profile page"><img src="<?php echo $project->getPictureUrl("small");?>" alt="Project picture" /></a>
+                        <a href="<?php echo $project->getProjectUrl();?>" title="Public profile page"><img src="<?php echo $project->getPictureUrl("small");?>" alt="Project picture" /></a>
 
                         <div class="fl-level">
                         <?php 
@@ -85,15 +85,15 @@ if(count ($this->projects) > 0){
                   </div>
                   <div class="fl-cnt-25">
                     <a href="/member/my-project/edit-project/id/<?php echo $project->id?>" class="btn btn-danger fl-width80"><i class="icon-wrench icon-white"></i> Manage your Project</a>
-                    <a href="/project/index/index/id/<?php echo $project->id?>" class="btn btn-success fl-width80 fl-top5"><i class="icon-picture icon-white"></i> Project profile</a>                   
+                    <a href="<?php echo $project->getProjectUrl();?>" class="btn btn-success fl-width80 fl-top5"><i class="icon-picture icon-white"></i> Project profile</a>                   
                   </div>
 
                   <div class="fl-cnt-100 fl-margin-top10">
                     <ul class="nav nav-pills fl-projectlist-nav">
                       <li><a href="/member/my-project/update/id/<?php echo $project->id?>" title="Updates of the project">Updates</a></li>
-                      <li><a href="/project/index/project-board/id/<?php echo $project->id?>" title="Project board of the project">Project board</a></li>
+                      <li><a href="<?php echo $project->getProjectUrl();?>/project-board" title="Project board of the project">Project board</a></li>
                       <li><a href="/member/my-project/poll/id/<?php echo $project->id?>" title="Polls of the project">Polls</a></li>
-                      <li><a href="/member/my-project-team/index/id/<?php echo $project->id?>" title="Team of the project">Team <span class="label label-info">   
+                      <li><a href="/member/my-project-collaboration/index/id/<?php echo $project->id?>" title="Collaboration in project">Collaboration <span class="label label-info">   
 	                      <?php
 	                      // Count of all accepted people in Team
 	                      $teamFacade = new \App\Facade\Project\TeamFacade($this->em);

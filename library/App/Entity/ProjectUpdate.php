@@ -16,7 +16,7 @@ class ProjectUpdate
     /** @Column(type="string", name="title",nullable=false) */
     private $title;   
     
-    /** @Column(type="string", name="content",nullable=false) */
+    /** @Column(type="text", name="content",nullable=false) */
     private $content;
         
     /** @Column(type="datetime",name="created") */

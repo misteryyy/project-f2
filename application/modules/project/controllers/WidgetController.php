@@ -125,11 +125,11 @@ class Project_WidgetController extends  Boilerplate_Controller_Action_Abstract
 	    	if($form->isValid($this->_request->getParams())){	
 	    	 $facadePoll->answerPoll($this->project_id, $this->_member_id, $form->getValue("poll_id"),$form->getValues());
 	    		$this->_helper->FlashMessenger(array('success' => 'You have answered the poll.'));
-	    		$this->_redirect('/project/index/index/id/'.$this->project_id);
+	    		$this->_redirect('/project/'.$this->project_id);
 	    	} else {
 	    		
 	    		$this->_helper->FlashMessenger(array('error' => 'Something is wrong with the form data.'));
-	    		$this->_redirect('/project/index/index/id/'.$this->project_id);
+	    		$this->_redirect('/project/'.$this->project_id);
 	    		 
 	    	}
 	    	
@@ -175,19 +175,13 @@ class Project_WidgetController extends  Boilerplate_Controller_Action_Abstract
     		//return;
     	}
     	
-    	
     	$facadeTeam = new \App\Facade\Project\TeamFacade($this->_em);
     	// free positions
     	$freePositions = $facadeTeam->findFreeProjectRolesForProject($this->project_id,array("role"=>"all"));
     	$this->view->freePositions = $freePositions;
     	// todo create forms for applying for all roles
-    	$this->view->member = $this->_member;
-    	
-    	 		
+    	$this->view->member = $this->_member;	 		
     }
-    
-    
-    
     
     /**
      * Module for tasks and levels
@@ -198,12 +192,8 @@ class Project_WidgetController extends  Boilerplate_Controller_Action_Abstract
     	
     	// return all task ordered by id and level
     	$tasks = $facadeTask->findTasksForProject($this->project_id);
-    	$this->view->tasks = $tasks;
-    	
-    	 	 
+    	$this->view->tasks = $tasks;	 	 
     }
-    
-    
     
     /**
      * Ajax Handling for Applications
@@ -223,18 +213,18 @@ class Project_WidgetController extends  Boilerplate_Controller_Action_Abstract
     				// validation data
     				if(!$form->isValid($this->_request->getParams())){
     					$this->_helper->FlashMessenger(array('error' => 'Something is wrong with the form data.'));
-    					$this->_redirect('/project/index/index/id/'.$this->project_id);	
+    					$this->_redirect('/project/'.$this->project_id);	
     				} 
     				try{
     					// sending the application
     					$facadeTeam->createProjectApplication($this->_member_id, $this->project_id,$form->getValues());
     					// saving data and getting back to project
     					$this->_helper->FlashMessenger(array('success' => "You application has been sent."));
-    					$this->_redirect('/project/index/index/id/'.$this->project_id); // go back to the project
+    					$this->_redirect('/project/'.$this->project_id); // go back to the project
     						
     				}catch (\Exception $e){
     					$this->_helper->FlashMessenger(array('error' => $e->getMessage()));
-    					$this->_redirect('/project/index/index/id/'.$this->project_id); // go back to the project
+    					$this->_redirect('/project/'.$this->project_id); // go back to the project
     					    
     				}
     				break;
@@ -243,7 +233,7 @@ class Project_WidgetController extends  Boilerplate_Controller_Action_Abstract
     					// validation data
     					if(trim($this->_request->getParam("content")) == ''){
     						$this->_helper->FlashMessenger(array('error' => 'Something is wrong with the form data. Have you filled all data in form?'));
-    						$this->_redirect('/project/index/index/id/'.$this->project_id);
+    						$this->_redirect('/project/'.$this->project_id);
     					}
     					
     					try{
@@ -252,11 +242,11 @@ class Project_WidgetController extends  Boilerplate_Controller_Action_Abstract
     						$facadeTeam->createProjectApplication($this->_member_id, $this->project_id, $_POST);
     						// saving data and getting back to project
     						$this->_helper->FlashMessenger(array('success' => "You application has been sent."));
-    						$this->_redirect('/project/index/index/id/'.$this->project_id); // go back to the project
+    						$this->_redirect('/project/'.$this->project_id); // go back to the project
     				
     					}catch (\Exception $e){
     						$this->_helper->FlashMessenger(array('error' => $e->getMessage()));
-    						$this->_redirect('/project/index/index/id/'.$this->project_id); // go back to the project
+    						$this->_redirect('/project/'.$this->project_id); // go back to the project
     							
     					}
     					break;

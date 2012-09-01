@@ -1,8 +1,8 @@
+ <h2 class="fl-bottom20">My Collaborations</h2>
  <?php  
 	$allow[1] = false;
 	$allow[2] = false;
 	$allow[3] = false;
-
 	switch ($this->step){
 		case 1 : $allow[1] = true;
 		break;
@@ -11,12 +11,11 @@
 		case 3 : $allow[3] = true;
 		break;
 	}
-	
   ?>
    
   <div class="fl-cnt-100">
-                <ul class="nav nav-tabs">
-  	<li class="<?php echo($allow[1] == true ? "active" : "disable" );?>"> <a href="/member/my-collaboration/index/">Accepted</a></li>
+   <ul class="nav nav-tabs">
+  	<li class="<?php echo($allow[1] == true ? "active" : "disable" );?>"> <a href="/member/my-collaboration/">Accepted</a></li>
  	<li class="<?php echo($allow[2] == true ? "active" : "disable" );?>"> <a href="/member/my-collaboration/denied/">Denied</a></li>
  	<li class="<?php echo($allow[3] == true ? "active" : "disable" );?>"> <a href="/member/my-collaboration/waiting/">Pending</a></li>
   </ul>

@@ -14,6 +14,7 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
 		$this->facadeProject = new \App\Facade\ProjectFacade($this->_em);	
 		$this->facadeComment = new \App\Facade\Project\CommentFacade($this->_em);
 		$this->facadeProjectUpdate = new \App\Facade\Project\UpdateFacade($this->_em);
+		$this->view->module = "member";
 	}
 	
 	
@@ -480,18 +481,17 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
     	// check id param for project
     	if(!is_numeric($id)){
    			$this->_helper->FlashMessenger(array('error' => 'This project is not found, are you trying to hack us? :D '));
-    		$this->_redirect('/member/error/');
+    		$this->_redirect('/error');
     	}
     	try{
     		// init basic things
     		$this->project = $this->facadeProject->findProjectForUser($this->_member_id, $id);
     		$this->project_id = $id;
-    	
     		
     	} catch (\Exception $e){
     		$this->_helper->FlashMessenger(array('error' => 'This project is not found, are you trying to hack us? :D '));
     		$this->_helper->FlashMessenger(array('error' => $e->getMessage()));
-    		$this->_redirect('/member/error/');	
+    		$this->_redirect('/error/');	
     	}	
     }
     

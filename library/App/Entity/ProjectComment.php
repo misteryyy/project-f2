@@ -28,7 +28,7 @@ class ProjectComment {
 	
 	
 	/**
-	 * @Column(type="string", name="description",nullable=true)
+	 * @Column(type="text", name="description",nullable=true)
 	 */
 	private $content;
 	

@@ -10,14 +10,12 @@ class Site_BrowseController extends Boilerplate_Controller_Action_Abstract
     {   
     	// build search engine
     	$facadeSearchEngine = new \App\Facade\SearchEngineFacade($this->_em);
-    	$facadeSearchEngine->buildMemberIndexes();
-    	
+    	$facadeSearchEngine->buildMemberIndexes();	
     	// find users
     	$facadeUser = new \App\Facade\UserFacade($this->_em);	
 		$form = new \App\Form\Site\BrowseMemberForm();
     	$this->view->form = $form;
     	
-
     	$query = "";
     	// set default in form
     	if (isset($_GET['q'])) {

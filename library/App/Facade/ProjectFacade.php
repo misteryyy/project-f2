@@ -491,7 +491,7 @@ class ProjectFacade {
 	 * @param unknown_type $project_id
 	 * @throws \Exception
 	 */
-	public function addView($project_id){
+	public function addViewCount($project_id){
 		
 		$project = $this->em->getRepository ('\App\Entity\Project')->findOneById ( $project_id);
 		if(!$project){

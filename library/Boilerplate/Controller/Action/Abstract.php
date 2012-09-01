@@ -65,21 +65,15 @@ abstract class Boilerplate_Controller_Action_Abstract extends Zend_Controller_Ac
   				$userArray["roles"] =$user->getRolesArray();
   			}
     		$this->_member = $userArray;	 
-    		
-    	
    }
     	
    $this->view->member = $this->_member;
-   
    // save user object, used for checking if this object is in projects or in users
    $facadeUser = new \App\Facade\UserFacade($this->_em); 
    $this->view->loggedMember = $facadeUser->findOneUser($this->_member_id);
    $this->loggedMember = $this->view->loggedMember;
-   
    // for permission checking
    $this->facadeAcl = new \App\Facade\ACLFacade($this->_em);
-   
-   
   // Navigation settings
   $uri = $this->_request->getPathInfo();           
   $activeNav = $this->view->navigation()->findByUri($uri);
