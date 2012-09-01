@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<nav>
+		<profile>
+			<label>Public profile</label>
+			<visible>0</visible>
+			<module>member-profile</module>
+			<controller>index</controller>
+			<action>index</action>
+			<params_id>ID_USER</params_id>
+			<pages>
+				<flobox-public>
+					<label>Ideas Sandbox</label>
+					<module>member-profile</module>
+					<controller>index</controller>
+					<action>flobox</action>
+					<pages>
+						<flobox-public-detail>
+							<label>Detail</label>
+							<module>member-profile</module>
+							<controller>index</controller>
+							<action>flobox-detail</action>
+						</flobox-public-detail>
+					</pages>
+				</flobox-public>
+				<my-project-public>
+					<label>Published Projects</label>
+					<module>member-profile</module>
+					<controller>index</controller>
+					<action>my-project</action>
+				</my-project-public>
+				<my-collaboration-public>
+					<label>My Collaborations</label>
+					<module>member-profile</module>
+					<controller>index</controller>
+					<action>my-collaboration</action>
+				</my-collaboration-public>
+				<my-fav-member-public>
+					<label>People I like</label>
+					<module>member-profile</module>
+					<controller>index</controller>
+					<action>favourite-member</action>
+				</my-fav-member-public>
+				<my-fav-project-public>
+					<label>Projects I like</label>
+					<module>member-profile</module>
+					<controller>index</controller>
+					<action>favourite-project</action>
+				</my-fav-project-public>
+			</pages>
+		</profile>
+	</nav>
+</config>
+

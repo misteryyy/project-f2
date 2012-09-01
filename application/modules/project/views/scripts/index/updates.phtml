@@ -1,0 +1,54 @@
+<h2><?php echo $this->project->title?></h2>
+              <p class="fl_project_head_info"><i class="icon-user"></i> <a href="<?php echo $this->project->user->getProfileUrl();?>" title=""><?php echo $this->project->user->name?></a>, <i class="icon-folder-close"></i> <?php echo $this->project->category->name;?>, <i class="icon-time"></i> <?php echo $this->project->created->format('Y/m/d');?>,  
+                 <span class="like"><i class="icon-thumbs-up"></i> 
+                         <?php
+                         // like dislike solution 
+                         if(!$this->project->isFollower($this->loggedMember)) {
+						 ?> <a href="" title="" class="like-project" id="<?php echo $this->project->id;?>" >Like</a>
+						 <?php } else { ?>
+                            <a href="" title="" class="like-project" id="<?php echo $this->project->id;?>" >Dislike</a>
+                         <?php } ?>
+                         </span>
+              </p>
+
+<?php
+// basic project navigation
+$this->step = 2;
+echo $this->partial('/index/project-navigation.phtml',array("step" => $this->step,"project" => $this->project,"isCreator"=> $this->isCreator));
+?>
+      </div>
+    </div>
+
+    <div id="container-74-4">
+      <div id="container-74-7">
+        <div id="col-7">
+          
+<h2 class="fl-bottom20">Updates</h2>
+
+<div class="fl-cnt-100">
+<?php echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
+</div>
+
+<?php 
+    $i = 0;
+    if (count($this->paginator) > 0) {
+
+      $i = $this->paginator->getTotalItemCount() - ($this->paginator->getItemCountPerPage() * ($this->paginator->getCurrentPageNumber() - 1)); ?>
+
+<div class="fl-cnt-100">
+    	<?php foreach ($this->paginator as $update){ ?>
+              <div class="fl-project-update">
+                <h3><span class="fl-project-update-h3-prefix">update</span> <span class="fl-project-update-h3-prefix-num">#<?php echo $i; ?></span> <?php echo $update->title;?></h3>
+                <div class="fl-cnt-100 fl-top10">
+                  <p><span class="fl-project-update-info"><i class="icon-time"></i> <?php echo $update->created->format('d-m-y') ;?></span> ~ <?php echo $update->content;?></p>
+                </div>
+                <div class="fl_thin_divider"></div>
+              </div>
+
+    	<?php $i--; } ?>
+</div>
+<?php	} else {
+	echo "No Updates for this project";
+} ?>
+
+</div>

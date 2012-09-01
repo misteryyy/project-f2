@@ -1,0 +1,83 @@
+<h2><?php echo $this->project->title?></h2>
+              <p class="fl_project_head_info"><i class="icon-user"></i> <a href="<?php echo $this->project->user->getProfileUrl();?>" title=""><?php echo $this->project->user->name?></a>, <i class="icon-folder-close"></i> <?php echo $this->project->category->name;?>, <i class="icon-time"></i> <?php echo $this->project->created->format('Y/m/d');?>,  
+                 <span class="like"><i class="icon-thumbs-up"></i> 
+                         <?php
+                         // like dislike solution 
+                         if(!$this->project->isFollower($this->loggedMember)) {
+						 ?> <a href="" title="" class="like-project" id="<?php echo $this->project->id;?>" >Like</a>
+						 <?php } else { ?>
+                            <a href="" title="" class="like-project" id="<?php echo $this->project->id;?>" >Dislike</a>
+                         <?php } ?>
+                         </span>
+              </p>
+
+<?php
+// basic project navigation
+$this->step = 3;
+echo $this->partial('/index/project-navigation.phtml',array("step" => $this->step,"project" => $this->project,"isCreator"=> $this->isCreator));
+?>
+      </div>
+    </div>
+
+    <div id="container-74-4">
+      <div id="container-74-7">
+        <div id="col-7">
+
+<h2>Comments</h2>
+
+<div class="fl-cnt-100 fl-form-box">
+<?php echo $this->form;?>
+</div>
+
+<div class="fl-cnt-100">
+<?php if (count($this->paginator) > 1 )echo $this->paginationControl($this->paginator, 'Elastic', 'partials/pagination-control-bootstrap.phtml'); ?> 
+<?php if (count($this->paginator) > 0) {?>
+    <div class="fl-project-comments-comments">
+    	<?php foreach ($this->paginator as $comment){ ?>
+
+
+				<div class="fl-project-comments-comment">
+                   <div class="fl-project-comments-comment-left">
+                     <div class="inner">
+                       <img src="<?php echo $comment->user->getProfilePictureUrl('medium') ; ?>" alt="<?php echo $comment->user->name; ?>" />
+                     </div>
+                   </div>
+                   <div class="fl-project-comments-comment-right">
+                     <div class="inner">
+                       <p class="fl-project-comments-comment-header"><?php echo $comment->user->name; ?> <span>, <i class="icon-time"></i> <?php echo $comment->created->format('d-m-y'); ?></span></p>
+                       <p><?php echo $comment->content; ?></p>
+                     </div>
+                   </div>
+                 </div>
+					
+<?php 
+				// display children
+				foreach($comment->children as $commentChild){
+					?>
+
+				 <div class="fl-project-comments-comment-creator">
+                   <div class="fl-project-comments-comment-left">
+                     <div class="inner">
+                       <img src="<?php echo $comment->user->getProfilePictureUrl('medium'); ?>" alt="<?php echo $comment->user->name; ?>" />
+                     </div>
+                   </div>
+                   <div class="fl-project-comments-comment-right">
+                     <div class="inner">
+                       <p class="fl-project-comments-comment-creator-header"><?php echo $commentChild->user->name; ?> <span>, <i class="icon-time"></i> <?php echo $commentChild->created->format('d-m-y'); ?></span></p>
+                       <p><?php echo $commentChild->content; ?></p>
+                     </div>
+                   </div>
+                 </div>
+
+				<?php }?>		
+    	
+    	<?php } ?>
+</div> <?php } else {
+	echo "";
+} ?>
+</div>
+
+</div>
+
+
+

@@ -1,0 +1,34 @@
+<div class="fl-cnt-100">
+  <div class="alert alert-info">
+     <p>This is where you manage all aspects of collaboration for your project. We understand that finding the right people to work with is a process, so we’ve made the process as flexible as possible. In <a href="#" data-original-title="Not sure what levels are? Take a look at our Learn More section">Levels 1 &amp; 2</a>, you can drop collaborators from the project even after you’ve accepted them. You have to write an explanation message to that person in order to do this, however. (Think of this as the dating stage of collaboration.) Also in Level 2, you can begin to assign specific skills/roles for your team of applicants. In Level 3, you can no longer drop collaborators from your project, or edit their project-specific skill tags.</p>
+  </div>
+</div>
+
+ <?php  
+	$allow[1] = false;
+	$allow[2] = false;
+	$allow[3] = false;
+	$allow[4] = false;
+	
+	switch ($this->step){
+		case 1 : $allow[1] = true;
+		break;
+		case 2 : $allow[2] = true;
+		break;
+		case 3 : $allow[3] = true;
+		break;
+		case 4 : $allow[4] = true;
+		break;
+	}
+  ?>
+  <div class="fl-cnt-100 fl-my-project-navigation">
+  	<div class="inner-5">
+  <ul class="nav nav-pills">
+  <li class="<?php echo($allow[1] == true ? "active" : "disable" );?>"> <a href="/member/my-project-collaboration/index/id/<?php echo $this->project->id?>">My team</a></li>
+  <li class="<?php echo($allow[2] == true ? "active" : "disable" );?>"><a href="/member/my-project-collaboration/request/id/<?php echo $this->project->id?>">Requests</a></li>
+  <li class="<?php echo($allow[3] == true ? "active" : "disable" );?>"><a href="/member/my-project-collaboration/question/id/<?php echo $this->project->id?>">Application Questions</a></li>
+  <li class="<?php echo($allow[4] == true ? "active" : "disable" );?>"><a href="/member/my-project-collaboration/setting/id/<?php echo $this->project->id?>">Settings</a></li>
+  
+  </ul>
+</div>
+</div>

@@ -1,0 +1,65 @@
+ 	<?php 
+	$this->step = 1;
+	echo $this->partial('/index/profile-navigation.phtml',array("step" => $this->step,"user" => $this->user,"loggedMember"=> $this->loggedMember));		
+	?>
+
+    <div id="container-74-4">
+      <div id="container-74-7">
+        <div id="col-7">
+            
+              <div class="row">
+                <div class="span2">
+                  <img src="<?php echo $this->user->getProfilePictureUrl("large")?>" alt="<?= $this->member['name'];?>" class="fl-memberprofile-member-img" />
+                </div>
+                <div class="span5">
+                  <h2>About me</h2>
+                  <ul class="fl-ul-list-style-none">
+					<?php if(!$this->user->dateOfBirthVisibility){?>                   
+                    <li><strong>Date of birth: </strong> <?= $this->user->dateOfBirth->format('Y/m/d'); ?> </li>
+                     <?php }?>
+                    
+                    <?php if(!$this->user->emailVisibility){?>                   
+                    <li><strong>Email: </strong> <?= $this->user->email; ?> </li>
+                    <?php }?>
+                    
+                    <li><strong>Phone: </strong> <?= $this->user->getUserInfo()->getPhone(); ?></li>
+                    <li><strong>Country: </strong> adf</li>
+                    <li><strong>Skype: </strong> <?= $this->user->getUserInfo()->getSkype(); ?></li>
+                    <li><strong>IM: </strong> <?= $this->user->getUserInfo()->getIm(); ?></li>
+                    <li><strong>Website: </strong> <?= $this->user->getUserInfo()->getWebsite(); ?></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="fl_thick_divider"></div>
+
+              <div class="fl-cnt-100">
+                <p><?= $this->user->description; ?></p>
+              </div>
+
+              <div class="fl_thin_divider"></div>
+
+              <div class="fl-cnt-100">
+                <h2>Field of interest</h2>
+             	<?php 
+             	if(count ($this->user->userFieldOfInterestTags) > 0){
+             	 foreach($this->user->userFieldOfInterestTags as $t){
+             	 	echo $t->name;
+             	 	echo " ";
+             	 }
+             	} else echo "No field of interest";
+             	?>
+              </div>
+
+              <div class="fl_thin_divider"></div>
+           
+              <!-- Recent projects widget -->
+   				    <?php //echo $this->action('widget-my-project', 'profile', 'member',array("id" => $this->user->id));?>
+              	
+              <div class="fl_thin_divider"></div>
+              	<?php //echo $this->action('widget-my-collaboration', 'profile', 'member',array("id" => $this->user->id));?>
+			
+              
+              <div class="fl_thin_divider"></div>
+            </div>
+

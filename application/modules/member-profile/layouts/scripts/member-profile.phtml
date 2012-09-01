@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Project-F Beta / <?= (!is_null($this->pageTitle)) ? $this->pageTitle : " Default "; ?> </title>
+  <meta name="description" content="">
+  <meta name="author" content="Slepice">
+  <link rel="shortcut icon" href="/media/slepice-site/1.0.0/img/favicon.ico" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  
+   <?= $this->action('lib', 'index', 'site');  // libraries ?>
+
+   <link rel="stylesheet" href="<?=$this->baseUrl('/media/slepice-site/1.0.0/css/flow_css.css')?>">
+
+</head>
+<body>
+
+  <div id="fl-top">
+   <div id="fl-container">
+    <p>What is FLO~? How does it work? <i class="icon-share-alt"></i> <a href="/index/learn-more" title="Learn more about FLO~">Learn more!</a></p>
+   </div>
+ </div>
+ 
+ <div id="fl-container">
+   <div class="container">
+     <?= $this->action('header', 'index', 'site');  ?>
+   </div>
+
+<div id="fl-content">
+     <div class="container"> 
+  <?= $this->action('breadcrumbs', 'index', 'site');  ?>
+   
+          
+  <!-- Bootstrap messaging generator -->
+  <div class="fl-cnt-100">
+     <?php echo $this->flashMessenger() ; ?>
+  </div>
+  <?php echo $this->layout()->content; ?>
+  
+
+
+            <div id="col-4">
+              <div class="inner">
+                
+               
+					 <?php echo $this->action('widget-my-role', 'index', 'member-profile',array("id" => $this->user->id));?>
+                	<?php echo $this->action('widget-my-favourite-project', 'index', 'member-profile',array("id" => $this->user->id));?>
+                	<?php echo $this->action('widget-my-favourite-member', 'index', 'member-profile',array("id" => $this->user->id));?>
+                
+                
+              </div>
+            </div>
+
+       </div>
+     </div>
+   
+   </div>
+   
+   <div id="bottom">
+        <?= $this->action('footer', 'index', 'site');  ?>
+   </div>
+
+</div>
+
+<div id="fl-bottom-line">
+  <?= $this->action('footer2', 'index', 'site');  ?>
+</div>
+
+</div>
+
+<script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-member-project-1.0.0.js')?>"></script>
+    </body>
+</html>
+
+            	
+ 

@@ -1,0 +1,40 @@
+<h3 class="fl-sidebar-h3-first">My Skills</h3>
+                <div class="fl_thick_divider"></div>
+                 
+                <div class="fl-cnt-100">
+                
+                <?php 
+                foreach($this->user->specificRoles as $r){
+                	?>
+                	
+                	 <div class="fl-skill">
+                    <div class="fl-skill-img40">
+                      <img src="/media/slepice-site/1.0.0/img/role_<?php echo $r->name;?>.png" alt="<?php echo $r->name;?>" title="<?php echo $r->name;?>" />
+                    </div>
+                    <div class="fl-skill-text">
+                      <div class="fl-skill-text-role">
+                       <?php echo $r->name;?>
+                      </div>
+                      <div class="fl-skill-text-tags">
+                       <?php 
+                       		foreach($r->tags as $t){
+                       			echo $t->name." ";
+                       		}
+                       ?>
+                      </div>
+                    </div>
+                  </div>
+                	
+
+                <?php }  ?>
+                 
+                <?php if(0){ //just a noob condition to avoid echo earned role :) ?>
+                  <div class="fl_thin_divider"></div>
+                  <div class="fl-skill">
+                    <div class="fl-skill-img40">
+                      <img src="/media/slepice-site/1.0.0/img/role_earned.png"  title="" />
+                    </div>
+                   </div>
+                <?php } ?>
+
+</div>
