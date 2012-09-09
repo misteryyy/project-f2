@@ -40,82 +40,70 @@ class Site_PlaygroundController extends  Boilerplate_Controller_Action_Abstract
     
     
     public function indexAction()  {
-    	//TODO tomas rada breadcrumb
-//     	$this->view->breadcrumb = array(array('label' => $label, 'link' => $this->getRequest()->getBaseUrl() . '/kontakty/'));
-//     	a v layout.php to pak zobrazuju
+    	$this->ajaxify();
+    	echo "lalala";
+    	$mandrill = new \Mandrill_Mandrill('6268c2e0-f2ac-4bdc-976b-6ca3bb68afb0');	    	
     	
-//     	<?php
-//     	$separator = '>';
-//     	//$baseUrl = 'http://' . $_SERVER ["SERVER_NAME"] . $this->baseUrl();
-//     	echo '<div id="breadcrumb"><a href="' . $baseUrl . '">Úvodní stránka</a>';
-//     	if ($this->breadcrumb) {
-//     		foreach ($this->breadcrumb as $link) {
-//     			echo ' ' . $separator . ' <a href="' . $link['link'] . '">' . $link['label'] . '</a>';
-//     		}
-//     	}
-//     	echo "</div>"
-//     	
-    	
-    	//$this->_helper->layout()->disableLayout();
-    	
-//     	try{
-//   		throw new Exception("Password already exists");
-//     	} catch (Exception $e){
-//     		/*
-//     		 * Exception message
-//     		*/
-//     		$this->_helper->FlashMessenger( array('error' => 	$e->getMessage())
-//     		);		
-//     	}
-//     	/*
-//     	 * Error message
-//     	*/
-//     	$this->_helper->FlashMessenger(
-//     			array('error' => 'There was a problem with your form submission.')
-//     	);
-    	 
-//     	/*
-//     	 * Success message
-//     	*/
-//     	$this->_helper->FlashMessenger(
-//     			array('success' => 'This is just suxxess, that everything is all right.')
-//     	);
-    	 
-//     	/*
-//     	 * Info message
-//     	*/
-//     	$this->_helper->FlashMessenger(
-//     			array('info' => 'This is just notification, that everything is all right.')
-//     	);
-    	
-    	if (Zend_Controller_Action_HelperBroker::hasHelper('layout')) {
-    	//	$this->_helper->layout->disableLayout();
-    	}
-    	//$this->_helper->viewRenderer->setNoRender(true);
-    	
-
-    	$exampleF = new \App\Form\ExampleForm();
-    	$this->view->form = $exampleF;
-    	
-    	if ($this->_request->isPost()) {
-    		if ($exampleF->isValid($this->_request->getPost())) {
-    	
-    			// fetch values
-    			$values = $exampleF->getValues();
-    			pr($values);
-    	
-    			// ... do some stuff
-    		}
-    	
-    		// print error
-    		else {
-
-    			
-    		//	$this->view->messages = array('error', 'Please control your input!'); // extra message on top
-    		}
-    	}
-    	
+    	$respond = $mandrill->call("templates/list", null);
+    
+    	echo '/'.$respond[0]['name'].'/'; 
     	
     }
+    
+    public function sendTemplateAction(){
+    	$this->ajaxify();
+    	$template = 'welcome_email';
+    	
+    	$sender = 'info@floplatform.com';
+    	$subject = "Welcome to FLO~ Platform";
+    	$recipients = array( array('name' => "name of rec",'email' => 'j.kortan@gmail.com') );
+    	$global_merge_vars = array( array('name' => "SUBJECT",'content' => "VALUE FOR TITLE") );
+    	 
+    	$template_content = array( array("name"=> "SUBJECT", 'content' => "content of name"));
+    	//$template_content = array();
+    	// data for API
+    	$struct = array('template_name' => $template,
+    					'template_content' => $template_content, 
+    					"message" => array(
+    						'subject' => $subject,
+    						'from_email' => $sender,
+    						'from_name' => "Name sender",
+    						'to' => $recipients,
+    						'global_merge_vars' => $global_merge_vars,
+    					)
+    			);
+    	 
+    	$mandrill = new \Mandrill_Mandrill('6268c2e0-f2ac-4bdc-976b-6ca3bb68afb0');
+    
+    	$respond = $mandrill->call("messages/send-template", $struct);
+    	print_r($respond);
+    	 
+    }
+    
+    
+    public function sendEmailAction(){
+    	$this->ajaxify();
+    	$sender = 'info@floplatform.com';
+    	$subject = "welcome to FLO~ Platform";
+    	$recipients = array( array('name' => "name of rec",'email' => 'j.kortan@gmail.com') );
+    	$global_merge_vars = array( array('name' => "TITLE",'content' => "VALUE FOR TITLE") );
+    	
+    	// data for API
+    	$struct = array( "message" => array( 
+    								'html' => "This is html field",
+    								'subject' => $subject,
+    								'from_email' => $sender,
+    								'from_name' => "Name sender",
+    								'to' => $recipients,
+    								'global_merge_vars' => $global_merge_vars,    			
+    			));
+    	
+    	$mandrill = new \Mandrill_Mandrill('6268c2e0-f2ac-4bdc-976b-6ca3bb68afb0');
+    	 
+    	$respond = $mandrill->call("messages/send", $struct);
+    	print_r($respond);
+    	
+    }
+    
 
 }

@@ -171,7 +171,8 @@ class User {
 	 */
 	private $myFriends;
 	
-
+	
+	
 
 	public function __construct() {
 		$this->friendsWithMe = new \Doctrine\Common\Collections\ArrayCollection();
@@ -211,6 +212,7 @@ class User {
 	}
 
 	
+
 	
 	
 	/**
@@ -431,6 +433,14 @@ class User {
 	 * @return the $country
 	 */
 	public function getCountry() {
+		
+		if(isset($this->country)){
+			
+			// Getting countries
+			$locale = new \Zend_Locale('en_US');
+			return $locale->getTranslation($this->country,'country','en_US');
+		
+		}
 		return $this->country;
 	}
 
