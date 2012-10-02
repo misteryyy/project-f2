@@ -6,8 +6,7 @@
    </div>
  	 
 	<div class="row"> 
-	
-  	<div class="span9">
+	<div class="span9">
   <?php if (count($this->paginator)) {?>
    <ul class="thumbnails">
     <?php foreach ($this->paginator as $project){ ?>
@@ -43,15 +42,17 @@
                        <p class="info">
                          <span class="category"><i class="icon-folder-close"></i> <?php echo $project->category->name?></span>
                          <span class="followers"><i class="icon-eye-open"></i> <strong class="follower-count"><?php echo $project->getCountFollowers();?></strong>  followers</span>
-                          <span class="like"><i class="icon-thumbs-up"></i>
-                         <?php
-                         // like dislike solution 
-                         if(!$project->isFollower($this->loggedMember)) { ?>
-                         <a href="" class="like-project" title="Like this project" id="<?php echo $project->id;?>" >Like</a>
-						                <?php } else { ?>
-                         <a href="" class="like-project" title="Dislike this project" id="<?php echo $project->id;?>" >Dislike</a>
-                         <?php } ?>
-                         </span>
+                          <?php if($this->isLogged){?>
+	                          <span class="like"><i class="icon-thumbs-up"></i>
+	                         <?php
+	                         // like dislike solution 
+	                         if(!$project->isFollower($this->loggedMember)) { ?>
+	                         <a href="" class="like-project" title="Like this project" id="<?php echo $project->id;?>" >Like</a>
+							                <?php } else { ?>
+	                         <a href="" class="like-project" title="Dislike this project" id="<?php echo $project->id;?>" >Dislike</a>
+	                         <?php } ?>
+	                         </span>
+                         <?php }?>
                        </p>
                      </div>
                   </div>
@@ -76,13 +77,9 @@
 						if($project->disableRoleWidget){
 							$display = false;
 						}
-
-           					
 						if($display){
-						
                     	// if level 3 = have no idea what to display or not
                     	foreach ($freePositions as $r){
-                    		
                     		echo '<div class="fl_project_thumb_role">';
                     		echo '<img src="/media/slepice-site/1.0.0/img/role_'.$r.'.png" alt="'.$r.'" title="'.$r.'" />';
                     		echo '</div>';
@@ -94,22 +91,11 @@
                 </li>
     <?php } ?>
   </ul>
-    				
-
     <?php } else echo "No Projects Available"?>
-    
-    
       </div>
 	    <div class="span2">
 	    <!-- Category menu and filters module -->
 	  	<?= $this->action('category', 'widget', 'site');  ?>
 	     </div>
-  
     </div>
-    
-    
-<script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-member-project-1.0.0.js')?>"></script> 
- 
-  
-
-    
+<script src="<?=$this->baseUrl('/media/slepice-site/1.0.0/js/like-member-project-1.0.0.js')?>"></script>     

@@ -36,7 +36,6 @@ class SearchEngineFacade {
 		
 		$users = array();
 		foreach ($hits as $h){
-			echo $h->user_id;
 			$users[] = $this->findOneUser($h->user_id);
 		}
 		
@@ -70,7 +69,7 @@ class SearchEngineFacade {
 	 * @return number of non deleted index in this search engine
 	 */
 	public function buildMemberIndexes(){
-		$paginator = $this->facadeUser->findAllUsers();	
+		$paginator = $this->facadeUser->findAllUsers(array('unbanned'=>true));	
 		\Zend_Search_Lucene_Analysis_Analyzer::setDefault(new \Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8Num_CaseInsensitive ());
 		$index = \Zend_Search_Lucene::create(APPLICATION_PATH . '/indexes/members');
 				

@@ -27,43 +27,30 @@
            <li><a href="/help" title="">FAQs</a></li>
            <li><a href="/about-us" title="">Manifesto</a></li>
          </ul>
-     
-     <?php 
-          // $subtree = $this->navigation()->findOneByLabel('Home');
-          //$options = array("ulClass"=>"nav nav-pills fl-menu",       
-          //          "intent"=>"333",
-            //        "minDepth" => 0,
-              //      "maxDepth" => 0,
-                //    "onlyActiveBranch" => false,
-                  //  "renderParents" => true);
-           
-           // echo $this->navigation()->menu()->renderMenu(null,$options);
-      ?>
-     
-     
-     </div>
+   </div>
      <div class="span3">
-
-       <!-- User -->
-       <?php if(Zend_Auth::getInstance()->hasIdentity() ) {?>
+    <!-- User -->
+       <?php if($this->isLogged) {?>
        <ul class="nav nav-pills fl-user-menu">
             <li class="dropdown">
-          
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">  
                   <img src="<?php echo $this->loggedMember->getProfilePictureUrl("tiny").'?foo='.time()?>" 
-                  alt="<?= $this->member['name'];?>" width="25" height="25" alt="" class="fl-menu-img"/> 
-                   <?= $this->member['email']?> <b class="caret"></b></a>
+                  alt="<?= $this->loggedMember->name;?>" width="25" height="25" alt="" class="fl-menu-img"/> 
+                  <?= $this->loggedMember->email;?> <b class="caret"></b></a>
               <ul class="dropdown-menu fl-width100">
                 <li><a href="/member/dashboard" title="My dashboard">My dashboard</a></li>
-                <li><a href="/member/profile/index/id/<?= $this->member['id']?>" title="My profile">My profile</a></li>
+                <li><a href="/member/profile/index/id/<?= $this->loggedMember->id;?>" title="My profile">My profile</a></li>
                 <li><a href="/member/profile-setting/member-info" title="Edit my profile">Edit my profile</a></li>
-                <li class="divider"></li>
+                <?php if ($this->isAdmin){?>
+                	<li class="divider"></li>
+               		<li><a href="/admin" title="Admin zone">Admin Zone</a></li> 
+                <?php }?>
+               	 <li class="divider"></li>
                 <li><a href="/member/index/logout" title="Log out">Log out</a></li>
               </ul>
             </li>
           </ul>
        <?php }else{?>
-
          <!-- Visitor -->
          <div class="fl-user-menu">
            <div class="input-append input-prepend">

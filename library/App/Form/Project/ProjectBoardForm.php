@@ -4,11 +4,8 @@ namespace App\Form\Project;
 class ProjectBoardForm extends \Twitter_Bootstrap_Form_Horizontal
 {
 	
-	private $member = null;
-	
-	public function __construct($member,$project_id)
-	{
-		$this->member = $member;
+	public function __construct()
+	{		
 		parent::__construct();
 	}
 	

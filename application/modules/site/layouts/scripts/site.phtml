@@ -1,5 +1,4 @@
 <!DOCTYPE HTML>
-
 <html>
 <head>
   <meta charset="utf-8">
@@ -10,41 +9,28 @@
   <meta name="author" content="Slepice">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="shortcut icon" href="/media/slepice-site/1.0.0/img/favicon.ico" />
-  
 	 <?= $this->action('lib', 'index', 'site');  // libraries ?>
-
    <link rel="stylesheet" href="<?=$this->baseUrl('/media/slepice-site/1.0.0/css/flow_css.css')?>">
-
 </head>
 
 <body>
-
  <div id="fl-top">
    <div id="fl-container">
     <p>What is FLO~? How does it work? <i class="icon-share-alt"></i> <a href="/index/learn-more" title="Learn more about FLO~">Learn more!</a></p>
    </div>
  </div>
-
  <div id="fl-container">
-
- 
    <div class="container">
      <?= $this->action('header', 'index', 'site');  ?>
    </div>
-   
    <div id="fl-content">
-   
    <div class="container"> 	
 	   <?= $this->action('breadcrumbs', 'index', 'site');  ?>
 	 <!-- Bootstrap messaging generator -->
-	 
    <div class="fl-cnt-100">
      <?php echo $this->flashMessenger() ; ?>
    </div>
-
 	 <?php echo $this->layout()->content; ?>
-
-
    </div>
    <div id="bottom">
         <?= $this->action('footer', 'index', 'site');  ?>
@@ -56,9 +42,5 @@
      <?= $this->action('footer2', 'index', 'site');  ?>
   </div>
 </div>
-
-
-
-
-    </body>
+</body>
 </html>

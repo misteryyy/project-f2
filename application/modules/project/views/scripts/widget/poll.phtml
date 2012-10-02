@@ -1,3 +1,4 @@
+<?php if(!$this->isLogged) {echo'<div class="fl-cnt-100">You have to member if you wanna fill in the poll for this project.</div>'; return;}?>
 <?php if($this->isPoll == false) { echo ""; return; } // check if there are any polls ?>
 
 

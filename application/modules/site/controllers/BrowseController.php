@@ -8,10 +8,7 @@ class Site_BrowseController extends Boilerplate_Controller_Action_Abstract
  	 */
     public function memberAction()
     {   
-    	// build search engine
-    	$facadeSearchEngine = new \App\Facade\SearchEngineFacade($this->_em);
-    	$facadeSearchEngine->buildMemberIndexes();	
-    	// find users
+    		// find users
     	$facadeUser = new \App\Facade\UserFacade($this->_em);	
 		$form = new \App\Form\Site\BrowseMemberForm();
     	$this->view->form = $form;
@@ -19,6 +16,11 @@ class Site_BrowseController extends Boilerplate_Controller_Action_Abstract
     	$query = "";
     	// set default in form
     	if (isset($_GET['q'])) {
+    		// build search engine
+    		$facadeSearchEngine = new \App\Facade\SearchEngineFacade($this->_em);
+    		$facadeSearchEngine->buildMemberIndexes();
+    		
+    		
     		$form->setDefaults($_GET);
     				
     		// add keyword query
@@ -52,7 +54,10 @@ class Site_BrowseController extends Boilerplate_Controller_Action_Abstract
     	
     	} else {
     		
-	    		$paginator = $facadeUser->findAllUsersPaginator($this->_member_id,$this->_request->getParams()); 
+    			$options = $this->_request->getParams();
+    				$options['unbanned'] = true; // just user who don't have ban
+
+    			$paginator = $facadeUser->findAllUsersPaginator($this->_member_id,$options); 
 	    		$config = Zend_Registry::get('config');
 	    		$paginator->setItemCountPerPage($config['app']['project']['count_per_page']); // items per page
 	    		$page = $this->_request->getParam('page', 1);

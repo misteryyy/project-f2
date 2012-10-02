@@ -110,14 +110,13 @@ class Project_IndexController extends  Boilerplate_Controller_Action_Abstract
     	// check id param for project
     	if(!is_numeric($file_id)){
     		$this->_helper->FlashMessenger(array('error' => "This file doesn't exists"));
-    		$this->_redirect('/project/error/');
+    		$this->_redirect('/error');
     	}
     	
-    	//if($this->isCollaborator){
-    	//	$this->_helper->FlashMessenger(array('error' => "You are not collaborating on this project. Sorry."));
-    	//	$this->_redirect('/project/error/');
-    
-   // 	}
+    	if(!$this->isCollaborator){
+    		$this->_helper->FlashMessenger(array('error' => "You are not collaborating on this project. Sorry."));
+    		$this->_redirect('/error');
+     	}
     	 
     	//find file
     	$fileManager = new Boilerplate_Util_FileManagerS3($this->project);
@@ -134,10 +133,8 @@ class Project_IndexController extends  Boilerplate_Controller_Action_Abstract
     public function projectBoardAction(){
     	 // TODO check if in the team 
     	$this->view->pageTitle .=  "Project Board";
- 
     	$facadeProjectBoard = new \App\Facade\Project\ProjectBoardFacade($this->_em);
-    	
-    	$form = new \App\Form\Project\ProjectBoardForm($this->_member, $this->project_id);
+    	$form = new \App\Form\Project\ProjectBoardForm();
     	// validation
     	if ($this->_request->isPost()) {
     		if ($form->isValid($this->_request->getPost())) {

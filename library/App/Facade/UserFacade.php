@@ -19,11 +19,20 @@ class UserFacade {
 	/**
 	 * Return all users 
 	 */
-	public function findAllUsers(){
-		$users = $this->em->getRepository ('\App\Entity\User')->findThemAll();
-		return $users;
+	public function findAllUsers($options = array()){
+		
+		// take users without ban
+		if(isset($options['unbanned'])){
+			
+				return  $this->em->getRepository ('\App\Entity\User')->findThemAllWithoutBan();
+		}	
+		else {
+			 return $this->em->getRepository ('\App\Entity\User')->findThemAll();
+		}
 		
 	}
+	
+
 	
 	/**
 	 * Find all friend for user
@@ -87,23 +96,7 @@ class UserFacade {
 	
 	
 	
-	/**
-	 * Return all users
-	 */
-public function findAllUsersNative($options = array()){
-	
-	// Equivalent DQL query: "select u from User u where u.name=?1"
-	// User owns an association to an Address but the Address is not loaded in the query.
-	$rsm = new ResultSetMapping;
-	$rsm->addEntityResult('\App\Entity\User', 'u');
-	$rsm->addFieldResult('u', 'id', 'id');
-	$rsm->addFieldResult('u', 'name', 'name');
-	
-	$query = $this->em->createNativeQuery('SELECT id, name FROM user WHERE MATCH(name) AGAINST ("josef" IN BOOLEAN MODE) ', $rsm);
-	//$query->setParameter(1, 'romanb');
-	
-	return $query->getResult();
-}
+
 	
 	/**
 	 * Return all users in application, used for search
@@ -118,7 +111,11 @@ public function findAllUsersNative($options = array()){
 			throw new \Exception("Member doesn't exists");
 		}
 		
-		$stmt = 'SELECT u FROM App\Entity\User u';
+		if(isset($options['unbanned'])){
+			$stmt = 'SELECT u FROM App\Entity\User u WHERE u.ban = false ';
+		}else {
+			$stmt = 'SELECT u FROM App\Entity\User u';
+		}
 		//$stmt .= 'ORDER BY a.created, a.roleName DESC';
 		$query = $this->em->createQuery($stmt);
 		//$query->setParameter(1, $project_id);

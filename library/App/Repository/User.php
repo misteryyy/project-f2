@@ -11,7 +11,13 @@ class User extends EntityRepository
         $stmt = 'SELECT q FROM App\Entity\User q ORDER BY q.id DESC';
         return $this->_em->createQuery($stmt)->getResult();
     }
+
+    public function findThemAllWithoutBan()
+    {
     
+    	$stmt = 'SELECT q FROM App\Entity\User q WHERE q.ban = false ORDER BY q.id DESC';
+    	return $this->_em->createQuery($stmt)->getResult();
+    }
     
     public function findOneByEmail($email)
     {

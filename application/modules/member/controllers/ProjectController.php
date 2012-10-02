@@ -80,7 +80,7 @@ class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
     		}
     		// not validated properly
     		else {
-    			$this->_helper->FlashMessenger( array('error' => "You have to accept project publishing."));
+    			$this->_helper->FlashMessenger( array('error' => "You must agree with Terms & Conditions."));
     		}
     	}
     

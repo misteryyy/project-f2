@@ -8,8 +8,7 @@ class NotificationFacade {
 	private $em;
 	
 	public function __construct(\Doctrine\ORM\EntityManager $em){
-		$this->em = $em;
-			
+		$this->em = $em;	
 	}
 	
 	/**

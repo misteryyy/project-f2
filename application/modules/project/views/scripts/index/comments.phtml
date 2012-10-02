@@ -1,20 +1,8 @@
-<h2><?php echo $this->project->title?></h2>
-              <p class="fl_project_head_info"><i class="icon-user"></i> <a href="<?php echo $this->project->user->getProfileUrl();?>" title=""><?php echo $this->project->user->name?></a>, <i class="icon-folder-close"></i> <?php echo $this->project->category->name;?>, <i class="icon-time"></i> <?php echo $this->project->created->format('Y/m/d');?>,  
-                 <span class="like"><i class="icon-thumbs-up"></i> 
-                         <?php
-                         // like dislike solution 
-                         if(!$this->project->isFollower($this->loggedMember)) {
-						 ?> <a href="" title="" class="like-project" id="<?php echo $this->project->id;?>" >Like</a>
-						 <?php } else { ?>
-                            <a href="" title="" class="like-project" id="<?php echo $this->project->id;?>" >Dislike</a>
-                         <?php } ?>
-                         </span>
-              </p>
-
 <?php
 // basic project navigation
 $this->step = 3;
-echo $this->partial('/index/project-navigation.phtml',array("step" => $this->step,"project" => $this->project,"isCreator"=> $this->isCreator));
+echo $this->partial('/index/project-navigation.phtml',array("step" => $this->step,"project" => $this->project,"isCreator"=> $this->isCreator,"isLogged"=> $this->isLogged));
+
 ?>
       </div>
     </div>

@@ -4,6 +4,22 @@
     </div>				
 <?php } ?>
 
+<h2><?php echo $this->project->title?></h2>
+              <p class="fl_project_head_info"><i class="icon-user"></i> <a href="<?php echo $this->project->user->getProfileUrl();?>" title=""><?php echo $this->project->user->name?></a>, <i class="icon-folder-close"></i> <?php echo $this->project->category->name;?>, <i class="icon-time"></i> <?php echo $this->project->created->format('Y/m/d');?>,  
+                 <?php if($this->isLogged){?>
+                 <span class="like"><i class="icon-thumbs-up"></i> 
+                         <?php
+                         // like dislike solution 
+                         if(!$this->project->isFollower($this->loggedMember)) {
+						 ?> <a href="" title="" class="like-project" id="<?php echo $this->project->id;?>" >Like</a>
+						 <?php } else { ?>
+                            <a href="" title="" class="like-project" id="<?php echo $this->project->id;?>" >Dislike</a>
+                         <?php } ?>
+                  </span>
+                  <?php }?>
+   </p>
+              
+
  <?php  
 	$allow[1] = false;
 	$allow[2] = false;
@@ -30,9 +46,6 @@
 <div class="navbar fl-project-profile-navbar">
                 <div class="navbar-inner">
                   <div class="container">
-                      
-                  
-
   <ul class="nav">
   <li class="<?php echo($allow[1] == true ? "active" : "disable" );?>"> <a href="<?php echo $this->project->getProjectUrl();?>">Summary</a></li>
   <li class="<?php echo($allow[2] == true ? "active" : "disable" );?>"><a href="<?php echo $this->project->getProjectUrl();?>/updates">Updates</a></li>

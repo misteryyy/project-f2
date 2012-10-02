@@ -10,13 +10,10 @@ class ACLFacade {
 	private $taskFacade;
 	
 	public function __construct(\Doctrine\ORM\EntityManager $em){
-		
 		$this->em = $em;
 		$this->userFacade = new \App\Facade\UserFacade($em);
-		$this->taskFacade = new \App\Facade\Project\TaskFacade($em);
-		
-	}
-	
+		$this->taskFacade = new \App\Facade\Project\TaskFacade($em);	
+	}	
 	
 	/**
 	 * If User Has already Applied don't let him to this again
@@ -64,10 +61,8 @@ class ACLFacade {
 		//\Doctrine\Common\Util\Debug::dump($query->getResult());
 		$result = $query->getOneOrNullResult();
 		return $result[1];
-		
 	}
-
-		
+	
 	/**
 	 * Return true if current user is creator
 	 * @param unknown_type $user_id
@@ -82,8 +77,6 @@ class ACLFacade {
 		$result = $query->getOneOrNullResult();
 		return $result[1];
 	}
-	
-	
 	/**
 	 * Return true if current user is creator
 	 * @param unknown_type $user_id
@@ -98,11 +91,6 @@ class ACLFacade {
 		$query->setParameter(3, \App\Entity\ProjectRole::PROJECT_ROLE_TYPE_MEMBER);
 		$result = $query->getOneOrNullResult();
 		return $result[1];
-	}
-	
-	
-	
-	
+	}	
 }
-
 ?>

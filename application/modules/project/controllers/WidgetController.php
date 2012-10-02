@@ -43,14 +43,14 @@ class Project_WidgetController extends  Boilerplate_Controller_Action_Abstract
 	}
 	
     /**
-	 * New Applicantions Level 1
+	 * Applications for level 1 widget
 	 */ 
     public function applicationAction(){
 		$this->checkProject();
+		if(!$this->isLogged){ return; } // skip if you are not logged 
 		// check if application has been sent
 		if($this->facadeAcl->projectApplicationHasBeenSent($this->_member_id, $this->project_id)) {
 			$this->view->aclPermissionDenied = true;
-			//return;
 		} 
 			$facadeTeam = new \App\Facade\Project\TeamFacade($this->_em);
 			$questions = $facadeTeam->findAllProjectRoleWidgetQuestions($this->project_id);
@@ -102,6 +102,7 @@ class Project_WidgetController extends  Boilerplate_Controller_Action_Abstract
     	
     	$this->view->isPoll = $isPoll;
     	if($isPoll){
+    		if(!$this->isLogged){return;} // skip if you are not logged
     	// check if application has been sent
     	// try to check if the user has already voted
     		$answers = $facadePoll->findAllAnswersForUser($this->project_id, $this->_member_id, $poll->id);
@@ -169,6 +170,8 @@ class Project_WidgetController extends  Boilerplate_Controller_Action_Abstract
      */
     public function applicationLevel2Action(){
     	$this->checkProject();
+    	if(!$this->isLogged){return;} // skip if you are not logged
+    	
     	// check if application has been sent
     	if($this->facadeAcl->projectApplicationHasBeenSent($this->_member_id, $this->project_id)) {
     		$this->view->aclPermissionDenied = true;

@@ -313,17 +313,19 @@
 
 		<!-- Invisible, just for breadcrumbs -->
 		<lost-password>
-			<visible>0</visible>
+		<visible>0</visible>
 			<label>Lost password</label>
 			<uri>/member/index/lost-password</uri>
 		</lost-password>
 		<login>
 			<visible>0</visible>
 			<label>Login</label>
-			<uri>/member/index/login</uri>
+				<module>member</module>
+				<controller>index</controller>
+				<action>login</action>
 		</login>
 		<signup>
-			<visible>0</visible>
+		<visible>0</visible>
 			<label>Sign Up</label>
 			<uri>/member/index/sign-up</uri>
 		</signup>

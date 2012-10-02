@@ -40,8 +40,6 @@ class Site_IndexController extends Boilerplate_Controller_Action_Abstract
     public function ajaxIndexAction()
     {
     	$this->ajaxify();
-    
-    
     	if($this->_request->isPost() || $this->_request->isGet()){
     		switch ($this->_request->getParam("_method")){
     

@@ -14,9 +14,7 @@ class Site_WidgetController extends  Boilerplate_Controller_Action_Abstract
 		$this->facadeProject = new \App\Facade\Site\ProjectFacade($this->_em);
 		//$this->checkProject();
 	}
-	
-	
-	
+
     /**
 	 * Categories
 	 */ 
@@ -32,8 +30,7 @@ class Site_WidgetController extends  Boilerplate_Controller_Action_Abstract
     	// Feeding Slideshow
     	$facadeSlideshow = new \App\Facade\Admin\SlideshowFacade($this->_em);
     	$this->view->slideshow = $facadeSlideshow->findSlideshow();
-    	
-    }
+	}
     
     /**
      * Ajax Handling for Applications
