@@ -92,8 +92,10 @@ abstract class Boilerplate_Controller_Action_Abstract extends Zend_Controller_Ac
   // Navigation settings
   $uri = $this->_request->getPathInfo();           
   $activeNav = $this->view->navigation()->findByUri($uri);
-  $activeNav->active = true;
- 
+  if(isset($activeNav)){
+  	$activeNav->active = true;
+  }
+  debug($activeNav);
  
  } 
 
