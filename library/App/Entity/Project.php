@@ -69,25 +69,10 @@ class Project {
 	 * @Column(type="string", name="dir",nullable=true)
 	 */
 	private $dir;
-	
-	/**
-	 * @Column(type="text", name="issue",nullable=true)
-	 */
-	private $issue;
-	/**
-	 * @Column(type="text", name="lesson",nullable=true)
-	 */
-	private $lesson;
-	/**
-	 * @Column(type="text", name="plan",nullable=true)
-	 */
-	private $plan;
-	
 	/**
 	 * @ManyToMany(targetEntity="User", mappedBy="favouriteProjects")
 	 */
 	private $followers;
-		
 	/**
 	 * @Column(type="datetime",name="created")
 	 */
@@ -107,7 +92,6 @@ class Project {
 	 * @Column(type="boolean", name="ban")
 	 */
 	private $ban;
-	
 	
 	/**
 	 * @Column(type="integer", name="featured")
@@ -143,10 +127,15 @@ class Project {
 	}
 	
 	/**
-	 * @manyToOne(targetEntity="Category", inversedBy="projects")
+	 * @manyToOne(targetEntity="ProjectCategory", inversedBy="projects")
 	 * @joinColumn(name="category_id")
 	 */
 	private $category;
+		
+	/**
+	 * @oneToMany(targetEntity="ProjectSubContent", mappedBy="project",cascade={"persist","remove"})
+	 */
+	private $subContents;
 	
 	/**
 	 *
@@ -236,6 +225,36 @@ class Project {
 		$this->roles [] = $role;
 	}
 	
+	public function addSubContent($content){
+		$content->setProject($this);
+		$this->subContents [] = $content;
+	}
+	
+	
+	/**
+	 * Return all subcontent
+	 * @param unknown_type $content
+	 */
+	public function getSubContents(){
+		return $this->subContents;
+	}
+	
+	
+	/**
+	 * Return subcontent for artical
+	 * @param unknown_type $type
+	 */
+	public function getSubContent($type){
+	//	\Doctrine\Common\Util\Debug::dump($this->subContents);
+		
+		foreach($this->subContents as $s){
+			if($s->type == $type){
+				return $s;
+			}
+		}
+	}
+	
+	
 	public function addProjectUpdate($update) {
 		$update->setProject ( $this );
 		$this->projectUpdates [] = $update;
@@ -305,9 +324,7 @@ class Project {
 		
 		return $this->tags;
 	}
-	
-	
-	
+
 	/**
 	 * Profile Public Url
 	 */
@@ -330,6 +347,7 @@ class Project {
 		// date
 		$this->created = new \DateTime ( "now" );
 		$this->tags = new \Doctrine\Common\Collections\ArrayCollection ();
+		$this->subContents = new \Doctrine\Common\Collections\ArrayCollection ();				
 		$this->followers = new \Doctrine\Common\Collections\ArrayCollection ();
 		$this->modified = new \DateTime ( "now" ); // the date is at the beginning                                      // the same
 		$this->level = 1;
@@ -420,46 +438,13 @@ class Project {
 		return '/storage/projects/'.$this->dir."/thumbs/".$file;
 	
 	}
-	
-	
+		
 	/**
 	 *
 	 * @return Category
 	 */
 	public function getCategory() {
 		return $this->category;
-	}
-	
-	/**
-	 *
-	 * @return the $issue
-	 */
-	public function getIssue() {
-		return $this->issue;
-	}
-	
-	/**
-	 *
-	 * @return the $lesson
-	 */
-	public function getLesson() {
-		return $this->lesson;
-	}
-	
-	/**
-	 *
-	 * @return the $plan
-	 */
-	public function getPlan() {
-		return $this->plan;
-	}
-	
-	/**
-	 *
-	 * @param $issue field_type       	
-	 */
-	public function setIssue($issue) {
-		$this->issue = $issue;
 	}
 	
 	/**
@@ -517,22 +502,6 @@ class Project {
 	 */
 	public function setModified() {
 		$this->modified = new \DateTime ( 'now' );
-	}
-	
-	/**
-	 *
-	 * @param $lesson field_type       	
-	 */
-	public function setLesson($lesson) {
-		$this->lesson = $lesson;
-	}
-	
-	/**
-	 *
-	 * @param $plan field_type       	
-	 */
-	public function setPlan($plan) {
-		$this->plan = $plan;
 	}
 	
 	/**

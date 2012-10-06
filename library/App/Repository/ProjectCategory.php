@@ -9,18 +9,16 @@ use Doctrine\ORM\EntityRepository;
  * @author misteryyy
  *
  */
-class Category extends EntityRepository
+class ProjectCategory extends EntityRepository
 {
-	
     /**
      * Find all categories
      */
 	public function findThemAll()
     {
-        $stmt = 'SELECT q FROM App\Entity\Category q ORDER BY q.id ASC';
+        $stmt = 'SELECT q FROM App\Entity\ProjectCategory q ORDER BY q.id ASC';
         return $this->_em->createQuery($stmt)->getResult();
     }
-    
     
     /**
      * Find Cateogory by name
@@ -28,11 +26,7 @@ class Category extends EntityRepository
      */
     public function findOneByName($name)
     {
-    	return $this->_em->createQuery ('SELECT q FROM App\Entity\Category q WHERE q.name = ?1' )
+    	return $this->_em->createQuery ('SELECT q FROM App\Entity\ProjectCategory q WHERE q.name = ?1' )
     	->setParameter (1, $name )->getResult();
-    
-    }
-    
-
-        
+    }        
 }

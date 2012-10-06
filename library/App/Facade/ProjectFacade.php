@@ -127,7 +127,7 @@ class ProjectFacade {
 	 */
 	public function findCategoryById($category_id){
 		// check the category
-		$category = $this->em->getRepository ('\App\Entity\Category')->findOneById ( $category_id );
+		$category = $this->em->getRepository ('\App\Entity\ProjectCategory')->findOneById ( $category_id );
 		if(!$category){
 			throw new \Exception("This category doesn't exits");
 		}
@@ -189,7 +189,7 @@ class ProjectFacade {
 			throw new \Exception("Member doesn't exists");
 		}
 				// find category
-				$category = $this->em->getRepository ('\App\Entity\Category')->findOneBy(array("id"=> $dataFirstStep['category']));
+				$category = $this->em->getRepository ('\App\Entity\ProjectCategory')->findOneBy(array("id"=> $dataFirstStep['category']));
 				if($category){
 				$newProject = new \App\Entity\Project($user, $category, 
 													$dataFirstStep['title'], 
@@ -197,10 +197,14 @@ class ProjectFacade {
 													$dataFirstStep['content'],
 													$dataFirstStep['priority']);
 
-				$newProject->setLesson($dataFirstStep['plan']);
-				$newProject->setIssue($dataFirstStep['issue']);
-				$newProject->setPlan($dataFirstStep['lesson']);
+				$subcontent_plan = new \App\Entity\ProjectSubContent( \App\Entity\ProjectSubContent::TYPE_PLAN_TITLE, $dataFirstStep['plan'],\App\Entity\ProjectSubContent::TYPE_PLAN);
+				$subcontent_issue = new \App\Entity\ProjectSubContent(\App\Entity\ProjectSubContent::TYPE_ISSUE_TITLE, $dataFirstStep['issue'],\App\Entity\ProjectSubContent::TYPE_ISSUE);
+				$subcontent_lesson = new \App\Entity\ProjectSubContent(\App\Entity\ProjectSubContent::TYPE_LESSON_LEARNED_TITLE, $dataFirstStep['lesson'],\App\Entity\ProjectSubContent::TYPE_LESSON_LEARNED);
 
+				$newProject->addSubContent($subcontent_plan);
+				$newProject->addSubContent($subcontent_issue);
+				$newProject->addSubContent($subcontent_lesson);
+				
 				$this->em->persist($newProject);
 			
 				// adding tags
@@ -300,7 +304,7 @@ class ProjectFacade {
 					
 			}
 
-			$category = $this->em->getRepository ('\App\Entity\Category')->findOneBy(array("id"=> $data['category']));
+			$category = $this->em->getRepository ('\App\Entity\ProjectCategory')->findOneBy(array("id"=> $data['category']));
 			if($category){
 				
 				$project->setContent($data['content']);
@@ -308,9 +312,38 @@ class ProjectFacade {
 				$project->setPriority($data['priority']);
 				$project->setTitle($data['title']);
 				$project->setCategory($category);
-				$project->setLesson($data['plan']);
-				$project->setIssue($data['issue']);
-				$project->setPlan($data['lesson']);
+				
+				// foreach all addtional information
+				$arr = \App\Entity\ProjectSubContent::$typesArray;
+				foreach($arr as $s){
+							if(isset($data[$s['name']]) && $data[$s['name']] != ""){
+							
+								$subContent = $project->getSubContent($s['type']);
+							
+								// if exists edit it
+								if(isset($subContent)){
+									$subContent->setContent($data[$s['name']]);
+								
+								}else {
+								// if not, create it
+								$newSubContent = new \App\Entity\ProjectSubContent($s['title'], $data[$s['name']], $s['type']);	
+								$project->addSubContent($newSubContent);
+								$newSubContent->setProject($project);
+								$this->em->flush();
+								$newSubContent = null;
+							}
+						} else {
+							// delete all previsou which are not currently set
+							$deleteThis = $project->getSubContent($s['type']);
+								if(isset($deleteThis)){
+								$this->em->remove($deleteThis); // remove from db
+							}
+						}
+						
+				}
+				
+			
+				
 				$project->setModified();
 				
 				// tags modification
@@ -349,9 +382,13 @@ class ProjectFacade {
 					}
  				}
 				
+ 			
 				$this->em->flush();
 				$this->facadeNotification->addProjectNotification($project, "Project has updated description",2);
+				
+			
 			}else {
+				
 				throw new \Exception("Category  doesn't exists");
 				
 			}			
@@ -558,7 +595,7 @@ class ProjectFacade {
 	 * Return all categories in array / used for form
 	 */
 	public function findAllProjectCategoriesArray(){
-		$categories = $this->em->getRepository ('\App\Entity\Category')->findThemAll();
+		$categories = $this->em->getRepository ('\App\Entity\ProjectCategory')->findThemAll();
 		$arr = array(); 
 		if(count($categories) > 0) {
 			foreach ($categories as $cat){	

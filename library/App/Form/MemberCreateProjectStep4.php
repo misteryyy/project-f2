@@ -39,8 +39,8 @@ class MemberCreateProjectStep4 extends \Twitter_Bootstrap_Form_Horizontal
 					'class' => 'span8',
 					'rows' => 3,
 					'filters' => array('StringTrim'),
-					'description' => "max 250 letters",
-					'validators' => array(array('StringLength', false, array(1,250)) )
+					'description' => "max 1000 letters",
+					'validators' => array(array('StringLength', false, array(1,1000)) )
 			));
 			
 			$this->addDisplayGroup(

@@ -97,7 +97,7 @@ class ProjectFacade {
 	 */
 	public function findCategoryById($category_id){
 		// check the category
-		$category = $this->em->getRepository ('\App\Entity\Category')->findOneById ( $category_id );
+		$category = $this->em->getRepository ('\App\Entity\ProjectCategory')->findOneById ( $category_id );
 		if(!$category){
 			throw new \Exception("This category doesn't exits");
 		}
@@ -113,7 +113,7 @@ class ProjectFacade {
 	 */
 	public function findCategoryByName($category_name){
 		// check the category
-		$category = $this->em->getRepository ('\App\Entity\Category')->findOneByName ( $category_name);
+		$category = $this->em->getRepository ('\App\Entity\ProjectCategory')->findOneByName ( $category_name);
 		if(!$category){
 			throw new \Exception("This category doesn't exits");
 		}
@@ -208,7 +208,7 @@ class ProjectFacade {
 	 * Return all categories in array / used for form
 	 */
 	public function findAllProjectCategoriesArray(){
-		$categories = $this->em->getRepository ('\App\Entity\Category')->findThemAll();
+		$categories = $this->em->getRepository ('\App\Entity\ProjectCategory')->findThemAll();
 		$arr = array(); 
 		if(count($categories) > 0) {
 			foreach ($categories as $cat){	
@@ -222,7 +222,7 @@ class ProjectFacade {
 	 * Return all categories in array / used for form
 	 */
 	public function findAllProjectCategories(){
-		$categories = $this->em->getRepository ('\App\Entity\Category')->findThemAll();
+		$categories = $this->em->getRepository ('\App\Entity\ProjectCategory')->findThemAll();
 		return $categories;
 	}
 

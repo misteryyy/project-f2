@@ -123,6 +123,18 @@ class Project extends \App\Entity\Project implements \Doctrine\ORM\Proxy\Proxy
         return parent::addProjectRole($role);
     }
 
+    public function addSubContent($content)
+    {
+        $this->__load();
+        return parent::addSubContent($content);
+    }
+
+    public function getSubContents($content)
+    {
+        $this->__load();
+        return parent::getSubContents($content);
+    }
+
     public function addProjectUpdate($update)
     {
         $this->__load();
@@ -219,30 +231,6 @@ class Project extends \App\Entity\Project implements \Doctrine\ORM\Proxy\Proxy
         return parent::getCategory();
     }
 
-    public function getIssue()
-    {
-        $this->__load();
-        return parent::getIssue();
-    }
-
-    public function getLesson()
-    {
-        $this->__load();
-        return parent::getLesson();
-    }
-
-    public function getPlan()
-    {
-        $this->__load();
-        return parent::getPlan();
-    }
-
-    public function setIssue($issue)
-    {
-        $this->__load();
-        return parent::setIssue($issue);
-    }
-
     public function getContent()
     {
         $this->__load();
@@ -285,18 +273,6 @@ class Project extends \App\Entity\Project implements \Doctrine\ORM\Proxy\Proxy
         return parent::setModified();
     }
 
-    public function setLesson($lesson)
-    {
-        $this->__load();
-        return parent::setLesson($lesson);
-    }
-
-    public function setPlan($plan)
-    {
-        $this->__load();
-        return parent::setPlan($plan);
-    }
-
     public function setCategory($category)
     {
         $this->__load();
@@ -324,7 +300,7 @@ class Project extends \App\Entity\Project implements \Doctrine\ORM\Proxy\Proxy
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'title', 'content', 'pitchSentence', 'disableRoleWidget', 'dir', 'issue', 'lesson', 'plan', 'created', 'viewCount', 'picture', 'ban', 'featured', 'priority', 'level', 'modified', 'roles', 'roleWidgetQuestions', 'followers', 'category', 'user', 'tags');
+        return array('__isInitialized__', 'id', 'title', 'content', 'pitchSentence', 'disableRoleWidget', 'dir', 'created', 'viewCount', 'picture', 'ban', 'featured', 'priority', 'level', 'modified', 'roles', 'roleWidgetQuestions', 'followers', 'category', 'subContents', 'user', 'tags');
     }
 
     public function __clone()

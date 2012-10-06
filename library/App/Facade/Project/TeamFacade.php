@@ -7,10 +7,11 @@ class TeamFacade {
 	/** @var Doctrine\Orm\EntityManager */
 	private $em;
 	private $facadeNotification;
+	private $mailer;
 	public function __construct(\Doctrine\ORM\EntityManager $em){	
 		$this->em = $em;
 		$this->facadeNotification = new \App\Facade\NotificationFacade($em);
-		
+		$this->mailer = new \App\Mailer\MandrillMailer();
 	}	
 	
 	/**
@@ -456,10 +457,13 @@ class TeamFacade {
 		$application->setDescription($role->getDescription());
 		$application->setProjectRole(null); // member was kicked out
 		$application->setResult("You been kickout from the project.");
+		
+		
 		$this->em->flush();
-			
 		$this->em->remove($role);
 		$this->em->flush();
+		
+			
 	}
 
 	/**
@@ -494,7 +498,12 @@ class TeamFacade {
 				$a->setDescription($role->getDescription()); // for consistency, update the role
 			}
 		}
+		$user = $role->user;
 		$this->facadeNotification->addUserNotification($role->user,"Member was kicked off the project ".$project->getProjectFullUrl(),0);
+		$this->facadeNotification->addUserNotification($user, "You've been kicked out from the project ".$project->getProjectFullUrl(),1,\App\Entity\UserLog::TYPE_PRIVATE);
+		$this->mailer->sendKickoutForTheProject($user, $project->title);
+		
+		
 		$this->em->remove($role);
 		$this->em->flush();
 	}
@@ -730,17 +739,17 @@ class TeamFacade {
 						// set new state to the application
 						$a->setState(\App\Entity\ProjectApplication::APPLICATION_DENIED);
 						$a->setResult("Sorry, all spots seem to have been filled for this role. Try getting in touch with the creator directly if you're still interested in collaborating.");
+						$this->facadeNotification->addUserNotification($a->user, "You've been NOT accepted in project ".$project->getProjectFullUrl(),1,\App\Entity\UserLog::TYPE_PRIVATE);	
 				}
 			}
 			
-				
 			// create new role for project
 			$this->em->flush();
 		}
 		
 		$this->facadeNotification->addUserNotification($user,"Member started to collaborate on a project ".$project->getProjectFullUrl(),5);
-		
-		
+		$this->facadeNotification->addUserNotification($user, "You've been accepted in project ".$project->getProjectFullUrl(),1,\App\Entity\UserLog::TYPE_PRIVATE);
+		$this->mailer->sendAcceptedForTheProject($user, $project->title);
 
 	}
 	
@@ -836,6 +845,9 @@ class TeamFacade {
 			$application->setResult($data['message']);
 		}
 		$this->em->flush();
+		
+		$this->facadeNotification->addUserNotification($user, "You've been NOT accepted in project ".$project->getProjectFullUrl(),1,\App\Entity\UserLog::TYPE_PRIVATE);
+			
 	
 	
 	}

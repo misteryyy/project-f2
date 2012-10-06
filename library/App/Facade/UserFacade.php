@@ -9,9 +9,11 @@ class UserFacade {
 	/** @var Doctrine\Orm\EntityManager */
 	private $em;
 	private $facadeNotification;
+	private $mailer;
 	
 	public function __construct(\Doctrine\ORM\EntityManager $em){
 		$this->facadeNotification = new \App\Facade\NotificationFacade($em);
+		$this->mailer = new \App\Mailer\MandrillMailer();
 		$this->em = $em;
 	}
 	
@@ -168,13 +170,30 @@ class UserFacade {
 		$this->em->persist($user);
 		$this->em->flush();
 
-		// TODO SENDING EMAIL
-		// $mailer = new \App\Mailer\HtmlMailer();
-		// $mailer->setSubject("Welcome to FLO~ Platform")
-		// ->addTo($data['email'])
-		// ->setViewParam('name',"Josef Kortan")
-		// ->sendHtmlTemplate("welcome.phtml");
+		$this->mailer->sendWelcomeEmail($user);
+		
 			
+	}
+	
+	/**
+	 * Update new password if the user is found
+	 * @param unknown_type $email
+	 */
+	public function lostPassword($email){
+		
+		$user = $this->em->getRepository ('\App\Entity\User')->findOneByEmail ( $email );
+		
+		if(!$user){
+			throw new \Exception("The provided e-mail address is not associated with a registered user." );
+		}
+		$user =$user[0];
+		
+		$value = createRandomHash(); // newpassword
+		$user->setPassword($value);
+		$this->em->flush ();
+		
+		// send email to user
+		$this->mailer->sendLostPassword($user,$value);	
 	}
 	
 	public function makeTagArray($str){
@@ -461,7 +480,7 @@ class UserFacade {
 			throw new \Exception("Member doesn't exists");
 		}
 			
-		$stmt = 'SELECT u FROM App\Entity\UserLog u WHERE u.user = ?1 AND u.type = ?2 ORDER BY u.created ';
+		$stmt = 'SELECT u FROM App\Entity\UserLog u WHERE u.user = ?1 AND u.type = ?2 ORDER BY u.created DESC';
 		//$stmt .= 'ORDER BY a.created, a.roleName DESC';
 		$query = $this->em->createQuery($stmt);
 		$query->setParameter(1, $user_id);

@@ -23,15 +23,16 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
               </div>
 
               <div class="fl-cnt-plans-issues-lessons">
-                <p>
-                  <span class="fl-cnt-plans-title-first">Plans</span>
-                  <?php echo $this->project->plan;?></p>
-                <p>
-                  <span class="fl-cnt-plans-title">Issues</span>
-                  <?php echo $this->project->issue;?></p>
-                <p>
-                  <span class="fl-cnt-plans-title">Lessons Learned</span>
-                  <?php echo $this->project->lesson;?></p>
+               <?php 
+                $subContents = $this->project->subContents;
+                $first = true;
+               	foreach($subContents as $sc){
+					?>
+					<p>
+					<span class="fl-cnt-plans-title<?php if($first) echo "-first";?>"><?php echo $sc->title; ?></span>
+					<?php echo $sc->content; ?>
+					</p>
+				<?php $first = false;}?>
               </div>
 
     			  <div class="fl-cnt-100 fl-bottom20">

@@ -6,10 +6,9 @@
                   <ul class="fl-ul-project-feed">
     
     <?php foreach ($this->paginator as $n){ ?>
-    		<li class="fl-li-accepted">
-    			<?php echo $n->created->format('Y/m/d'); ?>
+    		<li class="fl-li-info">
+    			<?php echo $n->created->format('Y/m/d H:i:s'); ?>
     			<?php echo $n->message; ?>
-    			<?php echo $n->type; ?>	
     		</li>    	 		
     <?php } ?>
     	<!--  

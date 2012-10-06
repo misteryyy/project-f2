@@ -1,10 +1,10 @@
 <?php
 namespace App\Entity;
 /**
- * @Entity(repositoryClass="App\Repository\Category")
+ * @Entity(repositoryClass="App\Repository\ProjectCategory")
  * @Table(name="project_category")
  */
-class Category
+class ProjectCategory
 {
     /**
      * @Id @Column(type="integer", name="id")
@@ -26,7 +26,6 @@ class Category
     public function __construct($name){
 		$this->name = $name;	
     	$this->projects = new \Doctrine\Common\Collections\ArrayCollection();
-    
     }
     
     public function getId()

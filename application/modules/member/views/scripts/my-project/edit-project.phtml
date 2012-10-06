@@ -4,14 +4,58 @@
 $this->step = 1;
 echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $this->step,"project" => $this->project));
 ?>
-	
+
 <div class="fl-cnt-100">
-	<?php echo $this->form;?>
+	<?php //echo $this->form;?>
+	
+	<form id="edit-project" class="form-horizontal"
+		action="<?php echo $this->form->getAction(); ?>"
+		method="<?php echo $this->form->getMethod(); ?>">
+		<?php echo $this->form->title;?>
+		<?php echo $this->form->category;?>
+		<?php echo $this->form->priority;?>
+		<?php echo $this->form->pitch;?>
+		<?php echo $this->form->content;?>
+		
+		<div class="alert alert-info">
+		Following information are additional. Empty fields won't be display in project page.
+		</div>
+				
+		<div class="accordion" id="accordion2">				
+			<?php 
+				$types = \App\Entity\ProjectSubContent::$typesArray;
+				$first = true;
+				foreach($types as $s){ ?>
+					<div class="accordion-group">
+						<div class="accordion-heading">
+							<a class="accordion-toggle" data-toggle="collapse"
+								data-parent="#accordion2" href="#<?php echo $s['name'];?>"> <?php echo $s['title'];?></a>
+						</div>
+						<div id="<?php echo $s['name'];?>" class="accordion-body collapse <?php if($first) echo "in"; $first = false;?>">
+							<div class="accordion-inner">
+							<?php echo $this->form->$s['name'];?></div>
+						</div>
+					</div>
+			<?php }?>
+		</div>
+
+
+
+
+<?php echo $this->form->project_tags;?>
+<?php echo $this->form->actions;?>
+
+</form>
 </div>
 
-	<!-- Load jQuery build -->
-	<script type="text/javascript" src="<?=$this->baseUrl('/media/tiny_mce/tiny_mce.js')?>"></script>
-	<script type="text/javascript">
+
+
+
+
+<!-- Load jQuery build -->
+<script type="text/javascript"
+	src="<?=$this->baseUrl('/media/tiny_mce/tiny_mce.js')?>"></script>
+<script type="text/javascript">
 		tinyMCE.init({
 		        // General options
 		        mode : "textareas",
@@ -24,7 +68,7 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 		        content_css : "/media/slepice-site/1.0.0/css/flow_css_tinymce.css",
 	});
 	</script>
-	 
+
 <?php } else {
 	
 	echo "No projects";

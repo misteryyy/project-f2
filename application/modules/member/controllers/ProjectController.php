@@ -86,10 +86,7 @@ class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
     
     	$this->view->form = $form;
     }
-    
-    
-    
-    
+       
     /**
      * 
      */
@@ -251,12 +248,9 @@ class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
     	//then process your file, it's path is found by calling $upload->getFilename()
     	$this->view->form = $form;
     	
-    	
     	if ($this->_request->isPost()) {
-    	
     		$values = $form->getValues();
-    		
-    	
+
     		if ($form->isValid($this->_request->getPost())) {
     			// store data to session, user can cancel the project in the end
     			$session_step3 = new Zend_Session_Namespace('projectStep3');
@@ -281,11 +275,9 @@ class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
     			$form->setDefaults($session['thirdFormData']);
     		}
     	};
-    	 
     	//display form
     	$this->view->form = $form;
-  
-    }
+  }
 
     /**
      * Project Survey
@@ -332,17 +324,9 @@ class Member_ProjectController extends  Boilerplate_Controller_Action_Abstract
     			$form->setDefaults($session['fourthFormData']);
     		}
     	};
-    	
     	//display form
     	$this->view->form = $form;
- 	
     }
-    
-   
-    
-    
-    
-    
 }
 
 

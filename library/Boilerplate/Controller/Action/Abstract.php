@@ -7,6 +7,7 @@ abstract class Boilerplate_Controller_Action_Abstract extends Zend_Controller_Ac
    protected $_member_id = 0;
    protected $facadeAcl;
    protected $facadeNotification;
+   protected $mailer;
    
    /**
     * @var Doctrine\ORM\EntityManager
@@ -58,6 +59,9 @@ abstract class Boilerplate_Controller_Action_Abstract extends Zend_Controller_Ac
 	$this->view->isLogged = false;
 	$this->view->isAdmin = false;
 	
+	// mailer
+
+		
   	if(Zend_Auth::getInstance()->hasIdentity()){
     		$this->_member = Zend_Auth::getInstance()->getIdentity();
     		$this->_member_id = $this->_member['id'];

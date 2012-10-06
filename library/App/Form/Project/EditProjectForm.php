@@ -5,10 +5,11 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 {
 	
 	protected $categories; // Array of categories from DB
-	
-	public function __construct($categories)
+	protected $project;
+	public function __construct($categories,$project)
 	{
 		$this->categories = $categories;
+		$this->project = $project;
 		parent::__construct();
 	}
 	
@@ -24,6 +25,7 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 				'required' => true,
 				'class' => 'span8',
 				'filters' => array('StringTrim'),
+				'value' => $this->project->title,
 				//'errorMessages' => array("You have to have project title. You can use just letters and numbers"),
 				//'description' => "name of your project", //nepotřebujem description u tohodle
 				'validators' => array( array('alnum',false, array("allowWhiteSpace" => true)), array('StringLength', false, array(1,100)) )
@@ -35,6 +37,7 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 		$this->addElement('select','category', array(
 				'label' => 'Category:',
 				'class' => 'span3',
+				'value' => $this->project->category->id,
 				'multiOptions' => $this->categories,	 
 		));
 		
@@ -46,7 +49,8 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 				'label' => 'How committed are you to the success of this project?',
 				'description' => "If this number is high, you’re signalling to others on the FLO~ Platform that you are very committed to the success of the project. The higher this number, the more likely you are to get people interested in collaborating with you!",
 				'class' => 'span3',
-				'multiOptions' => $priority
+				'multiOptions' => $priority,
+				'value' => $this->project->priority
 		));
 			
 		
@@ -54,6 +58,7 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 				'label' => 'Sentence Pitch:',
 				'class' => 'span8',
 				'rows' => '3',
+				'value'=> $this->project->pitchSentence,
 				'required' => true,
 				'errorMessages' => array("You should have sentence pitch which will simply describe your goal."),
 				'description' => "In one sentence (if possible) state the problem that you hope your project will solve clearly, concisely, and effectively ie: ‘A new early-stage entrepreneurial development platform utilizing crowdsourced feedback and a clear, step-by-step process’.",
@@ -69,41 +74,49 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 				//'description' => "description",
 				'filters' => array('StringTrim'),
 				'class' => 'span8',
+				'value' => $this->project->content,
 				'validators' =>	array( array("NotEmpty")),
 				'disableLoadDefaultDecorators' => true,
 		));
 		
-		$this->addElement('textarea', 'plan', array(
-				'label' => 'Plans:',
-				'class' => 'span8',
-				'rows' => '4',
-				'required' => false,
-				'filters' => array('StringTrim'),
-				//'description' => "description",
-		));
+
 		
-		$this->addElement('textarea', 'issue', array(
-				'label' => 'Issues:',
-				'class' => 'span8',
-				'rows' => '4',
-				'required' => false,
-				'filters' => array('StringTrim'),
-				//'description' => "description",
+	
+		// Passion Bar
+		$this->addElement('select','sub_module', array(
+				'label' => 'Choose with subsection you want to edit.',
+				'class' => 'span3',
+				'multiOptions' => $priority
 		));
+			
 		
-		$this->addElement('textarea', 'lesson', array(
-				'label' => 'Lessons Learned:',
-				'class' => 'span8',
-				'rows' => '4',
-				'required' => false,
-				'filters' => array('StringTrim'),
-				//'description' => "description",
-		));
+		$arr = \App\Entity\ProjectSubContent::$typesArray;
+		$addToGroup = array('title','category','priority','pitch','content');
+		foreach ($arr as $s){
+			$addToGroup[] = $s['name'];
+
+			$o = $this->project->getSubContent($s['type']);
+			$val = "";
+			if(isset($o)){
+				$val =  $o->content;
+			} 
+			
+			$this->addElement('textarea', $s['name'], array(
+					'class' => 'span7',
+					'rows' => '6',
+					'required' => false,
+					'value' => $val,
+					'filters' => array('StringTrim'),
+					'description' => $s['description'],
+			));
+			
+		}
 		
 		$this->addElement('text', 'project_tags', array(
 				'label' => 'Tags:',
 				'required' => false,
 				'class' => 'span8',
+				'value' => $this->project->getTagsString(),
 				'filters'    => array (array('StringTrim'), array("StringToLower")),
 				'description' => "design, performance, ... ",
 				'filters' => array('StringTrim'),
@@ -112,8 +125,9 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 				)
 		));
 
+		$addToGroup[] = 'project_tags';
 		$this->addDisplayGroup(
-				array('title','category','priority','pitch','content','plan','issue','lesson','project_tags'), 'editProject', array('legend' => 'Edit General Information')
+			$addToGroup, 'editProject', array('legend' => 'Edit General Information')
 		);
 	
 		 

@@ -6,27 +6,6 @@
  * Time: 
  */
 
-// // PROJECT ROLES
-// const MEMBER_ROLE_STARTER = "starter";
-// const MEMBER_ROLE_BUILDER = "builder";
-// const MEMBER_ROLE_GROWER = "grower";
-// const MEMBER_ROLE_LEADER = "leader";
-// const MEMBER_ROLE_ADVISER = "advisor";
-
-// $arrayRoles = array(array("name" => MEMBER_ROLE_STARTER, ),
-// 		array("name" => MEMBER_ROLE_LEADER),
-// 		array("name" => MEMBER_ROLE_BUILDER),
-// 		array("name" => MEMBER_ROLE_GROWER),
-// 		array("name" => MEMBER_ROLE_ADVISER)
-// );
-
-// foreach($arrayRoles as $role){
-// 	$rObj = new \App\Entity\ProjectRole($role['name']);
-// 	$em->persist($rObj);	
-// }
-
-// $em->flush();
-
 // SETTING BASIC SYSTEM ROLES
 $role_visitor = new \App\Entity\UserRole();
 $role_visitor->setName(\App\Entity\UserRole::SYSTEM_ROLE_VISITOR);
@@ -46,30 +25,58 @@ $em->persist($role_admin);
 // CREATING CATEGORIES
 $categories = array('Design','Performing arts','Technology', 'Writing', 'Social change', 'Business');
 foreach ($categories as $category){
-	$cat = new \App\Entity\Category($category);
+	$cat = new \App\Entity\ProjectCategory($category);
 	$em->persist($cat);
 }
 
 // CREATING PROJECT SURVEYS QUESTION
  $question = array(
- 'What problem does your idea solve?',
-'Did the idea come about because it was your own personal problem?',
-'Is this idea new--or are you just trying to be better than the competition?',
-'On a scale of 1-10, how passionate are you about this idea?',
-'Have you sought outside feedback and validation? Who?',
-'How enthusiastic are they?',
-'Are people willing to pay for your product? If so, do you know how much?',
-'How and when will you make your first dollar?',
-'Do you have domain expertise? if not, do you have the skills and time to gain that knowledge?',
-'How big is the market?',
-'How crowded is the market?',
-'How simple will it be to complete a minimum viable product (MVP)',
-'What is the most basic version you can get out in 60 days?',
-'In 90 days?',
-'What message are you looking to convey with your product?',
-'Have you focussed in on your value proposition? If so, what is it?'
+ 		'Why do you feel this is the right point  to start a project like this?',
+ 		'Do you think your project will require you to put all other obligations on hold, if successful?',
+ 		'Does your career experience put you at an advantage in this project? How so?',
+ 		'What makes you capable to lead this project?',
+ 		'In 5 separate words, what are your motivations for starting this project?',
+ 		
+ 		'What immediate problem does your idea solve?',
+ 		'Did the idea come about because it was your own personal problem? Describe the “lightbulb” moment.',
+ 		'On a scale of 1-10 (10 being the highest), how passionate are you about this idea?',
+ 		'What is the single-most important thing about your idea/product without which this idea/product will not be what it is?',
+ 		'What do you need to do to validate your idea?',
+ 		'Which market type are you? (Bringing a new product into an existing market;bringing a new product into a new market; bringing a new product into an existing market and trying to resegment as a lower-cost entrant/ re-segment that market as a niche entrant; cloning a business model)',
+ 		'Who are you trying to persuade as your potential customer? Why?',
+ 		'How do you plan on convincing these people to use your product?',
+ 		'Where do you find people like this?',
+ 		'Describe your perfect customer — a person who currently experiences every pain point you solve, who is in a position to spend money to solve it, etc. Sketch out a “character profile” and be as specific as you can in traits, etc.',
+ 		'How do you plan on reaching out and getting feedback from these customers?',
+ 		'Have your researched the competition? List the existing alternatives.',
+ 		'What makes you different and more valuable to your customers than those alternatives?',
+ 		'Why might your idea not work?',
+ 		'Have you sought outside feedback and validation? From whom?',
+ 		'What sort of thoughts have those people expressed about your product/idea?',
+ 		'Are people willing to pay for your product? If so, do you know how much?',
+ 		'How and when will you make your first dollar?',
+ 		'Do you have domain expertise? if not, do you have the skills and time to gain that knowledge?',
+ 		'How crowded is the market right now?',
+ 		'What attributes will make this idea/product successful? Why do you believe that these will create success?',
+ 		'What’s the simplest form of  these attributes that you can build up within 30 days?',
+ 		'in 60 days?',
+ 		'What resources are necessary to create each simplified version? How would it differ from your final product vision?',
+ 		'Who are the influencers in your sector and what is your plan for attracting them?',
+ 		
+ 		'What is your motivation for searching for collaborators?',
+ 		'Have you exhausted your search amongst friends and family?',
+ 		'Have you brought up the topic of equity and financial rewards with your collaborators?',
+ 		'What is your timeline for acting on this?',
+ 		'Have you discussed what sort of decisions will be made alone, and for which you have final say on?',
+ 		'Have you discussed what sort of decisions will be made as a team?',
+ 		'And how those will be made?'
 );
 
+ 
+
+ 
+ 
+ 
 foreach($question as $q){
 	$qObj = new \App\Entity\ProjectSurveyQuestion($q);
 	$em->persist($qObj);	

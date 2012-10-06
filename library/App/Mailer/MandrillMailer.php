@@ -11,9 +11,14 @@ class MandrillMailer
 	/*
 	 * Basic settings
 	 */
-	static $fromEmail = "FLO~ Platform";
-	static $fromName = "info@floplatform.com";
+	static $fromName = "FLO~ Platform";
+	static $fromEmail = "info@floplatform.com";
 	private $mandrill;
+	
+	// jump from the function and don't send email
+	public function checkIfUserWantsEmail($user){
+		if(!$user->emailNotification) return false;
+	}
 	
 	/**
 	 * Init for mandrilll settings
@@ -35,10 +40,10 @@ class MandrillMailer
 		$recipients = array( array('name' => "name of rec",'email' => 'j.kortan@gmail.com') );
 		//$global_merge_vars = array( array('name' => "SUBJECT",'content' => "VALUE FOR TITLE") );
 		//$template_content = array( array("name"=> "SUBJECT", 'content' => "content of name"));
-		//$template_content = array();
+		$template_content = array();
 		// data for API
 		$struct = array('template_name' => $template,
-			//	'template_content' => $template_content,
+				'template_content' => $template_content,
 				"message" => array(
 						'subject' => $subject,
 						'from_email' => self::$fromEmail,
@@ -54,10 +59,36 @@ class MandrillMailer
 	/**
 	 * sends welcome email to user
 	 */
-	public function sendWelcomeEmail($recipient){
+	public function sendWelcomeEmail($user){
+		$recipients = array(array("name"=>$user->name,'email'=>$user->email));
 		$global_merge_vars = array(); // no vars in template		
 		$this->sendTemplateAction('welcome_email', "Welcome to FLO~ Platform",$recipients,$global_merge_vars);
-		
 	}
+	
+	public function sendLostPassword($user,$password){
+		
+		$recipients = array(array("name"=>$user->name,'email'=>$user->email));
+		$global_merge_vars = array( array('name' => "PASSWORD",'content' => $password) );
+	//	$global_merge_vars = array(); // no vars in template
+		$this->sendTemplateAction('lost_password', "New Password",$recipients,$global_merge_vars);	
+	}
+	
+	public function sendAcceptedForTheProject($user,$project_name){
+		$recipients = array(array("name"=>$user->name,'email'=>$user->email));
+		$global_merge_vars = array( array('name' => "PROJECT_NAME",'content' => $project_name) );
+		//	$global_merge_vars = array(); // no vars in template
+		$this->sendTemplateAction('accepted_for_collaboration', "You've been accepted.",$recipients,$global_merge_vars);
+	}
+	
+	
+	public function sendKickoutForTheProject($user,$project_name){
+		$recipients = array(array("name"=>$user->name,'email'=>$user->email));
+		$global_merge_vars = array( array('name' => "PROJECT_NAME",'content' => $project_name) );
+		//	$global_merge_vars = array(); // no vars in template
+		$this->sendTemplateAction('kickout_from_collaboration', "You've been kicked out.",$recipients,$global_merge_vars);
+	}
+	
+	
+	
 
 }

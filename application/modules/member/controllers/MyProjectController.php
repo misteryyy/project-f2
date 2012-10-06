@@ -257,13 +257,8 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
     	$paginator->setCurrentPageNumber($page);
     	$this->view->paginator = $paginator;
     	$this->view->project = $this->project;
-    	
-    	
-    	
     }
-    
-    
-    
+       
     /**
      *
      */
@@ -409,17 +404,14 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
     				'title' => $update->title,
     				'content' => $update->content,
     		);
-    	
     		$form->setDefaults($data);
     	}
-    
     	//display form
     	$this->view->form = $form;
     	$this->view->project = $this->project;
     
     }
-    
-    
+
     /**
      * Edit Creator's Project
      */
@@ -429,18 +421,21 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
     	$this->view->pageTitle = "Edit project ".$this->project->getTitle();			
     	
     	$categories = $this->facadeProject->findAllProjectCategoriesArray();
-    	$form = new \App\Form\Project\EditProjectForm($categories);
-    		//then process your file, it's path is found by calling $upload->getFilename()
-    		
-    		// validate form
-    		$error = false;
-    		if ($this->_request->isPost()) {
+    	$form = new \App\Form\Project\EditProjectForm($categories,$this->project);
+
+    	if ($this->_request->isPost()) {
     			if ($form->isValid($this->_request->getPost())) {
     				
     			try{ // update project data
+    				
     				$this->facadeProject->updateProject($this->_member_id,$this->project_id,$form->getValues());		
     				$this->_helper->FlashMessenger( array('success' =>  "Project Updated"));	
+    				
+    				$params = array('id' => $this->project_id);
+    				$this->_helper->redirector('edit-project', $this->getRequest()->getControllerName(), $this->getRequest()->getModuleName(), $params);
+    				
     			} catch (\Exception $e){
+    				
     				 $this->_helper->FlashMessenger( array('error' =>  $e->getMessage()));
     			}
     				
@@ -448,26 +443,9 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
     			// not validated properly
        			else {
        					$this->_helper->FlashMessenger( array('error' => "Please check your input."));
-       					$error = true;
        			}
     		}	
-    		
-    		// leave the old values, if user already sended form
-    		if(!$error){
-    			$data = array(
-    					'title' => $this->project->title,
-    					'category' => $this->project->category->id,
-    					'priority' => $this->project->priority,
-    					'pitch' => $this->project->pitchSentence,
-    					'content' => $this->project->content,
-    					'plan' => $this->project->plan,
-    					'issue' => $this->project->issue,
-    					'lesson' => $this->project->lesson,	
-    					'project_tags' => $this->project->getTagsString()
-    			);
-    			 
-    			$form->setDefaults($data);
-    		}	
+    	
     		
     		$this->view->form = $form;
     		$this->view->project = $this->project;

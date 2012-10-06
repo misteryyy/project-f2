@@ -31,8 +31,6 @@ class Member_MyProjectCollaborationController extends  Boilerplate_Controller_Ac
 		// Roles
 		$roles = $facadeTeam->findProjectRolesForProject($this->_member_id, $this->project_id);
 		$this->view->paginator = $roles; // its not actualy paginator
-		
-
 	}
 
 	
@@ -93,8 +91,7 @@ class Member_MyProjectCollaborationController extends  Boilerplate_Controller_Ac
 							$this->_response->setBody(json_encode($respond));
 						}
 					
-						break;
-			
+						break;			
 			}
 		} else {
 			$this->_response->setHttpResponseCode(503); // echo error
@@ -171,7 +168,6 @@ class Member_MyProjectCollaborationController extends  Boilerplate_Controller_Ac
     		} 	
     	} else {
     		$this->_response->setHttpResponseCode(503); // echo error
-    		
     	}
   
     }
@@ -185,8 +181,7 @@ class Member_MyProjectCollaborationController extends  Boilerplate_Controller_Ac
     	$this->view->pageTitle = "Published Projects - Request" ;
     	$this->view->project = $this->project;
     }
-     
-    
+   
     /**
      * Request for project
      */

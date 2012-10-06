@@ -1,7 +1,6 @@
 <?php
 namespace App\Repository;
 
-
 namespace App\Repository;
 
 use Doctrine\ORM\Mapping\Entity;
@@ -14,9 +13,7 @@ class Project extends EntityRepository
         $stmt = 'SELECT q FROM App\Entity\Project q ORDER BY q.id DESC';
         return $this->_em->createQuery($stmt)->getResult();
     }
-
-
-    
+ 
     /*
      * Return the most popular project in application
      */
