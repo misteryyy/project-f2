@@ -7,8 +7,37 @@
         <li><a href="/help" title="Help section">FAQs</a></li>
         <li><a href="/about-us" title="Manifesto">Manifesto</a></li>
         <li><a href="/index/privacy" title="Terms &amp; Conditions">Terms &amp; Conditions</a></li>
+        <li class="fl-rss-link"><a href="">RSS</a></li>
         <li class="divider"></li>
         <li><a href="/member/index/sign-up" title="Sign Up">Sign Up</a></li>
         <li><a href="/member/index/login" title="Log In">Log In</a></li>
       </ul>      
      </div>
+
+     <?php 
+       $content = 'ahoooj';
+       //foreach($this->categories as $c){ $content .= '<a href="/rss?category='.$c->id.'">'.$c->name.'</a>  '.PHP_EOL; } 
+     ?>
+
+     <script src="/media/jquery.simpletip-1.3.1/jquery.simpletip-1.3.1.js"></script>
+     <script>
+
+       $(document).ready(function(){
+
+        var li = $('.fl-rss-link');
+        var position = ["-350", "-50"];
+        var content = '<div class="rss-tooltip-in"><?php echo $content; ?></div><div class="rss-tooltip-arrow"></div>';
+
+
+        $(li).simpletip({
+          baseClass: 'fl-simpletip-tooltip',
+          activeClass: 'fl-simpletip-rss',
+          position: position,
+            offset: [0, -5],
+            content: content,
+            hideEffect: 'none',
+        });
+
+        });
+
+     </script> 

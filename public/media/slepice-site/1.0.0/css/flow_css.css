@@ -107,6 +107,14 @@ body{
   padding: 0px;
 }
 
+#fl-bottom-line ul li.fl-rss-link a, 
+#fl-bottom-line ul li.fl-rss-link a:link,
+#fl-bottom-line ul li.fl-rss-link a:hover,
+#fl-bottom-line ul li.fl-rss-link a:focus{
+  color: orange;
+  font-weight: bold;
+}
+
 .fl-footer-divider{
   border-right:1px solid #e2e2e2;
 }
@@ -1068,7 +1076,7 @@ p.fl-list-project-queue{
 }
 
 .fl-projectlist-nav li{
-  margin: 0 20px 0 0;
+  margin: 0 15px 0 0;
 }
 
 /* PRIVATE */
@@ -3176,7 +3184,9 @@ fieldset#fieldset-About .controls{
 }
 
 
-
+li.fl-rss-link a, li.fl-rss-link a:link, li.fl-rss-link a:hover, li.fl-rss-link a:focus{
+  color: orange;
+}
 
 
 .fl-nav-tabs > li > a{
@@ -3218,6 +3228,31 @@ fieldset#fieldset-About .controls{
   float: left;
   font-weight: bold;
 }
+
+.fl-simpletip-rss{
+  width: 500px;
+}
+
+.rss-tooltip-in{
+  background: #ff9c00;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  width: 480px;
+  padding: 10px;
+  float: left;
+  color: white;
+  -moz-box-shadow: 0 0 5px #8f8f8f;
+  -webkit-box-shadow: 0 0 5px #8f8f8f;
+  box-shadow: 0px 0px 5px #8f8f8f;
+}
+.rss-tooltip-arrow{
+  background: url('../img/bcg-tooltiprss-arrow.png') bottom left no-repeat;
+  width: 10px;
+  height: 10px;
+  margin: 0 0 0 355px;
+  float: left;
+}
+
 
 .fl_tasks{
   float: left;
