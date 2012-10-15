@@ -42,6 +42,57 @@ class ProjectSubContent extends \App\Entity\ProjectSubContent implements \Doctri
     }
 
     
+    public function getId()
+    {
+        if ($this->__isInitialized__ === false) {
+            return (int) $this->_identifier["id"];
+        }
+        $this->__load();
+        return parent::getId();
+    }
+
+    public function getType()
+    {
+        $this->__load();
+        return parent::getType();
+    }
+
+    public function getTitle()
+    {
+        $this->__load();
+        return parent::getTitle();
+    }
+
+    public function getContent()
+    {
+        $this->__load();
+        return parent::getContent();
+    }
+
+    public function setId($id)
+    {
+        $this->__load();
+        return parent::setId($id);
+    }
+
+    public function setType($type)
+    {
+        $this->__load();
+        return parent::setType($type);
+    }
+
+    public function setTitle($title)
+    {
+        $this->__load();
+        return parent::setTitle($title);
+    }
+
+    public function setContent($content)
+    {
+        $this->__load();
+        return parent::setContent($content);
+    }
+
     public function setProject($project)
     {
         $this->__load();

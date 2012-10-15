@@ -129,10 +129,16 @@ class Project extends \App\Entity\Project implements \Doctrine\ORM\Proxy\Proxy
         return parent::addSubContent($content);
     }
 
-    public function getSubContents($content)
+    public function getSubContents()
     {
         $this->__load();
-        return parent::getSubContents($content);
+        return parent::getSubContents();
+    }
+
+    public function getSubContent($type)
+    {
+        $this->__load();
+        return parent::getSubContent($type);
     }
 
     public function addProjectUpdate($update)
