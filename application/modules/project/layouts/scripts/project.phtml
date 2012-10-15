@@ -44,7 +44,7 @@
 	        <div id="col-4">
 	    	  <div class="inner">
                 <!-- Levels and Tasks module -->
-                <h3 class="fl-sidebar-h3-first">Project Level</h3>
+                <h3 class="fl-sidebar-h3-first"><?php if($this->isCreator){ echo '<a href="/member/my-project/task/id/'.$this->project->id.'" title="edit" class="btn btn-danger right"><i class="icon-wrench icon-white"></i></a>';} ?> Project Level</h3>
                 <div class="fl_thick_divider"></div>
                 <div class="fl-project-level">
                
@@ -70,7 +70,7 @@
 	                echo $this->action('task', 'widget', 'project',array("id" => $this->project->id));
 	            ?>
 	    	      
-                <h3 class="fl-sidebar-h3">Collaboration</h3>
+                <h3 class="fl-sidebar-h3"><?php if($this->isCreator){ echo '<a href="/member/my-project-collaboration/index/id/'.$this->project->id.'" title="edit" class="btn btn-danger right"><i class="icon-wrench icon-white"></i></a>';} ?> Collaboration</h3>
                 <div class="fl_thick_divider"></div>
                 <div class="fl-team">
                   <div class="fl-team-author">
@@ -98,7 +98,7 @@
                 </div>
 
 
-                <h3 class="fl-sidebar-h3">Passion Slider</h3>
+                <h3 class="fl-sidebar-h3"><?php if($this->isCreator){ echo '<a href="/member/my-project/edit-project/id/'.$this->project->id.'" title="edit" class="btn btn-danger right"><i class="icon-wrench icon-white"></i></a>';} ?> Passion Slider</h3>
                 <div class="fl_thick_divider"></div>
                 <div class="fl-passion-slider">
                 <div class="progress fl-passion-bar">
