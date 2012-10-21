@@ -315,7 +315,9 @@
 		<lost-password>
 		<visible>0</visible>
 			<label>Lost password</label>
-			<uri>/member/index/lost-password</uri>
+				<module>member</module>
+				<controller>index</controller>
+				<action>lost-password</action>
 		</lost-password>
 		<login>
 			<visible>0</visible>
@@ -327,7 +329,9 @@
 		<signup>
 		<visible>0</visible>
 			<label>Sign Up</label>
-			<uri>/member/index/sign-up</uri>
+			<module>member</module>
+				<controller>index</controller>
+				<action>sign-up</action>
 		</signup>
 
 	</nav>

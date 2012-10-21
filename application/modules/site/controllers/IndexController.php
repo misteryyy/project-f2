@@ -29,6 +29,11 @@ class Site_IndexController extends Boilerplate_Controller_Action_Abstract
     	$this->view->pageTitle = 'FLO~ Grow.Lead... - About us';
     }
     
+    public function rulesAction()
+    {
+    	$this->view->pageTitle = 'FLO~ Grow.Lead... - Rules';
+    }
+    
     public function helpAction()
     {
     	$this->view->pageTitle = 'FLO~ Grow.Lead... - Help';

@@ -10,14 +10,16 @@ class Boilerplate_Controller_Plugin_Auth extends Zend_Controller_Plugin_Abstract
         $this->_auth = $auth;
     }
     
-    
-    
-    
     public function dispatchLoopStartup(Zend_Controller_Request_Abstract $request) {       
         ////Check if the user is not logged in
         if (!$this->_auth->hasIdentity()){
+        	
+        	
+        	
         	//access to member module only in index controller
         	if( 'member' == $request->getModuleName() && 'index' != $request->getControllerName()  ) { //everething in index controller is public
+				echo "jsem tu";
+				exit;
         		
         		return $this->_redirect($request, 'index', 'login', 'member');
         	}
