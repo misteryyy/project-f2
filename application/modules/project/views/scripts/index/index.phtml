@@ -1,19 +1,15 @@
 <?php
 $this->step = 1;
 echo $this->partial('/index/project-navigation.phtml',array("step" => $this->step,"project" => $this->project,"isCreator"=> $this->isCreator,"isLogged"=> $this->isLogged));
-
 ?>    
-      </div>
+  </div>
     </div>
-
     <div id="container-74-4">
       <div id="container-74-7">
-        <div id="col-7">
-            
+        <div id="col-7">         
             <div class="fl-cnt-img">
                 <img alt="<?php echo $this->project->title; ?> - main picture" src="<?php echo $this->project->getPictureUrl('large'); ?>" />
             </div>
-
               <div class="fl-cnt-pitch">
                 <p><?php echo $this->project->pitchSentence;?></p>
               </div>
@@ -34,7 +30,6 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
 					</p>
 				<?php $first = false;}?>
               </div>
-
     			  <div class="fl-cnt-100 fl-bottom20">
                     <p><?php 
           				// displaying of tags for this project

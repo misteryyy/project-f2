@@ -18,6 +18,7 @@ class Boilerplate_Controller_Plugin_Auth extends Zend_Controller_Plugin_Abstract
         if (!$this->_auth->hasIdentity()){
         	//access to member module only in index controller
         	if( 'member' == $request->getModuleName() && 'index' != $request->getControllerName()  ) { //everething in index controller is public
+        		
         		return $this->_redirect($request, 'index', 'login', 'member');
         	}
         	
@@ -25,11 +26,34 @@ class Boilerplate_Controller_Plugin_Auth extends Zend_Controller_Plugin_Abstract
         	if( 'admin' == $request->getModuleName() ) { //everething in index controller is public
         		return $this->_redirect($request, 'index', 'login', 'member');
         	}
+
+        	// browse members just for logged users
+        	//access to member module only in index controller
+        	if( 'site' == $request->getModuleName() && 'browse' == $request->getControllerName() && 'member' == $request->getActionName() ) { //everething in index controller is public
+        
+			return $this->_redirect($request, 'index', 'login', 'member');
+        	}
+        	
+        	if( 'member-profile' == $request->getModuleName()) { //everething in index controller is public	
+        		return $this->_redirect($request, 'index', 'login', 'member');
+        	}
+        	
+        	// browse members just for logged users
+        	//access to member module only in index controller
+        	if( 'project' == $request->getModuleName() 
+        	  && 'index' == $request->getControllerName() 
+        	 && ('comments' == $request->getActionName() || 
+        	 		'project-board' == $request->getActionName() ) ) { //everething in index controller is public
+        	
+        		return $this->_redirect($request, 'index', 'login', 'member');
+        	}
+        	 	
+        	
         	
         }
     }
     
-    protected function _redirect($request, $controller, $action, $module) {
+    protected function _redirect($request, $controller, $action, $module,$message ="") {
 
     	if ($request->getControllerName() == $controller &&
                 $request->getActionName() == $action &&
@@ -41,12 +65,17 @@ class Boilerplate_Controller_Plugin_Auth extends Zend_Controller_Plugin_Abstract
         $url .= '/' . $module . '/' . $controller . '/' . $action;
   
         if (DEBUG) {
-                debug_redirect($url);
-          }
-          
-        $request->setModuleName('member');
-        $request->setControllerName('index');
-        $request->setActionName('login');
+        //        debug_redirect($url);
+         }
+
+        
+        $flashMessenger = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger'); 
+        //$flashMessenger->( array ('error' => $e->getMessage () ) );
+        $flashMessenger->addMessage(array ('error' => "You have to be logged in to access this page :).") );
+        $redirector = Zend_Controller_Action_HelperBroker::getStaticHelper('redirector');
+        $redirector->gotoUrl('/login')
+        ->redirectAndExit();
+      //  debug($request);
     }
 
 }

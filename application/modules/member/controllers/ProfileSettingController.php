@@ -120,9 +120,7 @@ class Member_ProfileSettingController extends  Boilerplate_Controller_Action_Abs
      */
     public function changePasswordAction()
     {
-    	$this->view->pageTitle = "Change password" ;
-    	
-    	
+    	$this->view->pageTitle = "Change password" ; 	
     }
     
     /**
@@ -137,7 +135,7 @@ class Member_ProfileSettingController extends  Boilerplate_Controller_Action_Abs
     	// newsletter and notifivation
     	if ($this->_request->isPost()) {
     		if ($form->isValid($this->_request->getPost())) {
-    			$this->_helper->FlashMessenger( array('success' => "Settings save successfully."));
+    			$this->_helper->FlashMessenger( array('success' => "Settings has been saved successfully."));
 				$this->facadeUser->updateNotification($this->_member_id,$form->getValues());	
     			$this->_helper->redirector('notification', $this->getRequest()->getControllerName(), $this->getRequest()->getModuleName());
     		}

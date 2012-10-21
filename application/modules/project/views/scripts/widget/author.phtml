@@ -5,18 +5,20 @@
                 <div class="fl-cnt-project-by-content">
                   <div class="inner">
                     <div class="fl-cnt-project-by-content-left">
+                      <a href="<?php echo $this->project->user->profileUrl;?>" title="<?php echo $this->project->user->name; ?>'s profile" >  
+                     
                       <img src="<?php echo $this->project->user->getProfilePictureUrl('big');?>" alt="" title="" class="fl-cnt-project-by-author-photo"/>
-                      
+                      </a>
                       <div class="fl-cnt-project-by-content-skills">
 
-<?php $specRoles = $this->project->user->getSpecificRoles();
-foreach ($specRoles as $r){?>
+			<?php $specRoles = $this->project->user->getSpecificRoles();
+					foreach ($specRoles as $r){?>
 								<div class="fl-cnt-project-by-content-skill">
-                  <img src="/media/slepice-site/1.0.0/img/role_<?php echo $r->name;?>.png" alt="<?php echo $r->name;?>" title="<?php echo $r->name;?>" />
-                  <span class="fl-cnt-project-by-content-skill-role"><?php echo $r->name;?></span><br />
-                  <span class="fl-cnt-project-by-content-skill-tag"><?php echo $r->getTagsString();?></span>
-                </div>                      	
-<?php }	?>
+                					  <img src="/media/slepice-site/1.0.0/img/role_<?php echo $r->name;?>.png" alt="<?php echo $r->name;?>" title="<?php echo $r->name;?>" />
+                					  <span class="fl-cnt-project-by-content-skill-role"><?php echo $r->name;?></span><br />
+                					  <span class="fl-cnt-project-by-content-skill-tag"><?php echo $r->getTagsString();?></span>
+               				 </div>                      	
+						<?php }	?>
                       </div>        
                       <div class="fl_thick_divider"></div>
                       <div class="fl-cnt-project-by-content-earned-role">
@@ -26,8 +28,9 @@ foreach ($specRoles as $r){?>
                     <div class="fl-cnt-project-by-content-right">
                       <div class="fl-cnt-project-by-content-inner">
                         <h4 class="fl-cnt-project-by-content-author"><?php echo $this->project->user->name?></h4>
-                        <p class="fl-cnt-project-by-content-author-info"><i class="icon-file"></i> <a href="<?php echo $this->project->user->profileUrl?>" title="<?php echo $this->project->user->name; ?>'s profile">Profile</a>,            
-                         <span class="like"><i class="icon-thumbs-up"></i> 
+                        <p class="fl-cnt-project-by-content-author-info"><i class="icon-file"></i> <a href="<?php echo $this->project->user->profileUrl?>" title="<?php echo $this->project->user->name; ?>'s profile">Profile</a>            
+                       <?php if($this->isLogged){ ?>
+                         <span class="like"><i class="icon-thumbs-up"></i>, 
                          <?php
                          // like dislike solution 
                          if(!$this->project->user->isFriendWithMe($this->loggedMember)) {
@@ -36,15 +39,14 @@ foreach ($specRoles as $r){?>
                             <a href="" title="" class="like-member" id="<?php echo $this->project->user->id;?>" >Dislike</a>
                          <?php } ?>
                          </span>
-                         
+                         <?php }?>
                          </p>
                         <p class="fl-cnt-project-by-content-author-description"><?php echo $this->project->user->description;?></p>
-                        
+                 
                         <div class="fl_thin_divider"></div>
 
-<?php 
+				<?php 
                 if(count ($this->membersProject) > 0){  ?>
-
                         <div class="fl-cnt-project-by-content-author-projects">
                           <span><a href="/member/profile/my-project/id/<?php echo $this->project->user->id; ?>" title="<?php echo $this->project->user->name; ?>' projects">more of 'Published Projects'</a></span>
                         	<ul>                          
@@ -54,7 +56,7 @@ foreach ($specRoles as $r){?>
 								<?php } // end foreach ?>
 							</ul> 
                         </div>
-<?php }  
+				<?php }  
 if(count ($this->collaborations) > 0){ ?>
 
                         <div class="fl-cnt-project-by-content-author-projects">
@@ -66,7 +68,6 @@ if(count ($this->collaborations) > 0){ ?>
 									<li><a href="/project/index/index/id/<?php echo $project->id?>" title=""><img src="<?php echo $project->getPictureUrl('tiny'); ?>" alt="<?php echo $project->title?>" title="<?php echo $project->title?>" /></a></li>
 								<?php } // end foreach ?>
 							</ul>                        
-                         
                         </div>
 <?php } // end foreach ?>
                       </div>

@@ -27,6 +27,8 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
 		$this->view->pageTitle = "Levels and Tasks" ;
 		$this->view->project = $this->project;
 	
+		// get comment for current level if was created
+		
 		// Form for changing levels
 		$form = new \App\Form\Project\EditProjectLevelForm($this->project);
 		$facadeTask = new \App\Facade\Project\TaskFacade($this->_em);
@@ -61,8 +63,15 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
 		$this->checkProjectAndUser();	
 		$this->view->pageTitle = "Tasks";
 		// Form for changing levels
-		$form = new \App\Form\Project\EditProjectLevelForm($this->project);
-		$facadeTask = new \App\Facade\Project\TaskFacade($this->_em);		
+
+		$facadeTask = new \App\Facade\Project\TaskFacade($this->_em);
+		
+		// get info for this level
+		$levelComment = $facadeTask->findCommentForLevel($this->_member_id,$this->project_id,$this->project->level);
+		
+		//$this->dPr($levelComment);
+		
+		$form = new \App\Form\Project\EditProjectLevelForm($this->project,$levelComment);
 		// validation
 		if ($this->_request->isPost()) {
 			if ($form->isValid($this->_request->getPost())) {
@@ -295,7 +304,6 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
     	
     	$this->view->form = $form;
     	$this->view->project = $this->project;
-    
     }
     
     /**
@@ -445,8 +453,7 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
        					$this->_helper->FlashMessenger( array('error' => "Please check your input."));
        			}
     		}	
-    	
-    		
+		
     		$this->view->form = $form;
     		$this->view->project = $this->project;
     }
@@ -473,7 +480,6 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
     	}	
     }
     
-
     /**
      * Comments for creator Section
      * Module for answering comments with higher priority
@@ -566,18 +572,10 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
     				break;				
     		}
     	} else {
-    		$this->_response->setHttpResponseCode(503); // echo error
-    	   
-    	}
-    	
-    	
+    		$this->_response->setHttpResponseCode(503); // echo error  	   
+    	}  	
     }
-    
-    
-    
-    
-    
-    
+ 
     /**
      * Display Creators project for sign user
      */
@@ -589,9 +587,6 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
     	$projects = $facadeProject->findAllProjectsForUser($this->_member_id);
     	$this->view->projects = $projects;
     }
-    
-    
-    
 
     /**
      * Display Creators project for sign user

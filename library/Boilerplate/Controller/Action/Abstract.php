@@ -59,6 +59,12 @@ abstract class Boilerplate_Controller_Action_Abstract extends Zend_Controller_Ac
 	$this->view->isLogged = false;
 	$this->view->isAdmin = false;
 	
+	// get categories 
+	// for footer	
+	$facadeProject = new \App\Facade\Site\ProjectFacade($this->_em);
+	
+	$this->view->categories = $facadeProject->findAllProjectCategories();
+	
 	// mailer
 
 		
@@ -99,7 +105,7 @@ abstract class Boilerplate_Controller_Action_Abstract extends Zend_Controller_Ac
   if(isset($activeNav)){
   	$activeNav->active = true;
   }
-  debug($activeNav);
+  
  
  } 
 

@@ -12,17 +12,37 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
   </div>
 </div>
 
+
 <div class="fl-cnt-100">
-<?php echo $this->form;?>
+	<?php //echo $this->form;?>
+	<form id="edit-project" class="form-horizontal"
+		action="<?php echo $this->form->getAction(); ?>"
+		method="<?php echo $this->form->getMethod(); ?>">
+	
+		<div class="alert alert-info">
+			 Have you learned enough to go to the next step? Are you still identifying a problem the customer needs solved? Does your product still solve this problem? 
+		</div>
+	
+		<?php echo $this->form->level;?>
+	
+		<div class="alert alert-info">
+		How do you know? What are the key things you've done at this level that confirm this? What are the key things that have changed in your project at this level? What are the 5 key things that you've learned at this level? List your main assumptions (untested) moving forward to the next level.
+		</div>
+
+		<?php echo $this->form->content;?>
+	
+<?php echo $this->form->actions;?>
+
+</form>
 </div>
 
-<div class="fl_thick_divider"></div>
 
+<div class="fl_thick_divider"></div>
 <h3 class="fl-edit-project-subsection fl-top20">Tasks for <span class="fl-level-info">Level <?php echo $this->project->level;?></span></h3>
 
 <div class="fl-cnt-100">
   <div class="alert alert-info">
-    <p>For an in-depth look at what to focus on at each level, check out our <a href="/index/learn-more" title="Learn More">Learn More</a> section. </p>
+    <p>What are the activities necessary to implement and execute on your project? What are you currently trying to solve?</p>
   </div>
 </div>
 

@@ -13,7 +13,7 @@
    
    <div class="row">
      <div class="span3">
-        <h1><a href="/" title="FLOW - Start.Build.Lead.Grow.">FLOW PLATFORM<span></span></a></h1>
+        <h1><a href="/" title="FLOW - Start.Build.Lead.Grow.">FLO~ PLATFORM<span></span></a></h1>
      </div>
    </div>
    
@@ -23,7 +23,9 @@
          <ul class="nav nav-pills fl-menu">
            <li><a href="/" title="">Home</a></li>
            <li><a href="/browse-projects" title="">Browse Projects</a></li>
-           <li><a href="/browse-members" title="">Browse Users</a></li>
+            <?php if($this->isLogged){?>
+           			<li><a href="/browse-members" title="">Browse Users</a></li>  
+            <?php }?>
            <li><a href="/help" title="">FAQs</a></li>
            <li><a href="/about-us" title="">Manifesto</a></li>
          </ul>
@@ -54,7 +56,7 @@
          <!-- Visitor -->
          <div class="fl-user-menu">
            <div class="input-append input-prepend">
-             <a href="/member/index/sign-up" class="btn">Sign up for FLO~</a><a href="/member/index/login" class="btn btn-info"><i class="icon-lock icon-white"></i> Log in</a>
+             <a href="/member/sign-up" class="btn">Sign up for FLO~</a><a href="/login" class="btn btn-info"><i class="icon-lock icon-white"></i> Log in</a>
            </div>
          </div>
 

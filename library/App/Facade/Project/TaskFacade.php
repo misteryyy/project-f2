@@ -10,9 +10,42 @@ class TaskFacade {
 	
 	public function __construct(\Doctrine\ORM\EntityManager $em){	
 		$this->em = $em;
-		$this->facadeNotification = new \App\Facade\NotificationFacade($em);
-		
+		$this->facadeNotification = new \App\Facade\NotificationFacade($em);	
 	}	
+	
+	
+	/**
+	 * Find project comment for project id and level
+	 * @param unknown_type $user_id
+	 * @param unknown_type $project_id
+	 * @param unknown_type $project_level
+	 */
+	public function findCommentForLevel($user_id,$project_id,$project_level){
+		// checking errors
+		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
+		if(!$user){
+			throw new \Exception("Member doesn't exists");
+		}
+		$project = $this->em->getRepository ('\App\Entity\Project')->findOneById ($project_id);
+		if(!$project){
+			throw new \Exception("Can't find this project.");
+		}
+		
+		$stmt = 'SELECT u FROM App\Entity\ProjectLevelComment u WHERE u.project = ?1';
+		$stmt .= " AND u.level = " . $project_level;
+
+
+		$query = $this->em->createQuery($stmt);
+		$query->setParameter(1, $project_id);
+		
+		$objs =  $query->getResult();
+		if(isset($objs[0])){
+			return $objs[0];
+		}else {
+			return null;
+		}
+
+	}
 	
 	/**
 	 * Change the project Level
@@ -45,6 +78,20 @@ class TaskFacade {
 		}
 		
 		if($project->user == $user){
+			// find comment for this project
+			
+			$comment = $this->findCommentForLevel($project->user->id, $project->id, $project->level);
+			if($comment){
+				// set comment for current level
+				$comment->setContent($data['content']);
+						
+			}else {
+				// create new one 
+				$newComment = new \App\Entity\ProjectLevelComment($project,$data['content'],$project->level);
+				$this->em->persist($newComment);
+			}
+			
+			
 			// TODO checking if all task are completed
 			$project->setLevel($data['level']);
 			$this->facadeNotification->addProjectNotification($project,"Project has moved to ".$data['level'].'th level.',10);

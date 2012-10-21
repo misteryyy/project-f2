@@ -52,8 +52,9 @@
   <li class="<?php echo($allow[3] == true ? "active" : "disable" );?>"><a href="<?php echo $this->project->getProjectUrl();?>/comments">Comments</a></li>
   <li class="<?php echo($allow[4] == true ? "active" : "disable" );?>"><a href="<?php echo $this->project->getProjectUrl();?>/survey">Project Survey</a></li>
   <li class="<?php echo($allow[5] == true ? "active" : "disable" );?>"><a href="<?php echo $this->project->getProjectUrl();?>/collaboration">Collaboration</a></li>
+ <?php if($this->isCreator){?>
  <li class="<?php echo($allow[6] == true ? "active" : "disable" );?>"><a href="<?php echo $this->project->getProjectUrl();?>/project-board">Project Board</a></li>
-  
+  <?php }?>
 
   <?php 
   	

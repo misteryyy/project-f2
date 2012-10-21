@@ -3,14 +3,11 @@ use Doctrine\ORM\Tools\Pagination as Paginator; // goes at top of file
 
 class Member_DashboardController extends  Boilerplate_Controller_Action_Abstract
 {
-
-    public function indexAction()
+	public function indexAction()
     {
     	$member = Zend_Auth::getInstance()->getIdentity();
     	$this->view->pageTitle = $member['name'] . '\'s Dashboard ' ;
     	$this->_helper->_layout->setLayout('member-dashboard');
-    	
-    
     }
     
     /*
@@ -18,7 +15,6 @@ class Member_DashboardController extends  Boilerplate_Controller_Action_Abstract
      * TODO possible attack
      */
     public function memberMenuAction(){
-    		
     }
     
     /**
@@ -49,7 +45,6 @@ class Member_DashboardController extends  Boilerplate_Controller_Action_Abstract
     		else {
     			$this->_helper->FlashMessenger( array('error' => "Please control your input."));
     		}
-    	
     	}
     	
     	$zend_paginator = $facade->findFloMessages($this->_member_id);
@@ -57,12 +52,8 @@ class Member_DashboardController extends  Boilerplate_Controller_Action_Abstract
     		$zend_paginator->setItemCountPerPage(3);
     		$page = $this->_request->getParam('page', 1); 	 
     		$zend_paginator->setCurrentPageNumber($page);
-    	
     	$this->view->paginator = $zend_paginator;
-    	     	
     }
-   
-
 }
 
 

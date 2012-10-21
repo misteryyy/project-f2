@@ -292,6 +292,8 @@ class ProjectFacade {
 			
 		}
 		
+		
+		
 	public function	updateProject($user_id,$project_id,$data = array()){
 		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
 		if(!$user){
