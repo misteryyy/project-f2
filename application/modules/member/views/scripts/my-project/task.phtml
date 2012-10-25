@@ -4,40 +4,12 @@ $this->step = 7;
 echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $this->step,"project" => $this->project));
 ?>
 
-<h3 class="fl-edit-project-subsection">Your project is currently in <span class="fl-level-info">Level <?php echo $this->project->level;?></span></h3>
+<?php 
+// The main project navigation
+$this->step = 1;
+echo $this->partial('my-project/task-level-navigation.phtml',array("step" => $this->step,"project" => $this->project));
+?>
 
-<div class="fl-cnt-100">
-  <div class="alert alert-info">
-    <p>Think of this as the back-end management of your project. As the project creator, you are solely responsible for deciding when to progress through each of our levels. As of right now, the only target we’ve implemented for each level is a minimum of one task completed. What those tasks are is up to you, and we urge you to enter as many tasks as you can for your project. For one, this is a way of signalling the depth of your work and progress (all users can see your completed tasks via your Levels bar on the project page). Secondly, this documentation of completed tasks serves as a potential FLO~ feature in future iterations. As we aggregate this data, we can come closer to defining the tasks that most projects get done at each level and, in turn, develop an automated level system based upon this.</p>
-  </div>
-</div>
-
-
-<div class="fl-cnt-100">
-	<?php //echo $this->form;?>
-	<form id="edit-project" class="form-horizontal"
-		action="<?php echo $this->form->getAction(); ?>"
-		method="<?php echo $this->form->getMethod(); ?>">
-	
-		<div class="alert alert-info">
-			 Have you learned enough to go to the next step? Are you still identifying a problem the customer needs solved? Does your product still solve this problem? 
-		</div>
-	
-		<?php echo $this->form->level;?>
-	
-		<div class="alert alert-info">
-		How do you know? What are the key things you've done at this level that confirm this? What are the key things that have changed in your project at this level? What are the 5 key things that you've learned at this level? List your main assumptions (untested) moving forward to the next level.
-		</div>
-
-		<?php echo $this->form->content;?>
-	
-<?php echo $this->form->actions;?>
-
-</form>
-</div>
-
-
-<div class="fl_thick_divider"></div>
 <h3 class="fl-edit-project-subsection fl-top20">Tasks for <span class="fl-level-info">Level <?php echo $this->project->level;?></span></h3>
 
 <div class="fl-cnt-100">

@@ -23,12 +23,15 @@ echo $this->partial('/index/project-navigation.phtml',array("step" => $this->ste
                 $subContents = $this->project->subContents;
                 $first = true;
                	foreach($subContents as $sc){
-					?>
+					if($sc->visibility){
+               		?>
+					
 					<p>
 					<span class="fl-cnt-plans-title<?php if($first) echo "-first";?>"><?php echo $sc->title; ?></span>
 					<?php echo $sc->content; ?>
 					</p>
-				<?php $first = false;}?>
+				<?php $first = false;}
+               	}?>
               </div>
     			  <div class="fl-cnt-100 fl-bottom20">
                     <p><?php 

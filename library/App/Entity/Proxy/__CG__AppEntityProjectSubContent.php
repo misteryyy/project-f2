@@ -42,6 +42,18 @@ class ProjectSubContent extends \App\Entity\ProjectSubContent implements \Doctri
     }
 
     
+    public function getVisibility()
+    {
+        $this->__load();
+        return parent::getVisibility();
+    }
+
+    public function setVisibility($visibility)
+    {
+        $this->__load();
+        return parent::setVisibility($visibility);
+    }
+
     public function getId()
     {
         if ($this->__isInitialized__ === false) {
@@ -114,7 +126,7 @@ class ProjectSubContent extends \App\Entity\ProjectSubContent implements \Doctri
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'type', 'title', 'content', 'created', 'project');
+        return array('__isInitialized__', 'id', 'type', 'title', 'content', 'created', 'visibility', 'project');
     }
 
     public function __clone()

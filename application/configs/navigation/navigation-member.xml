@@ -80,12 +80,19 @@
 									<controller>my-project-collaboration</controller>
 									<action>setting</action>
 								</team-setting>
-								<level>
-									<label>Levels and Tasks</label>
+								<task>
+									<label>Tasks</label>
 									<visible>0</visible>
 									<module>member</module>
 									<controller>my-project</controller>
 									<action>task</action>
+								</task>
+								<level>
+									<label>Levels</label>
+									<visible>0</visible>
+									<module>member</module>
+									<controller>my-project</controller>
+									<action>level</action>
 								</level>
 								<poll>
 									<label>Polls</label>

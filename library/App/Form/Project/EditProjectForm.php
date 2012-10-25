@@ -97,9 +97,25 @@ class EditProjectForm extends \Twitter_Bootstrap_Form_Horizontal
 
 			$o = $this->project->getSubContent($s['type']);
 			$val = "";
+			$optionsN = array(1=>'Public note',0=>'Private note');
+			
 			if(isset($o)){
 				$val =  $o->content;
+				// is it private submodule?
+				if($o->visibility){
+					$optionsN = array(1=>'Public note',0=>'Private note');
+				}else {
+					$optionsN = array(0=>'Private note',1=>'Public note');
+				}
 			} 
+					
+			// Country Select Box
+			$this->addElement('select',$s['name']."_visibility", array(
+					//'label' => 'Is this just your private note?',
+					'multiOptions' => $optionsN
+					 
+			));
+			
 			
 			$this->addElement('textarea', $s['name'], array(
 					'class' => 'span7',

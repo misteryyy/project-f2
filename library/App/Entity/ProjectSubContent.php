@@ -106,6 +106,11 @@ class ProjectSubContent {
 	private $project;
 	
 	/**
+	 * @Column(type="boolean", name="visibility",nullable=true)
+	 */
+	private $visibility;
+	
+	/**
 	 * Construstor
 	 * @param unknown_type $project
 	 * @param unknown_type $title
@@ -118,9 +123,23 @@ class ProjectSubContent {
 		$this->type = $type;		
 	 	// set created
 	 	$this->created = new \DateTime ( "now" );
+	 	$this->visibility = 1;
 	}
 
 	
+	/**
+	 * @return the $visibility
+	 */
+	public function getVisibility() {
+		return $this->visibility;
+	}
+	
+	/**
+	 * @param field_type $visibility
+	 */
+	public function setVisibility($visibility) {
+		$this->visibility = $visibility;
+	}
 	
 	/**
 	 * @return the $id

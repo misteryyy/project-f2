@@ -25,7 +25,7 @@ echo $this->partial('my-project-collaboration/my-project-navigation.phtml',array
 	<!-- Form for creating new question -->
     <form id="form-create-question" class="form-search" action="#" method="post" autocomplete="off">
     	<label class="control-label hide" for="input-question-create">Add new question: </label>
-		<textarea type="text" name="question" placeholder="write a new question for applicant"  class="fl-width98 right" id="input-question-create"></textarea><br />
+		<textarea rows="5" type="text" name="question" placeholder="write a new question for applicant"  class="fl-width98 right" id="input-question-create"></textarea><br />
 
 		<input type="submit" class="btn btn-primary create right fl-top5"  name='submit' data-toggle="button"  data-complete-text="finished!"  data-loading-text="processing..." value="Add New Question" />
 		
@@ -38,7 +38,7 @@ echo $this->partial('my-project-collaboration/my-project-navigation.phtml',array
 				{{#each this}}				
 					<form method="post" action="" class="form-search" data-question_id="{{id}}">
 						<input type="hidden" name="question_id" value="{{id}}" />
-						<textarea  type="text" name="question" class="fl-width98 right">{{question}}</textarea><br />
+						<textarea  rows="5" type="text" name="question" class="fl-width98 right">{{question}}</textarea><br />
 						
 						<div class="text-right fl-cnt-100 action-buttons" >
 						  <a href="#" class="btn btn-success update fl-top5" type="submit"  data-loading-text="editing..." name="submit" ><i class="icon-wrench icon-white"></i> Edit</a>

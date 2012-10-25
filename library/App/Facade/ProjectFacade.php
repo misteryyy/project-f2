@@ -196,15 +196,7 @@ class ProjectFacade {
 													$dataFirstStep['pitch'],
 													$dataFirstStep['content'],
 													$dataFirstStep['priority']);
-
-				$subcontent_plan = new \App\Entity\ProjectSubContent( \App\Entity\ProjectSubContent::TYPE_PLAN_TITLE, $dataFirstStep['plan'],\App\Entity\ProjectSubContent::TYPE_PLAN);
-				$subcontent_issue = new \App\Entity\ProjectSubContent(\App\Entity\ProjectSubContent::TYPE_ISSUE_TITLE, $dataFirstStep['issue'],\App\Entity\ProjectSubContent::TYPE_ISSUE);
-				$subcontent_lesson = new \App\Entity\ProjectSubContent(\App\Entity\ProjectSubContent::TYPE_LESSON_LEARNED_TITLE, $dataFirstStep['lesson'],\App\Entity\ProjectSubContent::TYPE_LESSON_LEARNED);
-
-				$newProject->addSubContent($subcontent_plan);
-				$newProject->addSubContent($subcontent_issue);
-				$newProject->addSubContent($subcontent_lesson);
-				
+	
 				$this->em->persist($newProject);
 			
 				// adding tags
@@ -212,8 +204,7 @@ class ProjectFacade {
 				$tags_raw = $dataFirstStep['project_tags'];
 				$clear_tags = parseTagsToArray($tags_raw);
 				
-						foreach($clear_tags as $tag){
-							
+						foreach($clear_tags as $tag){				
 							$tagObj = $this->em->getRepository ('\App\Entity\ProjectTag')->findOneBy(array("name"=> $tag));
 							// exists, just add to the project
 							if($tagObj){
@@ -321,16 +312,17 @@ class ProjectFacade {
 							if(isset($data[$s['name']]) && $data[$s['name']] != ""){
 							
 								$subContent = $project->getSubContent($s['type']);
-							
+								$visibility_name = $s['name']."_visibility";
 								// if exists edit it
 								if(isset($subContent)){
 									$subContent->setContent($data[$s['name']]);
-								
+									$subContent->setVisibility($data[$visibility_name ]); // set visibility
 								}else {
 								// if not, create it
 								$newSubContent = new \App\Entity\ProjectSubContent($s['title'], $data[$s['name']], $s['type']);	
 								$project->addSubContent($newSubContent);
 								$newSubContent->setProject($project);
+								$newSubContent->setVisibility($data[$visibility_name]);	
 								$this->em->flush();
 								$newSubContent = null;
 							}

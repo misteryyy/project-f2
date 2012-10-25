@@ -37,7 +37,7 @@ class MandrillMailer
 	 * @param array $global_merge_vars
 	 */
 	public function sendTemplateAction($template,$subject,$recipients = array(),$global_merge_vars = array()){
-		$recipients = array( array('name' => "name of rec",'email' => 'j.kortan@gmail.com') );
+		//$recipients = array( array('name' => "name of rec",'email' => 'j.kortan@gmail.com') );
 		//$global_merge_vars = array( array('name' => "SUBJECT",'content' => "VALUE FOR TITLE") );
 		//$template_content = array( array("name"=> "SUBJECT", 'content' => "content of name"));
 		$template_content = array();

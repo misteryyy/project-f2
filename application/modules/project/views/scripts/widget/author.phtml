@@ -30,7 +30,7 @@
                         <h4 class="fl-cnt-project-by-content-author"><?php echo $this->project->user->name?></h4>
                         <p class="fl-cnt-project-by-content-author-info"><i class="icon-file"></i> <a href="<?php echo $this->project->user->profileUrl?>" title="<?php echo $this->project->user->name; ?>'s profile">Profile</a>            
                        <?php if($this->isLogged){ ?>
-                         <span class="like"><i class="icon-thumbs-up"></i>, 
+                        ,<span class="like"><i class="icon-thumbs-up"></i> 
                          <?php
                          // like dislike solution 
                          if(!$this->project->user->isFriendWithMe($this->loggedMember)) {

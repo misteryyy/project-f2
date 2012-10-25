@@ -11,8 +11,7 @@ class MemberCreateProjectStep1 extends \Twitter_Bootstrap_Form_Horizontal
 		$this->categories = $categories;
 		parent::__construct();
 	}
-	
-	
+		
 	public function init()
 	{
 		// $this->setIsArray(true);
@@ -29,8 +28,6 @@ class MemberCreateProjectStep1 extends \Twitter_Bootstrap_Form_Horizontal
 				'validators' => array( array('alnum',false, array("allowWhiteSpace" => true)), array('StringLength', false, array(1,100)) )
 		));
 	
-		
-		
 		// Priority
 		$this->addElement('select','category', array(
 				'label' => 'Category:',
@@ -50,7 +47,6 @@ class MemberCreateProjectStep1 extends \Twitter_Bootstrap_Form_Horizontal
 				'multiOptions' => $priority
 		));
 			
-		
 		$this->addElement('textarea', 'pitch', array(
 				'label' => 'Sentence Pitch:',
 				'class' => 'span8',
@@ -71,33 +67,6 @@ class MemberCreateProjectStep1 extends \Twitter_Bootstrap_Form_Horizontal
 				'class' => 'span8',
 				'validators' => array("NotEmpty"),
 				'disableLoadDefaultDecorators' => true,
-		));
-		
-		$this->addElement('textarea', 'plan', array(
-				'label' => 'Plans:',
-				'class' => 'span8',
-				'rows' => '4',
-				'required' => false,
-				'filters' => array('StringTrim'),
-				//'description' => "description",
-		));
-		
-		$this->addElement('textarea', 'issue', array(
-				'label' => 'Issues:',
-				'class' => 'span8',
-				'rows' => '4',
-				'required' => false,
-				'filters' => array('StringTrim'),
-				//'description' => "description",
-		));
-		
-		$this->addElement('textarea', 'lesson', array(
-				'label' => 'Lessons Learned:',
-				'class' => 'span8',
-				'rows' => '4',
-				'required' => false,
-				'filters' => array('StringTrim'),
-				//'description' => "description",
 		));
 		
 		$this->addElement('text', 'project_tags', array(

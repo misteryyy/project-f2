@@ -13,6 +13,33 @@ class TaskFacade {
 		$this->facadeNotification = new \App\Facade\NotificationFacade($em);	
 	}	
 	
+	/**
+	 * Find project comment for project id and level
+	 * @param unknown_type $user_id
+	 * @param unknown_type $project_id
+	 * @param unknown_type $project_level
+	 */
+	public function findAllCommentForLevel($user_id,$project_id){
+		// checking errors
+		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );
+		if(!$user){
+			throw new \Exception("Member doesn't exists");
+		}
+		$project = $this->em->getRepository ('\App\Entity\Project')->findOneById ($project_id);
+		if(!$project){
+			throw new \Exception("Can't find this project.");
+		}
+	
+		$stmt = 'SELECT u FROM App\Entity\ProjectLevelComment u WHERE u.project = ?1';
+		$stmt .= " ORDER BY u.level ";
+	
+		$query = $this->em->createQuery($stmt);
+		$query->setParameter(1, $project_id);
+	
+		return $query->getResult();
+
+	}
+	
 	
 	/**
 	 * Find project comment for project id and level

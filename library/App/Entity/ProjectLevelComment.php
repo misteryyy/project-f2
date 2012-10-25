@@ -30,7 +30,7 @@ class ProjectLevelComment {
 	 */
 	private $content;
 	
-	
+
 	/**
 	 * @ManyToOne(targetEntity="Project")
 	 * @JoinColumn(name="project_id", referencedColumnName="id")
@@ -47,7 +47,10 @@ class ProjectLevelComment {
 		$this->level = $level;
 		$this->created = new \DateTime ( "now" );
 		
+		
 	}
+	
+	
 
 	/**
 	 * @return the $id

@@ -418,7 +418,7 @@ class User {
 	
 	
 	public function setPassword($value) {
-		$this->password = sha1 ( $value );
+		$this->password = sha1 ($value);
 	}
 	
 	

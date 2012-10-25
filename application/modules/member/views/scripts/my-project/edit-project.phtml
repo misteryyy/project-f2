@@ -33,7 +33,11 @@ echo $this->partial('my-project/my-project-navigation.phtml',array("step" => $th
 						</div>
 						<div id="<?php echo $s['name'];?>" class="accordion-body collapse <?php if($first) echo "in"; $first = false;?>">
 							<div class="accordion-inner">
-							<?php echo $this->form->$s['name'];?></div>
+							<?php
+							$name = $s['name']."_visibility";
+							echo $this->form->$name;?>
+							<?php echo $this->form->$s['name'];?>
+							</div>
 						</div>
 					</div>
 			<?php }?>

@@ -24,26 +24,32 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
 	public function levelAction()
 	{
 		$this->checkProjectAndUser();
-		$this->view->pageTitle = "Levels and Tasks" ;
-		$this->view->project = $this->project;
-	
-		// get comment for current level if was created
-		
+		$this->view->pageTitle = "Levels";
 		// Form for changing levels
-		$form = new \App\Form\Project\EditProjectLevelForm($this->project);
+		
 		$facadeTask = new \App\Facade\Project\TaskFacade($this->_em);
-			
+		
+		// comments for all levels
+		$comments = $facadeTask->findAllCommentForLevel($this->_member_id,$this->project_id);
+		$this->view->comments = $comments;
+		
+		// get info for this level
+		$levelComment = $facadeTask->findCommentForLevel($this->_member_id,$this->project_id,$this->project->level);
+		//$this->dPr($levelComment);
+		$form = new \App\Form\Project\EditProjectLevelForm($this->project,$levelComment);
 		// validation
 		if ($this->_request->isPost()) {
 			if ($form->isValid($this->_request->getPost())) {
 				try{
 					$facadeTask->setProjectLevel($this->_member_id, $this->project_id,$form->getValues());
-					$this->_helper->FlashMessenger( array('success' =>  "Project has been successfully moved to level ". $values['level']));
+					$this->_helper->FlashMessenger( array('success' =>  "Project has been successfully moved to level ". $form->getAttrib("level")));
 					$params = array('id' => $this->project_id);
 					$this->_helper->redirector('level', $this->getRequest()->getControllerName(), $this->getRequest()->getModuleName(), $params);
-						
+		
 				} catch (\Exception $e){
 					$this->_helper->FlashMessenger( array('error' =>  $e->getMessage()));
+					$this->_helper->redirector('task', $this->getRequest()->getControllerName(), $this->getRequest()->getModuleName(), $params);
+					
 				}
 			}
 			// not validated properly
@@ -51,7 +57,8 @@ class Member_MyProjectController extends  Boilerplate_Controller_Action_Abstract
 				$this->_helper->FlashMessenger( array('error' => "Please check your input."));
 			}
 		}
-		$this->view->form = $form;	
+		$this->view->form = $form;
+		$this->view->project = $this->project;
 	}
 
 	

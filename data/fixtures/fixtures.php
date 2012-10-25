@@ -128,3 +128,20 @@ $em->persist($user2);
 $em->flush();
 
 
+$user2 = new \App\Entity\User();
+$user2->setEmail("jerry@floplatform.com");
+$user2->setPassword("jerry123");
+$user2->setName("Gerardo Nunez");
+// setting roles
+$user2->addRole($role_visitor);
+$user2->addRole($role_member);
+$user2->addRole($role_admin);
+
+// adding userInfo / skype, phone, ...
+$userInfo = new \App\Entity\UserInfo();
+$user2->setUserInfo($userInfo);
+
+$em->persist($user2);
+$em->flush();
+
+
