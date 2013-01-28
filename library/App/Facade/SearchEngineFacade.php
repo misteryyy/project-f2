@@ -159,6 +159,12 @@ class SearchEngineFacade {
 		$doc->addField(\Zend_Search_Lucene_Field::text('specific_roles', $specificRoles,'utf-8'));
 		$doc->addField(\Zend_Search_Lucene_Field::text('project_roles', $projectRoles,'utf-8'));
 		
+		if($user->getSpecialRole()){
+			$doc->addField(\Zend_Search_Lucene_Field::text('earned_roles', 'on','utf-8'));
+		}else {
+			$doc->addField(\Zend_Search_Lucene_Field::text('earned_roles', 'off','utf-8'));	
+		}
+		
 		$index->addDocument($doc);
 		
 	}

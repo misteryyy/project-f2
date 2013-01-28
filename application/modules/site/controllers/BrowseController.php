@@ -46,6 +46,17 @@ class Site_BrowseController extends Boilerplate_Controller_Action_Abstract
 			    }
 			    $query .=  "project_roles:".implode(' AND project_roles:',$_GET['project_role']);
 			}
+			
+			// project roles
+			if(isset($_GET['earned_role'])){
+					 
+				if(trim( $_GET['q'] ) !== "" OR isset( $_GET['specific_role'] ) OR isset( $_GET['project_role'] )){
+					$query .=  " AND ";
+				}
+				$query .=  "earned_roles:on";
+			}
+			
+			
 		     	$paginator = $facadeSearchEngine->findUsersPaginator($query);
 		     	$paginator->setCurrentPageNumber(1);
 		     	$paginator->setItemCountPerPage(10);
@@ -63,11 +74,7 @@ class Site_BrowseController extends Boilerplate_Controller_Action_Abstract
 	    		$page = $this->_request->getParam('page', 1);
 	    		$paginator->setCurrentPageNumber($page);
 	    		$this->view->paginator = $paginator; // $paginator;
-    	}
-
-    	
-     	
-    	
+    	}    	
 	}
       
 

@@ -126,7 +126,7 @@ EOT;
 			$this->addElement('textarea', 'question_'.$i, array(
 					'label' => 'Question #'.$i.': ',
 					'required' => false,
-					'rows' => 2,
+					'rows' => 5,
 					'class' => 'span8',
 					'filters' => array('StringTrim'),
 					'validators' => array(array('StringLength', false, array(1,100)) )

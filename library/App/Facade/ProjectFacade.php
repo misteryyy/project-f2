@@ -104,7 +104,6 @@ class ProjectFacade {
 		
 		
 	}
-	
 
 	
 	/*
@@ -135,8 +134,6 @@ class ProjectFacade {
 		return $category;
 	}
 	
-	
-
 	
 	/**
 	 * Return all log information for user
@@ -450,15 +447,23 @@ class ProjectFacade {
 		if(!$user){
 			throw new \Exception("Member doesn't exists");
 		}
-		 
-		$stmt = 'SELECT p FROM App\Entity\Project p WHERE p.user = ?1';
-		$stmt .= 'ORDER BY p.created DESC';
 
+		// filter project level
+		if(isset($options['level'])){
+			$stmt = 'SELECT p FROM App\Entity\Project p WHERE p.user = ?1 AND p.level = 3';
+		} else {
+			$stmt = 'SELECT p FROM App\Entity\Project p WHERE p.user = ?1 AND p.level = 3';
+			$stmt .= 'ORDER BY p.created DESC';
+		}
+	
 		$query = $this->em->createQuery($stmt);
 		$query->setParameter(1, $user_id);
 		
 		return $query->getResult();	
 	}
+	
+	
+	
 	
 	public function findAllProjectsForUserPaginator($user_id,$options = array()){
 	

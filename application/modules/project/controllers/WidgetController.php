@@ -72,14 +72,23 @@ class Project_WidgetController extends  Boilerplate_Controller_Action_Abstract
 	    	$paginatorApplications->setCurrentPageNumber($this->_request->getParam('page', 1));
 	    $this->view->collaborations = $paginatorApplications;
 	    	
-    	// members projects
-    	$facadeProject = new \App\Facade\ProjectFacade($this->_em);
-    		$paginatorProject = $facadeProject->findAllProjectsForUserPaginator($this->project->user->id);
-    		$paginatorProject->setItemCountPerPage(5); // items per page
-    		$page = $this->_request->getParam('page', 1);
-    		$paginatorProject->setCurrentPageNumber($page);
+	    // members projects
+	    $facadeProject = new \App\Facade\ProjectFacade($this->_em);
+	     
+	    $finProjects = $facadeProject->findAllProjectsForUser($this->project->user->id,array("level"=>4));
+		    $this->view->hasSpecialRole = false;
+		    if(count($finProjects) > 2){
+		    	// check how much projects were finished
+		    	$this->view->hasSpecialRole = true;
+		    }
+	    
+	    $paginatorProject = $facadeProject->findAllProjectsForUserPaginator($this->project->user->id);
+    	$paginatorProject->setItemCountPerPage(5); // items per page
+    	$page = $this->_request->getParam('page', 1);
+   		$paginatorProject->setCurrentPageNumber($page);
     	$this->view->membersProject = $paginatorProject;
     }
+    
     
     /**
      * Poll Widget

@@ -479,6 +479,19 @@ class User {
 		return $this->projects;
 	}
 
+	
+	/**
+	 * Return number of project which are in level 3
+	 */
+	public function getSpecialRole(){
+		$count = 0;
+		foreach($this->projects as $p){
+			if($p->level == 1){
+				$count++;
+			}
+		}
+		return $count;
+	}
 
 
 	/**

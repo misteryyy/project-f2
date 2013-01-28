@@ -25,7 +25,6 @@ class UserFacade {
 		
 		// take users without ban
 		if(isset($options['unbanned'])){
-			
 				return  $this->em->getRepository ('\App\Entity\User')->findThemAllWithoutBan();
 		}	
 		else {
@@ -41,7 +40,6 @@ class UserFacade {
 	 * @param unknown_type $user_id
 	 */
 	public function findAllFavouriteUsersForUserPaginator($user_id){
-		
 		
 		// checking errors
 		$user = $this->em->getRepository ('\App\Entity\User')->findOneById ( $user_id );

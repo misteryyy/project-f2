@@ -65,8 +65,8 @@
 					</div>
 
 					<div class="hide">
-						<label for="er_role_earned"> <input type="checkbox"
-							name="role_earned" id="er_role_earned" /> earned role
+						<label for="er_role_earned"> 
+						<input type="checkbox" <?php if(Zend_Controller_Front::getInstance()->getRequest()->getParam('earned_role')) echo 'checked="checked'; ?> name="earned_role" id="er_role_earned" /> earned role
 						</label>
 					</div>
 					<div class="fl-width25 fl-filtr-er-roles">
@@ -163,12 +163,20 @@
 		      // END PROJECT ROLES
 		      ?>
 
-              <div class="fl-cnt-100">
-                <div class="fl-roles-detail">
-				  <strong>Earned roles:</strong><br />
-				  <img	src="/media/slepice-site/1.0.0/img/role_starter.png" alt="role starter icon" />
-				</div>
-			  </div>
+		      <?php 
+		      if($user->getSpecialRole()){
+		      ?>	
+		          <div class="fl-cnt-100">
+	                <div class="fl-roles-detail">
+					  <strong>Earned roles:</strong><br />
+					  <img	src="/media/slepice-site/1.0.0/img/role_starter.png" alt="role starter icon" />
+					</div>
+				  </div>
+		      
+		      <?php 
+		      }
+		      ?>
+          
 
 			</div>
           </div>
